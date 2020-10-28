@@ -25,7 +25,7 @@ namespace ZaolisUI
         public MainWindow()
         {
             InitializeComponent();
-            bll.GetAllUsers();
+            bll.GetUserByLogin("admin");
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
