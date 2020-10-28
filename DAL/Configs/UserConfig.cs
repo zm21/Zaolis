@@ -15,7 +15,9 @@ namespace DAL.Configs
             this.HasKey(u => u.Id);
             this.Property(u => u.Login).IsRequired().HasMaxLength(64);
             this.Property(u => u.Password).IsRequired().HasMaxLength(128);
-            this.Property(u => u.Bio).IsOptional().HasMaxLength(512);
+            this.Property(u => u.Bio).HasMaxLength(64);
+            this.Property(u => u.Name).IsRequired().HasMaxLength(24);
+            this.HasRequired(u => u.Avatar).WithRequiredPrincipal(b => b.User);
         }
     }
 }

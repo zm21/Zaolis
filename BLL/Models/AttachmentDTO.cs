@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Entities
+namespace BLL.Models
 {
-    public class Avatar
+    public class AttachmentDTO
     {
         public int Id { get; set; }
+        public int MessageId { get; set; }
         public string Path { get; set; }
-        public int UserId { get; set; }
-        public virtual User User { get; set; }
     }
 }

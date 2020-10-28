@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace DAL.Configs
 {
-    class AvatarConfig : EntityTypeConfiguration<Avatar>
+    class UserContactConfig : EntityTypeConfiguration<UserContact>
     {
-        public AvatarConfig()
+        public UserContactConfig()
         {
             this.HasKey(u => u.Id);
+            this.HasMany(u => u.Contacts).WithRequired(c => c.UserContact).HasForeignKey(i => i.UserContactId);
         }
     }
 }

@@ -1,0 +1,16 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BLL.Models
+{
+    public class MessageDTO
+    {
+        public int Id { get; set; }
+        public int UserId { get; set; } //Sender id
+        public string MessageText { get; set; }
+        public DateTime CreationTime { get; set; }
+    }
+}
