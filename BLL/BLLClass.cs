@@ -65,7 +65,7 @@ namespace BLL
 
         public bool IsExistsUserByLoginPassword(string login, string password)
         {
-            return _mapper.Map<IEnumerable<User>, UserDTO>(unit.UserRepository.Get(u => u.Login == login&&u.Password==password))!=null;
+            return false; //_mapper.Map<IEnumerable<User>, UserDTO>(unit.UserRepository.Get(u => u.Login == login && u.Password == password)) != null;
         }
     }
 }
