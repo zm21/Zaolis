@@ -6,7 +6,7 @@ using DAL.Interfaces;
 using DAL.Repositories;
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace BLL
 {
@@ -55,7 +55,7 @@ namespace BLL
 
         public UserDTO GetUserByLogin(string login)
         {
-            return _mapper.Map<IEnumerable<User>, UserDTO>(unit.UserRepository.Get(u=>u.Login==login));
+            return _mapper.Map<UserDTO>((unit.UserRepository.Get(u=>u.Login==login)).First());
         }
 
         public bool IsExistsUserByEmail(string email)

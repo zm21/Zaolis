@@ -10,7 +10,7 @@ namespace DAL
     public class ZaolisModel : DbContext
     {
         public ZaolisModel()
-            : base("name=Model1")
+            : base("name=zaolis")
         {
             Database.SetInitializer(new Initializer());
         }
