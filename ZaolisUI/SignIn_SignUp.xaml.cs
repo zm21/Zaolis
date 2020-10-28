@@ -23,6 +23,7 @@ namespace ZaolisUI
         public MainWindow()
         {
             InitializeComponent();
+            //fix
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
