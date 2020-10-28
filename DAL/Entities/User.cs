@@ -13,6 +13,8 @@ namespace DAL.Entities
         public User()
         {
             this.Chats = new HashSet<Chat>();
+            this.Avatars = new HashSet<Avatar>();
+            this.Messages = new HashSet<Message>();
         }
         public int Id { get; set; }
         public string Login { get; set; }
@@ -21,9 +23,8 @@ namespace DAL.Entities
         public string Bio { get; set; }
         public string Name { get; set; }
         public bool IsActive { get; set; }
-        public int AvatarId { get; set; }
-        public int UserContactId { get; set; }
-        public virtual Avatar Avatar { get; set; }
+        public virtual ICollection<Avatar> Avatars { get; set; }
+        public virtual ICollection<Message> Messages { get; set; }
         public virtual UserContact UserContact { get; set; }
         public virtual ICollection<Chat> Chats { get; set; }
     }

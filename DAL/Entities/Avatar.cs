@@ -11,6 +11,7 @@ namespace DAL.Entities
     {
         public int Id { get; set; }
         public string Path { get; set; }
+        public bool IsActive { get; set; }
         public int UserId { get; set; }
         public virtual User User { get; set; }
     }

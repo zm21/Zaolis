@@ -12,7 +12,8 @@ namespace DAL.Configs
     {
         public AvatarConfig()
         {
-            this.HasKey(u => u.Id);
+            this.HasKey(a => a.Id);
+            this.HasRequired(a => a.User).WithMany(u => u.Avatars).HasForeignKey(a => a.UserId);
         }
     }
 }

@@ -12,8 +12,9 @@ namespace DAL.Configs
     {
         public MessageConfig()
         {
-            this.HasKey(u => u.Id);
-            this.HasMany(a => a.Attachments).WithRequired(c => c.Message).HasForeignKey(i => i.MessageId);
+            this.HasKey(m => m.Id);
+            this.HasRequired(m => m.User).WithMany(u => u.Messages).HasForeignKey(m => m.UserId);
+            this.HasRequired(m => m.Chat).WithMany(c => c.Messages).HasForeignKey(m => m.ChatId);
         }
     }
 }

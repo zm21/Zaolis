@@ -13,7 +13,6 @@ namespace DAL.Entities
         {
             this.Contacts = new HashSet<User>();
         }
-        public int Id { get; set; }
         public int UserId { get; set; }
         public virtual ICollection<User> Contacts { get; set; }
         public virtual User User { get; set; }

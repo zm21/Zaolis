@@ -12,8 +12,9 @@ namespace DAL.Configs
     {
         public UserContactConfig()
         {
-            this.HasKey(u => u.Id);
-            this.HasMany(u => u.Contacts).WithRequired(c => c.UserContact).HasForeignKey(i => i.UserContactId);
+            this.HasKey(uc => uc.UserId);
+            this.HasRequired(uc => uc.User).WithRequiredDependent(u => u.UserContact);
+            this.HasMany(uc => uc.Contacts);
         }
     }
 }

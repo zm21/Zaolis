@@ -12,9 +12,8 @@ namespace DAL.Configs
     {
         public ChatConfig()
         {
-            this.HasKey(u => u.Id);
-            this.HasMany(u => u.Messages).WithRequired(c=>c.Chat).HasForeignKey(i=>i.ChatId);
-            this.HasMany(u => u.Users).WithMany(c => c.Chats);
+            this.HasKey(c => c.Id);
+            this.HasMany(c => c.Users).WithMany(u => u.Chats);
         }
     }
 }
