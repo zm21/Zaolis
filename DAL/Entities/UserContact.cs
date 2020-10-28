@@ -7,11 +7,15 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    public class Avatar
+    public class UserContact
     {
+        public UserContact()
+        {
+            this.Contacts = new HashSet<User>();
+        }
         public int Id { get; set; }
-        public string Path { get; set; }
         public int UserId { get; set; }
+        public virtual ICollection<User> Contacts { get; set; }
         public virtual User User { get; set; }
     }
 }
