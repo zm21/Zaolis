@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace DAL.Configs
 {
-    class AvatarConfig : EntityTypeConfiguration<Avatar>
+    public class ChatConfig : EntityTypeConfiguration<Chat>
     {
-        public AvatarConfig()
+        public ChatConfig()
         {
             this.HasKey(u => u.Id);
+            this.HasMany(u => u.Messages).WithRequired(c=>c.Chat).HasForeignKey(i=>i.ChatId);
+            this.HasMany(u => u.Users).WithMany(c => c.Chats);
         }
     }
 }

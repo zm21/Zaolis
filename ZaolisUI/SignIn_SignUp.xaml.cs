@@ -1,4 +1,9 @@
-﻿using System.Text;
+using System.Text;
+using BLL;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,9 +22,11 @@ namespace ZaolisUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        BLLClass bll = new BLLClass();
         public MainWindow()
         {
             InitializeComponent();
+            bll.GetUserByLogin("admin");
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

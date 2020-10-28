@@ -11,6 +11,11 @@ namespace DAL.Interfaces
     {
         IGenericRepository<User> UserRepository { get; }
         IGenericRepository<Avatar> AvatarRepository { get; }
+        IGenericRepository<UserContact> UserContactRepository { get; }
+        IGenericRepository<Message> MessageRepository { get; }
+        IGenericRepository<Attachment> AttachmentRepository { get; }
+        IGenericRepository<Chat> ChatRepository { get; }
+
         void Save();
     }
 }
