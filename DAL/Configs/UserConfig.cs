@@ -13,7 +13,7 @@ namespace DAL.Configs
         public UserConfig()
         {
             this.HasKey(u => u.Id);
-            this.Property(u => u.Bio).IsRequired().HasMaxLength(70);
+            this.Property(u => u.Bio).HasMaxLength(70);
             this.Property(u => u.Email).IsRequired().HasMaxLength(70);
             this.Property(u => u.IsActive).IsRequired();
             this.Property(u => u.Login).IsRequired().HasMaxLength(70);

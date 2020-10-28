@@ -16,7 +16,7 @@ namespace DAL.EF
 
             context.Users.AddRange(new List<User>()
             {
-                new User() {Login = "admin",Password="admin",Bio="Just an admin", Name="Admin"},
+                new User() {Login = "admin",PasswordHash="admin",Bio="Just an admin", Name="Admin", Email="admin@email", IsActive=false},
             });
             context.SaveChanges();
         }
