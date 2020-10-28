@@ -30,8 +30,18 @@ namespace BLL
             {
                 cfg.CreateMap<User, UserDTO>();
                 cfg.CreateMap<Avatar, AvatarDTO>();
-                cfg.CreateMap<UserDTO, User>();
+                cfg.CreateMap<Attachment, AttachmentDTO>();
+                cfg.CreateMap<Chat, ChatDTO>();
+                cfg.CreateMap<Message, MessageDTO>();
+                cfg.CreateMap<UserContact, UserContactDTO>();
+
+                cfg.CreateMap<UserDTO, User>().ForMember(dest => dest.PasswordHash,
+                                               opt => opt.MapFrom(src => Utils.ComputeSha256Hash(src.Password)));
                 cfg.CreateMap<AvatarDTO, Avatar>();
+                cfg.CreateMap<AttachmentDTO, Attachment>();
+                cfg.CreateMap<ChatDTO, Chat>();
+                cfg.CreateMap<MessageDTO, Message>();
+                cfg.CreateMap<UserContactDTO, UserContact>();
             });
 
             _mapper = new Mapper(config);
@@ -55,7 +65,7 @@ namespace BLL
 
         public UserDTO GetUserByLogin(string login)
         {
-            return _mapper.Map<UserDTO>((unit.UserRepository.Get(u=>u.Login==login)).First());
+            return _mapper.Map<UserDTO>((unit.UserRepository.Get(u=>u.Login==login))?.First());
         }
 
         public bool IsExistsUserByEmail(string email)
@@ -65,7 +75,8 @@ namespace BLL
 
         public bool IsExistsUserByLoginPassword(string login, string password)
         {
-            return false; //_mapper.Map<IEnumerable<User>, UserDTO>(unit.UserRepository.Get(u => u.Login == login && u.Password == password)) != null;
+            string passwdhash = Utils.ComputeSha256Hash(password);
+            return _mapper.Map<IEnumerable<User>, UserDTO>(unit.UserRepository.Get(u => u.Login == login && u.PasswordHash == passwdhash)) != null;
         }
     }
 }
