@@ -14,6 +14,8 @@ namespace DAL.Configs
         {
             this.HasKey(a => a.Id);
             this.HasRequired(a => a.User).WithMany(u => u.Avatars).HasForeignKey(a => a.UserId);
+            this.Property(a => a.Path).IsRequired();
+            this.Property(a => a.IsActive).IsRequired();
         }
     }
 }
