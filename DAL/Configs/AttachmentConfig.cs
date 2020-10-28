@@ -12,9 +12,8 @@ namespace DAL.Configs
     {
         public AttachmentConfig()
         {
-            this.HasKey(u => u.Id);
-            this.Property(u => u.Path).IsRequired();
-            this.HasRequired(u => u.Message).WithMany(i=>i.Attachments).HasForeignKey(c=>c.MessageId);
+            this.HasKey(a => a.Id);
+            this.HasRequired(a => a.Message).WithMany(m => m.Attachments).HasForeignKey(a => a.MessageId);
         }
     }
 }

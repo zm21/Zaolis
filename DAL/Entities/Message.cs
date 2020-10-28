@@ -19,7 +19,6 @@ namespace DAL.Entities
         public DateTime CreationTime { get; set; }
         public virtual User User { get; set; }
         public virtual Chat Chat { get; set; }
-
         public virtual ICollection<Attachment> Attachments { get; set; }
     }
 }
