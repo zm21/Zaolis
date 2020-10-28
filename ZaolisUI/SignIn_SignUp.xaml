@@ -42,7 +42,6 @@
                         <PasswordBox Name="passwdbox" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Password" Height="30" Margin="30,10"  CaretBrush="#FF005DFF"></PasswordBox>
                         <Button Margin="30,10" Background="#FF27AAF0" BorderBrush="#FF27AAF0" DockPanel.Dock="Top" materialDesign:ButtonAssist.CornerRadius="12" Foreground="White" Click="ButtonLogin_Click">LOGIN</Button>
                         <CheckBox DockPanel.Dock="Top" HorizontalAlignment="Right" Margin="30,5" >Remember me</CheckBox>
-                        <CheckBox Name="chb_alogin" Opacity="0" DockPanel.Dock="Top" HorizontalAlignment="Right" Margin="30,5" Background="Transparent" BorderBrush="Transparent" Foreground="Transparent"></CheckBox>
                     </DockPanel>
                 </Grid>
                 <!--SIGNUP-->
