@@ -11,10 +11,10 @@ namespace DAL.Repositories
 {
     class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
-        internal ZailosModel context;
+        internal ZaolisModel context;
         internal DbSet<TEntity> dbSet;
 
-        public GenericRepository(ZailosModel context)
+        public GenericRepository(ZaolisModel context)
         {
             this.context = context;
             dbSet = context.Set<TEntity>();

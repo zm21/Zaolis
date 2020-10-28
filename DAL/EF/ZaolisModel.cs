@@ -6,9 +6,9 @@ namespace DAL
     using System.Data.Entity;
     using System.Linq;
 
-    public class ZailosModel : DbContext
+    public class ZaolisModel : DbContext
     {
-        public ZailosModel()
+        public ZaolisModel()
             : base("name=Model1")
         {
             Database.SetInitializer(new Initializer());

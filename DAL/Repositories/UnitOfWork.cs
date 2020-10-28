@@ -8,11 +8,18 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
-        private ZailosModel context;
+        private ZaolisModel context;
         private IGenericRepository<User> userRepository;
         private IGenericRepository<Avatar> avatarRepository;
+
+        public UnitOfWork(ZaolisModel context)
+        {
+            this.context = context;
+            context.Users.ToList();
+        }
+
         public IGenericRepository<User> UserRepository
         {
             get

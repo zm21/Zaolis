@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Interfaces
 {
-    interface IUnitOfWork
+    public interface IUnitOfWork
     {
         IGenericRepository<User> UserRepository { get; }
         IGenericRepository<Avatar> AvatarRepository { get; }

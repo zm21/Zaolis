@@ -58,7 +58,7 @@
     <Compile Include="Configs\AvatarConfig.cs" />
     <Compile Include="Configs\UserConfig.cs" />
     <Compile Include="EF\Initializer.cs" />
-    <Compile Include="EF\ZailosModel.cs" />
+    <Compile Include="EF\ZaolisModel.cs" />
     <Compile Include="Entities\Avatar.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Interfaces\IGenericRepository.cs" />

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace DAL.EF
 {
-    class Initializer : DropCreateDatabaseIfModelChanges<ZailosModel>
+    class Initializer : DropCreateDatabaseIfModelChanges<ZaolisModel>
     {
-        protected override void Seed(ZailosModel context)
+        protected override void Seed(ZaolisModel context)
         {
             base.Seed(context);
 
