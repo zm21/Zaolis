@@ -14,6 +14,7 @@ namespace BLL
     {
         void AddAvatar(AvatarDTO newAvatar);
         void AddUser(UserDTO newUser);
+        void AddChat(ChatDTO newChat);
         bool IsExistsUserByLoginPassword(string login, string password);
         bool IsExistsUserByEmail(string email);
         UserDTO GetUserByLogin(string login);
@@ -30,8 +31,10 @@ namespace BLL
             {
                 cfg.CreateMap<User, UserDTO>();
                 cfg.CreateMap<Avatar, AvatarDTO>();
-                cfg.CreateMap<UserDTO, User>();
-                cfg.CreateMap<AvatarDTO, Avatar>();
+                cfg.CreateMap<Chat, ChatDTO>();
+                cfg.CreateMap<UserContact, UserContactDTO>();
+                cfg.CreateMap<Attachment, AttachmentDTO>();
+                cfg.CreateMap<Message, MessageDTO>();
             });
 
             _mapper = new Mapper(config);
@@ -40,6 +43,12 @@ namespace BLL
         {
             unit.AvatarRepository.Create(_mapper.Map<Avatar>(newAvatar));
             unit.AvatarRepository.Save();
+        }
+
+        public void AddChat(ChatDTO newChat)
+        {
+            unit.ChatRepository.Create(_mapper.Map<Chat>(newChat));
+            unit.ChatRepository.Save();
         }
 
         public void AddUser(UserDTO newUser)
