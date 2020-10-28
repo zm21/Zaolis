@@ -82,6 +82,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="RegisterViewModel.cs" />
     <Compile Include="SignIn_SignUp.xaml.cs">
       <DependentUpon>SignIn_SignUp.xaml</DependentUpon>
       <SubType>Code</SubType>
