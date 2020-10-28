@@ -49,8 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BLLClass.cs" />
+    <Compile Include="Models\AttachmentDTO.cs" />
     <Compile Include="Models\AvatarDTO.cs" />
+    <Compile Include="BLLClass.cs" />
+    <Compile Include="Models\ChatDTO.cs" />
+    <Compile Include="Models\MessageDTO.cs" />
+    <Compile Include="Models\UserContactDTO.cs" />
     <Compile Include="Models\UserDTO.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

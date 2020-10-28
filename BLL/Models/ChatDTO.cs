@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Models
 {
-    class Chat
+    class ChatDTO
     {
         public int Id { get; set; }
     }
