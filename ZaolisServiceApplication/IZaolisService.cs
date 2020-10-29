@@ -8,27 +8,7 @@ using System.Text;
 
 namespace ZaolisServiceApplication
 {
-    [ServiceContract]
-    public interface IZaolisService
-    {
-        [OperationContract]
-        UserDTO Connect(string login, string passwordHash);
-        [OperationContract]
-        void Disconnect(UserDTO user);
-        [OperationContract]
-        void AddAvatar(AvatarDTO newAvatar);
-        [OperationContract]
-        void RegisterUser(UserDTO newUser);
-        [OperationContract]
-        bool IsExistsUserByLoginPassword(string login, string password);
-        [OperationContract]
-        bool IsExistsUserByEmail(string email);
-        [OperationContract]
-        UserDTO GetUserByLogin(string login);
-        [OperationContract]
-        IEnumerable<UserDTO> GetAllUsers();
-    }
-
+    
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
     //[DataContract]
     //public class CompositeType

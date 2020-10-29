@@ -9,7 +9,7 @@ using System.Text;
 
 namespace ZaolisService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "ZaolisService" in both code and config file together.
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class ZaolisService : IZaolisService
     {
         BLLClass bll = new BLLClass();
@@ -20,12 +20,12 @@ namespace ZaolisService
 
         public void RegisterUser(UserDTO newUser)
         {
-            
+
         }
 
         public UserDTO Connect(string login, string password)
         {
-            return bll.GetUserByLoginAndPassword(login,password);
+            return bll.GetUserByLoginAndPassword(login, password);
         }
 
         public void Disconnect(UserDTO user)
