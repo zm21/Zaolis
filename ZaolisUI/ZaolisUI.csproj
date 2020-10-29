@@ -129,10 +129,9 @@
       <Project>{7aa7df19-dcee-42dd-8ffc-dd85acd536d7}</Project>
       <Name>BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ZaolisService\ZaolisService.csproj">
-      <Project>{852F463D-A4C9-4561-84F1-987A56D6C14D}</Project>
-      <Name>ZaolisService</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
