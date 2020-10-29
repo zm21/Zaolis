@@ -96,6 +96,10 @@
     <Compile Include="Migrations\202010291452432_Registration Verification.designer.cs">
       <DependentUpon>202010291452432_Registration Verification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010291506406_Fix.cs" />
+    <Compile Include="Migrations\202010291506406_Fix.designer.cs">
+      <DependentUpon>202010291506406_Fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Configs\UserConfig.cs" />
@@ -122,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010291452432_Registration Verification.resx">
       <DependentUpon>202010291452432_Registration Verification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010291506406_Fix.resx">
+      <DependentUpon>202010291506406_Fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

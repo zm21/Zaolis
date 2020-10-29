@@ -13,7 +13,7 @@ namespace DAL.Configs
         public RegisterVerificationConfig()
         {
             this.HasKey(u => u.Id);
-            this.HasRequired(u => u.Email);
+            this.Property(u => u.Email).IsRequired();
         }
     }
 }
