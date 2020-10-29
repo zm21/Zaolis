@@ -51,9 +51,11 @@ namespace ZaolisUI
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
-            ShowMsg("test title", "some msg");
-            var res= client.Connect("testUser", "Password11");
-            client.Disconnect(res);
+            if(client.IsExistsUserByLoginPassword(logTxtBox_login.Text, passwdbox.Password))
+            {
+                MsgBox msg = new MsgBox("Succes!", "You are logged in");
+                msg.Show();
+            }
         }
 
         private void ButtonSignUP_Click(object sender, RoutedEventArgs e)
