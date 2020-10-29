@@ -24,11 +24,13 @@ namespace ZaolisUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        ZaolisServiceClient client = new ZaolisServiceClient();
-        
+        ZaolisServiceClient client;
+        RegisterViewModel registerModel;
         public MainWindow()
         {
             InitializeComponent();
+            client = new ZaolisServiceClient();
+            registerModel = new RegisterViewModel();
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -59,7 +61,20 @@ namespace ZaolisUI
 
         private void ButtonSignUP_Click(object sender, RoutedEventArgs e)
         {
-           
+            client.RegisterUser(registerModel.Email);
+            VerificationCode verificationCode = new VerificationCode(registerModel.Email);
+            verificationCode.ShowDialog();
+            if(verificationCode.DialogResult == true)
+            {
+                ShowMsg("SingUp", "SignUp Successfull");
+                client.AddUser(new BLL.Models.UserDTO()
+                {
+                    Login = registerModel.Login,
+                    Password = registerModel.Passwd,
+                    Name = registerModel.Login,
+                    Email = registerModel.Email
+                });
+            }
         }
         private void ShowMsg(string title, string msg)
         {
