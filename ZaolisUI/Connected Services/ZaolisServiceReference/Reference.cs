@@ -62,6 +62,12 @@ namespace ZaolisUI.ZaolisServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetAllUsers", ReplyAction="http://tempuri.org/IZaolisService/GetAllUsersResponse")]
         System.Threading.Tasks.Task<BLL.Models.UserDTO[]> GetAllUsersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUserByEmail", ReplyAction="http://tempuri.org/IZaolisService/GetUserByEmailResponse")]
+        BLL.Models.UserDTO GetUserByEmail(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUserByEmail", ReplyAction="http://tempuri.org/IZaolisService/GetUserByEmailResponse")]
+        System.Threading.Tasks.Task<BLL.Models.UserDTO> GetUserByEmailAsync(string email);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -153,6 +159,14 @@ namespace ZaolisUI.ZaolisServiceReference {
         
         public System.Threading.Tasks.Task<BLL.Models.UserDTO[]> GetAllUsersAsync() {
             return base.Channel.GetAllUsersAsync();
+        }
+        
+        public BLL.Models.UserDTO GetUserByEmail(string email) {
+            return base.Channel.GetUserByEmail(email);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.UserDTO> GetUserByEmailAsync(string email) {
+            return base.Channel.GetUserByEmailAsync(email);
         }
     }
 }

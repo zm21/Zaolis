@@ -19,9 +19,10 @@ namespace ZaolisUI
     /// </summary>
     public partial class VerificationCode : Window
     {
-        public VerificationCode()
+        public VerificationCode(string email)
         {
             InitializeComponent();
+            
         }
     }
 }

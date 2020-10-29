@@ -18,9 +18,14 @@ namespace ZaolisService
             bll.AddAvatar(newAvatar);
         }
 
-        public void RegisterUser(UserDTO newUser)
+        public void RegisterUser(string email)
         {
+            bll.SendRegistrationCode(email);
+        }
 
+        public int GetCodeFromEmail(string email)
+        {
+            return bll.GetRegistrationCode(email).Code;
         }
 
         public UserDTO Connect(string login, string password)
@@ -57,6 +62,10 @@ namespace ZaolisService
         public bool IsExistsUserByLoginPassword(string login, string password)
         {
            return bll.IsExistsUserByLoginPassword(login, password);
+        }
+        public UserDTO GetUserByEmail(string email)
+        {
+            return bll.GetUserByEmail(email);
         }
     }
 }

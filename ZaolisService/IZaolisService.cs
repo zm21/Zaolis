@@ -18,7 +18,7 @@ namespace ZaolisService
         [OperationContract]
         void AddAvatar(AvatarDTO newAvatar);
         [OperationContract]
-        void RegisterUser(UserDTO newUser);
+        void RegisterUser(string email);
         [OperationContract]
         bool IsExistsUserByLoginPassword(string login, string password);
         [OperationContract]
@@ -27,6 +27,10 @@ namespace ZaolisService
         UserDTO GetUserByLogin(string login);
         [OperationContract]
         IEnumerable<UserDTO> GetAllUsers();
+        [OperationContract]
+        UserDTO GetUserByEmail(string email);
+        [OperationContract]
+        int GetCodeFromEmail(string email);
     }
 
 }
