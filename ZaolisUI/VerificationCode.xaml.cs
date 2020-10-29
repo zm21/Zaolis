@@ -24,5 +24,10 @@ namespace ZaolisUI
             InitializeComponent();
             
         }
+
+        private void Num_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !(Char.IsDigit(e.Text, 0));
+        }
     }
 }
