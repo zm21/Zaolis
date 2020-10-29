@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ServiceModel;
+using ZaolisUI.ZaolisServiceReference;
 
 namespace ZaolisUI
 {
@@ -23,11 +24,12 @@ namespace ZaolisUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        BLLClass bll = new BLLClass();
+        ZaolisServiceClient client = new ZaolisServiceClient();
+        
         public MainWindow()
         {
             InitializeComponent();
-            bll.GetUserByLogin("admin");
+            
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
