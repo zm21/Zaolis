@@ -4,9 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZaolisUI"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="VerificationCode" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MsgBox" Height="150" Width="360" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterOwner" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
+    <DockPanel Background="#C8E4F8">
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False" Background="#27AAF0">
+            <Label Name="MsgTitle" VerticalAlignment="Center" Margin="10,0">Verefication</Label>
+            <Button DockPanel.Dock="Right" BorderBrush="Transparent" Background="Transparent" Click="BtnMsgBoxClose_Click">
+                <Grid>
+                    <materialDesign:PackIcon Kind="WindowClose"/>
+                </Grid>
+            </Button>
+        </DockPanel>
+        <DockPanel Margin="5">
+            <Label DockPanel.Dock="Top">Enter your verefication-code from email:</Label>
+            <Button DockPanel.Dock="Bottom" Margin="5" Foreground="White">Register</Button>
+            <TextBox
+            Name="txtbox_VereficationCode" Margin="5" PreviewTextInput="Num_PreviewTextInput"
+                Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                VerticalAlignment="Top"
+                VerticalScrollBarVisibility="Auto" MaxLength="6"/>
+        </DockPanel>
+    </DockPanel>
 </Window>
