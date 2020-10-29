@@ -19,7 +19,7 @@ namespace ZaolisService
         [OperationContract]
         void AddAvatar(AvatarDTO newAvatar);
         [OperationContract]
-        void AddUser(UserDTO newUser);
+        void RegisterUser(UserDTO newUser);
         [OperationContract]
         bool IsExistsUserByLoginPassword(string login, string password);
         [OperationContract]

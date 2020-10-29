@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ServiceModel;
+using ZaolisService;
 
 namespace ZaolisUI
 {
@@ -27,6 +29,18 @@ namespace ZaolisUI
         {
             InitializeComponent();
             bll.GetUserByLogin("admin");
+            try
+            {
+                using (var host = new ServiceHost(typeof(ZaolisService.ZaolisService)))
+                {
+                    host.Open();
+                }
+            }
+            catch(Exception ex)
+            {
+                MsgBox msg = new MsgBox("Error",ex.Message);
+                msg.Show();
+            }
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {

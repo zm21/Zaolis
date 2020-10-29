@@ -19,6 +19,7 @@ namespace BLL
         bool IsExistsUserByLoginPassword(string login, string password);
         bool IsExistsUserByEmail(string email);
         UserDTO GetUserByLogin(string login);
+        UserDTO GetUserByLoginAndPassword(string login, string password);
         IEnumerable<UserDTO> GetAllUsers();
     }
     public class BLLClass : IBLLClass
@@ -39,8 +40,8 @@ namespace BLL
                 cfg.CreateMap<VerificationCode, VerificationCodeDTO>();
                 cfg.CreateMap<RegisterVerification, RegisterVerificationDTO>();
 
-                //cfg.CreateMap<UserDTO, User>().ForMember(dest => dest.PasswordHash,
-                //                               opt => opt.MapFrom(src => Utils.ComputeSha256Hash(src.Password)));
+                cfg.CreateMap<UserDTO, User>().ForMember(dest => dest.PasswordHash,
+                                               opt => opt.MapFrom(src => Utils.ComputeSha256Hash(src.Password)));
 
                 cfg.CreateMap<AvatarDTO, Avatar>();
                 cfg.CreateMap<AttachmentDTO, Attachment>();
@@ -86,15 +87,19 @@ namespace BLL
         {
             return _mapper.Map<UserDTO>((unit.UserRepository.Get(u=>u.Login==login))?.First());
         }
+        public UserDTO GetUserByLoginAndPassword(string login, string password)
+        {
+            return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Login == login&&u.PasswordHash==password))?.First());
+        }
 
         public bool IsExistsUserByEmail(string email)
         {
             return (_mapper.Map<IEnumerable<User>, UserDTO>(unit.UserRepository.Get(u => u.Email == email))!=null);
         }
 
-        public bool IsExistsUserByLoginPassword(string login, string passwdhash)
+        public bool IsExistsUserByLoginPassword(string login, string password)
         {
-            //string passwdhash = Utils.ComputeSha256Hash(password);
+            string passwdhash = Utils.ComputeSha256Hash(password);
             return _mapper.Map<IEnumerable<User>, UserDTO>(unit.UserRepository.Get(u => u.Login == login && u.PasswordHash == passwdhash)) != null;
         }
     }
