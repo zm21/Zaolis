@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Entities
 {
-    public class VerificationCode
+    public class RegisterVerification
     {
         public int Id { get; set; }
+        public string Email { get; set; }
         public int Code { get; set; }
-        public DateTime CreationTime { get; set; }
-        public int UserId { get; set; }
-        public virtual User User { get; set; }
-
     }
 }

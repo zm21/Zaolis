@@ -62,6 +62,7 @@
     <Compile Include="Configs\AvatarConfig.cs" />
     <Compile Include="Configs\ChatConfig.cs" />
     <Compile Include="Configs\MessageConfig.cs" />
+    <Compile Include="Configs\RegisterVerificationConfig.cs" />
     <Compile Include="Configs\VerificationCodeConfig.cs" />
     <Compile Include="EF\Initializer.cs" />
     <Compile Include="EF\ZaolisModel.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Entities\Avatar.cs" />
     <Compile Include="Entities\Chat.cs" />
     <Compile Include="Entities\Message.cs" />
+    <Compile Include="Entities\RegisterVerification.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserContact.cs" />
     <Compile Include="Entities\VerificationCode.cs" />

@@ -4,15 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Entities
+namespace BLL.Models
 {
-    public class VerificationCode
+    public class RegisterVerificationDTO
     {
         public int Id { get; set; }
+        public string Email { get; set; }
         public int Code { get; set; }
-        public DateTime CreationTime { get; set; }
-        public int UserId { get; set; }
-        public virtual User User { get; set; }
-
     }
 }

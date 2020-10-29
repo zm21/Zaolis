@@ -18,7 +18,7 @@ namespace DAL.Repositories
         private IGenericRepository<Message> messageRepository;
         private IGenericRepository<Chat> chatRepository;
         private IGenericRepository<VerificationCode> verificationCodeRepository;
-
+        private IGenericRepository<RegisterVerification> registerVerificationRepository;
 
 
         public UnitOfWork(ZaolisModel context)
@@ -98,6 +98,15 @@ namespace DAL.Repositories
             }
         }
 
+        public IGenericRepository<RegisterVerification> RegisterVerificationRepository
+        {
+            get
+            {
+                if (verificationCodeRepository == null)
+                    registerVerificationRepository = new GenericRepository<RegisterVerification>(context);
+                return registerVerificationRepository;
+            }
+        }
 
         public void Save()
         {
