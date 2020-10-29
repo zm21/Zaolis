@@ -34,10 +34,10 @@ namespace ZaolisUI.ZaolisServiceReference {
         System.Threading.Tasks.Task AddAvatarAsync(BLL.Models.AvatarDTO newAvatar);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/RegisterUser", ReplyAction="http://tempuri.org/IZaolisService/RegisterUserResponse")]
-        void RegisterUser(BLL.Models.UserDTO newUser);
+        void RegisterUser(string email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/RegisterUser", ReplyAction="http://tempuri.org/IZaolisService/RegisterUserResponse")]
-        System.Threading.Tasks.Task RegisterUserAsync(BLL.Models.UserDTO newUser);
+        System.Threading.Tasks.Task RegisterUserAsync(string email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/IsExistsUserByLoginPassword", ReplyAction="http://tempuri.org/IZaolisService/IsExistsUserByLoginPasswordResponse")]
         bool IsExistsUserByLoginPassword(string login, string password);
@@ -68,6 +68,12 @@ namespace ZaolisUI.ZaolisServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUserByEmail", ReplyAction="http://tempuri.org/IZaolisService/GetUserByEmailResponse")]
         System.Threading.Tasks.Task<BLL.Models.UserDTO> GetUserByEmailAsync(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetCodeFromEmail", ReplyAction="http://tempuri.org/IZaolisService/GetCodeFromEmailResponse")]
+        int GetCodeFromEmail(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetCodeFromEmail", ReplyAction="http://tempuri.org/IZaolisService/GetCodeFromEmailResponse")]
+        System.Threading.Tasks.Task<int> GetCodeFromEmailAsync(string email);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -121,12 +127,12 @@ namespace ZaolisUI.ZaolisServiceReference {
             return base.Channel.AddAvatarAsync(newAvatar);
         }
         
-        public void RegisterUser(BLL.Models.UserDTO newUser) {
-            base.Channel.RegisterUser(newUser);
+        public void RegisterUser(string email) {
+            base.Channel.RegisterUser(email);
         }
         
-        public System.Threading.Tasks.Task RegisterUserAsync(BLL.Models.UserDTO newUser) {
-            return base.Channel.RegisterUserAsync(newUser);
+        public System.Threading.Tasks.Task RegisterUserAsync(string email) {
+            return base.Channel.RegisterUserAsync(email);
         }
         
         public bool IsExistsUserByLoginPassword(string login, string password) {
@@ -167,6 +173,14 @@ namespace ZaolisUI.ZaolisServiceReference {
         
         public System.Threading.Tasks.Task<BLL.Models.UserDTO> GetUserByEmailAsync(string email) {
             return base.Channel.GetUserByEmailAsync(email);
+        }
+        
+        public int GetCodeFromEmail(string email) {
+            return base.Channel.GetCodeFromEmail(email);
+        }
+        
+        public System.Threading.Tasks.Task<int> GetCodeFromEmailAsync(string email) {
+            return base.Channel.GetCodeFromEmailAsync(email);
         }
     }
 }

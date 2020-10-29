@@ -6,26 +6,19 @@
         xmlns:local="clr-namespace:ZaolisUI"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MsgBox" Height="150" Width="360" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterOwner" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        Title="MsgBox" Height="130" Width="360" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterOwner" MouseLeftButtonDown="Window_MouseLeftButtonDown">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"/>
     </WindowChrome.WindowChrome>
     <DockPanel Background="#C8E4F8">
         <DockPanel DockPanel.Dock="Top" LastChildFill="False" Background="#27AAF0">
             <Label Name="MsgTitle" VerticalAlignment="Center" Margin="10,0">Verefication</Label>
-            <Button DockPanel.Dock="Right" BorderBrush="Transparent" Background="Transparent" Click="BtnMsgBoxClose_Click">
-                <Grid>
-                    <materialDesign:PackIcon Kind="WindowClose"/>
-                </Grid>
-            </Button>
         </DockPanel>
         <DockPanel Margin="5">
-            <Label DockPanel.Dock="Top">Enter your verefication-code from email:</Label>
-            <Button DockPanel.Dock="Bottom" Margin="5" Foreground="White">Register</Button>
-            <TextBox
+            <Button DockPanel.Dock="Bottom" Margin="5" Foreground="White" Click="Button_Click">Register</Button>
+            <TextBox materialDesign:HintAssist.Hint="Enter your verefication-code from email:" FontSize="15" VerticalContentAlignment="Center"
             Name="txtbox_VereficationCode" Margin="5" PreviewTextInput="Num_PreviewTextInput"
                 Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
-                VerticalAlignment="Top"
                 VerticalScrollBarVisibility="Auto" MaxLength="6"/>
         </DockPanel>
     </DockPanel>

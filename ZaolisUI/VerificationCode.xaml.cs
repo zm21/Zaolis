@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ZaolisUI.ZaolisServiceReference;
 
 namespace ZaolisUI
 {
@@ -19,15 +20,26 @@ namespace ZaolisUI
     /// </summary>
     public partial class VerificationCode : Window
     {
+        ZaolisServiceClient client = new ZaolisServiceClient();
+        string email;
         public VerificationCode(string email)
         {
             InitializeComponent();
-            
+            this.email = email;
         }
 
         private void Num_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = !(Char.IsDigit(e.Text, 0));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (txtbox_VereficationCode.Text == client.GetCodeFromEmail(email).ToString())
+            {
+                MsgBox msg = new MsgBox("Succes!", "Succesfull registration!");
+                msg.Show();
+            }
         }
     }
 }
