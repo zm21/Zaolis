@@ -8,6 +8,7 @@ using EASendMail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BLL
 {
@@ -144,6 +145,13 @@ namespace BLL
                 TextBody = $"Your verification code for registration in Zaolis Messager: {code}",
                 Priority = EASendMail.MailPriority.High
             };
+
+            Task.Run(() => 
+            {
+                SmtpClient client = new SmtpClient();
+                client.Connect(server); 
+                client.SendMail(message);
+            });
 
             AddRegistrationCode(new RegisterVerificationDTO() { Code = code, Email = email });
         }
