@@ -15,7 +15,7 @@ namespace ZaolisService
         BLLClass bll = new BLLClass();
         public void AddAvatar(AvatarDTO newAvatar)
         {
-            throw new NotImplementedException();
+            bll.AddAvatar(newAvatar);
         }
 
         public void RegisterUser(UserDTO newUser)
@@ -25,32 +25,38 @@ namespace ZaolisService
 
         public UserDTO Connect(string login, string password)
         {
-            return bll.GetUserByLoginAndPassword(login, password);
+            var res= bll.GetUserByLoginAndPassword(login, password);
+            if (res != null)
+            {
+                bll.ChangeStatus(res, true);
+            }
+            return res;
         }
 
         public void Disconnect(UserDTO user)
         {
-            throw new NotImplementedException();
+            if(user!=null)
+                bll.ChangeStatus(user, false);
         }
 
         public IEnumerable<UserDTO> GetAllUsers()
         {
-            throw new NotImplementedException();
+            return bll.GetAllUsers();
         }
 
         public UserDTO GetUserByLogin(string login)
         {
-            throw new NotImplementedException();
+            return bll.GetUserByLogin(login);
         }
 
         public bool IsExistsUserByEmail(string email)
         {
-            throw new NotImplementedException();
+            return bll.IsExistsUserByEmail(email);
         }
 
         public bool IsExistsUserByLoginPassword(string login, string password)
         {
-            throw new NotImplementedException();
+           return bll.IsExistsUserByLoginPassword(login, password);
         }
     }
 }

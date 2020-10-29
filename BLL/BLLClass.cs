@@ -16,6 +16,7 @@ namespace BLL
         void AddCode(VerificationCodeDTO newCode);
         void AddRegistrationCode(RegisterVerificationDTO newCode);
         void AddUser(UserDTO newUser);
+        void ChangeStatus(UserDTO user,bool status);
         bool IsExistsUserByLoginPassword(string login, string password);
         bool IsExistsUserByEmail(string email);
         UserDTO GetUserByLogin(string login);
@@ -54,6 +55,15 @@ namespace BLL
 
             _mapper = new Mapper(config);
         }
+        public void ChangeStatus(UserDTO user,bool status)
+        {
+            var res=unit.UserRepository.GetById(user.Id);
+            if (res != null)
+            {
+                res.IsActive = status;
+                unit.UserRepository.Save();
+            }
+        }
         public void AddAvatar(AvatarDTO newAvatar)
         {
             unit.AvatarRepository.Create(_mapper.Map<Avatar>(newAvatar));
@@ -89,7 +99,8 @@ namespace BLL
         }
         public UserDTO GetUserByLoginAndPassword(string login, string password)
         {
-            return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Login == login&&u.PasswordHash==password))?.First());
+            string passwdhash = Utils.ComputeSha256Hash(password);
+            return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Login == login&&u.PasswordHash== passwdhash))?.First());
         }
 
         public bool IsExistsUserByEmail(string email)
@@ -100,7 +111,7 @@ namespace BLL
         public bool IsExistsUserByLoginPassword(string login, string password)
         {
             string passwdhash = Utils.ComputeSha256Hash(password);
-            return _mapper.Map<IEnumerable<User>, UserDTO>(unit.UserRepository.Get(u => u.Login == login && u.PasswordHash == passwdhash)) != null;
+            return _mapper.Map<User>(unit.UserRepository.Get(u => u.Login == login && u.PasswordHash == passwdhash)) != null;
         }
     }
 }
