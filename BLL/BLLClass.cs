@@ -13,6 +13,7 @@ namespace BLL
     public interface IBLLClass
     {
         void AddAvatar(AvatarDTO newAvatar);
+        void AddCode(VerificationCodeDTO newCode);
         void AddUser(UserDTO newUser);
         bool IsExistsUserByLoginPassword(string login, string password);
         bool IsExistsUserByEmail(string email);
@@ -34,6 +35,7 @@ namespace BLL
                 cfg.CreateMap<Chat, ChatDTO>();
                 cfg.CreateMap<Message, MessageDTO>();
                 cfg.CreateMap<UserContact, UserContactDTO>();
+                cfg.CreateMap<VerificationCode, VerificationCodeDTO>();
 
                 cfg.CreateMap<UserDTO, User>().ForMember(dest => dest.PasswordHash,
                                                opt => opt.MapFrom(src => Utils.ComputeSha256Hash(src.Password)));
@@ -42,6 +44,7 @@ namespace BLL
                 cfg.CreateMap<ChatDTO, Chat>();
                 cfg.CreateMap<MessageDTO, Message>();
                 cfg.CreateMap<UserContactDTO, UserContact>();
+                cfg.CreateMap<VerificationCodeDTO, VerificationCode>();
             });
 
             _mapper = new Mapper(config);
@@ -50,6 +53,12 @@ namespace BLL
         {
             unit.AvatarRepository.Create(_mapper.Map<Avatar>(newAvatar));
             unit.AvatarRepository.Save();
+        }
+
+        public void AddCode(VerificationCodeDTO newCode)
+        {
+            unit.VerificationCodeRepository.Create(_mapper.Map<VerificationCode>(newCode));
+            unit.VerificationCodeRepository.Save();
         }
 
         public void AddUser(UserDTO newUser)

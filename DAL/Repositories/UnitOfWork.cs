@@ -17,6 +17,8 @@ namespace DAL.Repositories
         private IGenericRepository<Attachment> attachmentRepository;
         private IGenericRepository<Message> messageRepository;
         private IGenericRepository<Chat> chatRepository;
+        private IGenericRepository<VerificationCode> verificationCodeRepository;
+
 
 
         public UnitOfWork(ZaolisModel context)
@@ -83,6 +85,16 @@ namespace DAL.Repositories
                 if (chatRepository == null)
                     chatRepository = new GenericRepository<Chat>(context);
                 return chatRepository;
+            }
+        }
+
+        public IGenericRepository<VerificationCode> VerificationCodeRepository
+        {
+            get
+            {
+                if (verificationCodeRepository == null)
+                    verificationCodeRepository = new GenericRepository<VerificationCode>(context);
+                return verificationCodeRepository;
             }
         }
 
