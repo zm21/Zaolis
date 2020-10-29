@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ZaolisUI"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MsgBox" Height="130" Width="360" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterOwner" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+        Title="MsgBox" Height="130" Width="360" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterOwner">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"/>
     </WindowChrome.WindowChrome>
