@@ -16,6 +16,7 @@ namespace BLL
         void AddCode(VerificationCodeDTO newCode);
         void AddRegistrationCode(RegisterVerificationDTO newCode);
         void AddUser(UserDTO newUser);
+        void ChangeStatus(UserDTO user,bool status);
         bool IsExistsUserByLoginPassword(string login, string password);
         bool IsExistsUserByEmail(string email);
         UserDTO GetUserByLogin(string login);
@@ -53,6 +54,15 @@ namespace BLL
             });
 
             _mapper = new Mapper(config);
+        }
+        public void ChangeStatus(UserDTO user,bool status)
+        {
+            var res=unit.UserRepository.GetById(user.Id);
+            if (res != null)
+            {
+                res.IsActive = status;
+                unit.UserRepository.Save();
+            }
         }
         public void AddAvatar(AvatarDTO newAvatar)
         {
