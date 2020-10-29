@@ -56,6 +56,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -127,6 +128,10 @@
     <ProjectReference Include="..\BLL\BLL.csproj">
       <Project>{7aa7df19-dcee-42dd-8ffc-dd85acd536d7}</Project>
       <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZaolisService\ZaolisService.csproj">
+      <Project>{852F463D-A4C9-4561-84F1-987A56D6C14D}</Project>
+      <Name>ZaolisService</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
