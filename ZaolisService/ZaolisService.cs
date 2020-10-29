@@ -35,7 +35,8 @@ namespace ZaolisService
 
         public void Disconnect(UserDTO user)
         {
-            bll.ChangeStatus(user, false);
+            if(user!=null)
+                bll.ChangeStatus(user, false);
         }
 
         public IEnumerable<UserDTO> GetAllUsers()

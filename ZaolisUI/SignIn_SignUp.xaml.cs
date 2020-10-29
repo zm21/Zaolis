@@ -52,7 +52,8 @@ namespace ZaolisUI
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
             ShowMsg("test title", "some msg");
-            client.Connect("testUser", "Password11");
+            var res= client.Connect("testUser", "Password11");
+            client.Disconnect(res);
         }
 
         private void ButtonSignUP_Click(object sender, RoutedEventArgs e)
