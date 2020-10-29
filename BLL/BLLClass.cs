@@ -13,6 +13,8 @@ namespace BLL
     public interface IBLLClass
     {
         void AddAvatar(AvatarDTO newAvatar);
+        void AddCode(VerificationCodeDTO newCode);
+        void AddRegistrationCode(RegisterVerificationDTO newCode);
         void AddUser(UserDTO newUser);
         bool IsExistsUserByLoginPassword(string login, string password);
         bool IsExistsUserByEmail(string email);
@@ -34,14 +36,19 @@ namespace BLL
                 cfg.CreateMap<Chat, ChatDTO>();
                 cfg.CreateMap<Message, MessageDTO>();
                 cfg.CreateMap<UserContact, UserContactDTO>();
+                cfg.CreateMap<VerificationCode, VerificationCodeDTO>();
+                cfg.CreateMap<RegisterVerification, RegisterVerificationDTO>();
 
-                cfg.CreateMap<UserDTO, User>().ForMember(dest => dest.PasswordHash,
-                                               opt => opt.MapFrom(src => Utils.ComputeSha256Hash(src.Password)));
+                //cfg.CreateMap<UserDTO, User>().ForMember(dest => dest.PasswordHash,
+                //                               opt => opt.MapFrom(src => Utils.ComputeSha256Hash(src.Password)));
+
                 cfg.CreateMap<AvatarDTO, Avatar>();
                 cfg.CreateMap<AttachmentDTO, Attachment>();
                 cfg.CreateMap<ChatDTO, Chat>();
                 cfg.CreateMap<MessageDTO, Message>();
                 cfg.CreateMap<UserContactDTO, UserContact>();
+                cfg.CreateMap<VerificationCodeDTO, VerificationCode>();
+                cfg.CreateMap<RegisterVerificationDTO, RegisterVerification>();
             });
 
             _mapper = new Mapper(config);
@@ -50,6 +57,18 @@ namespace BLL
         {
             unit.AvatarRepository.Create(_mapper.Map<Avatar>(newAvatar));
             unit.AvatarRepository.Save();
+        }
+
+        public void AddCode(VerificationCodeDTO newCode)
+        {
+            unit.VerificationCodeRepository.Create(_mapper.Map<VerificationCode>(newCode));
+            unit.VerificationCodeRepository.Save();
+        }
+
+        public void AddRegistrationCode(RegisterVerificationDTO newCode)
+        {
+            unit.RegisterVerificationRepository.Create(_mapper.Map<RegisterVerification>(newCode));
+            unit.RegisterVerificationRepository.Save();
         }
 
         public void AddUser(UserDTO newUser)
@@ -73,9 +92,9 @@ namespace BLL
             return (_mapper.Map<IEnumerable<User>, UserDTO>(unit.UserRepository.Get(u => u.Email == email))!=null);
         }
 
-        public bool IsExistsUserByLoginPassword(string login, string password)
+        public bool IsExistsUserByLoginPassword(string login, string passwdhash)
         {
-            string passwdhash = Utils.ComputeSha256Hash(password);
+            //string passwdhash = Utils.ComputeSha256Hash(password);
             return _mapper.Map<IEnumerable<User>, UserDTO>(unit.UserRepository.Get(u => u.Login == login && u.PasswordHash == passwdhash)) != null;
         }
     }

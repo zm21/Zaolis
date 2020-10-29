@@ -24,6 +24,8 @@ namespace DAL
             modelBuilder.Configurations.Add(new MessageConfig());
             modelBuilder.Configurations.Add(new UserConfig());
             modelBuilder.Configurations.Add(new UserContactConfig());
+            modelBuilder.Configurations.Add(new VerificationCodeConfig());
+            modelBuilder.Configurations.Add(new RegisterVerificationConfig());
         }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Avatar> Avatars { get; set; }
@@ -31,5 +33,7 @@ namespace DAL
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Attachment> Attachments { get; set; }
         public virtual DbSet<Chat> Chats { get; set; }
+        public virtual DbSet<VerificationCode> VerificationCodes { get; set; }
+        public virtual DbSet<RegisterVerification> RegisterVerifications { get; set; }
     }
 }

@@ -54,8 +54,10 @@
     <Compile Include="BLLClass.cs" />
     <Compile Include="Models\ChatDTO.cs" />
     <Compile Include="Models\MessageDTO.cs" />
+    <Compile Include="Models\RegisterVerificationDTO.cs" />
     <Compile Include="Models\UserContactDTO.cs" />
     <Compile Include="Models\UserDTO.cs" />
+    <Compile Include="Models\VerificationCodeDTO.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

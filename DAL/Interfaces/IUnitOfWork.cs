@@ -15,6 +15,8 @@ namespace DAL.Interfaces
         IGenericRepository<Message> MessageRepository { get; }
         IGenericRepository<Attachment> AttachmentRepository { get; }
         IGenericRepository<Chat> ChatRepository { get; }
+        IGenericRepository<VerificationCode> VerificationCodeRepository { get; }
+        IGenericRepository<RegisterVerification> RegisterVerificationRepository { get; }
 
         void Save();
     }
