@@ -1,0 +1,33 @@
+﻿<Window x:Class="ZaolisUI.MsgBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ZaolisUI"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="MsgBox" Height="180" Width="360" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterOwner" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
+    <DockPanel Background="#C8E4F8">
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False" Background="#27AAF0">
+            <Label Name="MsgTitle" VerticalAlignment="Center" Margin="10,0">Title</Label>
+            <Button DockPanel.Dock="Right" BorderBrush="Transparent" Background="Transparent" Click="BtnMsgBoxClose_Click">
+                <Grid>
+                    <materialDesign:PackIcon Kind="WindowClose"/>
+                </Grid>
+            </Button>
+        </DockPanel>
+        <TextBox
+            Name="Message"
+                Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                Margin="10"
+                VerticalAlignment="Top"
+                AcceptsReturn="True"
+                TextWrapping="Wrap"
+                VerticalScrollBarVisibility="Auto"
+                materialDesign:HintAssist.Hint="Message"
+                IsEnabled="False" Height="128"/>
+    </DockPanel>
+</Window>

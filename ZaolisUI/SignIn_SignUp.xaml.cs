@@ -48,12 +48,18 @@ namespace ZaolisUI
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
-            
+            ShowMsg("test title", "some msg");
         }
 
         private void ButtonSignUP_Click(object sender, RoutedEventArgs e)
         {
            
+        }
+        private void ShowMsg(string title, string msg)
+        {
+            MsgBox msgBox = new MsgBox(title, msg);
+            msgBox.Owner = this;
+            msgBox.ShowDialog();
         }
     }
 }
