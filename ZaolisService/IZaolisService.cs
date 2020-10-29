@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -12,6 +13,20 @@ namespace ZaolisService
     public interface IZaolisService
     {
         [OperationContract]
-        void DoWork();
+        UserDTO Connect(string login, string passwordHash);
+        [OperationContract]
+        void Disconnect(UserDTO user);
+        [OperationContract]
+        void AddAvatar(AvatarDTO newAvatar);
+        [OperationContract]
+        void AddUser(UserDTO newUser);
+        [OperationContract]
+        bool IsExistsUserByLoginPassword(string login, string password);
+        [OperationContract]
+        bool IsExistsUserByEmail(string email);
+        [OperationContract]
+        UserDTO GetUserByLogin(string login);
+        [OperationContract]
+        IEnumerable<UserDTO> GetAllUsers();
     }
 }
