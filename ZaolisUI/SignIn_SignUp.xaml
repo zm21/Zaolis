@@ -40,6 +40,9 @@
                         <Label DockPanel.Dock="Top" FontSize="16" FontWeight="Bold" Foreground="#27AAF0" Margin="30,30,30,10">LOGIN</Label>
                         <TextBox Name="logTxtBox_login" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Login" Height="30" Margin="30,10" CaretBrush="#FF005DFF"></TextBox>
                         <PasswordBox Name="passwdbox" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Password" Height="30" Margin="30,10"  CaretBrush="#FF005DFF"></PasswordBox>
+                        <Label Name="lb_forgetpassword" MouseLeftButtonDown="lb_forgetpassword_MouseLeftButtonDown" Margin="30,0" DockPanel.Dock="Top" HorizontalAlignment="Left" FontSize="12" Foreground="LightBlue" MouseEnter="Label_MouseEnter" MouseLeave="lb_forgetpassword_MouseLeave">
+                            <TextBlock TextDecorations="Underline" Width="Auto">Forget password</TextBlock>
+                        </Label>
                         <Button Margin="30,10" Background="#FF27AAF0" BorderBrush="#FF27AAF0" DockPanel.Dock="Top" materialDesign:ButtonAssist.CornerRadius="12" Foreground="White" Click="ButtonLogin_Click">LOGIN</Button>
                         <CheckBox DockPanel.Dock="Top" HorizontalAlignment="Right" Margin="30,5" >Remember me</CheckBox>
                     </DockPanel>
@@ -90,6 +93,18 @@
                         </TextBox>
                         <CheckBox IsChecked="{Binding RegisterModel.isAgreeLic, Mode=OneWayToSource}" Name="licAgree" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="30,5" Background="#FF27AAF0" BorderBrush="#FF27AAF0">I accept the license agreement</CheckBox>
                         <Button IsEnabled="{Binding RegisterModel.isAllValide}" Margin="30,10" Background="#FF27AAF0" BorderBrush="#FF27AAF0" DockPanel.Dock="Top" materialDesign:ButtonAssist.CornerRadius="12" Foreground="White" Click="ButtonSignUP_Click">Sign Up</Button>
+                    </DockPanel>
+                </Grid>
+                <!--Forget password-->
+                <Grid Name="ForgetPasswordGrid" Visibility="Hidden">
+                    <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
+                        <Button Click="TOLogin_Click" Background="Transparent" BorderBrush="Transparent" Foreground="#FF27AAF0">Login</Button>
+                        <materialDesign:PackIcon Kind="ArrowRight" Foreground="#FF27AAF0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    </Grid>
+                    <DockPanel Grid.Row="1" Grid.ColumnSpan="2" LastChildFill="False" VerticalAlignment="Center">
+                        <Label DockPanel.Dock="Top" FontSize="16" FontWeight="Bold" Foreground="#27AAF0" Margin="30,30,30,10">Restore access</Label>
+                        <TextBox Name="ForgPassTxtBox_login" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Login" Height="30" Margin="30,10" CaretBrush="#FF005DFF"></TextBox>
+                        <Button Margin="30,10" Background="#FF27AAF0" BorderBrush="#FF27AAF0" DockPanel.Dock="Top" materialDesign:ButtonAssist.CornerRadius="12" Foreground="White" Click="ButtonLogin_Click">Reset password</Button>
                     </DockPanel>
                 </Grid>
             </Grid>

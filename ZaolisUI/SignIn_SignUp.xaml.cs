@@ -44,8 +44,9 @@ namespace ZaolisUI
 
         private void TOLogin_Click(object sender, RoutedEventArgs e)
         {
-            LOGIN.Visibility = Visibility.Visible;
+            LOGIN.Visibility = Visibility.Visible; 
             SignUP.Visibility = Visibility.Hidden;
+            ForgetPasswordGrid.Visibility = Visibility.Hidden;
         }
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
@@ -66,6 +67,22 @@ namespace ZaolisUI
             MsgBox msgBox = new MsgBox(title, msg);
             msgBox.Owner = this;
             msgBox.ShowDialog();
+        }
+
+        private void Label_MouseEnter(object sender, MouseEventArgs e)
+        {
+            lb_forgetpassword.Foreground = Brushes.DeepSkyBlue;
+        }
+
+        private void lb_forgetpassword_MouseLeave(object sender, MouseEventArgs e)
+        {
+            lb_forgetpassword.Foreground = Brushes.LightBlue;
+        }
+
+        private void lb_forgetpassword_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            LOGIN.Visibility = Visibility.Hidden;
+            ForgetPasswordGrid.Visibility = Visibility.Visible;
         }
     }
 }
