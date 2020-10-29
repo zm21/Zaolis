@@ -43,7 +43,7 @@
   <xs:element name="RegisterUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="newUser" nillable="true" type="q4:UserDTO" />
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -91,7 +91,7 @@
   <xs:element name="GetUserByLoginResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetUserByLoginResult" nillable="true" type="q5:UserDTO" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetUserByLoginResult" nillable="true" type="q4:UserDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -103,7 +103,35 @@
   <xs:element name="GetAllUsersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetAllUsersResult" nillable="true" type="q6:ArrayOfUserDTO" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetAllUsersResult" nillable="true" type="q5:ArrayOfUserDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserByEmail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserByEmailResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetUserByEmailResult" nillable="true" type="q6:UserDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCodeFromEmail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCodeFromEmailResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetCodeFromEmailResult" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -31,7 +31,7 @@
         <DockPanel Grid.Column="1">
             <Grid>
                 <!--LOGIN-->
-                <Grid Name="LOGIN">
+                <Grid Name="LOGIN" Visibility="Hidden">
                     <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
                         <Button Click="TOSignUp_Click" Background="Transparent" BorderBrush="Transparent" Foreground="#FF27AAF0" VerticalAlignment="Top">SIGN UP</Button>
                         <materialDesign:PackIcon Kind="ArrowRight" Foreground="#FF27AAF0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
@@ -45,7 +45,7 @@
                     </DockPanel>
                 </Grid>
                 <!--SIGNUP-->
-                <Grid Name="SignUP" Visibility="Hidden">
+                <Grid Name="SignUP" >
                     <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
                         <Button Click="TOLogin_Click" Background="Transparent" BorderBrush="Transparent" Foreground="#FF27AAF0">Login</Button>
                         <materialDesign:PackIcon Kind="ArrowRight" Foreground="#FF27AAF0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
