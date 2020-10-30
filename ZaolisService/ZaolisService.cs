@@ -67,5 +67,10 @@ namespace ZaolisService
         {
             return bll.GetUserByEmail(email);
         }
+
+        public void AddUser(UserDTO user)
+        {
+            bll.AddUser(user);
+        }
     }
 }

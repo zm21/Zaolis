@@ -101,7 +101,7 @@ namespace BLL
 
         public UserDTO GetUserByLogin(string login)
         {
-            return _mapper.Map<UserDTO>((unit.UserRepository.Get(u=>u.Login==login))?.First());
+            return _mapper.Map<UserDTO>((unit.UserRepository.Get(u=>u.Login==login))?.FirstOrDefault());
         }
         public UserDTO GetUserByLoginAndPassword(string login, string password)
         {
@@ -111,17 +111,17 @@ namespace BLL
 
         public bool IsExistsUserByEmail(string email)
         {
-            return (_mapper.Map<IEnumerable<User>, UserDTO>(unit.UserRepository.Get(u => u.Email == email))!=null);
+            return (_mapper.Map<UserDTO>(unit.UserRepository.Get(u => u.Email == email).FirstOrDefault()) != null);
         }
 
         public bool IsExistsUserByLoginPassword(string login, string password)
         {
             string passwdhash = Utils.ComputeSha256Hash(password);
-            return _mapper.Map<User>(unit.UserRepository.Get(u => u.Login == login && u.PasswordHash == passwdhash)) != null;
+            return _mapper.Map<User>(unit.UserRepository.Get(u => u.Login == login && u.PasswordHash == passwdhash).First()) != null;
         }
         public UserDTO GetUserByEmail(string email)
         {
-            return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Email == email))?.First());
+            return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Email == email))?.FirstOrDefault());
         }
         
         public void SendRegistrationCode(string email)

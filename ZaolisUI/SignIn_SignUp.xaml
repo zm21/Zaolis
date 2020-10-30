@@ -31,7 +31,7 @@
         <DockPanel Grid.Column="1">
             <Grid>
                 <!--LOGIN-->
-                <Grid Name="LOGIN">
+                <Grid Name="LOGIN" Visibility="Hidden">
                     <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
                         <Button Click="TOSignUp_Click" Background="Transparent" BorderBrush="Transparent" Foreground="#FF27AAF0" VerticalAlignment="Top">SIGN UP</Button>
                         <materialDesign:PackIcon Kind="ArrowRight" Foreground="#FF27AAF0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
@@ -48,34 +48,34 @@
                     </DockPanel>
                 </Grid>
                 <!--SIGNUP-->
-                <Grid Name="SignUP" Visibility="Hidden">
+                <Grid Name="SignUP" Visibility="Visible">
                     <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
                         <Button Click="TOLogin_Click" Background="Transparent" BorderBrush="Transparent" Foreground="#FF27AAF0">Login</Button>
                         <materialDesign:PackIcon Kind="ArrowRight" Foreground="#FF27AAF0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                     </Grid>
                     <DockPanel Grid.Row="1" Grid.ColumnSpan="2" LastChildFill="False" VerticalAlignment="Center">
                         <Label DockPanel.Dock="Top" FontSize="16" FontWeight="Bold" Foreground="#27AAF0" Margin="30,30,30,10">Create account</Label>
-                        <TextBox MaxLength="10" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Login" Height="30" Margin="30,10" CaretBrush="#FF005DFF">
+                        <TextBox x:Name="logTxtBox_Reg" MaxLength="10" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Login" Height="30" Margin="30,10" CaretBrush="#FF005DFF">
                             <TextBox.Text>
-                                <Binding Path ="RegisterModel.Login">
+                                <Binding Path ="Login">
                                     <Binding.ValidationRules>
                                         <DataErrorValidationRule />
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-                        <TextBox MaxLength="30" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Email" Height="30" Margin="30,10" CaretBrush="#FF005DFF">
+                        <TextBox x:Name="emailTxtBox_reg" MaxLength="30" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Email" Height="30" Margin="30,10" CaretBrush="#FF005DFF">
                             <TextBox.Text>
-                                <Binding Path ="RegisterModel.Email">
+                                <Binding Path ="Email">
                                     <Binding.ValidationRules>
                                         <DataErrorValidationRule />
                                     </Binding.ValidationRules>
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-                        <TextBox MaxLength="12" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Password" Height="30" Margin="30,10"  CaretBrush="#FF005DFF">
+                        <TextBox x:Name="psswd_Reg" MaxLength="12" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Password" Height="30" Margin="30,10"  CaretBrush="#FF005DFF">
                             <TextBox.Text>
-                                <Binding Path ="RegisterModel.Passwd">
+                                <Binding Path ="Passwd">
                                     <Binding.ValidationRules>
                                         <DataErrorValidationRule />
                                     </Binding.ValidationRules>
@@ -84,7 +84,7 @@
                         </TextBox>
                         <TextBox MaxLength="12" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Confirm your password" Height="30" Margin="30,10"  CaretBrush="#FF005DFF">
                             <TextBox.Text>
-                                <Binding Path ="RegisterModel.ConfirmPasswd">
+                                <Binding Path ="ConfirmPasswd">
                                     <Binding.ValidationRules>
                                         <DataErrorValidationRule />
                                     </Binding.ValidationRules>
@@ -92,7 +92,7 @@
                             </TextBox.Text>
                         </TextBox>
                         <CheckBox IsChecked="{Binding RegisterModel.isAgreeLic, Mode=OneWayToSource}" Name="licAgree" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="30,5" Background="#FF27AAF0" BorderBrush="#FF27AAF0">I accept the license agreement</CheckBox>
-                        <Button IsEnabled="{Binding RegisterModel.isAllValide}" Margin="30,10" Background="#FF27AAF0" BorderBrush="#FF27AAF0" DockPanel.Dock="Top" materialDesign:ButtonAssist.CornerRadius="12" Foreground="White" Click="ButtonSignUP_Click">Sign Up</Button>
+                        <Button Margin="30,10" Background="#FF27AAF0" BorderBrush="#FF27AAF0" DockPanel.Dock="Top" materialDesign:ButtonAssist.CornerRadius="12" Foreground="White" Click="ButtonSignUP_Click">Sign Up</Button>
                     </DockPanel>
                 </Grid>
                 <!--Forget password-->

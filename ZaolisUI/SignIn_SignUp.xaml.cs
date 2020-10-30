@@ -24,11 +24,14 @@ namespace ZaolisUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        ZaolisServiceClient client = new ZaolisServiceClient();
-        
+        ZaolisServiceClient client;
+        RegisterViewModel registerModel;
         public MainWindow()
         {
             InitializeComponent();
+            client = new ZaolisServiceClient();
+            registerModel = new RegisterViewModel();
+            SignUP.DataContext = registerModel;
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -53,6 +56,8 @@ namespace ZaolisUI
         {
             if(client.IsExistsUserByLoginPassword(logTxtBox_login.Text, passwdbox.Password))
             {
+                client.Connect(logTxtBox_login.Text,passwdbox.Password); //isActive change
+                
                 MsgBox msg = new MsgBox("Succes!", "You are logged in");
                 msg.Show();
             }
@@ -60,7 +65,22 @@ namespace ZaolisUI
 
         private void ButtonSignUP_Click(object sender, RoutedEventArgs e)
         {
-           
+            //client.RegisterUser(registerModel.Email);
+            //VerificationCode verificationCode = new VerificationCode(registerModel.Email);
+            //verificationCode.ShowDialog();
+            //if(verificationCode.DialogResult == true)
+            //{
+            client.AddUser(new BLL.Models.UserDTO()
+            {
+                Login = registerModel.Login,
+                Password = registerModel.Passwd,
+                Name = registerModel.Login,
+                Email = registerModel.Email,
+                IsActive = false,
+                Bio = "",
+            });
+            ShowMsg("SingUp", "SignUp Successfull");
+            //}
         }
         private void ShowMsg(string title, string msg)
         {
