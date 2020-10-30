@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZaolisUI" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Rental Service by Mykola Zaiets" Height="600" Width="1040" WindowStyle="None"  MaxHeight="600" MaxWidth="1040" MinHeight="450" MinWidth="650" MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStartupLocation="CenterScreen">
+        Title="Rental Service by Mykola Zaiets" Height="600" Width="1040" WindowStyle="None"  MaxHeight="600" MaxWidth="1040" MinHeight="450" MinWidth="650" MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStartupLocation="CenterScreen" Icon="photo_2020-10-31_00-11-31.jpg">
 
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"/>

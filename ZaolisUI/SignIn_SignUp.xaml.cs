@@ -32,7 +32,7 @@ namespace ZaolisUI
             client = new ZaolisServiceClient();
             registerModel = new RegisterViewModel();
             SignUP.DataContext = registerModel;
-            Task.Run(() => { this.client.GetAllUsers(); });
+            Task.Run(() => { this.client.Request(); });
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -55,7 +55,7 @@ namespace ZaolisUI
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
-            Task.Run(() => { this.client.GetAllUsers(); });
+            Task.Run(() => { this.client.Request(); });
             string login = logTxtBox_login.Text;
             string password = passwdbox.Password;
             Task.Run(() =>
@@ -79,10 +79,11 @@ namespace ZaolisUI
                 }
             });
         }
-
+        
         private void ButtonSignUP_Click(object sender, RoutedEventArgs e)
         {
-            Task.Run(() => { this.client.GetAllUsers(); });
+            Task.Run(() => { this.client.Request(); });
+            
             Task.Run(() =>
             {
                 client.RegisterUser(registerModel.Email);
@@ -120,7 +121,6 @@ namespace ZaolisUI
             msgBox.Owner = this;
             msgBox.ShowDialog();
         }
-
         private void Label_MouseEnter(object sender, MouseEventArgs e)
         {
             lb_forgetpassword.Foreground = Brushes.DeepSkyBlue;
@@ -139,7 +139,7 @@ namespace ZaolisUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Task.Run(() => { this.client.GetAllUsers(); });
+            Task.Run(() => { this.client.Request(); });
             Task.Run(() =>
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -171,7 +171,7 @@ namespace ZaolisUI
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Task.Run(() => { this.client.GetAllUsers(); });
+            Task.Run(() => { this.client.Request(); });
             string newpass= newPass_txtBox.Password;
             string confirmnewpass= confirmNewPass_txtBox.Password;
             string forgpasslogin = ForgPassTxtBox_login.Text;

@@ -39,6 +39,8 @@ namespace ZaolisService
         void ForgetPassword(UserDTO user);
         [OperationContract]
         void EditUsersPassword(UserDTO user, string pass);
+        [OperationContract]
+        bool Request();
     }
 
 }

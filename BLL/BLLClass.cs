@@ -19,7 +19,7 @@ namespace BLL
         void AddRegistrationCode(RegisterVerificationDTO newCode);
         RegisterVerificationDTO GetRegistrationCode(string email);
         void AddUser(UserDTO newUser);
-        void ChangeStatus(UserDTO user,bool status);
+        void ChangeStatus(UserDTO user, bool status);
         bool IsExistsUserByLoginPassword(string login, string password);
         bool IsExistsUserByEmail(string email);
         UserDTO GetUserByLogin(string login);
@@ -63,12 +63,12 @@ namespace BLL
 
             _mapper = new Mapper(config);
         }
-        public void ChangeStatus(UserDTO user,bool status)
+        public void ChangeStatus(UserDTO user, bool status)
         {
-            var res=unit.UserRepository.GetById(user.Id);
+            var res = unit.UserRepository.GetById(user.Id);
             if (res != null)
             {
-                res.IsActive = status; 
+                res.IsActive = status;
                 unit.UserRepository.Save();
             }
         }
@@ -103,17 +103,17 @@ namespace BLL
 
         public UserDTO GetUserByLogin(string login)
         {
-            return _mapper.Map<UserDTO>((unit.UserRepository.Get(u=>u.Login==login))?.FirstOrDefault());
+            return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Login == login))?.FirstOrDefault());
         }
         public UserDTO GetUserByLoginAndPassword(string login, string password)
         {
             string passwdhash = Utils.ComputeSha256Hash(password);
-            return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Login == login&&u.PasswordHash== passwdhash))?.First());
+            return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Login == login && u.PasswordHash == passwdhash))?.First());
         }
 
-        public void EditUsersPassword(UserDTO user,string pass)
+        public void EditUsersPassword(UserDTO user, string pass)
         {
-            if(IsExistsUserByEmail(user.Email))
+            if (IsExistsUserByEmail(user.Email))
             {
                 unit.UserRepository.GetById(user.Id).PasswordHash = Utils.ComputeSha256Hash(pass);
                 unit.Save();
@@ -135,11 +135,10 @@ namespace BLL
         {
             return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Email == email))?.FirstOrDefault());
         }
-        
+
         public int SendSystem(string email)
         {
             Random rnd = new Random();
-
             SmtpServer smtpserver = new SmtpServer("smtp.gmail.com")
             {
                 Port = 587,
@@ -165,22 +164,27 @@ namespace BLL
             });
             return code;
         }
-        
+
         public void SendRegistrationCode(string email)
         {
-            var res = SendSystem(email); 
+            var res = SendSystem(email);
             AddRegistrationCode(new RegisterVerificationDTO() { Code = res, Email = email });
         }
+
         public void SendForgetPassCode(UserDTO user)
         {
             var res = SendSystem(user.Email);
             AddCode(new VerificationCodeDTO() { Code = res, CreationTime = DateTime.Now, UserId = user.Id });
         }
+
         public VerificationCodeDTO GetVerificationCode(string email)
         {
             var res = _mapper.Map<VerificationCodeDTO>((unit.VerificationCodeRepository.Get(u => u.User.Email == email)).FirstOrDefault());
-            unit.VerificationCodeRepository.Delete(unit.VerificationCodeRepository.GetById(res.Id));
-            unit.Save();
+            if (res != null)
+            {
+                unit.VerificationCodeRepository.Delete(unit.VerificationCodeRepository.GetById(res.Id));
+                unit.Save();
+            }
             return res;
         }
         public RegisterVerificationDTO GetRegistrationCode(string email)
