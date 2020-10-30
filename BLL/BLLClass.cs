@@ -126,12 +126,11 @@ namespace BLL
         
         public void SendRegistrationCode(string email)
         {
-            const string server = "smtp.gmail.com";
             Random rnd = new Random();
 
             SmtpServer smtpserver = new SmtpServer("smtp.gmail.com")
             {
-                Port = 465,
+                Port = 587,
                 ConnectType = SmtpConnectType.ConnectSSLAuto,
                 User = email_login,
                 Password = email_pass
@@ -149,7 +148,7 @@ namespace BLL
             Task.Run(() => 
             {
                 SmtpClient client = new SmtpClient();
-                client.Connect(server); 
+                client.Connect(smtpserver); 
                 client.SendMail(message);
             });
 
