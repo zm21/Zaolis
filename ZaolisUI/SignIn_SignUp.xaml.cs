@@ -104,7 +104,7 @@ namespace ZaolisUI
         private void lb_forgetpassword_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             LOGIN.Visibility = Visibility.Hidden;
-            ForgetPasswordGrid.Visibility = Visibility.Visible;
+            ForgetPasswordGrid.Visibility = Visibility.Visible; //
         }
     }
 }
