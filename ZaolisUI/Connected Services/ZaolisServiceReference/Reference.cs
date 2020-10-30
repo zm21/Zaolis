@@ -80,6 +80,24 @@ namespace ZaolisUI.ZaolisServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetCodeFromEmail", ReplyAction="http://tempuri.org/IZaolisService/GetCodeFromEmailResponse")]
         System.Threading.Tasks.Task<int> GetCodeFromEmailAsync(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetVerificationCodeFromEmail", ReplyAction="http://tempuri.org/IZaolisService/GetVerificationCodeFromEmailResponse")]
+        int GetVerificationCodeFromEmail(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetVerificationCodeFromEmail", ReplyAction="http://tempuri.org/IZaolisService/GetVerificationCodeFromEmailResponse")]
+        System.Threading.Tasks.Task<int> GetVerificationCodeFromEmailAsync(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/ForgetPassword", ReplyAction="http://tempuri.org/IZaolisService/ForgetPasswordResponse")]
+        void ForgetPassword(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/ForgetPassword", ReplyAction="http://tempuri.org/IZaolisService/ForgetPasswordResponse")]
+        System.Threading.Tasks.Task ForgetPasswordAsync(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/EditUsersPassword", ReplyAction="http://tempuri.org/IZaolisService/EditUsersPasswordResponse")]
+        void EditUsersPassword(BLL.Models.UserDTO user, string pass);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/EditUsersPassword", ReplyAction="http://tempuri.org/IZaolisService/EditUsersPasswordResponse")]
+        System.Threading.Tasks.Task EditUsersPasswordAsync(BLL.Models.UserDTO user, string pass);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -195,6 +213,30 @@ namespace ZaolisUI.ZaolisServiceReference {
         
         public System.Threading.Tasks.Task<int> GetCodeFromEmailAsync(string email) {
             return base.Channel.GetCodeFromEmailAsync(email);
+        }
+        
+        public int GetVerificationCodeFromEmail(string email) {
+            return base.Channel.GetVerificationCodeFromEmail(email);
+        }
+        
+        public System.Threading.Tasks.Task<int> GetVerificationCodeFromEmailAsync(string email) {
+            return base.Channel.GetVerificationCodeFromEmailAsync(email);
+        }
+        
+        public void ForgetPassword(BLL.Models.UserDTO user) {
+            base.Channel.ForgetPassword(user);
+        }
+        
+        public System.Threading.Tasks.Task ForgetPasswordAsync(BLL.Models.UserDTO user) {
+            return base.Channel.ForgetPasswordAsync(user);
+        }
+        
+        public void EditUsersPassword(BLL.Models.UserDTO user, string pass) {
+            base.Channel.EditUsersPassword(user, pass);
+        }
+        
+        public System.Threading.Tasks.Task EditUsersPasswordAsync(BLL.Models.UserDTO user, string pass) {
+            return base.Channel.EditUsersPasswordAsync(user, pass);
         }
     }
 }

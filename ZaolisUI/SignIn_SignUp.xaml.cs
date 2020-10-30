@@ -63,12 +63,18 @@ namespace ZaolisUI
                 MainMenuZaolis mnz = new MainMenuZaolis();
                 mnz.Show();
             }
+            else
+            {
+                MsgBox msg = new MsgBox("Error!", "There is no user with such login");
+                msg.Show();
+            }
         }
 
         private void ButtonSignUP_Click(object sender, RoutedEventArgs e)
         {
             client.RegisterUser(registerModel.Email);
             VerificationCode verificationCode = new VerificationCode(registerModel.Email);
+            verificationCode.Owner = this;
             verificationCode.ShowDialog();
             if(verificationCode.DialogResult == true)
             {
@@ -105,6 +111,49 @@ namespace ZaolisUI
         {
             LOGIN.Visibility = Visibility.Hidden;
             ForgetPasswordGrid.Visibility = Visibility.Visible; //
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var user_res = client.GetUserByLogin(ForgPassTxtBox_login.Text);
+            if (user_res!=null)
+            {
+                client.ForgetPassword(user_res);
+                if (user_res != null)
+                {
+                    ForgotPasswordCode forgotPassword = new ForgotPasswordCode(ForgPassTxtBox_login.Text);
+                    forgotPassword.Owner = this;
+                    forgotPassword.ShowDialog();
+                    if(forgotPassword.DialogResult==true)
+                    {
+                        ForgetPasswordGrid.Visibility = Visibility.Hidden;
+                        NewPasswordGrid.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        MsgBox msg = new MsgBox("Error", "Something went wrong!");
+                        msg.Show();
+                    }
+                }
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if(newPass_txtBox.Password==confirmNewPass_txtBox.Password)
+            {
+                if(newPass_txtBox.Password.Length >= 8)
+                {
+                    var res=client.GetUserByLogin(ForgPassTxtBox_login.Text);
+                    client.EditUsersPassword(res, newPass_txtBox.Password);
+                    NewPasswordGrid.Visibility = Visibility.Hidden;
+                    LOGIN.Visibility = Visibility.Visible;
+                    logTxtBox_login.Text = ForgPassTxtBox_login.Text;
+                    ForgPassTxtBox_login.Text = "";
+                    newPass_txtBox.Password = "";
+                    confirmNewPass_txtBox.Password = "";
+                }
+            }
         }
     }
 }

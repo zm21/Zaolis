@@ -68,6 +68,19 @@ namespace ZaolisService
             return bll.GetUserByEmail(email);
         }
 
+        public int GetVerificationCodeFromEmail(string email)
+        {
+            return bll.GetVerificationCode(email).Code;
+        }
+        public void EditUsersPassword(UserDTO user,string pass)
+        {
+            bll.EditUsersPassword(user, pass);
+        }
+
+        public void ForgetPassword(UserDTO user)
+        {
+            bll.SendForgetPassCode(user);
+        }
         public void AddUser(UserDTO user)
         {
             bll.AddUser(user);
