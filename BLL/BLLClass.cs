@@ -66,7 +66,7 @@ namespace BLL
             var res=unit.UserRepository.GetById(user.Id);
             if (res != null)
             {
-                res.IsActive = status;
+                res.IsActive = status; 
                 unit.UserRepository.Save();
             }
         }
