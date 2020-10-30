@@ -60,6 +60,19 @@ namespace ZaolisUI
             string password = passwdbox.Password;
             Task.Run(() =>
             {
+                client.Connect(logTxtBox_login.Text,passwdbox.Password); //isActive change
+                
+                MsgBox msg = new MsgBox("Succes!", "You are logged in");
+                msg.Show();
+                MainMenuZaolis mnz = new MainMenuZaolis();
+                mnz.Show();
+                this.Close();
+            }
+            else
+            {
+                MsgBox msg = new MsgBox("Error!", "There is no user with such login");
+                msg.Show();
+            }
                 if (client.IsExistsUserByLoginPassword(login, password))
                 {
                     client.Connect(login, password); //isActive change
