@@ -117,7 +117,7 @@ namespace BLL
         public bool IsExistsUserByLoginPassword(string login, string password)
         {
             string passwdhash = Utils.ComputeSha256Hash(password);
-            return _mapper.Map<User>(unit.UserRepository.Get(u => u.Login == login && u.PasswordHash == passwdhash)) != null;
+            return _mapper.Map<User>(unit.UserRepository.Get(u => u.Login == login && u.PasswordHash == passwdhash).First()) != null;
         }
         public UserDTO GetUserByEmail(string email)
         {
