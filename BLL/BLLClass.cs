@@ -166,7 +166,10 @@ namespace BLL
         }
         public VerificationCodeDTO GetVerificationCode(string email)
         {
-            return _mapper.Map<VerificationCodeDTO>((unit.VerificationCodeRepository.Get(u => u.User.Email == email&&u.CreationTime.Hour==DateTime.Now.Hour))?.First());
+            var res = _mapper.Map<VerificationCodeDTO>((unit.VerificationCodeRepository.Get(u => u.User.Email == email)).FirstOrDefault());
+            unit.VerificationCodeRepository.Delete(unit.VerificationCodeRepository.GetById(res.Id));
+            unit.Save();
+            return res;
         }
         public RegisterVerificationDTO GetRegistrationCode(string email)
         {
