@@ -27,6 +27,7 @@ namespace BLL
         UserDTO GetUserByLoginAndPassword(string login, string password);
         IEnumerable<UserDTO> GetAllUsers();
         void SendForgetPassCode(UserDTO user);
+        void EditUsersPassword(UserDTO user, string pass);
     }
     public class BLLClass : IBLLClass
     {
@@ -108,6 +109,15 @@ namespace BLL
         {
             string passwdhash = Utils.ComputeSha256Hash(password);
             return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Login == login&&u.PasswordHash== passwdhash))?.First());
+        }
+
+        public void EditUsersPassword(UserDTO user,string pass)
+        {
+            if(IsExistsUserByEmail(user.Email))
+            {
+                unit.UserRepository.GetById(user.Id).PasswordHash = Utils.ComputeSha256Hash(pass);
+                unit.Save();
+            }
         }
 
         public bool IsExistsUserByEmail(string email)

@@ -37,6 +37,8 @@ namespace ZaolisService
         int GetVerificationCodeFromEmail(string email);
         [OperationContract]
         void ForgetPassword(UserDTO user);
+        [OperationContract]
+        void EditUsersPassword(UserDTO user, string pass);
     }
 
 }
