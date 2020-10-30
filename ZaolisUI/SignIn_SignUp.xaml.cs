@@ -77,23 +77,31 @@ namespace ZaolisUI
 
         private void ButtonSignUP_Click(object sender, RoutedEventArgs e)
         {
-            client.RegisterUser(registerModel.Email);
-            VerificationCode verificationCode = new VerificationCode(registerModel.Email);
-            verificationCode.Owner = this;
-            verificationCode.ShowDialog();
-            if(verificationCode.DialogResult == true)
+            Task.Run(() =>
             {
-                client.AddUser(new BLL.Models.UserDTO()
+                client.RegisterUser(registerModel.Email);
+                Application.Current.Dispatcher.Invoke(() => 
                 {
-                    Login = registerModel.Login,
-                    Password = registerModel.Passwd,
-                    Name = registerModel.Login,
-                    Email = registerModel.Email,
-                    IsActive = false,
-                    Bio = "",
+                    VerificationCode verificationCode = new VerificationCode(registerModel.Email);
+                    verificationCode.Owner = this;
+                    verificationCode.ShowDialog();
+                    if (verificationCode.DialogResult == true)
+                    {
+                        client.AddUser(new BLL.Models.UserDTO()
+                        {
+                            Login = registerModel.Login,
+                            Password = registerModel.Passwd,
+                            Name = registerModel.Login,
+                            Email = registerModel.Email,
+                            IsActive = false,
+                            Bio = "",
+                        });
+                        ShowMsg("SingUp", "SignUp Successfull");
+                    }
                 });
-                ShowMsg("SingUp", "SignUp Successfull");
-            }
+                
+                
+            });
         }
         private void ShowMsg(string title, string msg)
         {
