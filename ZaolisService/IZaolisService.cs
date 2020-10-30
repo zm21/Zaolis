@@ -16,6 +16,8 @@ namespace ZaolisService
         [OperationContract]
         void Disconnect(UserDTO user);
         [OperationContract]
+        void AddUser(UserDTO user);
+        [OperationContract]
         void AddAvatar(AvatarDTO newAvatar);
         [OperationContract]
         void RegisterUser(string email);

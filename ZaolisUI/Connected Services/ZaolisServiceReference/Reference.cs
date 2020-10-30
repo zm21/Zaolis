@@ -27,6 +27,12 @@ namespace ZaolisUI.ZaolisServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/Disconnect", ReplyAction="http://tempuri.org/IZaolisService/DisconnectResponse")]
         System.Threading.Tasks.Task DisconnectAsync(BLL.Models.UserDTO user);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/AddUser", ReplyAction="http://tempuri.org/IZaolisService/AddUserResponse")]
+        void AddUser(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/AddUser", ReplyAction="http://tempuri.org/IZaolisService/AddUserResponse")]
+        System.Threading.Tasks.Task AddUserAsync(BLL.Models.UserDTO user);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/AddAvatar", ReplyAction="http://tempuri.org/IZaolisService/AddAvatarResponse")]
         void AddAvatar(BLL.Models.AvatarDTO newAvatar);
         
@@ -117,6 +123,14 @@ namespace ZaolisUI.ZaolisServiceReference {
         
         public System.Threading.Tasks.Task DisconnectAsync(BLL.Models.UserDTO user) {
             return base.Channel.DisconnectAsync(user);
+        }
+        
+        public void AddUser(BLL.Models.UserDTO user) {
+            base.Channel.AddUser(user);
+        }
+        
+        public System.Threading.Tasks.Task AddUserAsync(BLL.Models.UserDTO user) {
+            return base.Channel.AddUserAsync(user);
         }
         
         public void AddAvatar(BLL.Models.AvatarDTO newAvatar) {
