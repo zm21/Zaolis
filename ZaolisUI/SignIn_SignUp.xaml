@@ -46,6 +46,7 @@
                         </Label>
                         <CheckBox DockPanel.Dock="Top" HorizontalAlignment="Right" Margin="30,5" >Remember me</CheckBox>
                     </DockPanel>
+                    <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10"/>
                 </Grid>
                 <!--SIGNUP-->
                 <Grid Name="SignUP" Visibility="Hidden">

@@ -48,23 +48,23 @@ namespace ZaolisUI
 
         private void TOLogin_Click(object sender, RoutedEventArgs e)
         {
-            LOGIN.Visibility = Visibility.Visible; 
+            LOGIN.Visibility = Visibility.Visible;
             SignUP.Visibility = Visibility.Hidden;
             ForgetPasswordGrid.Visibility = Visibility.Hidden;
         }
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
+            Task.Run(() => { this.client.GetAllUsers(); });
             string login = logTxtBox_login.Text;
             string password = passwdbox.Password;
-            Task.Run(() => 
+            Task.Run(() =>
             {
                 if (client.IsExistsUserByLoginPassword(login, password))
                 {
                     client.Connect(login, password); //isActive change
-                    Application.Current.Dispatcher.Invoke(() => 
+                    Application.Current.Dispatcher.Invoke(() =>
                     {
-                        ShowMsg("Succes!", "You are logged in");
                         MainMenuZaolis mnz = new MainMenuZaolis();
                         mnz.Show();
                         this.Close();
@@ -77,11 +77,12 @@ namespace ZaolisUI
                         ShowMsg("Error!", "There is no user with such login");
                     });
                 }
-            });  
+            });
         }
 
         private void ButtonSignUP_Click(object sender, RoutedEventArgs e)
         {
+            Task.Run(() => { this.client.GetAllUsers(); });
             Task.Run(() =>
             {
                 client.RegisterUser(registerModel.Email);
@@ -101,7 +102,7 @@ namespace ZaolisUI
                             IsActive = false,
                             Bio = "",
                         });
-                        ShowMsg("SingUp", "SignUp Successfull");
+                        ShowMsg("Registration", "Registration Successfull");
                         SignUP.Visibility = Visibility.Hidden;
                         LOGIN.Visibility = Visibility.Visible;
                         logTxtBox_login.Text = registerModel.Login;
@@ -133,50 +134,70 @@ namespace ZaolisUI
         private void lb_forgetpassword_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             LOGIN.Visibility = Visibility.Hidden;
-            ForgetPasswordGrid.Visibility = Visibility.Visible; //
+            ForgetPasswordGrid.Visibility = Visibility.Visible;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var user_res = client.GetUserByLogin(ForgPassTxtBox_login.Text);
-            if (user_res!=null)
+            Task.Run(() => { this.client.GetAllUsers(); });
+            Task.Run(() =>
             {
-                client.ForgetPassword(user_res);
-                if (user_res != null)
+                Application.Current.Dispatcher.Invoke(() =>
                 {
-                    ForgotPasswordCode forgotPassword = new ForgotPasswordCode(ForgPassTxtBox_login.Text);
-                    forgotPassword.Owner = this;
-                    forgotPassword.ShowDialog();
-                    if(forgotPassword.DialogResult==true)
+                    var user_res = client.GetUserByLogin(ForgPassTxtBox_login.Text);
+                    if (user_res != null)
                     {
-                        ForgetPasswordGrid.Visibility = Visibility.Hidden;
-                        NewPasswordGrid.Visibility = Visibility.Visible;
+                        client.ForgetPassword(user_res);
+                        ForgotPasswordCode forgotPassword = new ForgotPasswordCode(ForgPassTxtBox_login.Text);
+                        forgotPassword.Owner = this;
+                        forgotPassword.ShowDialog();
+                        if (forgotPassword.DialogResult == true)
+                        {
+                            ForgetPasswordGrid.Visibility = Visibility.Hidden;
+                            NewPasswordGrid.Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            Application.Current.Dispatcher.Invoke(() => { ShowMsg("Error", "Error! \nWindow was closed!"); });
+                        }
                     }
                     else
                     {
-                        MsgBox msg = new MsgBox("Error", "Something went wrong!");
-                        msg.Show();
+                        Application.Current.Dispatcher.Invoke(() => { ShowMsg("Error", "Such user was not found"); });
                     }
-                }
-            }
+                });
+            });
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if(newPass_txtBox.Password==confirmNewPass_txtBox.Password)
+            Task.Run(() => { this.client.GetAllUsers(); });
+            string newpass= newPass_txtBox.Password;
+            string confirmnewpass= confirmNewPass_txtBox.Password;
+            string forgpasslogin = ForgPassTxtBox_login.Text;
+            Task.Run(() => 
             {
-                if(newPass_txtBox.Password.Length >= 8)
+                Application.Current.Dispatcher.Invoke(() => 
                 {
-                    var res=client.GetUserByLogin(ForgPassTxtBox_login.Text);
-                    client.EditUsersPassword(res, newPass_txtBox.Password);
-                    NewPasswordGrid.Visibility = Visibility.Hidden;
-                    LOGIN.Visibility = Visibility.Visible;
-                    logTxtBox_login.Text = ForgPassTxtBox_login.Text;
-                    ForgPassTxtBox_login.Text = "";
-                    newPass_txtBox.Password = "";
-                    confirmNewPass_txtBox.Password = "";
-                }
-            }
+                    if (newpass == confirmnewpass)
+                    {
+                        if (newpass.Length >= 8)
+                        {
+                            var res = client.GetUserByLogin(forgpasslogin);
+                            client.EditUsersPassword(res, newpass);
+                            NewPasswordGrid.Visibility = Visibility.Hidden;
+                            LOGIN.Visibility = Visibility.Visible;
+                            logTxtBox_login.Text = forgpasslogin;
+                            ForgPassTxtBox_login.Text = "";
+                            newPass_txtBox.Password = "";
+                            confirmNewPass_txtBox.Password = "";
+                        }
+                    }
+                });
+                
+            });
+            
         }
+
     }
 }

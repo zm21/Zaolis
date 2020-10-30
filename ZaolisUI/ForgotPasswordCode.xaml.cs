@@ -46,5 +46,10 @@ namespace ZaolisUI
                 msg.Show();
             }
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.DialogResult = false;
+        }
     }
 }
