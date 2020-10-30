@@ -8,6 +8,6 @@ namespace ZaolisUI
 {
     class MainMenuViewModel
     {
-
+        //
     }
 }
