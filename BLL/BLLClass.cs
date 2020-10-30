@@ -153,7 +153,7 @@ namespace BLL
                 From = email_login,
                 To = email,
                 Subject = "[Verification Code]",
-                TextBody = $"<{DateTime.Now}> Dear {GetUserByEmail(email).Login}! \n [Your verification code for registration in Zaolis Messager: {code}]",
+                TextBody = $"<{DateTime.Now}> \n [Your verification code for registration in Zaolis Messager: {code}]",
                 Priority = EASendMail.MailPriority.High
             };
 
@@ -185,7 +185,10 @@ namespace BLL
         }
         public RegisterVerificationDTO GetRegistrationCode(string email)
         {
-            return _mapper.Map<RegisterVerificationDTO>((unit.RegisterVerificationRepository.Get(u => u.Email == email))?.First());
+            var res = _mapper.Map<RegisterVerificationDTO>((unit.RegisterVerificationRepository.Get(u => u.Email == email)).FirstOrDefault());
+            unit.RegisterVerificationRepository.Delete(unit.RegisterVerificationRepository.GetById(res.Id));
+            unit.Save();
+            return res;
         }
     }
 }
