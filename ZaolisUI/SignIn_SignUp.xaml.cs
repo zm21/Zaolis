@@ -111,13 +111,18 @@ namespace ZaolisUI
             if (user_res!=null)
             {
                 client.ForgetPassword(user_res);
-                if (client.GetUserByLogin(ForgPassTxtBox_login.Text)!=null)
+                if (user_res != null)
                 {
                     ForgotPasswordCode forgotPassword = new ForgotPasswordCode(ForgPassTxtBox_login.Text);
                     forgotPassword.ShowDialog();
                     if(forgotPassword.DialogResult==true)
                     {
                         MsgBox msg = new MsgBox("Test", "Test");
+                        msg.Show();
+                    }
+                    else
+                    {
+                        MsgBox msg = new MsgBox("Error", "Something went wrong!");
                         msg.Show();
                     }
                 }
