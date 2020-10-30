@@ -19,14 +19,9 @@ namespace ZaolisUI
         public string ConfirmPasswd { get; set; }
         private bool confirm_pass_valide;
         private bool isagree_lic;
+
         ZaolisServiceClient client = new ZaolisServiceClient();
-        //public RegisterViewModel()
-        //{
-        //    Login = "";
-        //    Email = "";
-        //    Passwd = "";
-        //    ConfirmPasswd = "";
-        //}
+
         public bool isAgreeLic
         {
             get { return isagree_lic; }
@@ -48,10 +43,10 @@ namespace ZaolisUI
                     switch (columnName)
                     {
                         case nameof(Login):
-                            var login_reg = new Regex(@"^\w{3,10}$");
+                            var login_reg = new Regex(@"^\w{6,16}$");
                             if (Login != null && !login_reg.IsMatch(Login))
                             {
-                                error = "Login length should be between 3 and 10 characters. Without special characters.";
+                                error = "Login length should be between 6 and 16 characters. Without special characters.";
                                 login_valide = false;
                             }
                             else

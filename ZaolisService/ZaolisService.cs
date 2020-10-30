@@ -1,6 +1,7 @@
 ﻿using BLL;
 using BLL.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -9,7 +10,6 @@ using System.Text;
 
 namespace ZaolisService
 {
-    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class ZaolisService : IZaolisService
     {
         BLLClass bll = new BLLClass();
@@ -84,6 +84,10 @@ namespace ZaolisService
         public void AddUser(UserDTO user)
         {
             bll.AddUser(user);
+        }
+        public bool Request()
+        {
+            return bll.GetVerificationCode("")!=null;
         }
     }
 }

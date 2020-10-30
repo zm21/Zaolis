@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZaolisUI" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Rental Service by Mykola Zaiets" Height="600" Width="1040" WindowStyle="None"  MaxHeight="600" MaxWidth="1040" MinHeight="450" MinWidth="650" MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStartupLocation="CenterScreen">
+        Title="Rental Service by Mykola Zaiets" Height="600" Width="1040" WindowStyle="None"  MaxHeight="600" MaxWidth="1040" MinHeight="450" MinWidth="650" MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStartupLocation="CenterScreen" Icon="photo_2020-10-31_00-11-31.jpg">
 
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"/>
@@ -46,6 +46,7 @@
                         </Label>
                         <CheckBox DockPanel.Dock="Top" HorizontalAlignment="Right" Margin="30,5" >Remember me</CheckBox>
                     </DockPanel>
+                    <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10"/>
                 </Grid>
                 <!--SIGNUP-->
                 <Grid Name="SignUP" Visibility="Hidden">
@@ -82,7 +83,7 @@
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-                        <TextBox MaxLength="12" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Confirm your password" Height="30" Margin="30,10"  CaretBrush="#FF005DFF">
+                        <TextBox x:Name="confirnReg_txtBox" MaxLength="12" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Confirm your password" Height="30" Margin="30,10"  CaretBrush="#FF005DFF">
                             <TextBox.Text>
                                 <Binding Path ="ConfirmPasswd">
                                     <Binding.ValidationRules>

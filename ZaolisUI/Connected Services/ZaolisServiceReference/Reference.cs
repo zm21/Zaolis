@@ -98,6 +98,12 @@ namespace ZaolisUI.ZaolisServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/EditUsersPassword", ReplyAction="http://tempuri.org/IZaolisService/EditUsersPasswordResponse")]
         System.Threading.Tasks.Task EditUsersPasswordAsync(BLL.Models.UserDTO user, string pass);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/Request", ReplyAction="http://tempuri.org/IZaolisService/RequestResponse")]
+        bool Request();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/Request", ReplyAction="http://tempuri.org/IZaolisService/RequestResponse")]
+        System.Threading.Tasks.Task<bool> RequestAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -237,6 +243,14 @@ namespace ZaolisUI.ZaolisServiceReference {
         
         public System.Threading.Tasks.Task EditUsersPasswordAsync(BLL.Models.UserDTO user, string pass) {
             return base.Channel.EditUsersPasswordAsync(user, pass);
+        }
+        
+        public bool Request() {
+            return base.Channel.Request();
+        }
+        
+        public System.Threading.Tasks.Task<bool> RequestAsync() {
+            return base.Channel.RequestAsync();
         }
     }
 }
