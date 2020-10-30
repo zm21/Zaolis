@@ -55,7 +55,7 @@ namespace ZaolisUI
         {
             if(client.IsExistsUserByLoginPassword(logTxtBox_login.Text, passwdbox.Password))
             {
-                client.Connect(logTxtBox_login.Text,passwdbox.Password);
+                client.Connect(logTxtBox_login.Text,passwdbox.Password); //isActive change
                 
                 MsgBox msg = new MsgBox("Succes!", "You are logged in");
                 msg.Show();
