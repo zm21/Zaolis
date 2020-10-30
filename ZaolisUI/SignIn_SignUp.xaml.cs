@@ -60,6 +60,8 @@ namespace ZaolisUI
                 
                 MsgBox msg = new MsgBox("Succes!", "You are logged in");
                 msg.Show();
+                MainMenuZaolis mnz = new MainMenuZaolis();
+                mnz.Show();
             }
             else
             {
@@ -108,7 +110,7 @@ namespace ZaolisUI
         private void lb_forgetpassword_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             LOGIN.Visibility = Visibility.Hidden;
-            ForgetPasswordGrid.Visibility = Visibility.Visible;
+            ForgetPasswordGrid.Visibility = Visibility.Visible; //
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
