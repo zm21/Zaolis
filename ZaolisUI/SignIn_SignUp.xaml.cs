@@ -62,6 +62,7 @@ namespace ZaolisUI
                 msg.Show();
                 MainMenuZaolis mnz = new MainMenuZaolis();
                 mnz.Show();
+                this.Close();
             }
             else
             {
