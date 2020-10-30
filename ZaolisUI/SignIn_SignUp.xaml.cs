@@ -32,6 +32,7 @@ namespace ZaolisUI
             client = new ZaolisServiceClient();
             registerModel = new RegisterViewModel();
             SignUP.DataContext = registerModel;
+            Task.Run(() => { this.client.GetAllUsers(); });
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -54,18 +55,24 @@ namespace ZaolisUI
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
-            if(client.IsExistsUserByLoginPassword(logTxtBox_login.Text, passwdbox.Password))
+            string login = logTxtBox_login.Text;
+            string password = passwdbox.Password;
+            Task.Run(() => 
             {
-                client.Connect(logTxtBox_login.Text,passwdbox.Password); //isActive change
-                
-                MsgBox msg = new MsgBox("Succes!", "You are logged in");
-                msg.Show();
-            }
-            else
-            {
-                MsgBox msg = new MsgBox("Error!", "There is no user with such login");
-                msg.Show();
-            }
+                if (client.IsExistsUserByLoginPassword(login, password))
+                {
+                    client.Connect(login, password); //isActive change
+                    Application.Current.Dispatcher.Invoke(() => { ShowMsg("Succes!", "You are logged in"); });
+                }
+                else
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        ShowMsg("Error!", "There is no user with such login");
+                    });
+                }
+            });
+            
         }
 
         private void ButtonSignUP_Click(object sender, RoutedEventArgs e)
