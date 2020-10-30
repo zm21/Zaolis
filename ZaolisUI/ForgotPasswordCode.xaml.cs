@@ -49,7 +49,8 @@ namespace ZaolisUI
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            this.DialogResult = false;
+            if (DialogResult != true)
+                this.DialogResult = false;
         }
     }
 }

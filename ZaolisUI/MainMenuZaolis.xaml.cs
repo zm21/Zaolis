@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ZaolisUI.ZaolisServiceReference;
 
 namespace ZaolisUI
 {
@@ -19,9 +21,14 @@ namespace ZaolisUI
     /// </summary>
     public partial class MainMenuZaolis : Window
     {
-        public MainMenuZaolis()
+        ZaolisServiceClient client;
+        UserDTO loginnedUser;
+        public MainMenuZaolis(UserDTO user)
         {
             InitializeComponent();
+            client = new ZaolisServiceClient();
+            loginnedUser = user;
+            MessageBox.Show(loginnedUser.Name);
         }
 
         private void TopGrid_MouseDown(object sender, MouseButtonEventArgs e)
@@ -42,6 +49,11 @@ namespace ZaolisUI
         private void ButtonMaximize_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            client.Disconnect(loginnedUser);
         }
     }
 }
