@@ -124,7 +124,7 @@ namespace BLL
             return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Email == email))?.FirstOrDefault());
         }
         
-        public void SendRegistrationCode(string email)
+        public void SendRegistrationCode(string email) //works
         {
             Random rnd = new Random();
 
