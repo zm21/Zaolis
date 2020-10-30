@@ -60,6 +60,8 @@ namespace ZaolisUI
                 
                 MsgBox msg = new MsgBox("Succes!", "You are logged in");
                 msg.Show();
+                MainMenuZaolis mnz = new MainMenuZaolis();
+                mnz.Show();
             }
         }
 
