@@ -82,7 +82,7 @@
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-                        <TextBox MaxLength="12" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Confirm your password" Height="30" Margin="30,10"  CaretBrush="#FF005DFF">
+                        <TextBox x:Name="confirnReg_txtBox" MaxLength="12" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Confirm your password" Height="30" Margin="30,10"  CaretBrush="#FF005DFF">
                             <TextBox.Text>
                                 <Binding Path ="ConfirmPasswd">
                                     <Binding.ValidationRules>

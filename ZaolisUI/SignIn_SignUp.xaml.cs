@@ -85,7 +85,7 @@ namespace ZaolisUI
             Task.Run(() =>
             {
                 client.RegisterUser(registerModel.Email);
-                Application.Current.Dispatcher.Invoke(() => 
+                Application.Current.Dispatcher.Invoke(() =>
                 {
                     VerificationCode verificationCode = new VerificationCode(registerModel.Email);
                     verificationCode.Owner = this;
@@ -102,6 +102,13 @@ namespace ZaolisUI
                             Bio = "",
                         });
                         ShowMsg("SingUp", "SignUp Successfull");
+                        SignUP.Visibility = Visibility.Hidden;
+                        LOGIN.Visibility = Visibility.Visible;
+                        logTxtBox_login.Text = registerModel.Login;
+                        logTxtBox_Reg.Text = "";
+                        emailTxtBox_reg.Text = "";
+                        psswd_Reg.Text = "";
+                        confirnReg_txtBox.Text = "";
                     }
                 });
             });
