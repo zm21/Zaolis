@@ -61,18 +61,22 @@ namespace ZaolisUI
             {
                 if (client.IsExistsUserByLoginPassword(login, password))
                 {
-                    client.Connect(logTxtBox_login.Text,passwdbox.Password); //isActive change
-                
-                MsgBox msg = new MsgBox("Succes!", "You are logged in");
-                msg.Show();
-                MainMenuZaolis mnz = new MainMenuZaolis();
-                mnz.Show();
-            }
-            else
-            {
-                MsgBox msg = new MsgBox("Error!", "There is no user with such login");
-                msg.Show();
-            }
+                    client.Connect(login, password); //isActive change
+                    Application.Current.Dispatcher.Invoke(() => 
+                    {
+                        ShowMsg("Succes!", "You are logged in");
+                        MainMenuZaolis mnz = new MainMenuZaolis();
+                        mnz.Show();
+                        this.Close();
+                    });
+                }
+                else
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        ShowMsg("Error!", "There is no user with such login");
+                    });
+                }
             });  
         }
 
@@ -100,8 +104,6 @@ namespace ZaolisUI
                         ShowMsg("SingUp", "SignUp Successfull");
                     }
                 });
-                
-                
             });
         }
         private void ShowMsg(string title, string msg)
