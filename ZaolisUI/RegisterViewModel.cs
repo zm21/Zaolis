@@ -20,6 +20,13 @@ namespace ZaolisUI
         private bool confirm_pass_valide;
         private bool isagree_lic;
         ZaolisServiceClient client = new ZaolisServiceClient();
+        //public RegisterViewModel()
+        //{
+        //    Login = "";
+        //    Email = "";
+        //    Passwd = "";
+        //    ConfirmPasswd = "";
+        //}
         public bool isAgreeLic
         {
             get { return isagree_lic; }
@@ -36,6 +43,8 @@ namespace ZaolisUI
             get
             {
                 string error = string.Empty;
+                if(Login!=null)
+                {
                 switch (columnName)
                 {
                     case nameof(Login):
@@ -47,12 +56,12 @@ namespace ZaolisUI
                         }
                         else
                         {
-                            if (client.GetUserByLogin(Login)!=null)
-                            {
-                                error = "Such a user already exists!";
-                                login_valide = false;
-                            }
-                            else
+                            //if (client.GetUserByLogin(Login)!=null)
+                            //{
+                            //    error = "Such a user already exists!";
+                            //    login_valide = false;
+                            //}
+                            //else
                                 login_valide = true;
                         }
                         OnPropertyChanged(nameof(isAllValide));
@@ -67,16 +76,13 @@ namespace ZaolisUI
                             }
                             else
                             {
-                                List<string> emails = new List<string>();
-                                if (client.IsExistsUserByEmail(Email))
-                                {
-                                    error = "A user with this email already exists!";
-                                    email_valide = false;
-                                }
-                                else
-                                {
-                                    email_valide = true;
-                                }
+                                //if (client.IsExistsUserByEmail(Email))
+                                //{
+                                //    error = "A user with this email already exists!";
+                                //    email_valide = false;
+                                //}
+                                //else
+                                    email_valide = true;                         
                             }
                             OnPropertyChanged(nameof(isAllValide));
                             break;
@@ -107,6 +113,7 @@ namespace ZaolisUI
                         break;
                     default:
                         break;
+                }
                 }
                 return error;
             }
