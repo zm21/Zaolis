@@ -61,6 +61,11 @@ namespace ZaolisUI
                 MsgBox msg = new MsgBox("Succes!", "You are logged in");
                 msg.Show();
             }
+            else
+            {
+                MsgBox msg = new MsgBox("Error!", "There is no user with such login");
+                msg.Show();
+            }
         }
 
         private void ButtonSignUP_Click(object sender, RoutedEventArgs e)
