@@ -59,7 +59,9 @@ namespace ZaolisUI
             string password = passwdbox.Password;
             Task.Run(() => 
             {
-                client.Connect(logTxtBox_login.Text,passwdbox.Password); //isActive change
+                if (client.IsExistsUserByLoginPassword(login, password))
+                {
+                    client.Connect(logTxtBox_login.Text,passwdbox.Password); //isActive change
                 
                 MsgBox msg = new MsgBox("Succes!", "You are logged in");
                 msg.Show();
@@ -71,20 +73,7 @@ namespace ZaolisUI
                 MsgBox msg = new MsgBox("Error!", "There is no user with such login");
                 msg.Show();
             }
-                if (client.IsExistsUserByLoginPassword(login, password))
-                {
-                    client.Connect(login, password); //isActive change
-                    Application.Current.Dispatcher.Invoke(() => { ShowMsg("Succes!", "You are logged in"); });//
-                }
-                else
-                {
-                    Application.Current.Dispatcher.Invoke(() =>
-                    {
-                        ShowMsg("Error!", "There is no user with such login");
-                    });
-                }
-            });
-            
+            });  
         }
 
         private void ButtonSignUP_Click(object sender, RoutedEventArgs e)
