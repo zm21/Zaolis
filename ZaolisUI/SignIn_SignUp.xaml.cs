@@ -104,5 +104,29 @@ namespace ZaolisUI
             LOGIN.Visibility = Visibility.Hidden;
             ForgetPasswordGrid.Visibility = Visibility.Visible;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var user_res = client.GetUserByLogin(ForgPassTxtBox_login.Text);
+            if (user_res!=null)
+            {
+                client.ForgetPassword(user_res);
+                if (user_res != null)
+                {
+                    ForgotPasswordCode forgotPassword = new ForgotPasswordCode(ForgPassTxtBox_login.Text);
+                    forgotPassword.ShowDialog();
+                    if(forgotPassword.DialogResult==true)
+                    {
+                        MsgBox msg = new MsgBox("Test", "Test");
+                        msg.Show();
+                    }
+                    else
+                    {
+                        MsgBox msg = new MsgBox("Error", "Something went wrong!");
+                        msg.Show();
+                    }
+                }
+            }
+        }
     }
 }

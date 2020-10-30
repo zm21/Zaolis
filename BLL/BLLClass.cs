@@ -26,6 +26,7 @@ namespace BLL
         UserDTO GetUserByEmail(string email);
         UserDTO GetUserByLoginAndPassword(string login, string password);
         IEnumerable<UserDTO> GetAllUsers();
+        void SendForgetPassCode(UserDTO user);
     }
     public class BLLClass : IBLLClass
     {
@@ -124,7 +125,7 @@ namespace BLL
             return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Email == email))?.FirstOrDefault());
         }
         
-        public void SendRegistrationCode(string email) //works
+        public int SendSystem(string email)
         {
             Random rnd = new Random();
 
@@ -141,20 +142,36 @@ namespace BLL
                 From = email_login,
                 To = email,
                 Subject = "[Verification Code]",
-                TextBody = $"Your verification code for registration in Zaolis Messager: {code}",
+                TextBody = $"<{DateTime.Now}> Dear {GetUserByEmail(email).Login}! \n [Your verification code for registration in Zaolis Messager: {code}]",
                 Priority = EASendMail.MailPriority.High
             };
 
-            Task.Run(() => 
+            Task.Run(() =>
             {
                 SmtpClient client = new SmtpClient();
-                client.Connect(smtpserver); 
+                client.Connect(smtpserver);
                 client.SendMail(message);
             });
-
-            AddRegistrationCode(new RegisterVerificationDTO() { Code = code, Email = email });
+            return code;
         }
-
+        
+        public void SendRegistrationCode(string email)
+        {
+            var res = SendSystem(email); 
+            AddRegistrationCode(new RegisterVerificationDTO() { Code = res, Email = email });
+        }
+        public void SendForgetPassCode(UserDTO user)
+        {
+            var res = SendSystem(user.Email);
+            AddCode(new VerificationCodeDTO() { Code = res, CreationTime = DateTime.Now, UserId = user.Id });
+        }
+        public VerificationCodeDTO GetVerificationCode(string email)
+        {
+            var res = _mapper.Map<VerificationCodeDTO>((unit.VerificationCodeRepository.Get(u => u.User.Email == email)).FirstOrDefault());
+            unit.VerificationCodeRepository.Delete(unit.VerificationCodeRepository.GetById(res.Id));
+            unit.Save();
+            return res;
+        }
         public RegisterVerificationDTO GetRegistrationCode(string email)
         {
             return _mapper.Map<RegisterVerificationDTO>((unit.RegisterVerificationRepository.Get(u => u.Email == email))?.First());
