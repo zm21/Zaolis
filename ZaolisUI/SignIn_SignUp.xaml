@@ -115,9 +115,9 @@
                     </Grid>
                     <DockPanel Grid.Row="1" Grid.ColumnSpan="2" LastChildFill="False" VerticalAlignment="Center">
                         <Label DockPanel.Dock="Top" FontSize="16" FontWeight="Bold" Foreground="#27AAF0" Margin="30,30,30,10">Restore access</Label>
-                        <PasswordBox DockPanel.Dock="Top" materialDesign:HintAssist.Hint="New password" Height="30" Margin="30,10"></PasswordBox>
-                        <PasswordBox DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Confirm new password" Height="30" Margin="30,10"></PasswordBox>
-                        <Button Margin="30,10" Background="#FF27AAF0" BorderBrush="#FF27AAF0" DockPanel.Dock="Top" materialDesign:ButtonAssist.CornerRadius="12" Foreground="White" Click="Button_Click">Reset password</Button>
+                        <PasswordBox x:Name="newPass_txtBox" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="New password" Height="30" Margin="30,10" MaxLength="16"></PasswordBox>
+                        <PasswordBox x:Name="confirmNewPass_txtBox" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Confirm new password" Height="30" Margin="30,10" MaxLength="16"></PasswordBox>
+                        <Button Margin="30,10" Background="#FF27AAF0" BorderBrush="#FF27AAF0" DockPanel.Dock="Top" materialDesign:ButtonAssist.CornerRadius="12" Foreground="White" Click="Button_Click_1">Confirm</Button>
                     </DockPanel>
                 </Grid>
             </Grid>

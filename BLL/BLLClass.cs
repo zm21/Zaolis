@@ -27,6 +27,7 @@ namespace BLL
         UserDTO GetUserByLoginAndPassword(string login, string password);
         IEnumerable<UserDTO> GetAllUsers();
         void SendForgetPassCode(UserDTO user);
+        void EditUsersPassword(UserDTO user, string pass);
     }
     public class BLLClass : IBLLClass
     {
@@ -67,7 +68,7 @@ namespace BLL
             var res=unit.UserRepository.GetById(user.Id);
             if (res != null)
             {
-                res.IsActive = status;
+                res.IsActive = status; 
                 unit.UserRepository.Save();
             }
         }
@@ -110,6 +111,15 @@ namespace BLL
             return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Login == login&&u.PasswordHash== passwdhash))?.First());
         }
 
+        public void EditUsersPassword(UserDTO user,string pass)
+        {
+            if(IsExistsUserByEmail(user.Email))
+            {
+                unit.UserRepository.GetById(user.Id).PasswordHash = Utils.ComputeSha256Hash(pass);
+                unit.Save();
+            }
+        }
+
         public bool IsExistsUserByEmail(string email)
         {
             return (_mapper.Map<UserDTO>(unit.UserRepository.Get(u => u.Email == email).FirstOrDefault()) != null);
@@ -118,7 +128,8 @@ namespace BLL
         public bool IsExistsUserByLoginPassword(string login, string password)
         {
             string passwdhash = Utils.ComputeSha256Hash(password);
-            return _mapper.Map<User>(unit.UserRepository.Get(u => u.Login == login && u.PasswordHash == passwdhash).First()) != null;
+            var res = _mapper.Map<User>(unit.UserRepository.Get(u => u.Login == login && u.PasswordHash == passwdhash).FirstOrDefault());
+            return res != null ? true : false;
         }
         public UserDTO GetUserByEmail(string email)
         {

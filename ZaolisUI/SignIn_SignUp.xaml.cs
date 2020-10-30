@@ -60,6 +60,13 @@ namespace ZaolisUI
                 
                 MsgBox msg = new MsgBox("Succes!", "You are logged in");
                 msg.Show();
+                MainMenuZaolis mnz = new MainMenuZaolis();
+                mnz.Show();
+            }
+            else
+            {
+                MsgBox msg = new MsgBox("Error!", "There is no user with such login");
+                msg.Show();
             }
         }
 
@@ -103,7 +110,7 @@ namespace ZaolisUI
         private void lb_forgetpassword_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             LOGIN.Visibility = Visibility.Hidden;
-            ForgetPasswordGrid.Visibility = Visibility.Visible;
+            ForgetPasswordGrid.Visibility = Visibility.Visible; //
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -119,14 +126,32 @@ namespace ZaolisUI
                     forgotPassword.ShowDialog();
                     if(forgotPassword.DialogResult==true)
                     {
-                        MsgBox msg = new MsgBox("Test", "Test");
-                        msg.Show();
+                        ForgetPasswordGrid.Visibility = Visibility.Hidden;
+                        NewPasswordGrid.Visibility = Visibility.Visible;
                     }
                     else
                     {
                         MsgBox msg = new MsgBox("Error", "Something went wrong!");
                         msg.Show();
                     }
+                }
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if(newPass_txtBox.Password==confirmNewPass_txtBox.Password)
+            {
+                if(newPass_txtBox.Password.Length >= 8)
+                {
+                    var res=client.GetUserByLogin(ForgPassTxtBox_login.Text);
+                    client.EditUsersPassword(res, newPass_txtBox.Password);
+                    NewPasswordGrid.Visibility = Visibility.Hidden;
+                    LOGIN.Visibility = Visibility.Visible;
+                    logTxtBox_login.Text = ForgPassTxtBox_login.Text;
+                    ForgPassTxtBox_login.Text = "";
+                    newPass_txtBox.Password = "";
+                    confirmNewPass_txtBox.Password = "";
                 }
             }
         }
