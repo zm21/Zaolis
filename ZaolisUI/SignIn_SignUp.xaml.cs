@@ -62,7 +62,7 @@ namespace ZaolisUI
                 if (client.IsExistsUserByLoginPassword(login, password))
                 {
                     client.Connect(login, password); //isActive change
-                    Application.Current.Dispatcher.Invoke(() => { ShowMsg("Succes!", "You are logged in"); });
+                    Application.Current.Dispatcher.Invoke(() => { ShowMsg("Succes!", "You are logged in"); });//
                 }
                 else
                 {
