@@ -59,6 +59,18 @@ namespace ZaolisUI
             string password = passwdbox.Password;
             Task.Run(() => 
             {
+                client.Connect(logTxtBox_login.Text,passwdbox.Password); //isActive change
+                
+                MsgBox msg = new MsgBox("Succes!", "You are logged in");
+                msg.Show();
+                MainMenuZaolis mnz = new MainMenuZaolis();
+                mnz.Show();
+            }
+            else
+            {
+                MsgBox msg = new MsgBox("Error!", "There is no user with such login");
+                msg.Show();
+            }
                 if (client.IsExistsUserByLoginPassword(login, password))
                 {
                     client.Connect(login, password); //isActive change
@@ -123,7 +135,7 @@ namespace ZaolisUI
         private void lb_forgetpassword_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             LOGIN.Visibility = Visibility.Hidden;
-            ForgetPasswordGrid.Visibility = Visibility.Visible;
+            ForgetPasswordGrid.Visibility = Visibility.Visible; //
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
