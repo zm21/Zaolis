@@ -33,6 +33,10 @@ namespace ZaolisService
         UserDTO GetUserByEmail(string email);
         [OperationContract]
         int GetCodeFromEmail(string email);
+        [OperationContract]
+        int GetVerificationCodeFromEmail(string email);
+        [OperationContract]
+        void ForgetPassword(UserDTO user);
     }
 
 }

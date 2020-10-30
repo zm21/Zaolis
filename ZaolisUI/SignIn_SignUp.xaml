@@ -48,7 +48,7 @@
                     </DockPanel>
                 </Grid>
                 <!--SIGNUP-->
-                <Grid Name="SignUP" Visibility="Visible">
+                <Grid Name="SignUP" Visibility="Hidden">
                     <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
                         <Button Click="TOLogin_Click" Background="Transparent" BorderBrush="Transparent" Foreground="#FF27AAF0">Login</Button>
                         <materialDesign:PackIcon Kind="ArrowRight" Foreground="#FF27AAF0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
@@ -96,7 +96,7 @@
                     </DockPanel>
                 </Grid>
                 <!--Forget password-->
-                <Grid Name="ForgetPasswordGrid" Visibility="Hidden">
+                <Grid Name="ForgetPasswordGrid" Visibility="Visible">
                     <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
                         <Button Click="TOLogin_Click" Background="Transparent" BorderBrush="Transparent" Foreground="#FF27AAF0">Login</Button>
                         <materialDesign:PackIcon Kind="ArrowRight" Foreground="#FF27AAF0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
@@ -104,7 +104,7 @@
                     <DockPanel Grid.Row="1" Grid.ColumnSpan="2" LastChildFill="False" VerticalAlignment="Center">
                         <Label DockPanel.Dock="Top" FontSize="16" FontWeight="Bold" Foreground="#27AAF0" Margin="30,30,30,10">Restore access</Label>
                         <TextBox Name="ForgPassTxtBox_login" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Login" Height="30" Margin="30,10" CaretBrush="#FF005DFF"></TextBox>
-                        <Button Margin="30,10" Background="#FF27AAF0" BorderBrush="#FF27AAF0" DockPanel.Dock="Top" materialDesign:ButtonAssist.CornerRadius="12" Foreground="White" Click="ButtonLogin_Click">Reset password</Button>
+                        <Button Margin="30,10" Background="#FF27AAF0" BorderBrush="#FF27AAF0" DockPanel.Dock="Top" materialDesign:ButtonAssist.CornerRadius="12" Foreground="White" Click="Button_Click">Reset password</Button>
                     </DockPanel>
                 </Grid>
             </Grid>
