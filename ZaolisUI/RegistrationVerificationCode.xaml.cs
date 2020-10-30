@@ -37,12 +37,7 @@ namespace ZaolisUI
         {
             if (txtbox_VereficationCode.Text == client.GetCodeFromEmail(email).ToString())
             {
-                this.DialogResult = true;
-                this.Close();
-            }
-            else
-            {
-                MsgBox msg = new MsgBox("Error!", "Wrong code");
+                MsgBox msg = new MsgBox("Succes!", "Succesfull registration!");
                 msg.Show();
             }
         }

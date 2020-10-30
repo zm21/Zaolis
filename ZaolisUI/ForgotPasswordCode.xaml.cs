@@ -16,16 +16,16 @@ using ZaolisUI.ZaolisServiceReference;
 namespace ZaolisUI
 {
     /// <summary>
-    /// Interaction logic for VerificationCode.xaml
+    /// Interaction logic for ForgotPasswordCode.xaml
     /// </summary>
-    public partial class VerificationCode : Window
+    public partial class ForgotPasswordCode : Window
     {
         ZaolisServiceClient client = new ZaolisServiceClient();
-        string email;
-        public VerificationCode(string email)
+        string login;
+        public ForgotPasswordCode(string login)
         {
             InitializeComponent();
-            this.email = email;
+            this.login = login;
         }
 
         private void Num_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -35,7 +35,7 @@ namespace ZaolisUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (txtbox_VereficationCode.Text == client.GetCodeFromEmail(email).ToString())
+            if (txtbox_VereficationCode.Text == client.GetVerificationCodeFromEmail(client.GetUserByLogin(login).Email).ToString())
             {
                 this.DialogResult = true;
                 this.Close();

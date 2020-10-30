@@ -65,22 +65,23 @@ namespace ZaolisUI
 
         private void ButtonSignUP_Click(object sender, RoutedEventArgs e)
         {
-            //client.RegisterUser(registerModel.Email);
-            //VerificationCode verificationCode = new VerificationCode(registerModel.Email);
-            //verificationCode.ShowDialog();
-            //if(verificationCode.DialogResult == true)
-            //{
-            client.AddUser(new BLL.Models.UserDTO()
+            client.RegisterUser(registerModel.Email);
+            VerificationCode verificationCode = new VerificationCode(registerModel.Email);
+            verificationCode.Owner = this;
+            verificationCode.ShowDialog();
+            if(verificationCode.DialogResult == true)
             {
-                Login = registerModel.Login,
-                Password = registerModel.Passwd,
-                Name = registerModel.Login,
-                Email = registerModel.Email,
-                IsActive = false,
-                Bio = "",
-            });
-            ShowMsg("SingUp", "SignUp Successfull");
-            //}
+                client.AddUser(new BLL.Models.UserDTO()
+                {
+                    Login = registerModel.Login,
+                    Password = registerModel.Passwd,
+                    Name = registerModel.Login,
+                    Email = registerModel.Email,
+                    IsActive = false,
+                    Bio = "",
+                });
+                ShowMsg("SingUp", "SignUp Successfull");
+            }
         }
         private void ShowMsg(string title, string msg)
         {
@@ -103,6 +104,31 @@ namespace ZaolisUI
         {
             LOGIN.Visibility = Visibility.Hidden;
             ForgetPasswordGrid.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var user_res = client.GetUserByLogin(ForgPassTxtBox_login.Text);
+            if (user_res!=null)
+            {
+                client.ForgetPassword(user_res);
+                if (user_res != null)
+                {
+                    ForgotPasswordCode forgotPassword = new ForgotPasswordCode(ForgPassTxtBox_login.Text);
+                    forgotPassword.Owner = this;
+                    forgotPassword.ShowDialog();
+                    if(forgotPassword.DialogResult==true)
+                    {
+                        MsgBox msg = new MsgBox("Test", "Test");
+                        msg.Show();
+                    }
+                    else
+                    {
+                        MsgBox msg = new MsgBox("Error", "Something went wrong!");
+                        msg.Show();
+                    }
+                }
+            }
         }
     }
 }
