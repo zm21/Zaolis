@@ -67,6 +67,7 @@ namespace ZaolisUI
         {
             client.RegisterUser(registerModel.Email);
             VerificationCode verificationCode = new VerificationCode(registerModel.Email);
+            verificationCode.Owner = this;
             verificationCode.ShowDialog();
             if(verificationCode.DialogResult == true)
             {
@@ -114,6 +115,7 @@ namespace ZaolisUI
                 if (user_res != null)
                 {
                     ForgotPasswordCode forgotPassword = new ForgotPasswordCode(ForgPassTxtBox_login.Text);
+                    forgotPassword.Owner = this;
                     forgotPassword.ShowDialog();
                     if(forgotPassword.DialogResult==true)
                     {
