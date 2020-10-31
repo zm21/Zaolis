@@ -17,6 +17,7 @@ namespace BLL
         void AddAvatar(AvatarDTO newAvatar);
         void AddCode(VerificationCodeDTO newCode);
         void AddRegistrationCode(RegisterVerificationDTO newCode);
+        void AddAttachment(AttachmentDTO newAttachment);
         RegisterVerificationDTO GetRegistrationCode(string email);
         void AddUser(UserDTO newUser);
         void ChangeStatus(UserDTO user, bool status);
@@ -200,6 +201,12 @@ namespace BLL
         {
             unit.MessageRepository.Create(_mapper.Map<Message>(newMessage));
             unit.MessageRepository.Save();
+        }
+
+        public void AddAttachment(AttachmentDTO newAttachment)
+        {
+            unit.AttachmentRepository.Create(_mapper.Map<DAL.Entities.Attachment>(newAttachment));
+            unit.AttachmentRepository.Save();
         }
     }
 }
