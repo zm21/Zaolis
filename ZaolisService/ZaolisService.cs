@@ -13,6 +13,8 @@ namespace ZaolisService
     public class ZaolisService : IZaolisService
     {
         BLLClass bll = new BLLClass();
+        Dictionary<UserDTO, IZaolisCallback> activeUsers = new Dictionary<UserDTO, IZaolisCallback>();
+        
         public void AddAvatar(AvatarDTO newAvatar)
         {
             bll.AddAvatar(newAvatar);
@@ -34,14 +36,18 @@ namespace ZaolisService
             if (res != null)
             {
                 bll.ChangeStatus(res, true);
+                activeUsers.Add(res, OperationContext.Current.GetCallbackChannel<IZaolisCallback>());
             }
             return res;
         }
 
         public void Disconnect(UserDTO user)
         {
-            if(user!=null)
+            if (user != null)
+            {
                 bll.ChangeStatus(user, false);
+                activeUsers.Add(user, OperationContext.Current.GetCallbackChannel<IZaolisCallback>());
+            }
         }
 
         public IEnumerable<UserDTO> GetAllUsers()
@@ -88,6 +94,15 @@ namespace ZaolisService
         public bool Request()
         {
             return bll.GetVerificationCode("")!=null;
+        }
+
+        public void SendMessage(MessageDTO message)
+        {
+            if (activeUsers.Where(u => u.Key.Id == message.UserId) != null)
+            {
+                bll.AddMessage(message);
+                OperationContext.Current.GetCallbackChannel<IZaolisCallback>().RecieveMessage(message);
+            }
         }
     }
 }
