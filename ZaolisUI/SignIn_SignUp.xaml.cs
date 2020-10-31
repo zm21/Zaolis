@@ -26,12 +26,15 @@ namespace ZaolisUI
     {
         ZaolisServiceClient client;
         RegisterViewModel registerModel;
+        ProgressBar pgLoading;
         public MainWindow()
         {
             InitializeComponent();
             client = new ZaolisServiceClient();
             registerModel = new RegisterViewModel();
             SignUP.DataContext = registerModel;
+            pgLoading = loginProgressBar;
+            buttonLogin.Content = "LOGIN";
             Task.Run(() => { this.client.Request(); });
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -58,6 +61,8 @@ namespace ZaolisUI
             Task.Run(() => { this.client.Request(); });
             string login = logTxtBox_login.Text;
             string password = passwdbox.Password;
+            buttonLogin.Content = pgLoading;
+            buttonLogin.IsEnabled = false;
             Task.Run(() =>
             {
                 if (client.IsExistsUserByLoginPassword(login, password))
@@ -74,16 +79,18 @@ namespace ZaolisUI
                 {
                     Application.Current.Dispatcher.Invoke(() =>
                     {
+                        buttonLogin.Content = "LOGIN";
+                        buttonLogin.IsEnabled = true;
                         ShowMsg("Error!", "There is no user with such login or password");
                     });
                 }
             });
         }
-        
+
         private void ButtonSignUP_Click(object sender, RoutedEventArgs e)
         {
             Task.Run(() => { this.client.Request(); });
-            
+
             Task.Run(() =>
             {
                 client.RegisterUser(registerModel.Email);
@@ -172,12 +179,12 @@ namespace ZaolisUI
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Task.Run(() => { this.client.Request(); });
-            string newpass= newPass_txtBox.Password;
-            string confirmnewpass= confirmNewPass_txtBox.Password;
+            string newpass = newPass_txtBox.Password;
+            string confirmnewpass = confirmNewPass_txtBox.Password;
             string forgpasslogin = ForgPassTxtBox_login.Text;
-            Task.Run(() => 
+            Task.Run(() =>
             {
-                Application.Current.Dispatcher.Invoke(() => 
+                Application.Current.Dispatcher.Invoke(() =>
                 {
                     if (newpass == confirmnewpass)
                     {
@@ -198,9 +205,9 @@ namespace ZaolisUI
                         ShowMsg("Error", "Password don't match");
                     }
                 });
-                
+
             });
-            
+
         }
 
     }

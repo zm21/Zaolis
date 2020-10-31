@@ -40,7 +40,9 @@
                         <Label DockPanel.Dock="Top" FontSize="16" FontWeight="Bold" Foreground="#27AAF0" Margin="30,30,30,10">LOGIN</Label>
                         <TextBox Name="logTxtBox_login" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Login" Height="30" Margin="30,10" CaretBrush="#FF005DFF"></TextBox>
                         <PasswordBox Name="passwdbox" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Password" Height="30" Margin="30,10"  CaretBrush="#FF005DFF"></PasswordBox>
-                        <Button Margin="30,10" Background="#FF27AAF0" BorderBrush="#FF27AAF0" DockPanel.Dock="Top" materialDesign:ButtonAssist.CornerRadius="12" Foreground="White" Click="ButtonLogin_Click">LOGIN</Button>
+                        <Button x:Name="buttonLogin" Margin="30,10" Background="#FF27AAF0" BorderBrush="#FF27AAF0" DockPanel.Dock="Top" materialDesign:ButtonAssist.CornerRadius="12" Foreground="White" Click="ButtonLogin_Click">
+                            <ProgressBar Name="loginProgressBar" Style="{StaticResource MaterialDesignCircularProgressBar}" Value="0" Foreground="Black" IsIndeterminate="True" />
+                        </Button>
                         <Label Name="lb_forgetpassword" MouseLeftButtonDown="lb_forgetpassword_MouseLeftButtonDown" Margin="30,0" DockPanel.Dock="Top" HorizontalAlignment="Left" FontSize="12" Foreground="LightBlue" MouseEnter="Label_MouseEnter" MouseLeave="lb_forgetpassword_MouseLeave">
                             <TextBlock TextDecorations="Underline" Width="Auto">Forget password</TextBlock>
                         </Label>
