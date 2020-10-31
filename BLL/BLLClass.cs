@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace BLL
 {
@@ -17,6 +18,7 @@ namespace BLL
         void AddAvatar(AvatarDTO newAvatar);
         void AddCode(VerificationCodeDTO newCode);
         void AddRegistrationCode(RegisterVerificationDTO newCode);
+        void AddAttachment(AttachmentDTO newAttachment);
         RegisterVerificationDTO GetRegistrationCode(string email);
         void AddUser(UserDTO newUser);
         void ChangeStatus(UserDTO user, bool status);
@@ -28,6 +30,7 @@ namespace BLL
         IEnumerable<UserDTO> GetAllUsers();
         void SendForgetPassCode(UserDTO user);
         void EditUsersPassword(UserDTO user, string pass);
+        void AddMessage(MessageDTO newMessage);
     }
     public class BLLClass : IBLLClass
     {
@@ -35,6 +38,8 @@ namespace BLL
         private IMapper _mapper = null;
         private string email_login = "zaolisproject@gmail.com";
         private string email_pass = "zaolisqwerty";
+
+       // private string htmlbody = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath(@"C:\Users\VitalikOlekS\Desktop\mail.html"));
         public BLLClass()
         {
             unit = new UnitOfWork(new ZaolisModel());
@@ -152,9 +157,10 @@ namespace BLL
                 From = email_login,
                 To = email,
                 Subject = "[Verification Code]",
-                TextBody = $"<{DateTime.Now}> \n [Your verification code for registration in Zaolis Messager: {code}]",
                 Priority = EASendMail.MailPriority.High
             };
+            message.ImportHtmlBody(@"E:\ШАГ\Team Project\Zaolis\ZaolisUI\bin\Debug\mail.html", ImportHtmlBodyOptions.NoOptions);
+            message.HtmlBody=message.HtmlBody.Replace("Your verefication code:", $"Your verefication code:{code}");
 
             Task.Run(() =>
             {
@@ -193,6 +199,18 @@ namespace BLL
             unit.RegisterVerificationRepository.Delete(unit.RegisterVerificationRepository.GetById(res.Id));
             unit.Save();
             return res;
+        }
+
+        public void AddMessage(MessageDTO newMessage)
+        {
+            unit.MessageRepository.Create(_mapper.Map<Message>(newMessage));
+            unit.MessageRepository.Save();
+        }
+
+        public void AddAttachment(AttachmentDTO newAttachment)
+        {
+            unit.AttachmentRepository.Create(_mapper.Map<DAL.Entities.Attachment>(newAttachment));
+            unit.AttachmentRepository.Save();
         }
     }
 }

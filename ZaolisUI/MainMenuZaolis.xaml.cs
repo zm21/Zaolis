@@ -32,7 +32,7 @@ namespace ZaolisUI
             mainMenuViewModel = new MainMenuViewModel();
             this.DataContext = mainMenuViewModel;
         }
-
+       
         private void TopGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
@@ -68,5 +68,9 @@ namespace ZaolisUI
             UserInfo usInfo = new UserInfo();
             MainGrid.Children.Add(usInfo);
         }
+    }
+    public class CallbackHandler
+    {
+        
     }
 }
