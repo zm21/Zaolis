@@ -28,6 +28,7 @@ namespace BLL
         IEnumerable<UserDTO> GetAllUsers();
         void SendForgetPassCode(UserDTO user);
         void EditUsersPassword(UserDTO user, string pass);
+        void AddMessage(MessageDTO newMessage);
     }
     public class BLLClass : IBLLClass
     {
@@ -193,6 +194,12 @@ namespace BLL
             unit.RegisterVerificationRepository.Delete(unit.RegisterVerificationRepository.GetById(res.Id));
             unit.Save();
             return res;
+        }
+
+        public void AddMessage(MessageDTO newMessage)
+        {
+            unit.MessageRepository.Create(_mapper.Map<Message>(newMessage));
+            unit.MessageRepository.Save();
         }
     }
 }
