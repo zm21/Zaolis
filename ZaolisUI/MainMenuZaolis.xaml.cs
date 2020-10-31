@@ -65,7 +65,7 @@ namespace ZaolisUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            UserInfo usInfo = new UserInfo();
+            UserInfo usInfo = new UserInfo(); //test
             MainGrid.Children.Add(usInfo);
         }
     }
