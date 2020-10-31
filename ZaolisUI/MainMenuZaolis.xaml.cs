@@ -29,7 +29,7 @@ namespace ZaolisUI
             client = new ZaolisServiceClient();
             loginnedUser = user;
         }
-
+       
         private void TopGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
@@ -54,5 +54,9 @@ namespace ZaolisUI
         {
             client.Disconnect(loginnedUser);
         }
+    }
+    public class CallbackHandler
+    {
+        
     }
 }

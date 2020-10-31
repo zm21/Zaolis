@@ -8,7 +8,7 @@ using System.Text;
 
 namespace ZaolisService
 {
-    [ServiceContract]
+    [ServiceContract(CallbackContract = typeof(IZaolisCallback))]
     public interface IZaolisService
     {
         [OperationContract]
@@ -41,6 +41,14 @@ namespace ZaolisService
         void EditUsersPassword(UserDTO user, string pass);
         [OperationContract]
         bool Request();
+        [OperationContract]
+        void SendMessage(MessageDTO message);
+    }
+
+    public interface IZaolisCallback
+    {
+        [OperationContract(IsOneWay = true)]
+        void RecieveMessage(MessageDTO message);
     }
 
 }

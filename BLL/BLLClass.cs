@@ -17,6 +17,7 @@ namespace BLL
         void AddAvatar(AvatarDTO newAvatar);
         void AddCode(VerificationCodeDTO newCode);
         void AddRegistrationCode(RegisterVerificationDTO newCode);
+        void AddAttachment(AttachmentDTO newAttachment);
         RegisterVerificationDTO GetRegistrationCode(string email);
         void AddUser(UserDTO newUser);
         void ChangeStatus(UserDTO user, bool status);
@@ -28,6 +29,7 @@ namespace BLL
         IEnumerable<UserDTO> GetAllUsers();
         void SendForgetPassCode(UserDTO user);
         void EditUsersPassword(UserDTO user, string pass);
+        void AddMessage(MessageDTO newMessage);
     }
     public class BLLClass : IBLLClass
     {
@@ -193,6 +195,18 @@ namespace BLL
             unit.RegisterVerificationRepository.Delete(unit.RegisterVerificationRepository.GetById(res.Id));
             unit.Save();
             return res;
+        }
+
+        public void AddMessage(MessageDTO newMessage)
+        {
+            unit.MessageRepository.Create(_mapper.Map<Message>(newMessage));
+            unit.MessageRepository.Save();
+        }
+
+        public void AddAttachment(AttachmentDTO newAttachment)
+        {
+            unit.AttachmentRepository.Create(_mapper.Map<DAL.Entities.Attachment>(newAttachment));
+            unit.AttachmentRepository.Save();
         }
     }
 }
