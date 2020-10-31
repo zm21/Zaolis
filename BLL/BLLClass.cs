@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace BLL
 {
@@ -37,6 +38,8 @@ namespace BLL
         private IMapper _mapper = null;
         private string email_login = "zaolisproject@gmail.com";
         private string email_pass = "zaolisqwerty";
+
+       // private string htmlbody = System.IO.File.ReadAllText(HttpContext.Current.Server.MapPath(@"C:\Users\VitalikOlekS\Desktop\mail.html"));
         public BLLClass()
         {
             unit = new UnitOfWork(new ZaolisModel());
@@ -154,9 +157,10 @@ namespace BLL
                 From = email_login,
                 To = email,
                 Subject = "[Verification Code]",
-                TextBody = $"<{DateTime.Now}> \n [Your verification code for registration in Zaolis Messager: {code}]",
                 Priority = EASendMail.MailPriority.High
             };
+            message.ImportHtmlBody(@"E:\ШАГ\Team Project\Zaolis\ZaolisUI\bin\Debug\mail.html", ImportHtmlBodyOptions.NoOptions);
+            message.HtmlBody=message.HtmlBody.Replace("Your verefication code:", $"Your verefication code:{code}");
 
             Task.Run(() =>
             {
