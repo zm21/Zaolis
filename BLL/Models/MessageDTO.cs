@@ -15,6 +15,8 @@ namespace BLL.Models
         [DataMember]
         public int UserId { get; set; } //Sender id
         [DataMember]
+        public int ChatId { get; set; }
+        [DataMember]
         public string MessageText { get; set; }
         [DataMember]
         public DateTime CreationTime { get; set; }
