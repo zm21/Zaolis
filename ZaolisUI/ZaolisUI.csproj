@@ -82,6 +82,9 @@
     <Compile Include="Chat.xaml.cs">
       <DependentUpon>Chat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GroupInfo.xaml.cs">
+      <DependentUpon>GroupInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainMenuViewModel.cs" />
     <Compile Include="MainMenuZaolis.xaml.cs">
       <DependentUpon>MainMenuZaolis.xaml</DependentUpon>
@@ -96,6 +99,10 @@
       <DependentUpon>VerificationCode.xaml</DependentUpon>
     </Compile>
     <Page Include="Chat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GroupInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

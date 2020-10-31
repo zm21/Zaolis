@@ -10,6 +10,8 @@
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"/>
     </WindowChrome.WindowChrome>
+    <Grid x:Name="MainGrid">
+        
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -40,27 +42,29 @@
         </Grid>
         <!--Left Menu-->
         <DockPanel Grid.Row="1" MinWidth="150">
-            <TextBox Background="#C8E4F8" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="10,5" Height="40" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Search" BorderBrush="#FF03A9F4"/>
-            <ListBox>
+            <TextBox Name="textBoxSearch" Background="#C8E4F8" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="10,5" Height="40" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Search" BorderBrush="#FF03A9F4" TextChanged="textBoxSearch_TextChanged"/>
+            <ListBox HorizontalContentAlignment="Stretch" ItemsSource="{Binding AllUsers}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel LastChildFill="False">
                             <!--Photo-->
-                            <Ellipse Height="60" Width="60" Margin="1,5" Stroke="#FF013355" StrokeThickness="1">
+                            <Ellipse Height="45" Width="45" Stroke="#FF013355" StrokeThickness="1">
                                 <Ellipse.Fill>
                                     <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
                                 </Ellipse.Fill>
                             </Ellipse>
                             <DockPanel DockPanel.Dock="Right">
-                                <TextBlock DockPanel.Dock="Top">
-                        <Run Text="{Binding Age}" FontSize="16"></Run></TextBlock>
-                                <TextBlock Margin="0,10" DockPanel.Dock="Top"> <Run Text="{Binding City, Mode=OneWay}" FontSize="12" Foreground="#FF727272" ></Run>
-                                </TextBlock>
+                                <TextBlock Margin="0,5,0,0" DockPanel.Dock="Top">
+                        <Run Text="14:23" FontSize="14"></Run></TextBlock>
+                                <Border Visibility="Hidden" DockPanel.Dock="Right" Background="#FF2196F3" CornerRadius="10" Width="25" Height="22">
+                                    <Label Foreground="White" HorizontalAlignment="Center" FontSize="12" VerticalAlignment="Center">1</Label>
+                                </Border>
+                                <!--<TextBlock Margin="0,0" DockPanel.Dock="Right"> <Run Text="1" FontSize="12" Foreground="#FF727272" ></Run>
+                                </TextBlock>-->
                             </DockPanel>
                             <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-                                <TextBlock DockPanel.Dock="Top"> <Run Text="{Binding Name, Mode=OneWay}" FontSize="16" FontWeight="Bold"></Run> 
-                        <Run Text="{Binding Surname, Mode=OneWay}" FontSize="16"></Run></TextBlock>
-                                <TextBlock Margin="0,10" DockPanel.Dock="Top"> <Run Text="{Binding PhoneNumber, Mode=OneWay}" FontSize="12" Foreground="#FF727272" ></Run>
+                                <TextBlock DockPanel.Dock="Top" Margin="10,5,0,0"> <Run Text="{Binding Name, Mode=OneWay}" FontSize="14" FontWeight="Bold"></Run></TextBlock>
+                                <TextBlock Margin="10,0,0,0" DockPanel.Dock="Top"> <Run Text="Some message" FontSize="14" Foreground="#FF727272" ></Run>
                                 </TextBlock>
                             </DockPanel>
                         </DockPanel>
@@ -99,11 +103,12 @@
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="1" Style="{StaticResource MaterialDesignIconButton}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=Send}" ></Button>
-                    <Button Style="{StaticResource MaterialDesignIconButton}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=StickerOutline}" ></Button>
+                    <Button Grid.Column="1" Style="{StaticResource MaterialDesignIconButton}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=Send}" Margin="9,2,9,0" VerticalAlignment="Top" Click="Button_Click" ></Button>
+                    <Button Style="{StaticResource MaterialDesignIconButton}" Background="{x:Null}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=StickerOutline}" ></Button>
                 </Grid>
             </Grid>
 
         </DockPanel>
+    </Grid>
     </Grid>
 </Window>

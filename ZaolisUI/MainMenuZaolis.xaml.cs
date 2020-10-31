@@ -23,11 +23,14 @@ namespace ZaolisUI
     {
         ZaolisServiceClient client;
         UserDTO loginnedUser;
+        MainMenuViewModel mainMenuViewModel;
         public MainMenuZaolis(UserDTO user)
         {
             InitializeComponent();
             client = new ZaolisServiceClient();
             loginnedUser = user;
+            mainMenuViewModel = new MainMenuViewModel();
+            this.DataContext = mainMenuViewModel;
         }
        
         private void TopGrid_MouseDown(object sender, MouseButtonEventArgs e)
@@ -53,6 +56,17 @@ namespace ZaolisUI
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             client.Disconnect(loginnedUser);
+        }
+
+        private void textBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            mainMenuViewModel.SearchUser(textBoxSearch.Text);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            UserInfo usInfo = new UserInfo(); //test
+            MainGrid.Children.Add(usInfo);
         }
     }
     public class CallbackHandler
