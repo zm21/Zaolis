@@ -28,7 +28,6 @@ namespace ZaolisUI
             InitializeComponent();
             client = new ZaolisServiceClient();
             loginnedUser = user;
-            MessageBox.Show(loginnedUser.Name);
         }
 
         private void TopGrid_MouseDown(object sender, MouseButtonEventArgs e)

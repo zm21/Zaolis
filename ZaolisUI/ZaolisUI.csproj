@@ -89,6 +89,9 @@
     <Compile Include="ForgotPasswordCode.xaml.cs">
       <DependentUpon>ForgotPasswordCode.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserInfo.xaml.cs">
+      <DependentUpon>UserInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VerificationCode.xaml.cs">
       <DependentUpon>VerificationCode.xaml</DependentUpon>
     </Compile>
@@ -130,6 +133,10 @@
       <DependentUpon>SignIn_SignUp.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="VerificationCode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
