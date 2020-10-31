@@ -78,7 +78,7 @@ namespace ZaolisUI
                     client.Connect(login, password); //isActive change
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        MainMenuZaolis mnz = new MainMenuZaolis();
+                        MainMenuZaolis mnz = new MainMenuZaolis(client.GetUserByLogin(login));
                         mnz.Show();
                         this.Close();
                     });
@@ -205,6 +205,10 @@ namespace ZaolisUI
                             newPass_txtBox.Password = "";
                             confirmNewPass_txtBox.Password = "";
                         }
+                    }
+                    else
+                    {
+                        ShowMsg("Error", "Password don't match");
                     }
                 });
                 
