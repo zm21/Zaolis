@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ZaolisUI.ZaolisServiceReference {
+namespace ZaolisUI.ZaolisServiceClient {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ZaolisServiceReference.IZaolisService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ZaolisServiceClient.IZaolisService", CallbackContract=typeof(ZaolisUI.ZaolisServiceClient.IZaolisServiceCallback))]
     public interface IZaolisService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/Connect", ReplyAction="http://tempuri.org/IZaolisService/ConnectResponse")]
@@ -104,33 +104,53 @@ namespace ZaolisUI.ZaolisServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/Request", ReplyAction="http://tempuri.org/IZaolisService/RequestResponse")]
         System.Threading.Tasks.Task<bool> RequestAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/SendMessage", ReplyAction="http://tempuri.org/IZaolisService/SendMessageResponse")]
+        void SendMessage(BLL.Models.MessageDTO message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/SendMessage", ReplyAction="http://tempuri.org/IZaolisService/SendMessageResponse")]
+        System.Threading.Tasks.Task SendMessageAsync(BLL.Models.MessageDTO message);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetContacts", ReplyAction="http://tempuri.org/IZaolisService/GetContactsResponse")]
+        BLL.Models.UserDTO[] GetContacts(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetContacts", ReplyAction="http://tempuri.org/IZaolisService/GetContactsResponse")]
+        System.Threading.Tasks.Task<BLL.Models.UserDTO[]> GetContactsAsync(BLL.Models.UserDTO user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IZaolisServiceChannel : ZaolisUI.ZaolisServiceReference.IZaolisService, System.ServiceModel.IClientChannel {
+    public interface IZaolisServiceCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/RecieveMessage")]
+        void RecieveMessage(BLL.Models.MessageDTO message);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IZaolisServiceChannel : ZaolisUI.ZaolisServiceClient.IZaolisService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ZaolisServiceClient : System.ServiceModel.ClientBase<ZaolisUI.ZaolisServiceReference.IZaolisService>, ZaolisUI.ZaolisServiceReference.IZaolisService {
+    public partial class ZaolisServiceClient : System.ServiceModel.DuplexClientBase<ZaolisUI.ZaolisServiceClient.IZaolisService>, ZaolisUI.ZaolisServiceClient.IZaolisService {
         
-        public ZaolisServiceClient() {
+        public ZaolisServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public ZaolisServiceClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
+        public ZaolisServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public ZaolisServiceClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public ZaolisServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public ZaolisServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public ZaolisServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public ZaolisServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+        public ZaolisServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
         }
         
         public BLL.Models.UserDTO Connect(string login, string passwordHash) {
@@ -251,6 +271,22 @@ namespace ZaolisUI.ZaolisServiceReference {
         
         public System.Threading.Tasks.Task<bool> RequestAsync() {
             return base.Channel.RequestAsync();
+        }
+        
+        public void SendMessage(BLL.Models.MessageDTO message) {
+            base.Channel.SendMessage(message);
+        }
+        
+        public System.Threading.Tasks.Task SendMessageAsync(BLL.Models.MessageDTO message) {
+            return base.Channel.SendMessageAsync(message);
+        }
+        
+        public BLL.Models.UserDTO[] GetContacts(BLL.Models.UserDTO user) {
+            return base.Channel.GetContacts(user);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.UserDTO[]> GetContactsAsync(BLL.Models.UserDTO user) {
+            return base.Channel.GetContactsAsync(user);
         }
     }
 }

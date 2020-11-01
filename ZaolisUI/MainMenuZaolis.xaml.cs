@@ -12,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using ZaolisUI.ZaolisServiceReference;
+using ZaolisUI.ZaolisServiceClient;
 
 namespace ZaolisUI
 {
@@ -21,15 +21,15 @@ namespace ZaolisUI
     /// </summary>
     public partial class MainMenuZaolis : Window
     {
-        ZaolisServiceClient client;
+        ZaolisServiceClient.ZaolisServiceClient client;
         UserDTO loginnedUser;
         MainMenuViewModel mainMenuViewModel;
         public MainMenuZaolis(UserDTO user)
         {
             InitializeComponent();
-            client = new ZaolisServiceClient();
+            client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(new CallbackHandler()));
             loginnedUser = user;
-            mainMenuViewModel = new MainMenuViewModel();
+            mainMenuViewModel = new MainMenuViewModel(user);
             this.DataContext = mainMenuViewModel;
         }
        
@@ -69,8 +69,12 @@ namespace ZaolisUI
             MainGrid.Children.Add(usInfo);
         }
     }
-    public class CallbackHandler
+    public class CallbackHandler : IZaolisServiceCallback
     {
-        
+        public event Action<MessageDTO> RecieveEvent;
+        public void RecieveMessage(MessageDTO message)
+        {
+            RecieveEvent?.Invoke(message);
+        }
     }
 }

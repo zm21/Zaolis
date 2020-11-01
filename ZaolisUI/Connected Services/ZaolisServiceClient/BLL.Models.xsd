@@ -27,4 +27,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfUserDTO" nillable="true" type="tns:ArrayOfUserDTO" />
+  <xs:complexType name="MessageDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChatId" type="xs:int" />
+      <xs:element minOccurs="0" name="CreationTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="MessageText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MessageDTO" nillable="true" type="tns:MessageDTO" />
 </xs:schema>

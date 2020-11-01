@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="YG4BMmJ3SA8bqhvAMpnlvlpgY1IbEk1RwmeUSvnBvvA=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="BJhTsbzMr6L7j5QhtNEuTV4pnyuW4xtf/J293ExxISQ=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="wsDualHttpBinding" name="WSDualHttpBinding_IZaolisService">
       <properties>
@@ -97,7 +97,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WSDualHttpBinding_IZaolisService" contract="ZaolisServiceReference.IZaolisService" bindingType="wsDualHttpBinding" address="http://localhost:8301/ZaolisService.svc" bindingConfiguration="WSDualHttpBinding_IZaolisService">
+    <endpoint name="WSDualHttpBinding_IZaolisService" contract="ZaolisServiceClient.IZaolisService" bindingType="wsDualHttpBinding" address="http://localhost:8301/ZaolisService.svc" bindingConfiguration="WSDualHttpBinding_IZaolisService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://localhost:8301/ZaolisService.svc</serializedValue>
@@ -112,7 +112,7 @@
           <serializedValue>WSDualHttpBinding_IZaolisService</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ZaolisServiceReference.IZaolisService</serializedValue>
+          <serializedValue>ZaolisServiceClient.IZaolisService</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>

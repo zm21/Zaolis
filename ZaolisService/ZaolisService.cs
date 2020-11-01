@@ -74,6 +74,11 @@ namespace ZaolisService
             return bll.GetUserByEmail(email);
         }
 
+        public IEnumerable<UserDTO> GetContacts(UserDTO user)
+        {
+            return bll.GetContacts(user);
+        }
+
         public int GetVerificationCodeFromEmail(string email)
         {
             return bll.GetVerificationCode(email).Code;

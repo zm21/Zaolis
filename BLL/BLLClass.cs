@@ -31,6 +31,8 @@ namespace BLL
         void SendForgetPassCode(UserDTO user);
         void EditUsersPassword(UserDTO user, string pass);
         void AddMessage(MessageDTO newMessage);
+        IEnumerable<UserDTO> GetContacts(UserDTO user);
+
     }
     public class BLLClass : IBLLClass
     {
@@ -139,6 +141,10 @@ namespace BLL
         public UserDTO GetUserByEmail(string email)
         {
             return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Email == email))?.FirstOrDefault());
+        }
+        public IEnumerable<UserDTO> GetContacts(UserDTO user)
+        {
+            return _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>(unit.UserRepository.GetById(user.Id)?.UserContact?.Contacts);
         }
 
         public int SendSystem(string email)
