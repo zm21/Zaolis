@@ -68,6 +68,13 @@ namespace ZaolisUI
             UserInfo usInfo = new UserInfo(); //test
             MainGrid.Children.Add(usInfo);
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            AddFriend add = new AddFriend();
+            add.Owner = this;
+            add.ShowDialog();
+        }
     }
     public class CallbackHandler : IZaolisServiceCallback
     {
