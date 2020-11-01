@@ -43,6 +43,8 @@ namespace ZaolisService
         bool Request();
         [OperationContract]
         void SendMessage(MessageDTO message);
+        [OperationContract]
+        IEnumerable<UserDTO> GetContacts(UserDTO user);
     }
 
     public interface IZaolisCallback

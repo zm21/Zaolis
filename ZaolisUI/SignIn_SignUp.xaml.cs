@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ServiceModel;
-using ZaolisUI.ZaolisServiceReference;
+using ZaolisUI.ZaolisServiceClient;
 
 namespace ZaolisUI
 {
@@ -23,13 +23,14 @@ namespace ZaolisUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        ZaolisServiceClient client;
+        ZaolisServiceClient.ZaolisServiceClient client;
         RegisterViewModel registerModel;
         ProgressBar pgLoading;
+        CallbackHandler handler = new CallbackHandler();
         public MainWindow()
         {
             InitializeComponent();
-            client = new ZaolisServiceClient();
+            client = new ZaolisServiceClient.ZaolisServiceClient(new InstanceContext(handler));
             registerModel = new RegisterViewModel();
             SignUP.DataContext = registerModel;
             pgLoading = loginProgressBar;

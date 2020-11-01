@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using ZaolisUI.ZaolisServiceReference;
+using ZaolisUI.ZaolisServiceClient;
 
 namespace ZaolisUI
 {
@@ -20,12 +20,14 @@ namespace ZaolisUI
     /// </summary>
     public partial class VerificationCode : Window
     {
-        ZaolisServiceClient client = new ZaolisServiceClient();
+        CallbackHandler handler;
+        ZaolisServiceClient.ZaolisServiceClient client;
         string email;
         public VerificationCode(string email)
         {
             InitializeComponent();
             this.email = email;
+            client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(handler));
         }
 
         private void Num_PreviewTextInput(object sender, TextCompositionEventArgs e)

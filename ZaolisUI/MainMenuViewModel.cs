@@ -7,32 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using ZaolisUI.ZaolisServiceReference;
+using ZaolisUI.ZaolisServiceClient;
 
 namespace ZaolisUI
 {
     class MainMenuViewModel : INotifyPropertyChanged
     {
-        ZaolisServiceClient client;
+        ZaolisServiceClient.ZaolisServiceClient client;
         public ICollection<UserDTO> AllUsers { get; set; }
-        public ICollection<UserDTO> FriendUsers { get; set; }
-        public UserDTO SelectedUser
+        public IEnumerable<UserDTO> FriendUsers { get; set; }
+        public UserDTO CurrentUser { get; set; }
+        CallbackHandler handler = new CallbackHandler();
+        public MainMenuViewModel(UserDTO current)
         {
-            get
-            {
-                return SelectedUser;
-            }
-            set
-            {
-                SelectedUser = value;
-                OnPropertyChanged(new PropertyChangedEventArgs(nameof(SelectedUser)));
-            }
-        }
-        public MainMenuViewModel()
-        {
-            client = new ZaolisServiceClient();
+            CurrentUser = current;
+            client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(handler));
             AllUsers = client.GetAllUsers();
-            FriendUsers = client.GetAllUsers();//edit
+            FriendUsers = client.GetContacts(CurrentUser);
         }
         public void SearchUser(string searchBy)
         {

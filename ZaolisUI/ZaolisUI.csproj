@@ -82,6 +82,11 @@
     <Compile Include="Chat.xaml.cs">
       <DependentUpon>Chat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\ZaolisServiceClient\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="GroupInfo.xaml.cs">
       <DependentUpon>GroupInfo.xaml</DependentUpon>
     </Compile>
@@ -126,11 +131,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Connected Services\ZaolisServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Interfaces\IChildWindow.cs" />
     <Compile Include="MsgBox.xaml.cs">
       <DependentUpon>MsgBox.xaml</DependentUpon>
@@ -167,17 +167,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Connected Services\ZaolisServiceReference\BLL.Models.xsd">
+    <None Include="Connected Services\ZaolisServiceClient\BLL.Models.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ZaolisServiceReference\service.wsdl" />
-    <None Include="Connected Services\ZaolisServiceReference\service.xsd">
+    <None Include="Connected Services\ZaolisServiceClient\service.wsdl" />
+    <None Include="Connected Services\ZaolisServiceClient\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ZaolisServiceReference\service1.xsd">
+    <None Include="Connected Services\ZaolisServiceClient\service1.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\BLL.Models.UserContactDTO.datasource" />
     <None Include="Properties\DataSources\BLL.Models.UserDTO.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -197,22 +198,22 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\ZaolisServiceReference\" />
+    <Resource Include="message.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ZaolisServiceReference\configuration91.svcinfo" />
+    <WCFMetadataStorage Include="Connected Services\ZaolisServiceClient\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ZaolisServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\ZaolisServiceClient\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ZaolisServiceReference\Reference.svcmap">
+    <None Include="Connected Services\ZaolisServiceClient\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ZaolisServiceClient\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="message.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -43,7 +43,7 @@
         <!--Left Menu-->
         <DockPanel Grid.Row="1" MinWidth="150">
             <TextBox Name="textBoxSearch" Background="#C8E4F8" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="10,5" Height="40" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Search" BorderBrush="#FF03A9F4" TextChanged="textBoxSearch_TextChanged"/>
-            <ListBox HorizontalContentAlignment="Stretch" ItemsSource="{Binding AllUsers}">
+                <ListBox HorizontalContentAlignment="Stretch" ItemsSource="{Binding FriendUsers}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel LastChildFill="False">
