@@ -32,6 +32,7 @@ namespace BLL
         void EditUsersPassword(UserDTO user, string pass);
         void AddMessage(MessageDTO newMessage);
         IEnumerable<UserDTO> GetContacts(UserDTO user);
+        void AddContact(UserDTO add_to, UserDTO newContact);
 
     }
     public class BLLClass : IBLLClass
@@ -83,6 +84,34 @@ namespace BLL
         {
             unit.AvatarRepository.Create(_mapper.Map<Avatar>(newAvatar));
             unit.AvatarRepository.Save();
+        }
+        public void AddContact(UserDTO add_to,UserDTO newContact)
+        {
+            //unit.UserContactRepository.Update(new UserContact());
+            var res = _mapper.Map<User>((unit.UserRepository.Get(u=>u.Id==add_to.Id,includeProperties:nameof(User.UserContact))?.FirstOrDefault()));
+            //var res = _mapper.Map<User>((unit.UserRepository.GetById(add_to.Id)));
+            var newcontactres = _mapper.Map<User>(newContact);
+            if (res!=null&&newContact!=null)
+            {
+                if (res.UserContact == null)
+                {
+                    unit.UserContactRepository.Create(_mapper.Map<UserContact>(new UserContactDTO() {UserId=res.Id}));
+                    unit.UserContactRepository.Save();
+                    var edit_res = unit.UserRepository.GetById(res.Id);
+                    edit_res.UserContact = unit.UserContactRepository.Get(u => u.UserId == res.Id)?.FirstOrDefault();
+                    unit.Save();
+                }
+
+                if (res.UserContact?.Contacts != null)
+                {
+                    if (!res.UserContact.Contacts.Contains(newcontactres))
+                    {
+                        res.UserContact.Contacts.Add(newcontactres);
+                    }
+                }
+                else
+                    res.UserContact.Contacts.Add(newcontactres);
+            }
         }
 
         public void AddCode(VerificationCodeDTO newCode)

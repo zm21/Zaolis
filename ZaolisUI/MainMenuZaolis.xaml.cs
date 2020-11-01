@@ -24,10 +24,11 @@ namespace ZaolisUI
         ZaolisServiceClient.ZaolisServiceClient client;
         UserDTO loginnedUser;
         MainMenuViewModel mainMenuViewModel;
+        CallbackHandler handler;
         public MainMenuZaolis(UserDTO user)
         {
             InitializeComponent();
-            client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(new CallbackHandler()));
+            client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(handler));
             loginnedUser = user;
             mainMenuViewModel = new MainMenuViewModel(user);
             this.DataContext = mainMenuViewModel;
@@ -71,7 +72,7 @@ namespace ZaolisUI
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            AddFriend add = new AddFriend();
+            AddFriend add = new AddFriend(loginnedUser,client);
             add.Owner = this;
             add.ShowDialog();
         }
