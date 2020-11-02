@@ -10,6 +10,36 @@
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"/>
     </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MainGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="250"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="MainGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard x:Name="CloseMenu_BeginStoryboard" Storyboard="{StaticResource CloseMenu}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+        </EventTrigger>
+    </Window.Triggers>
     <Grid x:Name="MainGrid">
 
         <Grid>
@@ -23,6 +53,61 @@
                 <RowDefinition Height="23*"/>
                 <RowDefinition Height="419*"/>
             </Grid.RowDefinitions>
+
+            <Grid Grid.Row="1" x:Name="GridMenu" Width="250" HorizontalAlignment="Left" Margin="-250 0 0 0" Background="White" RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Grid.RenderTransform>
+                <StackPanel>
+                    <ListView Foreground="#FF313131" FontFamily="Champagne &amp; Limousines" FontSize="18">
+                        <ListViewItem Height="45" Padding="0">
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="Recycle" Width="20" Height="20" Foreground="Gray" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Recycle" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="45" Padding="0">
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="HelpCircleOutline" Width="20" Height="20" Foreground="#FFF08033" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Help" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="45" Padding="0">
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="Lightbulb" Width="20" Height="20" Foreground="Green" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Send Feedback" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="45" Padding="0">
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="Heart" Width="20" Height="20" Foreground="#FFD41515" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Recommend" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="45" Padding="0">
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="StarCircle" Width="20" Height="20" Foreground="#FFE6A701" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Premium Subscription" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                        <ListViewItem Height="45" Padding="0">
+                            <StackPanel Orientation="Horizontal" Margin="10 0">
+                                <materialDesign:PackIcon Kind="Settings" Width="20" Height="20" Foreground="#FF0069C1" Margin="5" VerticalAlignment="Center"/>
+                                <TextBlock Text="Settings" Margin="10"/>
+                            </StackPanel>
+                        </ListViewItem>
+                    </ListView>
+                </StackPanel>
+                <Button x:Name="ButtonCloseMenu" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0">
+                    <materialDesign:PackIcon Kind="Close"/>
+                </Button>
+            </Grid>
+
             <!--Top Line-->
             <Grid x:Name="TopGrid" MaxHeight="32" Background="#FF2196F3" MouseDown="TopGrid_MouseDown" Grid.ColumnSpan="4" Margin="0,0,0,560" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
@@ -42,11 +127,7 @@
                 </StackPanel>
             </Grid>
             <DockPanel Grid.Row="1" LastChildFill="False">
-                <Button DockPanel.Dock="Top" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=AccountSearch}" ToolTip="Search friend" Click="Button_Click_1" ></Button>
-                <Button DockPanel.Dock="Top" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=Settings}" ToolTip="Settings" ></Button>
-                <Button DockPanel.Dock="Top" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=AccountMultiple}" ToolTip="New group" ></Button>
-                <Button DockPanel.Dock="Bottom" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=Logout}" ToolTip="Logout" ></Button>
-                <ToggleButton DockPanel.Dock="Top" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Night mode" IsChecked="False" />
+                <Button x:Name="ButtonOpenMenu" DockPanel.Dock="Top" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=Menu}" ToolTip="Search friend" Click="Button_Click_1" ></Button>
             </DockPanel>
             <!--Friends-->
             <DockPanel Grid.Row="1" Grid.Column="1" MinWidth="150" >
