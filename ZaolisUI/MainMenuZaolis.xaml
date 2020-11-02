@@ -10,7 +10,7 @@
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"/>
     </WindowChrome.WindowChrome>
-    <Window.Resources>
+    <!--<Window.Resources>
         <Storyboard x:Key="CloseMenu">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="GridMenu">
                 <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
@@ -39,7 +39,7 @@
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
             <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
         </EventTrigger>
-    </Window.Triggers>
+    </Window.Triggers>-->
     <Grid x:Name="MainGrid">
 
         <Grid>
@@ -54,7 +54,7 @@
                 <RowDefinition Height="419*"/>
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="1" x:Name="GridMenu" Width="250" HorizontalAlignment="Left" Margin="-250 0 0 0" Background="White" RenderTransformOrigin="0.5,0.5">
+            <!--<Grid Grid.Row="1" x:Name="GridMenu" Width="250" HorizontalAlignment="Left" Margin="-250 0 0 0" Background="White" RenderTransformOrigin="0.5,0.5">
                 <Grid.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -106,7 +106,7 @@
                 <Button x:Name="ButtonCloseMenu" HorizontalAlignment="Right" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Width="30" Height="30" Padding="0">
                     <materialDesign:PackIcon Kind="Close"/>
                 </Button>
-            </Grid>
+            </Grid>-->
 
             <!--Top Line-->
             <Grid x:Name="TopGrid" MaxHeight="32" Background="#FF2196F3" MouseDown="TopGrid_MouseDown" Grid.ColumnSpan="4" Margin="0,0,0,560" Grid.RowSpan="2">
