@@ -24,11 +24,10 @@ namespace ZaolisUI
         ZaolisServiceClient.ZaolisServiceClient client;
         UserDTO loginnedUser;
         MainMenuViewModel mainMenuViewModel;
-        CallbackHandler handler;
-        public MainMenuZaolis(UserDTO user)
+        public MainMenuZaolis(UserDTO user,ZaolisServiceClient.ZaolisServiceClient client)
         {
             InitializeComponent();
-            client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(handler));
+            this.client = client;
             loginnedUser = user;
             mainMenuViewModel = new MainMenuViewModel(user);
             this.DataContext = mainMenuViewModel;
