@@ -10,9 +10,38 @@
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"/>
     </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="GridBackground">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="250"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="GridBackground">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard x:Name="CloseMenu_BeginStoryboard" Storyboard="{StaticResource CloseMenu}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+        </EventTrigger>
+    </Window.Triggers>
     <Grid x:Name="MainGrid">
-
-        <Grid>
+        <Grid x:Name="MainGridLow">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="52*"/>
                 <ColumnDefinition Width="250*"/>
@@ -20,35 +49,36 @@
                 <ColumnDefinition Width="771*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="23*"/>
-                <RowDefinition Height="419*"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+
+
+            <Grid x:Name="GridBackground" Background="#55313131" Opacity="0"  Grid.RowSpan="2" Grid.ColumnSpan="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="47*"/>
+                    <RowDefinition Height="545*"/>
+                </Grid.RowDefinitions>
+            </Grid>
             <!--Top Line-->
-            <Grid x:Name="TopGrid" MaxHeight="32" Background="#FF2196F3" MouseDown="TopGrid_MouseDown" Grid.ColumnSpan="4" Margin="0,0,0,560" Grid.RowSpan="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="215*"/>
-                    <ColumnDefinition Width="49*"/>
-                </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.Column="1">
-                    <Button x:Name="ButtonMinimize" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonMinimize_Click" >
+            <Grid x:Name="TopGrid" MouseDown="TopGrid_MouseDown" Grid.ColumnSpan="4" Background="#FF2196F3">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,0">
+                    <Button DockPanel.Dock="Right" x:Name="ButtonMinimize" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonMinimize_Click" >
                         <materialDesign:PackIcon Kind="WindowMinimize"/>
                     </Button>
-                    <Button x:Name="ButtonMaximize" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonMaximize_Click" >
+                    <Button DockPanel.Dock="Right" x:Name="ButtonMaximize" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonMaximize_Click" >
                         <materialDesign:PackIcon Kind="WindowMaximize"/>
                     </Button>
-                    <Button x:Name="ButtonClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonClose_Click" >
+                    <Button DockPanel.Dock="Right" x:Name="ButtonClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonClose_Click" >
                         <materialDesign:PackIcon Kind="Close"/>
                     </Button>
                 </StackPanel>
             </Grid>
-            <DockPanel Grid.Row="1" LastChildFill="False">
-                <Button DockPanel.Dock="Top" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=AccountSearch}" ToolTip="Search friend" Click="Button_Click_1" ></Button>
-                <Button DockPanel.Dock="Top" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=Settings}" ToolTip="Settings" ></Button>
-                <Button DockPanel.Dock="Top" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=AccountMultiple}" ToolTip="New group" ></Button>
-                <Button DockPanel.Dock="Bottom" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=Logout}" ToolTip="Logout" ></Button>
-                <ToggleButton DockPanel.Dock="Top" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="Night mode" IsChecked="False" />
-            </DockPanel>
+
             <!--Friends-->
+            <DockPanel Grid.Row="1" LastChildFill="False">
+                <Button x:Name="ButtonOpenMenu" DockPanel.Dock="Top" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=Menu}" ></Button>
+            </DockPanel>
             <DockPanel Grid.Row="1" Grid.Column="1" MinWidth="150" >
                 <TextBox Name="textBoxSearch" Background="#C8E4F8" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="10,5" Height="40" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Search" BorderBrush="#FF03A9F4" TextChanged="textBoxSearch_TextChanged"/>
                 <ListBox HorizontalContentAlignment="Stretch" ItemsSource="{Binding FriendUsers}">
@@ -116,6 +146,90 @@
                     </Grid>
                 </Grid>
 
+            </DockPanel>
+
+            <!--Left Menu Animated-->
+            <DockPanel x:Name="GridMenu" Width="250" HorizontalAlignment="Left" Margin="-250 0 0 0" Background="White" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
+                <DockPanel.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </DockPanel.RenderTransform>
+                <DockPanel DockPanel.Dock="Top" Margin="20,20,5,10">
+                    <Button x:Name="ButtonCloseMenu" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=Close}" ></Button>
+                    <Ellipse DockPanel.Dock="Top" HorizontalAlignment="Left" Height="60" Width="60" Stroke="#FF013355" StrokeThickness="1">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    
+                </DockPanel>
+                <DockPanel LastChildFill="False" DockPanel.Dock="Top">
+                    <Expander DockPanel.Dock="Top" Header="Name Surname">
+                        <ListBox>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <DockPanel LastChildFill="False">
+                                        <!--Photo-->
+                                        <Ellipse Height="45" Width="45" Stroke="#FF013355" StrokeThickness="1">
+                                            <Ellipse.Fill>
+                                                <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
+                                            </Ellipse.Fill>
+                                        </Ellipse>
+                                        <DockPanel DockPanel.Dock="Right">
+                                        </DockPanel>
+                                        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+                                            <TextBlock DockPanel.Dock="Left" Margin="10,11,0,0"> <Run Text="Bohdan Islamov" FontSize="14" FontWeight="Bold"></Run></TextBlock>
+                                            <materialDesign:PackIcon Visibility="Visible" Margin="10,0,0,0" DockPanel.Dock="Bottom" Foreground="#FF2196F3" Kind="CheckboxMarkedCircle" Background="{x:Null}" />
+                                        </DockPanel>
+                                    </DockPanel>
+
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Expander>
+                    <Button Width="250" Height="50" Name="buttonAddAccount" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top">
+                        <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Width="25" Height="25" Kind="AccountAdd" DockPanel.Dock="Left"></materialDesign:PackIcon>
+                            <Label DockPanel.Dock="Top" Margin="35,0,0,0">Add Account</Label>
+                        </DockPanel>
+                    </Button>
+                    <Separator Margin="0,10" DockPanel.Dock="Top"></Separator>
+                    <Button Width="250" Height="50" Name="buttonFindFriend" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top">
+                        <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Width="25" Height="25" Kind="AccountSearch" DockPanel.Dock="Left"></materialDesign:PackIcon>
+                            <Label DockPanel.Dock="Top" Margin="35,0,0,0">Find Friends</Label>
+                        </DockPanel>
+                    </Button>
+                    <Button Width="250" Height="50" Name="buttonCreateNewChat" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top">
+                        <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Width="25" Height="25" Kind="AccountMultiple" DockPanel.Dock="Left"></materialDesign:PackIcon>
+                            <Label DockPanel.Dock="Top" Margin="35,0,0,0">New Group</Label>
+                        </DockPanel>
+                    </Button>
+                    <Button Width="250" Height="50" Name="buttonSettings" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top">
+                        <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Width="25" Height="25" Kind="Settings" DockPanel.Dock="Left"></materialDesign:PackIcon>
+                            <Label DockPanel.Dock="Top" Margin="35,0,0,0">Settings</Label>
+                        </DockPanel>
+                    </Button>
+                    <Button Width="250" Height="50" Name="buttonNightMode" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" Click="buttonNightMode_Click">
+                        <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Width="25" Height="25" Kind="WeatherNight" DockPanel.Dock="Left"></materialDesign:PackIcon>
+                            <ToggleButton Name="toggleButtonNightMode" DockPanel.Dock="Right"></ToggleButton>
+                            <Label DockPanel.Dock="Left" Margin="35,0,0,0">Night Mode</Label>
+                        </DockPanel>
+                    </Button>
+                    <Button Width="250" Height="50" Name="buttonLogout" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Bottom">
+                        <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <materialDesign:PackIcon Width="25" Height="25" Kind="Logout" DockPanel.Dock="Left"></materialDesign:PackIcon>
+                            <Label DockPanel.Dock="Top" Margin="35,0,0,0">Logout</Label>
+                        </DockPanel>
+                    </Button>
+                </DockPanel>
             </DockPanel>
         </Grid>
     </Grid>
