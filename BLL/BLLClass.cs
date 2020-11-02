@@ -32,6 +32,7 @@ namespace BLL
         void EditUsersPassword(UserDTO user, string pass);
         void AddMessage(MessageDTO newMessage);
         IEnumerable<UserDTO> GetContacts(UserDTO user);
+        void AddContact(UserDTO add_to, UserDTO newContact);
 
     }
     public class BLLClass : IBLLClass
@@ -83,6 +84,12 @@ namespace BLL
         {
             unit.AvatarRepository.Create(_mapper.Map<Avatar>(newAvatar));
             unit.AvatarRepository.Save();
+        }
+        public void AddContact(UserDTO add_to,UserDTO newContact)
+        {
+            var user_res = unit.UserRepository.GetById(add_to.Id);
+            user_res.UserContact.Contacts.Add(unit.UserRepository.GetById(newContact.Id));
+            unit.Save();
         }
 
         public void AddCode(VerificationCodeDTO newCode)

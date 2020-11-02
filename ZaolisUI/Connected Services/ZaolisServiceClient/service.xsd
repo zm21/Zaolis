@@ -224,10 +224,23 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddContact">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="add_to" nillable="true" type="q13:UserDTO" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="newContact" nillable="true" type="q14:UserDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddContactResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="RecieveMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="message" nillable="true" type="q13:MessageDTO" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="message" nillable="true" type="q15:MessageDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

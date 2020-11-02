@@ -19,7 +19,7 @@ namespace ZaolisUI
         private bool confirm_pass_valide;
         private bool isagree_lic;
 
-        CallbackHandler handler = new CallbackHandler();
+        CallbackHandler handler;
 
         ZaolisServiceClient.ZaolisServiceClient client;
         public RegisterViewModel()

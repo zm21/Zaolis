@@ -14,7 +14,7 @@ namespace DAL.Configs
         {
             this.HasKey(uc => uc.UserId);
             this.HasRequired(uc => uc.User).WithRequiredDependent(u => u.UserContact);
-            this.HasMany(uc => uc.Contacts);
+            this.HasMany(uc => uc.Contacts).WithMany(u=>u.UserContacts);
         }
     }
 }
