@@ -116,6 +116,12 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetContacts", ReplyAction="http://tempuri.org/IZaolisService/GetContactsResponse")]
         System.Threading.Tasks.Task<BLL.Models.UserDTO[]> GetContactsAsync(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/AddContact", ReplyAction="http://tempuri.org/IZaolisService/AddContactResponse")]
+        void AddContact(BLL.Models.UserDTO add_to, BLL.Models.UserDTO newContact);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/AddContact", ReplyAction="http://tempuri.org/IZaolisService/AddContactResponse")]
+        System.Threading.Tasks.Task AddContactAsync(BLL.Models.UserDTO add_to, BLL.Models.UserDTO newContact);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -287,6 +293,14 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         public System.Threading.Tasks.Task<BLL.Models.UserDTO[]> GetContactsAsync(BLL.Models.UserDTO user) {
             return base.Channel.GetContactsAsync(user);
+        }
+        
+        public void AddContact(BLL.Models.UserDTO add_to, BLL.Models.UserDTO newContact) {
+            base.Channel.AddContact(add_to, newContact);
+        }
+        
+        public System.Threading.Tasks.Task AddContactAsync(BLL.Models.UserDTO add_to, BLL.Models.UserDTO newContact) {
+            return base.Channel.AddContactAsync(add_to, newContact);
         }
     }
 }

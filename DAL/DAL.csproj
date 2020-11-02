@@ -104,6 +104,10 @@
     <Compile Include="Migrations\202010291513298_Fix1.designer.cs">
       <DependentUpon>202010291513298_Fix1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011021725530_UserContact Changes.cs" />
+    <Compile Include="Migrations\202011021725530_UserContact Changes.designer.cs">
+      <DependentUpon>202011021725530_UserContact Changes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Configs\UserConfig.cs" />
@@ -136,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010291513298_Fix1.resx">
       <DependentUpon>202010291513298_Fix1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011021725530_UserContact Changes.resx">
+      <DependentUpon>202011021725530_UserContact Changes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

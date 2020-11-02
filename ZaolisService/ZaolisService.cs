@@ -45,8 +45,8 @@ namespace ZaolisService
         {
             if (user != null)
             {
-                bll.ChangeStatus(user, false);
-                activeUsers.Add(user, OperationContext.Current.GetCallbackChannel<IZaolisCallback>());
+                bll.ChangeStatus(bll.GetUserByLogin(user.Login), false);
+                activeUsers.Remove(user);
             }
         }
 
@@ -108,6 +108,10 @@ namespace ZaolisService
                 bll.AddMessage(message);
                 OperationContext.Current.GetCallbackChannel<IZaolisCallback>().RecieveMessage(message);
             }
+        }
+        public void AddContact(UserDTO add_to, UserDTO newContact)
+        {
+            bll.AddContact(add_to, newContact);
         }
     }
 }

@@ -13,14 +13,17 @@
     <DockPanel Background="#C8E4F8">
         <DockPanel DockPanel.Dock="Top" LastChildFill="False" Background="#27AAF0">
             <Label Name="MsgTitle" VerticalAlignment="Center" Margin="10,0">Add Friend</Label>
-            <Button Name="buttonClose" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Content="{materialDesign:PackIcon Kind=Close}" Foreground="Black" Width="25" Height="25" Click="buttonClose_Click"></Button>
+            <Button Name="buttonClose" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="Black" Width="37" Height="25" Click="buttonClose_Click">
+                <materialDesign:PackIcon Kind="ExitRun"/>
+            </Button>
+            
         </DockPanel>
         <DockPanel Margin="5">
             <Button DockPanel.Dock="Bottom" Margin="5" Foreground="White" Click="Button_Click">Add</Button>
-            <TextBox materialDesign:HintAssist.Hint="Enter your friend's username @" FontSize="15" VerticalContentAlignment="Center"
-            Name="txtbox_VereficationCode" Margin="5"
+            <TextBox materialDesign:HintAssist.Hint="Enter your friend's username:" FontSize="15" VerticalContentAlignment="Center"
+            x:Name="txtBox_username" Margin="5"
                 Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
-                VerticalScrollBarVisibility="Auto" MaxLength="6"/>
+                VerticalScrollBarVisibility="Auto"/>
         </DockPanel>
     </DockPanel>
 </Window>

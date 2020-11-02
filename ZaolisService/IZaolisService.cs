@@ -45,6 +45,8 @@ namespace ZaolisService
         void SendMessage(MessageDTO message);
         [OperationContract]
         IEnumerable<UserDTO> GetContacts(UserDTO user);
+        [OperationContract]
+        void AddContact(UserDTO add_to, UserDTO newContact);
     }
 
     public interface IZaolisCallback

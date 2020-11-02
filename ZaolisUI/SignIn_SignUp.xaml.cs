@@ -70,7 +70,7 @@ namespace ZaolisUI
                     client.Connect(login, password); //isActive change
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        MainMenuZaolis mnz = new MainMenuZaolis(client.GetUserByLogin(login));
+                        MainMenuZaolis mnz = new MainMenuZaolis(client.GetUserByLogin(login),client);
                         mnz.Show();
                         this.Close();
                     });
