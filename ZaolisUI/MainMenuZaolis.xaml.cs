@@ -75,6 +75,11 @@ namespace ZaolisUI
             add.Owner = this;
             add.ShowDialog();
         }
+
+        private void buttonNightMode_Click(object sender, RoutedEventArgs e)
+        {
+            toggleButtonNightMode.IsChecked = !toggleButtonNightMode.IsChecked;
+        }
     }
     public class CallbackHandler : IZaolisServiceCallback
     {
