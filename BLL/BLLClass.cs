@@ -77,6 +77,8 @@ namespace BLL
             if (res != null)
             {
                 res.IsActive = status;
+                if (status == false)
+                    res.LastActive = DateTime.Now;
                 unit.UserRepository.Save();
             }
         }
