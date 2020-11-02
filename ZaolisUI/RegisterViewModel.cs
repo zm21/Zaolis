@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
-using ZaolisUI.ZaolisServiceReference;
 
 namespace ZaolisUI
 {
@@ -20,7 +19,13 @@ namespace ZaolisUI
         private bool confirm_pass_valide;
         private bool isagree_lic;
 
-        ZaolisServiceClient client = new ZaolisServiceClient();
+        CallbackHandler handler;
+
+        ZaolisServiceClient.ZaolisServiceClient client;
+        public RegisterViewModel()
+        {
+            client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(handler));
+        }
 
         public bool isAgreeLic
         {

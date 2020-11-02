@@ -3,7 +3,6 @@ using BLL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ServiceModel;
-using ZaolisUI.ZaolisServiceReference;
+using ZaolisUI.ZaolisServiceClient;
 
 namespace ZaolisUI
 {
@@ -24,14 +23,18 @@ namespace ZaolisUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        ZaolisServiceClient client;
+        ZaolisServiceClient.ZaolisServiceClient client;
         RegisterViewModel registerModel;
+        ProgressBar pgLoading;
+        CallbackHandler handler = new CallbackHandler();
         public MainWindow()
         {
             InitializeComponent();
-            client = new ZaolisServiceClient();
+            client = new ZaolisServiceClient.ZaolisServiceClient(new InstanceContext(handler));
             registerModel = new RegisterViewModel();
             SignUP.DataContext = registerModel;
+            pgLoading = loginProgressBar;
+            buttonLogin.Content = "LOGIN";
             Task.Run(() => { this.client.Request(); });
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -58,6 +61,8 @@ namespace ZaolisUI
             Task.Run(() => { this.client.Request(); });
             string login = logTxtBox_login.Text;
             string password = passwdbox.Password;
+            buttonLogin.Content = pgLoading;
+            buttonLogin.IsEnabled = false;
             Task.Run(() =>
             {
                 if (client.IsExistsUserByLoginPassword(login, password))
@@ -65,7 +70,7 @@ namespace ZaolisUI
                     client.Connect(login, password); //isActive change
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        MainMenuZaolis mnz = new MainMenuZaolis();
+                        MainMenuZaolis mnz = new MainMenuZaolis(client.GetUserByLogin(login),client);
                         mnz.Show();
                         this.Close();
                     });
@@ -74,16 +79,18 @@ namespace ZaolisUI
                 {
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        ShowMsg("Error!", "There is no user with such login");
+                        buttonLogin.Content = "LOGIN";
+                        buttonLogin.IsEnabled = true;
+                        ShowMsg("Error!", "There is no user with such login or password");
                     });
                 }
             });
         }
-        
+
         private void ButtonSignUP_Click(object sender, RoutedEventArgs e)
         {
             Task.Run(() => { this.client.Request(); });
-            
+
             Task.Run(() =>
             {
                 client.RegisterUser(registerModel.Email);
@@ -172,12 +179,12 @@ namespace ZaolisUI
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Task.Run(() => { this.client.Request(); });
-            string newpass= newPass_txtBox.Password;
-            string confirmnewpass= confirmNewPass_txtBox.Password;
+            string newpass = newPass_txtBox.Password;
+            string confirmnewpass = confirmNewPass_txtBox.Password;
             string forgpasslogin = ForgPassTxtBox_login.Text;
-            Task.Run(() => 
+            Task.Run(() =>
             {
-                Application.Current.Dispatcher.Invoke(() => 
+                Application.Current.Dispatcher.Invoke(() =>
                 {
                     if (newpass == confirmnewpass)
                     {
@@ -193,10 +200,14 @@ namespace ZaolisUI
                             confirmNewPass_txtBox.Password = "";
                         }
                     }
+                    else
+                    {
+                        ShowMsg("Error", "Password don't match");
+                    }
                 });
-                
+
             });
-            
+
         }
 
     }

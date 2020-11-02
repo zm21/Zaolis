@@ -16,6 +16,7 @@ namespace DAL.Entities
             this.Avatars = new HashSet<Avatar>();
             this.Messages = new HashSet<Message>();
             this.VerificationCodes = new HashSet<VerificationCode>();
+            this.UserContacts = new HashSet<UserContact>();
         }
         public int Id { get; set; }
         public string Login { get; set; }
@@ -28,6 +29,7 @@ namespace DAL.Entities
         public virtual ICollection<Message> Messages { get; set; }
         public virtual ICollection<VerificationCode> VerificationCodes { get; set; }
         public virtual UserContact UserContact { get; set; }
+        public virtual ICollection<UserContact> UserContacts { get; set; }
         public virtual ICollection<Chat> Chats { get; set; }
     }
 }

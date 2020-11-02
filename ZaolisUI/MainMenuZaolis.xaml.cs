@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ZaolisUI.ZaolisServiceClient;
 
 namespace ZaolisUI
 {
@@ -19,11 +21,18 @@ namespace ZaolisUI
     /// </summary>
     public partial class MainMenuZaolis : Window
     {
-        public MainMenuZaolis()
+        ZaolisServiceClient.ZaolisServiceClient client;
+        UserDTO loginnedUser;
+        MainMenuViewModel mainMenuViewModel;
+        public MainMenuZaolis(UserDTO user,ZaolisServiceClient.ZaolisServiceClient client)
         {
             InitializeComponent();
+            this.client = client;
+            loginnedUser = user;
+            mainMenuViewModel = new MainMenuViewModel(user);
+            this.DataContext = mainMenuViewModel;
         }
-
+       
         private void TopGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
@@ -42,6 +51,37 @@ namespace ZaolisUI
         private void ButtonMaximize_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            client.Disconnect(loginnedUser);
+        }
+
+        private void textBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            mainMenuViewModel.SearchUser(textBoxSearch.Text);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            UserInfo usInfo = new UserInfo(); //test
+            MainGrid.Children.Add(usInfo);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            AddFriend add = new AddFriend(loginnedUser,client);
+            add.Owner = this;
+            add.ShowDialog();
+        }
+    }
+    public class CallbackHandler : IZaolisServiceCallback
+    {
+        public event Action<MessageDTO> RecieveEvent;
+        public void RecieveMessage(MessageDTO message)
+        {
+            RecieveEvent?.Invoke(message);
         }
     }
 }

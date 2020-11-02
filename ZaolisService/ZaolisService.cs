@@ -13,6 +13,8 @@ namespace ZaolisService
     public class ZaolisService : IZaolisService
     {
         BLLClass bll = new BLLClass();
+        Dictionary<UserDTO, IZaolisCallback> activeUsers = new Dictionary<UserDTO, IZaolisCallback>();
+        
         public void AddAvatar(AvatarDTO newAvatar)
         {
             bll.AddAvatar(newAvatar);
@@ -34,14 +36,18 @@ namespace ZaolisService
             if (res != null)
             {
                 bll.ChangeStatus(res, true);
+                activeUsers.Add(res, OperationContext.Current.GetCallbackChannel<IZaolisCallback>());
             }
             return res;
         }
 
         public void Disconnect(UserDTO user)
         {
-            if(user!=null)
-                bll.ChangeStatus(user, false);
+            if (user != null)
+            {
+                bll.ChangeStatus(bll.GetUserByLogin(user.Login), false);
+                activeUsers.Remove(user);
+            }
         }
 
         public IEnumerable<UserDTO> GetAllUsers()
@@ -68,6 +74,11 @@ namespace ZaolisService
             return bll.GetUserByEmail(email);
         }
 
+        public IEnumerable<UserDTO> GetContacts(UserDTO user)
+        {
+            return bll.GetContacts(user);
+        }
+
         public int GetVerificationCodeFromEmail(string email)
         {
             return bll.GetVerificationCode(email).Code;
@@ -88,6 +99,19 @@ namespace ZaolisService
         public bool Request()
         {
             return bll.GetVerificationCode("")!=null;
+        }
+
+        public void SendMessage(MessageDTO message)
+        {
+            if (activeUsers.Where(u => u.Key.Id == message.UserId) != null)
+            {
+                bll.AddMessage(message);
+                OperationContext.Current.GetCallbackChannel<IZaolisCallback>().RecieveMessage(message);
+            }
+        }
+        public void AddContact(UserDTO add_to, UserDTO newContact)
+        {
+            bll.AddContact(add_to, newContact);
         }
     }
 }

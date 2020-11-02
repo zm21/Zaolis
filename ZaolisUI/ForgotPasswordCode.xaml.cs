@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using ZaolisUI.ZaolisServiceReference;
+using ZaolisUI.ZaolisServiceClient;
 
 namespace ZaolisUI
 {
@@ -20,12 +20,14 @@ namespace ZaolisUI
     /// </summary>
     public partial class ForgotPasswordCode : Window
     {
-        ZaolisServiceClient client = new ZaolisServiceClient();
+        ZaolisServiceClient.ZaolisServiceClient client;
+        CallbackHandler handler;
         string login;
         public ForgotPasswordCode(string login)
         {
             InitializeComponent();
             this.login = login;
+            client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(handler));
         }
 
         private void Num_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -49,7 +51,8 @@ namespace ZaolisUI
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            this.DialogResult = false;
+            if (DialogResult != true)
+                this.DialogResult = false;
         }
     }
 }
