@@ -69,16 +69,16 @@ namespace ZaolisUI
             MainGrid.Children.Add(usInfo);
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            AddFriend add = new AddFriend(loginnedUser,client);
-            add.Owner = this;
-            add.ShowDialog();
-        }
-
         private void buttonNightMode_Click(object sender, RoutedEventArgs e)
         {
             toggleButtonNightMode.IsChecked = !toggleButtonNightMode.IsChecked;
+        }
+
+        private void buttonFindFriend_Click(object sender, RoutedEventArgs e)
+        {
+            AddFriend add = new AddFriend(loginnedUser, client);
+            add.Owner = this;
+            add.ShowDialog();
         }
     }
     public class CallbackHandler : IZaolisServiceCallback

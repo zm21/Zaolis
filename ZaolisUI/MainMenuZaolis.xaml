@@ -168,7 +168,7 @@
                     
                 </DockPanel>
                 <DockPanel LastChildFill="False" DockPanel.Dock="Top">
-                    <Expander DockPanel.Dock="Top" Header="Name Surname">
+                    <Expander DockPanel.Dock="Top" Header="{Binding CurrentUser.Name}">
                         <ListBox>
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
@@ -198,7 +198,7 @@
                         </DockPanel>
                     </Button>
                     <Separator Margin="0,10" DockPanel.Dock="Top"></Separator>
-                    <Button Width="250" Height="50" Name="buttonFindFriend" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top">
+                    <Button Width="250" Height="50" Name="buttonFindFriend" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" Click="buttonFindFriend_Click">
                         <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <materialDesign:PackIcon Width="25" Height="25" Kind="AccountSearch" DockPanel.Dock="Left"></materialDesign:PackIcon>
                             <Label DockPanel.Dock="Top" Margin="35,0,0,0">Find Friends</Label>

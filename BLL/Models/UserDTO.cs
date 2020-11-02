@@ -26,5 +26,7 @@ namespace BLL.Models
         public string Bio { get; set; }
         [DataMember]
         public int AvatarId { get; set; }
+        [DataMember]
+        public DateTime LastActive { get; set; }
     }
 }

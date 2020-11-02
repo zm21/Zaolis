@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="6b60f538-5579-4b12-aa66-43c916849fb2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e8437968-1f91-41bc-94e6-ab47f345758b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,10 +22,10 @@
     <MetadataSource Address="http://localhost:8301/ZaolisService.svc/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="c48a330a-25ad-4f1f-a02e-00c91ffc0e41" SourceId="1" SourceUrl="http://localhost:8301/ZaolisService.svc/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="606d5fb5-0c0a-407e-bad9-ded2829d84a0" SourceId="1" SourceUrl="http://localhost:8301/ZaolisService.svc/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="bcff5f07-270b-48d6-abb4-c114afa1b61d" SourceId="1" SourceUrl="http://localhost:8301/ZaolisService.svc/mex" />
-    <MetadataFile FileName="BLL.Models.xsd" MetadataType="Schema" ID="f32434a1-baf3-4ca4-8dc6-db69a2807d64" SourceId="1" SourceUrl="http://localhost:8301/ZaolisService.svc/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="302cacf0-d1c4-47ef-ba9d-a0382671dd58" SourceId="1" SourceUrl="http://localhost:8301/ZaolisService.svc/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="e81a9aff-13d4-4c83-858d-3f0025ede95c" SourceId="1" SourceUrl="http://localhost:8301/ZaolisService.svc/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="0a682e87-f9e4-48dd-9b1b-07fc8d79f06b" SourceId="1" SourceUrl="http://localhost:8301/ZaolisService.svc/mex" />
+    <MetadataFile FileName="BLL.Models.xsd" MetadataType="Schema" ID="6e66d4e3-6818-4478-a192-3711a78258b7" SourceId="1" SourceUrl="http://localhost:8301/ZaolisService.svc/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

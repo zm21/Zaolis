@@ -17,6 +17,7 @@ namespace ZaolisUI
         public ICollection<UserDTO> AllUsers { get; set; }
         public IEnumerable<UserDTO> FriendUsers { get; set; }
         public UserDTO CurrentUser { get; set; }
+
         CallbackHandler handler = new CallbackHandler();
         public MainMenuViewModel(UserDTO current)
         {
