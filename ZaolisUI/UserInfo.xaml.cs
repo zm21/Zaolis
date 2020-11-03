@@ -18,11 +18,31 @@ namespace ZaolisUI
     /// <summary>
     /// Interaction logic for UserInfo.xaml
     /// </summary>
-    public partial class UserInfo : UserControl
+    public partial class UserInfo : UserControl, IChildWindow
     {
-        public UserInfo()
+        Grid grid;
+        public UserInfo(Grid mainGrid)
         {
             InitializeComponent();
+            grid = mainGrid;
+        }
+
+        public event ClosingDelegate Closing;
+        public event MessageDelegate OpenMsg;
+
+        public void Close()
+        {
+            grid.Children.Remove(this);
+        }
+
+        public void ShowMsg(string title, string msg)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void buttonClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

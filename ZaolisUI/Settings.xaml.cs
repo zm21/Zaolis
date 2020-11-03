@@ -18,11 +18,31 @@ namespace ZaolisUI
     /// <summary>
     /// Interaction logic for Settings.xaml
     /// </summary>
-    public partial class Settings : UserControl
+    public partial class Settings : UserControl, IChildWindow
     {
-        public Settings()
+        Grid grid;
+        public Settings(Grid mainGrid)
         {
             InitializeComponent();
+            grid = mainGrid;
+        }
+
+        public event ClosingDelegate Closing;
+        public event MessageDelegate OpenMsg;
+
+        public void Close()
+        {
+            grid.Children.Remove(this);
+        }
+
+        public void ShowMsg(string title, string msg)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void buttonClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
