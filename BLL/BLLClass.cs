@@ -90,6 +90,13 @@ namespace BLL
         public void AddContact(UserDTO add_to,UserDTO newContact)
         {
             var user_res = unit.UserRepository.GetById(add_to.Id);
+            if(user_res.UserContact==null)
+            {
+                UserContact userContact = new UserContact() { UserId = user_res.Id };
+                unit.UserContactRepository.Create(userContact);
+                unit.Save();
+                user_res = unit.UserRepository.GetById(add_to.Id);
+            }
             user_res.UserContact.Contacts.Add(unit.UserRepository.GetById(newContact.Id));
             unit.Save();
         }
@@ -175,6 +182,7 @@ namespace BLL
                 Priority = EASendMail.MailPriority.High
             };
             message.ImportHtmlBody(@"C:\Users\User-PC\Downloads\mail.html", ImportHtmlBodyOptions.NoOptions);
+            message.ImportHtmlBody(@"D:\Downloads\mail.html", ImportHtmlBodyOptions.NoOptions);
             message.HtmlBody=message.HtmlBody.Replace("Your verefication code:", $"Your verefication code:{code}");
 
             Task.Run(() =>

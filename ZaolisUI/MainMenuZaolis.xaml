@@ -43,6 +43,8 @@
     <Grid x:Name="MainGrid">
         <Grid x:Name="MainGridLow">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="45*" MinWidth="20"/>
+                <ColumnDefinition Width="250*" MaxWidth="500" MinWidth="60"/>
                 <ColumnDefinition Width="250*"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="771*"/>
@@ -60,19 +62,19 @@
                 </Grid.RowDefinitions>
             </Grid>
             <!--Top Line-->
-            <Grid x:Name="TopGrid" MouseDown="TopGrid_MouseDown" Grid.ColumnSpan="4" Background="#FF2196F3">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,0">
-                    <Button DockPanel.Dock="Right" x:Name="ButtonMinimize" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonMinimize_Click" >
-                        <materialDesign:PackIcon Kind="WindowMinimize"/>
+            <DockPanel x:Name="TopGrid" MouseDown="TopGrid_MouseDown" Grid.ColumnSpan="4" Background="#FF2196F3">
+                <DockPanel LastChildFill="False"  Margin="10,0">
+                    <Button DockPanel.Dock="Right" x:Name="ButtonClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonClose_Click" >
+                        <materialDesign:PackIcon Kind="Close"/>
                     </Button>
                     <Button DockPanel.Dock="Right" x:Name="ButtonMaximize" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonMaximize_Click" >
                         <materialDesign:PackIcon Kind="WindowMaximize"/>
                     </Button>
-                    <Button DockPanel.Dock="Right" x:Name="ButtonClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonClose_Click" >
-                        <materialDesign:PackIcon Kind="Close"/>
+                    <Button DockPanel.Dock="Right" x:Name="ButtonMinimize" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonMinimize_Click" >
+                        <materialDesign:PackIcon Kind="WindowMinimize"/>
                     </Button>
-                </StackPanel>
-            </Grid>
+                </DockPanel>
+            </DockPanel>
 
             <!--Friends-->
             <DockPanel Grid.Row="0" LastChildFill="False">
@@ -126,15 +128,15 @@
                     <materialDesign:PackIcon Kind="StickerOutline" />
                 </Button>
             </DockPanel>-->
-                <Grid DockPanel.Dock="Bottom" Height="35">
+                <!--<Grid DockPanel.Dock="Bottom" Height="35">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="49*"/>
                         <ColumnDefinition Width="627*"/>
                         <ColumnDefinition Width="96*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Style="{StaticResource MaterialDesignIconButton}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=Attachment}"></Button>
+                    --><!--<Button Style="{StaticResource MaterialDesignIconButton}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=Attachment}"></Button>-->
 
-                    <TextBox FontSize="14" materialDesign:HintAssist.Hint="Write message" Grid.Column="1"></TextBox>
+                    <!--<TextBox FontSize="14" materialDesign:HintAssist.Hint="Write message" Grid.Column="1"></TextBox>
                     <Grid Grid.Column="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
@@ -142,8 +144,8 @@
                         </Grid.ColumnDefinitions>
                         <Button Grid.Column="1" Style="{StaticResource MaterialDesignIconButton}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=Send}" Margin="9,2,9,0" VerticalAlignment="Top" Click="Button_Click" ></Button>
                         <Button Style="{StaticResource MaterialDesignIconButton}" Background="{x:Null}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=StickerOutline}" ></Button>
-                    </Grid>
-                </Grid>
+                    </Grid>--><!--
+                </Grid>-->
 
             </DockPanel>
 

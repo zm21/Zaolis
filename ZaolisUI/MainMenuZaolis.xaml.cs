@@ -27,6 +27,7 @@ namespace ZaolisUI
         public MainMenuZaolis(UserDTO user,ZaolisServiceClient.ZaolisServiceClient client)
         {
             InitializeComponent();
+            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             this.client = client;
             loginnedUser = user;
             mainMenuViewModel = new MainMenuViewModel(user);
@@ -50,7 +51,10 @@ namespace ZaolisUI
 
         private void ButtonMaximize_Click(object sender, RoutedEventArgs e)
         {
-
+            if (this.WindowState != WindowState.Maximized)
+                this.WindowState = WindowState.Maximized;
+            else
+                this.WindowState = WindowState.Normal;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
