@@ -16,12 +16,12 @@ using System.Windows.Shapes;
 namespace ZaolisUI
 {
     /// <summary>
-    /// Interaction logic for UserInfo.xaml
+    /// Interaction logic for Settings.xaml
     /// </summary>
-    public partial class UserInfo : UserControl, IChildWindow
+    public partial class Settings : UserControl, IChildWindow
     {
         Grid grid;
-        public UserInfo(Grid mainGrid)
+        public Settings(Grid mainGrid)
         {
             InitializeComponent();
             grid = mainGrid;
