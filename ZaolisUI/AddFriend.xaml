@@ -22,8 +22,7 @@
             <Button DockPanel.Dock="Bottom" Margin="5" Foreground="White" Click="Button_Click">Add</Button>
             <TextBox materialDesign:HintAssist.Hint="Enter your friend's username:" FontSize="15" VerticalContentAlignment="Center"
             x:Name="txtBox_username" Margin="5"
-                Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
-                VerticalScrollBarVisibility="Auto"/>
+                Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
         </DockPanel>
     </DockPanel>
 </Window>
