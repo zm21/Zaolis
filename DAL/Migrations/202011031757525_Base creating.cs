@@ -3,16 +3,14 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class RemovedIsConfirmed : DbMigration
+    public partial class Basecreating : DbMigration
     {
         public override void Up()
         {
-            DropColumn("dbo.VerificationCodes", "IsConfirmed");
         }
         
         public override void Down()
         {
-            AddColumn("dbo.VerificationCodes", "IsConfirmed", c => c.Boolean(nullable: false));
         }
     }
 }

@@ -7,13 +7,13 @@ namespace DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Lastactive : IMigrationMetadata
+    public sealed partial class Basecreating : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Lastactive));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Basecreating));
         
         string IMigrationMetadata.Id
         {
-            get { return "202011022027428_Last active"; }
+            get { return "202011031757525_Base creating"; }
         }
         
         string IMigrationMetadata.Source

@@ -25,7 +25,7 @@ namespace DAL.Entities
         public string Bio { get; set; }
         public string Name { get; set; }
         public bool IsActive { get; set; }
-        public DateTime LastActive { get; set; }
+        public DateTime? LastActive { get; set; }
         public virtual ICollection<Avatar> Avatars { get; set; }
         public virtual ICollection<Message> Messages { get; set; }
         public virtual ICollection<VerificationCode> VerificationCodes { get; set; }

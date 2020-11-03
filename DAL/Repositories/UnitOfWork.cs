@@ -102,7 +102,7 @@ namespace DAL.Repositories
         {
             get
             {
-                if (verificationCodeRepository == null)
+                if (registerVerificationRepository == null)
                     registerVerificationRepository = new GenericRepository<RegisterVerification>(context);
                 return registerVerificationRepository;
             }

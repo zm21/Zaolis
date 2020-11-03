@@ -76,41 +76,13 @@
     <Compile Include="Entities\VerificationCode.cs" />
     <Compile Include="Interfaces\IGenericRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Migrations\202010282236180_InitialCreate.cs" />
-    <Compile Include="Migrations\202010282236180_InitialCreate.designer.cs">
-      <DependentUpon>202010282236180_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202011031757525_Base creating.cs" />
+    <Compile Include="Migrations\202011031757525_Base creating.designer.cs">
+      <DependentUpon>202011031757525_Base creating.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202010291221469_Added verification code.cs" />
-    <Compile Include="Migrations\202010291221469_Added verification code.designer.cs">
-      <DependentUpon>202010291221469_Added verification code.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202010291233432_Added IsConfirmed.cs" />
-    <Compile Include="Migrations\202010291233432_Added IsConfirmed.designer.cs">
-      <DependentUpon>202010291233432_Added IsConfirmed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202010291412200_Removed IsConfirmed.cs" />
-    <Compile Include="Migrations\202010291412200_Removed IsConfirmed.designer.cs">
-      <DependentUpon>202010291412200_Removed IsConfirmed.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202010291452432_Registration Verification.cs" />
-    <Compile Include="Migrations\202010291452432_Registration Verification.designer.cs">
-      <DependentUpon>202010291452432_Registration Verification.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202010291506406_Fix.cs" />
-    <Compile Include="Migrations\202010291506406_Fix.designer.cs">
-      <DependentUpon>202010291506406_Fix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202010291513298_Fix1.cs" />
-    <Compile Include="Migrations\202010291513298_Fix1.designer.cs">
-      <DependentUpon>202010291513298_Fix1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011021725530_UserContact Changes.cs" />
-    <Compile Include="Migrations\202011021725530_UserContact Changes.designer.cs">
-      <DependentUpon>202011021725530_UserContact Changes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202011022027428_Last active.cs" />
-    <Compile Include="Migrations\202011022027428_Last active.designer.cs">
-      <DependentUpon>202011022027428_Last active.cs</DependentUpon>
+    <Compile Include="Migrations\202011031832474_Fix.cs" />
+    <Compile Include="Migrations\202011031832474_Fix.designer.cs">
+      <DependentUpon>202011031832474_Fix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -124,32 +96,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202010282236180_InitialCreate.resx">
-      <DependentUpon>202010282236180_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011031757525_Base creating.resx">
+      <DependentUpon>202011031757525_Base creating.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010291221469_Added verification code.resx">
-      <DependentUpon>202010291221469_Added verification code.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010291233432_Added IsConfirmed.resx">
-      <DependentUpon>202010291233432_Added IsConfirmed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010291412200_Removed IsConfirmed.resx">
-      <DependentUpon>202010291412200_Removed IsConfirmed.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010291452432_Registration Verification.resx">
-      <DependentUpon>202010291452432_Registration Verification.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010291506406_Fix.resx">
-      <DependentUpon>202010291506406_Fix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202010291513298_Fix1.resx">
-      <DependentUpon>202010291513298_Fix1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011021725530_UserContact Changes.resx">
-      <DependentUpon>202011021725530_UserContact Changes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202011022027428_Last active.resx">
-      <DependentUpon>202011022027428_Last active.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202011031832474_Fix.resx">
+      <DependentUpon>202011031832474_Fix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
