@@ -174,7 +174,7 @@ namespace BLL
                 Subject = "[Verification Code]",
                 Priority = EASendMail.MailPriority.High
             };
-            message.ImportHtmlBody(@"E:\ШАГ\Team Project\Zaolis\ZaolisUI\bin\Debug\mail.html", ImportHtmlBodyOptions.NoOptions);
+            message.ImportHtmlBody(@"C:\Users\User-PC\Downloads\mail.html", ImportHtmlBodyOptions.NoOptions);
             message.HtmlBody=message.HtmlBody.Replace("Your verefication code:", $"Your verefication code:{code}");
 
             Task.Run(() =>

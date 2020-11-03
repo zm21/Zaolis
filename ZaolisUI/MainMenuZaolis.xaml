@@ -43,7 +43,6 @@
     <Grid x:Name="MainGrid">
         <Grid x:Name="MainGridLow">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="52*"/>
                 <ColumnDefinition Width="250*"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="771*"/>
@@ -76,10 +75,10 @@
             </Grid>
 
             <!--Friends-->
-            <DockPanel Grid.Row="1" LastChildFill="False">
-                <Button x:Name="ButtonOpenMenu" DockPanel.Dock="Top" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=Menu}" ></Button>
+            <DockPanel Grid.Row="0" LastChildFill="False">
+                <Button x:Name="ButtonOpenMenu" DockPanel.Dock="Left" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Content="{materialDesign:PackIcon Kind=Menu}" ></Button>
             </DockPanel>
-            <DockPanel Grid.Row="1" Grid.Column="1" MinWidth="150" >
+            <DockPanel Grid.Row="1" Grid.Column="0" MinWidth="150" >
                 <TextBox Name="textBoxSearch" Background="#C8E4F8" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="10,5" Height="40" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Search" BorderBrush="#FF03A9F4" TextChanged="textBoxSearch_TextChanged"/>
                 <ListBox HorizontalContentAlignment="Stretch" ItemsSource="{Binding FriendUsers}">
                     <ListBox.ItemTemplate>
@@ -111,9 +110,9 @@
                 </ListBox>
             </DockPanel>
 
-            <GridSplitter HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.Column="2" Width="2" Background="LightGray" Grid.Row="1"></GridSplitter>
+            <GridSplitter HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.Column="1" Width="2" Background="LightGray" Grid.Row="1"></GridSplitter>
             <!--Chat-->
-            <DockPanel Grid.Row="1" LastChildFill="False" Grid.Column="3">
+            <DockPanel Grid.Row="1" LastChildFill="False" Grid.Column="2">
                 <!--<DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
                 <Button FontSize="40" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="#FF03A9F4" Width="25" Height="25" DockPanel.Dock="Left" Background="{x:Null}" BorderBrush="{x:Null}">
                     <materialDesign:PackIcon Kind="Attachment" />
@@ -210,7 +209,7 @@
                             <Label DockPanel.Dock="Top" Margin="35,0,0,0">New Group</Label>
                         </DockPanel>
                     </Button>
-                    <Button Width="250" Height="50" Name="buttonSettings" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top">
+                    <Button Width="250" Height="50" Name="buttonSettings" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" Click="buttonSettings_Click">
                         <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <materialDesign:PackIcon Width="25" Height="25" Kind="Settings" DockPanel.Dock="Left"></materialDesign:PackIcon>
                             <Label DockPanel.Dock="Top" Margin="35,0,0,0">Settings</Label>
