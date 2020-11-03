@@ -23,11 +23,11 @@ namespace ZaolisUI
         CallbackHandler handler;
         ZaolisServiceClient.ZaolisServiceClient client;
         string email;
-        public VerificationCode(string email)
+        public VerificationCode(string email, ZaolisServiceClient.ZaolisServiceClient client)
         {
             InitializeComponent();
             this.email = email;
-            client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(handler));
+            this.client = client;
         }
 
         private void Num_PreviewTextInput(object sender, TextCompositionEventArgs e)

@@ -22,9 +22,9 @@ namespace ZaolisUI
         CallbackHandler handler;
 
         ZaolisServiceClient.ZaolisServiceClient client;
-        public RegisterViewModel()
+        public RegisterViewModel(ZaolisServiceClient.ZaolisServiceClient client)
         {
-            client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(handler));
+            this.client = client;
         }
 
         public bool isAgreeLic

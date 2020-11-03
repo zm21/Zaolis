@@ -31,7 +31,7 @@ namespace ZaolisUI
         {
             InitializeComponent();
             client = new ZaolisServiceClient.ZaolisServiceClient(new InstanceContext(handler));
-            registerModel = new RegisterViewModel();
+            registerModel = new RegisterViewModel(client);
             SignUP.DataContext = registerModel;
             pgLoading = loginProgressBar;
             buttonLogin.Content = "LOGIN";
@@ -96,7 +96,7 @@ namespace ZaolisUI
                 client.RegisterUser(registerModel.Email);
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    VerificationCode verificationCode = new VerificationCode(registerModel.Email);
+                    VerificationCode verificationCode = new VerificationCode(registerModel.Email,client);
                     verificationCode.Owner = this;
                     verificationCode.ShowDialog();
                     if (verificationCode.DialogResult == true)
@@ -109,6 +109,7 @@ namespace ZaolisUI
                             Email = registerModel.Email,
                             IsActive = false,
                             Bio = "",
+                            LastActive=DateTime.Now
                         });
                         ShowMsg("Registration", "Registration Successfull");
                         SignUP.Visibility = Visibility.Hidden;
