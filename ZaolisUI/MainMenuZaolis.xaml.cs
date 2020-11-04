@@ -1,6 +1,7 @@
 ﻿using BLL.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,14 +25,21 @@ namespace ZaolisUI
         ZaolisServiceClient.ZaolisServiceClient client;
         UserDTO loginnedUser;
         MainMenuViewModel mainMenuViewModel;
-        public MainMenuZaolis(UserDTO user,ZaolisServiceClient.ZaolisServiceClient client)
+        ObservableCollection<UserDTO> users;
+        public MainMenuZaolis(ObservableCollection<UserDTO> users,ZaolisServiceClient.ZaolisServiceClient client)
         {
             InitializeComponent();
+            this.users = users;
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
             this.client = client;
-            loginnedUser = user;
-            mainMenuViewModel = new MainMenuViewModel(user);
+            loginnedUser = this.users.First();
+            mainMenuViewModel = new MainMenuViewModel(loginnedUser);
             this.DataContext = mainMenuViewModel;
+            foreach (var item in users)
+            {
+                logginedUsers.Items.Add(item);
+            }
+            logginedUsers.SelectedItem = loginnedUser;  
         }
        
         private void TopGrid_MouseDown(object sender, MouseButtonEventArgs e)
@@ -59,7 +67,8 @@ namespace ZaolisUI
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            client.Disconnect(loginnedUser);
+            if(logginedUsers!=null)
+                client.Disconnect(loginnedUser);
         }
 
         private void textBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -96,6 +105,31 @@ namespace ZaolisUI
                 });
             });
            
+        }
+
+        private void buttonLogout_Click(object sender, RoutedEventArgs e)
+        {
+            if (logginedUsers.SelectedItem != null)
+            {
+                var user = (UserDTO)logginedUsers.SelectedItem;
+                client.Disconnect(user);
+                users.Remove(user);
+                logginedUsers.Items.Remove(user);
+                SignInUpWindow.Save(users);
+            }
+            if(logginedUsers.Items.Count<=0)
+            {
+                SignInUpWindow signInUpWindow = new SignInUpWindow();
+                signInUpWindow.Show();
+                this.Close();
+            }
+        }
+
+        private void buttonAddAccount_Click(object sender, RoutedEventArgs e)
+        {
+            SignInUpWindow signInUpWindow = new SignInUpWindow();
+            signInUpWindow.Show();
+            this.Close();
         }
     }
     public class CallbackHandler : IZaolisServiceCallback

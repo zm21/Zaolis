@@ -15,22 +15,39 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ServiceModel;
 using ZaolisUI.ZaolisServiceClient;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using BLL.Models;
+using System.Collections.ObjectModel;
 
 namespace ZaolisUI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class SignInUpWindow : Window
     {
+        private static string remembered_path = "rememberme.dat";
+
         ZaolisServiceClient.ZaolisServiceClient client;
         RegisterViewModel registerModel;
         ProgressBar pgLoading;
         CallbackHandler handler = new CallbackHandler();
-        public MainWindow()
+        ObservableCollection<UserDTO> logginedUsers = new ObservableCollection<UserDTO>();
+        public SignInUpWindow()
         {
             InitializeComponent();
             client = new ZaolisServiceClient.ZaolisServiceClient(new InstanceContext(handler));
+            if(File.Exists(remembered_path))
+            {
+                logginedUsers = Load();
+                if (logginedUsers.Count > 0)
+                {
+                    MainMenuZaolis mnz = new MainMenuZaolis(logginedUsers, client);
+                    mnz.Show();
+                    this.Close();
+                }
+            }
             registerModel = new RegisterViewModel(client);
             SignUP.DataContext = registerModel;
             pgLoading = loginProgressBar;
@@ -43,6 +60,25 @@ namespace ZaolisUI
             this.DragMove();
         }
 
+        public static ObservableCollection<UserDTO> Load()
+        {
+            using (FileStream fs = new FileStream(remembered_path, FileMode.OpenOrCreate))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                var temp = (ObservableCollection<UserDTO>)formatter.Deserialize(fs);
+                return temp;
+            }
+        }
+
+        public static void Save(ObservableCollection<UserDTO> collection)
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            using (FileStream fs = new FileStream(remembered_path, FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, collection);
+            }
+        }
+
         private void TOSignUp_Click(object sender, RoutedEventArgs e)
         {
             LOGIN.Visibility = Visibility.Hidden;
@@ -52,7 +88,7 @@ namespace ZaolisUI
         private void TOLogin_Click(object sender, RoutedEventArgs e)
         {
             LOGIN.Visibility = Visibility.Visible;
-            SignUP.Visibility = Visibility.Hidden;
+            SignUP.Visibility = Visibility.Hidden;  
             ForgetPasswordGrid.Visibility = Visibility.Hidden;
         }
 
@@ -70,7 +106,14 @@ namespace ZaolisUI
                     client.Connect(login, password); //isActive change
                     Application.Current.Dispatcher.Invoke(() =>
                     {
-                        MainMenuZaolis mnz = new MainMenuZaolis(client.GetUserByLogin(login),client);
+                        UserDTO user = new UserDTO();
+                        user = client.GetUserByLogin(logTxtBox_login.Text);
+                        logginedUsers.Add(user);
+                        if (rememberMe.IsChecked == true)
+                        {
+                            Save(logginedUsers);
+                        }
+                        MainMenuZaolis mnz = new MainMenuZaolis(logginedUsers, client);
                         mnz.Show();
                         this.Close();
                     });
@@ -211,5 +254,10 @@ namespace ZaolisUI
 
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            this.Visibility = Visibility.Hidden;
+        }
     }
 }
