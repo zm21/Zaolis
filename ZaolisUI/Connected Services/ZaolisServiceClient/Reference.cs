@@ -122,6 +122,24 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/AddContact", ReplyAction="http://tempuri.org/IZaolisService/AddContactResponse")]
         System.Threading.Tasks.Task AddContactAsync(BLL.Models.UserDTO add_to, BLL.Models.UserDTO newContact);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUserByName", ReplyAction="http://tempuri.org/IZaolisService/GetUserByNameResponse")]
+        BLL.Models.UserDTO GetUserByName(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUserByName", ReplyAction="http://tempuri.org/IZaolisService/GetUserByNameResponse")]
+        System.Threading.Tasks.Task<BLL.Models.UserDTO> GetUserByNameAsync(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/EditUsersName", ReplyAction="http://tempuri.org/IZaolisService/EditUsersNameResponse")]
+        void EditUsersName(BLL.Models.UserDTO user, string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/EditUsersName", ReplyAction="http://tempuri.org/IZaolisService/EditUsersNameResponse")]
+        System.Threading.Tasks.Task EditUsersNameAsync(BLL.Models.UserDTO user, string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/EditUsersBio", ReplyAction="http://tempuri.org/IZaolisService/EditUsersBioResponse")]
+        void EditUsersBio(BLL.Models.UserDTO user, string bio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/EditUsersBio", ReplyAction="http://tempuri.org/IZaolisService/EditUsersBioResponse")]
+        System.Threading.Tasks.Task EditUsersBioAsync(BLL.Models.UserDTO user, string bio);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -301,6 +319,30 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         public System.Threading.Tasks.Task AddContactAsync(BLL.Models.UserDTO add_to, BLL.Models.UserDTO newContact) {
             return base.Channel.AddContactAsync(add_to, newContact);
+        }
+        
+        public BLL.Models.UserDTO GetUserByName(string name) {
+            return base.Channel.GetUserByName(name);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.UserDTO> GetUserByNameAsync(string name) {
+            return base.Channel.GetUserByNameAsync(name);
+        }
+        
+        public void EditUsersName(BLL.Models.UserDTO user, string name) {
+            base.Channel.EditUsersName(user, name);
+        }
+        
+        public System.Threading.Tasks.Task EditUsersNameAsync(BLL.Models.UserDTO user, string name) {
+            return base.Channel.EditUsersNameAsync(user, name);
+        }
+        
+        public void EditUsersBio(BLL.Models.UserDTO user, string bio) {
+            base.Channel.EditUsersBio(user, bio);
+        }
+        
+        public System.Threading.Tasks.Task EditUsersBioAsync(BLL.Models.UserDTO user, string bio) {
+            return base.Channel.EditUsersBioAsync(user, bio);
         }
     }
 }
