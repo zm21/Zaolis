@@ -113,5 +113,19 @@ namespace ZaolisService
         {
             bll.AddContact(add_to, newContact);
         }
+        public UserDTO GetUserByName(string name)
+        {
+            return bll.GetUserByName(name);
+        }
+
+        public void EditUsersName(UserDTO user, string name)
+        {
+            bll.EditUsersName(user, name);
+        }
+
+        public void EditUsersBio(UserDTO user, string bio)
+        {
+            bll.EditUsersBio(user, bio);
+        }
     }
 }

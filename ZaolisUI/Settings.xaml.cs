@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ZaolisUI.ZaolisServiceClient;
 
 namespace ZaolisUI
 {
@@ -21,10 +23,17 @@ namespace ZaolisUI
     public partial class Settings : UserControl, IChildWindow
     {
         Grid grid;
-        public Settings(Grid mainGrid)
+        ZaolisServiceClient.ZaolisServiceClient client;
+        UserDTO user;
+        MainMenuViewModel mainMenuViewModel;
+        public Settings(Grid mainGrid, ZaolisServiceClient.ZaolisServiceClient client, UserDTO user)
         {
             InitializeComponent();
+            this.client = client;
+            this.user = user;
             grid = mainGrid;
+            mainMenuViewModel = new MainMenuViewModel(user);
+            this.DataContext = mainMenuViewModel;
         }
 
         public event ClosingDelegate Closing;
@@ -43,6 +52,34 @@ namespace ZaolisUI
         private void buttonClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void NameTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    if (nameTextBox.Text != null)
+                    {
+                        client.EditUsersName(user, nameTextBox.Text);
+                    }
+                });
+            });
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    if (bioTextBox.Text != null)
+                    {
+                        client.EditUsersBio(user, bioTextBox.Text);
+                    }
+                });
+            });
         }
     }
 }

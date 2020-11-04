@@ -30,7 +30,7 @@
             <!--Bio-->
             <DockPanel Margin="10,20,0,10" DockPanel.Dock="Top">
                 <materialDesign:PackIcon Kind="User" ToolTip="Information" DockPanel.Dock="Left" Foreground="#FF03A9F4" Width="25" Height="25"/>
-                <TextBox HorizontalAlignment="Center" MinWidth="200" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Name" FontSize="18"></TextBox>
+                <TextBox x:Name="nameTextBox" HorizontalAlignment="Center" MinWidth="200" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Name" FontSize="18" LostFocus="NameTextBox_LostFocus" Text="{Binding CurrentUser.Name}"></TextBox>
             </DockPanel>
             <!--Username-->
             <DockPanel Margin="10,10,0,10" DockPanel.Dock="Top">
@@ -41,7 +41,7 @@
             <Border DockPanel.Dock="Top" Height="10" Margin="0,10" Background="#C8E4F8"></Border>
             <!--Bio-->
             <DockPanel Margin="10,5,0,5" DockPanel.Dock="Top">
-                <TextBox Margin="10,0" MaxLength="70" TextWrapping="Wrap" MaxWidth="293" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" MaxHeight="75" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Bio" FontSize="18"></TextBox>
+                <TextBox x:Name="bioTextBox" Margin="10,0" MaxLength="70" TextWrapping="Wrap" MaxWidth="293" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" MaxHeight="75" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Bio" FontSize="18" LostFocus="TextBox_LostFocus" Text="{Binding CurrentUser.Bio}"></TextBox>
                 <Label Margin="10,8,0,0" DockPanel.Dock="Top" FontSize="14">Any details such as age, occupation or city.</Label>
                 <Label Margin="10,0,0,0" DockPanel.Dock="Top" FontSize="14">Example: Test Automation Engineer, 19 y.o.</Label>
             </DockPanel>
