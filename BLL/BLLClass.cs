@@ -33,6 +33,10 @@ namespace BLL
         void AddMessage(MessageDTO newMessage);
         IEnumerable<UserDTO> GetContacts(UserDTO user);
         void AddContact(UserDTO add_to, UserDTO newContact);
+        UserDTO GetUserByName(string name);
+        void EditUsersName(UserDTO user, string name);
+        void EditUsersBio(UserDTO user, string bio);
+
 
     }
     public class BLLClass : IBLLClass
@@ -142,6 +146,24 @@ namespace BLL
                 unit.Save();
             }
         }
+        public void EditUsersName(UserDTO user, string name)
+        {
+            if (IsExistsUserByEmail(user.Email))
+            {
+                unit.UserRepository.GetById(user.Id).Name = name;
+                unit.Save();
+            }
+        }
+
+        public void EditUsersBio(UserDTO user, string bio)
+        {
+            if (IsExistsUserByEmail(user.Email))
+            {
+                unit.UserRepository.GetById(user.Id).Bio = bio;
+                unit.Save();
+            }
+        }
+
 
         public bool IsExistsUserByEmail(string email)
         {
@@ -157,6 +179,11 @@ namespace BLL
         public UserDTO GetUserByEmail(string email)
         {
             return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Email == email))?.FirstOrDefault());
+        }
+
+        public UserDTO GetUserByName(string name)
+        {
+            return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Name == name))?.FirstOrDefault());
         }
         public IEnumerable<UserDTO> GetContacts(UserDTO user)
         {

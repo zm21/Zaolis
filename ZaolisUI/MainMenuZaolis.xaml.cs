@@ -84,11 +84,18 @@ namespace ZaolisUI
             add.Owner = this;
             add.ShowDialog();
         }
-
+        //
         private void buttonSettings_Click(object sender, RoutedEventArgs e)
         {
-            Settings settings = new Settings(MainGrid);
-            MainGrid.Children.Add(settings);
+            Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() => 
+                {
+                    Settings settings = new Settings(MainGrid, client, loginnedUser);
+                    MainGrid.Children.Add(settings);
+                });
+            });
+           
         }
     }
     public class CallbackHandler : IZaolisServiceCallback
