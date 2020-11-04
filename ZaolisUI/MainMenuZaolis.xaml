@@ -168,7 +168,7 @@ Title="MainMenuZaolis" Height="600" Width="1040" WindowStyle="None" Closing="Win
                 </DockPanel>
                 <DockPanel LastChildFill="False" DockPanel.Dock="Top">
                     <Expander DockPanel.Dock="Top" Header="{Binding CurrentUser.Name}">
-                        <ListBox>
+                        <ListBox x:Name="logginedUsers" ItemsSource="{Binding users}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <DockPanel LastChildFill="False">
@@ -181,7 +181,7 @@ Title="MainMenuZaolis" Height="600" Width="1040" WindowStyle="None" Closing="Win
                                         <DockPanel DockPanel.Dock="Right">
                                         </DockPanel>
                                         <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-                                            <TextBlock DockPanel.Dock="Left" Margin="10,11,0,0"> <Run Text="Bohdan Islamov" FontSize="14" FontWeight="Bold"></Run></TextBlock>
+                                            <TextBlock DockPanel.Dock="Left" Margin="10,11,0,0"> <Run Text="{Binding Name}" FontSize="14" FontWeight="Bold"></Run></TextBlock>
                                             <materialDesign:PackIcon Visibility="Visible" Margin="10,0,0,0" DockPanel.Dock="Bottom" Foreground="#FF2196F3" Kind="CheckboxMarkedCircle" Background="{x:Null}" />
                                         </DockPanel>
                                     </DockPanel>
@@ -190,7 +190,7 @@ Title="MainMenuZaolis" Height="600" Width="1040" WindowStyle="None" Closing="Win
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </Expander>
-                    <Button Width="250" Height="50" Name="buttonAddAccount" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top">
+                    <Button Width="250" Height="50" Name="buttonAddAccount" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" Click="buttonAddAccount_Click">
                         <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <materialDesign:PackIcon Width="25" Height="25" Kind="AccountAdd" DockPanel.Dock="Left"></materialDesign:PackIcon>
                             <Label DockPanel.Dock="Top" Margin="35,0,0,0">Add Account</Label>
@@ -222,7 +222,7 @@ Title="MainMenuZaolis" Height="600" Width="1040" WindowStyle="None" Closing="Win
                             <Label DockPanel.Dock="Left" Margin="35,0,0,0">Night Mode</Label>
                         </DockPanel>
                     </Button>
-                    <Button Width="250" Height="50" Name="buttonLogout" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Bottom">
+                    <Button Width="250" Height="50" Name="buttonLogout" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Bottom" Click="buttonLogout_Click">
                         <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <materialDesign:PackIcon Width="25" Height="25" Kind="Logout" DockPanel.Dock="Left"></materialDesign:PackIcon>
                             <Label DockPanel.Dock="Top" Margin="35,0,0,0">Logout</Label>

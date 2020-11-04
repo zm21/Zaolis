@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace BLL.Models
 {
     [DataContract]
+    [Serializable]
     public partial class UserDTO
     {
         [DataMember]
