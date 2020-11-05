@@ -37,6 +37,7 @@ namespace ZaolisUI
         public SignInUpWindow()
         {
             InitializeComponent();
+            rememberMe.IsChecked = false;
             client = new ZaolisServiceClient.ZaolisServiceClient(new InstanceContext(handler));
             if(File.Exists(remembered_path))
             {
@@ -52,6 +53,15 @@ namespace ZaolisUI
             SignUP.DataContext = registerModel;
             pgLoading = loginProgressBar;
             buttonLogin.Content = "LOGIN";
+            Task.Run(() => { this.client.Request(); });
+        }
+
+        public SignInUpWindow(ObservableCollection<UserDTO> logginedUsers, ZaolisServiceClient.ZaolisServiceClient client)
+        {
+            InitializeComponent();
+            this.logginedUsers = logginedUsers;
+            this.client = client;
+            registerModel = new RegisterViewModel(client);
             Task.Run(() => { this.client.Request(); });
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
