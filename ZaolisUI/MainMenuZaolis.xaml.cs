@@ -100,8 +100,8 @@ namespace ZaolisUI
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    Settings settings = new Settings(MainGrid, client, loginnedUser);
-                    MainGrid.Children.Add(settings);
+                    Settings settings = new Settings(OverlayDockPanel, client, loginnedUser);
+                    OverlayDockPanel.Children.Add(settings);
                 });
             });
 

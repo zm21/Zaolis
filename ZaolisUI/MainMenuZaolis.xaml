@@ -52,6 +52,7 @@ Title="MainMenuZaolis" Height="600" Width="1040" WindowStyle="None" Closing="Win
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
+            
 
             <Grid x:Name="GridBackground" Background="#55313131" Opacity="0" Grid.RowSpan="2" Grid.ColumnSpan="4">
                 <Grid.RowDefinitions>
@@ -228,6 +229,8 @@ Title="MainMenuZaolis" Height="600" Width="1040" WindowStyle="None" Closing="Win
                         </DockPanel>
                     </Button>
                 </DockPanel>
+            </DockPanel>
+            <DockPanel  x:Name="OverlayDockPanel" Grid.RowSpan="4" Grid.ColumnSpan="4" >
             </DockPanel>
         </Grid>
     </Grid>

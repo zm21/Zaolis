@@ -20,9 +20,20 @@ namespace ZaolisUI
     /// </summary>
     public partial class GroupInfo : UserControl
     {
-        public GroupInfo()
+        Grid parent;
+        public GroupInfo(Grid parent)
         {
             InitializeComponent();
+            this.parent = parent;
+        }
+
+        private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Close();
+        }
+        public void Close()
+        {
+            parent.Children.Remove(this);
         }
     }
 }
