@@ -41,6 +41,7 @@
   <xs:complexType name="ChatDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="LastMessage" nillable="true" type="tns:MessageDTO" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ChatDTO" nillable="true" type="tns:ChatDTO" />

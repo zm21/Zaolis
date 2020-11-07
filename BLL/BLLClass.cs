@@ -39,6 +39,7 @@ namespace BLL
         void EditUsersBio(UserDTO user, string bio);
         ChatDTO GetChat(UserDTO user, UserDTO contact);
         IEnumerable<ChatDTO> GetUserChats(UserDTO user);
+        IEnumerable<UserDTO> GetUsersByChat(ChatDTO chat);
     }
     public class BLLClass : IBLLClass
     {
@@ -132,6 +133,11 @@ namespace BLL
         public UserDTO GetUserByLogin(string login)
         {
             return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Login == login))?.FirstOrDefault());
+        }
+
+        public IEnumerable<UserDTO> GetUsersByChat(ChatDTO chat)
+        {
+            return _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>((unit.ChatRepository.GetById(chat.Id).Users));
         }
         public UserDTO GetUserByLoginAndPassword(string login, string password)
         {

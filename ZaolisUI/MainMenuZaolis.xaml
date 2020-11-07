@@ -107,7 +107,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                                     </DockPanel>
                                     <DockPanel DockPanel.Dock="Top" LastChildFill="False">
                                         <TextBlock DockPanel.Dock="Top" Margin="10,5,0,0"> <Run Text="{Binding Name, Mode=OneWay}" FontSize="14" FontWeight="Bold"></Run></TextBlock>
-                                        <TextBlock Margin="10,0,0,0" DockPanel.Dock="Top"> <Run Text="Some message" FontSize="14" Foreground="#FF727272" ></Run>
+                                        <TextBlock Margin="10,0,0,0" DockPanel.Dock="Top"> <Run Text="{Binding LastMessage}" FontSize="14" Foreground="#FF727272" ></Run>
                                         </TextBlock>
                                     </DockPanel>
                                 </DockPanel>

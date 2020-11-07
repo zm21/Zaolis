@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -20,5 +21,7 @@ namespace BLL.Models
         public string MessageText { get; set; }
         [DataMember]
         public DateTime CreationTime { get; set; }
+
+
     }
 }

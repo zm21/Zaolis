@@ -12,5 +12,7 @@ namespace BLL.Models
     {
         [DataMember]
         public int Id { get; set; }
+        [DataMember]
+        public MessageDTO LastMessage { get; set; }
     }
 }

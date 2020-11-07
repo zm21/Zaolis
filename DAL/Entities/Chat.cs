@@ -14,6 +14,7 @@ namespace DAL.Entities
             this.Users = new HashSet<User>();
         }
         public int Id { get; set; }
+        public Message LastMessage { get; set; }
         public virtual ICollection<Message> Messages { get; set; }
         public virtual ICollection<User> Users { get; set; }
     }

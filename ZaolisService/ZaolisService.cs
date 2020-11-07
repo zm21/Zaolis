@@ -137,5 +137,10 @@ namespace ZaolisService
         {
             return bll.GetUserChats(user);
         }
+
+        public IEnumerable<UserDTO> GetUsersByChat(ChatDTO chat)
+        {
+            return bll.GetUsersByChat(chat);
+        }
     }
 }
