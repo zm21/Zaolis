@@ -177,7 +177,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                 <DockPanel LastChildFill="False" DockPanel.Dock="Top">
                     <Expander IsExpanded="True" DockPanel.Dock="Top" Header="{Binding CurrentUser.Name}">
                         <DockPanel LastChildFill="False">
-                        <ListBox x:Name="logginedUsers" ItemsSource="{Binding users}" SelectionChanged="logginedUsers_SelectionChanged">
+                        <ListBox DockPanel.Dock="Top" x:Name="logginedUsers" ItemsSource="{Binding users}" SelectionChanged="logginedUsers_SelectionChanged">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <DockPanel LastChildFill="False">
