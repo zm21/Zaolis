@@ -8,6 +8,7 @@ using EASendMail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -36,8 +37,8 @@ namespace BLL
         UserDTO GetUserByName(string name);
         void EditUsersName(UserDTO user, string name);
         void EditUsersBio(UserDTO user, string bio);
-
-
+        ChatDTO GetChat(UserDTO user, UserDTO contact);
+        IEnumerable<ChatDTO> GetUserChats(UserDTO user);
     }
     public class BLLClass : IBLLClass
     {
@@ -262,6 +263,30 @@ namespace BLL
             unit.AttachmentRepository.Create(_mapper.Map<DAL.Entities.Attachment>(newAttachment));
             unit.AttachmentRepository.Save();
         }
+
+        public ChatDTO GetChat(UserDTO user, UserDTO contact)
+        {
+            var res_user =  unit.UserRepository.GetById(user.Id);
+            var res_contact = unit.UserRepository.GetById(contact.Id);
+            var res_chat = res_user.Chats.FirstOrDefault(c => c.Users.Where(u => u.Id == res_user.Id || u.Id == contact.Id).Count() >= 2);
+            if(res_chat == null)
+            {
+                Chat chat = new Chat();
+                chat.Users.Add(res_user);
+                chat.Users.Add(res_contact);
+                unit.Save();
+                res_chat = res_user.Chats.FirstOrDefault(c => c.Users.Where(u => u.Id == res_user.Id || u.Id == contact.Id).Count() >= 2);
+                res_user.Chats.Add(res_chat);
+                res_contact.Chats.Add(res_chat);
+                unit.Save();
+            }
+            return _mapper.Map<ChatDTO>(res_chat);
+        }
+
+        public IEnumerable<ChatDTO> GetUserChats(UserDTO user)
+        {
+            var res_user = unit.UserRepository.Get(u => u.Id == user.Id, includeProperties: nameof(User.Chats))?.FirstOrDefault();
+            return _mapper.Map<IEnumerable<Chat>, IEnumerable<ChatDTO>>(res_user.Chats);
+        }
     }
 }
-//

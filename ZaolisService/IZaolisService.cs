@@ -53,6 +53,10 @@ namespace ZaolisService
         void EditUsersName(UserDTO user, string name);
         [OperationContract]
         void EditUsersBio(UserDTO user, string bio);
+        [OperationContract]
+        ChatDTO GetChat(UserDTO user, UserDTO contact);
+        [OperationContract]
+        IEnumerable<ChatDTO> GetUserChats(UserDTO user);
     }
 
     public interface IZaolisCallback
