@@ -20,8 +20,8 @@ namespace ZaolisUI
     /// </summary>
     public partial class UserInfo : UserControl, IChildWindow
     {
-        Grid parent;
-        public UserInfo(Grid parent)
+        DockPanel parent;
+        public UserInfo(DockPanel parent)
         {
             InitializeComponent();
             this.parent = parent;

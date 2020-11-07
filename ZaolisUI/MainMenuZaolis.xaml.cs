@@ -78,8 +78,8 @@ namespace ZaolisUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            UserInfo usInfo = new UserInfo(MainGrid); //test
-            MainGrid.Children.Add(usInfo);
+            UserInfo usInfo = new UserInfo(OverlayDockPanel); 
+            OverlayDockPanel.Children.Add(usInfo);
         }
 
         private void buttonNightMode_Click(object sender, RoutedEventArgs e)

@@ -22,7 +22,7 @@ namespace ZaolisUI
     /// </summary>
     public partial class Settings : UserControl, IChildWindow, IOverlayWindow
     {
-        DockPanel grid;
+        DockPanel parent;
         ZaolisServiceClient.ZaolisServiceClient client;
         UserDTO user;
         MainMenuViewModel mainMenuViewModel;
@@ -31,7 +31,7 @@ namespace ZaolisUI
             InitializeComponent();
             this.client = client;
             this.user = user;
-            grid = mainGrid;
+            parent = mainGrid;
             mainMenuViewModel = new MainMenuViewModel(user);
             this.DataContext = mainMenuViewModel;
         }
@@ -41,7 +41,7 @@ namespace ZaolisUI
 
         public void Close()
         {
-            grid.Children.Remove(this);
+            parent.Children.Remove(this);
         }
 
         public void ShowMsg(string title, string msg)

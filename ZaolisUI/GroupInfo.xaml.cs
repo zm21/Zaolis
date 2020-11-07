@@ -20,8 +20,9 @@ namespace ZaolisUI
     /// </summary>
     public partial class GroupInfo : UserControl
     {
-        Grid parent;
-        public GroupInfo(Grid parent)
+        
+        DockPanel parent;
+        public GroupInfo(DockPanel parent)
         {
             InitializeComponent();
             this.parent = parent;
