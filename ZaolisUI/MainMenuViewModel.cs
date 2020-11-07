@@ -1,6 +1,7 @@
 ﻿using BLL.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO.IsolatedStorage;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace ZaolisUI
         ZaolisServiceClient.ZaolisServiceClient client;
         public ICollection<UserDTO> AllUsers { get; set; }
         public IEnumerable<UserDTO> FriendUsers { get; set; }
+        public ObservableCollection<ChatDTO> Chats { get; set; }
         public UserDTO CurrentUser { get; set; }
 
         CallbackHandler handler = new CallbackHandler();
@@ -25,6 +27,7 @@ namespace ZaolisUI
             client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(handler));
             AllUsers = client.GetAllUsers();
             FriendUsers = client.GetContacts(CurrentUser);
+            Chats = new ObservableCollection<ChatDTO>(client.GetUserChats(CurrentUser));
         }
         public void SearchUser(string searchBy)
         {

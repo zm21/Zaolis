@@ -140,6 +140,18 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/EditUsersBio", ReplyAction="http://tempuri.org/IZaolisService/EditUsersBioResponse")]
         System.Threading.Tasks.Task EditUsersBioAsync(BLL.Models.UserDTO user, string bio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetChat", ReplyAction="http://tempuri.org/IZaolisService/GetChatResponse")]
+        BLL.Models.ChatDTO GetChat(BLL.Models.UserDTO user, BLL.Models.UserDTO contact);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetChat", ReplyAction="http://tempuri.org/IZaolisService/GetChatResponse")]
+        System.Threading.Tasks.Task<BLL.Models.ChatDTO> GetChatAsync(BLL.Models.UserDTO user, BLL.Models.UserDTO contact);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUserChats", ReplyAction="http://tempuri.org/IZaolisService/GetUserChatsResponse")]
+        BLL.Models.ChatDTO[] GetUserChats(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUserChats", ReplyAction="http://tempuri.org/IZaolisService/GetUserChatsResponse")]
+        System.Threading.Tasks.Task<BLL.Models.ChatDTO[]> GetUserChatsAsync(BLL.Models.UserDTO user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -343,6 +355,22 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         public System.Threading.Tasks.Task EditUsersBioAsync(BLL.Models.UserDTO user, string bio) {
             return base.Channel.EditUsersBioAsync(user, bio);
+        }
+        
+        public BLL.Models.ChatDTO GetChat(BLL.Models.UserDTO user, BLL.Models.UserDTO contact) {
+            return base.Channel.GetChat(user, contact);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.ChatDTO> GetChatAsync(BLL.Models.UserDTO user, BLL.Models.UserDTO contact) {
+            return base.Channel.GetChatAsync(user, contact);
+        }
+        
+        public BLL.Models.ChatDTO[] GetUserChats(BLL.Models.UserDTO user) {
+            return base.Channel.GetUserChats(user);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.ChatDTO[]> GetUserChatsAsync(BLL.Models.UserDTO user) {
+            return base.Channel.GetUserChatsAsync(user);
         }
     }
 }

@@ -85,6 +85,9 @@
     <Compile Include="Chat.xaml.cs">
       <DependentUpon>Chat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChatWindow.xaml.cs">
+      <DependentUpon>ChatWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\ZaolisServiceClient\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -115,6 +118,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Chat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChatWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,6 +200,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\BLL.Models.ChatDTO.datasource" />
     <None Include="Properties\DataSources\BLL.Models.UserContactDTO.datasource" />
     <None Include="Properties\DataSources\BLL.Models.UserDTO.datasource" />
     <None Include="Properties\Settings.settings">
