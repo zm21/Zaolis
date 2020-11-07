@@ -34,10 +34,13 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
-            <BeginStoryboard x:Name="CloseMenu_BeginStoryboard" Storyboard="{StaticResource CloseMenu}"/>
+            <BeginStoryboard x:Name="CloseMenu_BeginStoryboardGrid" Storyboard="{StaticResource CloseMenu}"/>
         </EventTrigger>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
             <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="MouseLeftButtonUp" SourceName="GridBackground">
+            <BeginStoryboard x:Name="CloseMenu_BeginStoryboard" Storyboard="{StaticResource CloseMenu}"/>
         </EventTrigger>
     </Window.Triggers>
     <Grid x:Name="MainGrid">
@@ -52,9 +55,9 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            
 
-            <Grid x:Name="GridBackground" Background="#55313131" Opacity="0" Grid.RowSpan="2" Grid.ColumnSpan="4">
+
+            <Grid x:Name="GridBackground" IsEnabled="False" Background="#55313131" Opacity="0" Grid.RowSpan="2" Grid.ColumnSpan="4" MouseLeftButtonUp="GridBackground_MouseLeftButtonUp">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="47*"/>
                     <RowDefinition Height="545*"/>
@@ -77,38 +80,41 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
 
             <!--Friends-->
             <DockPanel Grid.Row="0" LastChildFill="False">
-                <Button x:Name="ButtonOpenMenu" DockPanel.Dock="Left" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="35" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Content="{materialDesign:PackIcon Kind=Menu}" ></Button>
+                <Button x:Name="ButtonOpenMenu" DockPanel.Dock="Left" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Content="{materialDesign:PackIcon Kind=Menu}" Click="ButtonOpenMenu_Click" ></Button>
             </DockPanel>
             <DockPanel Grid.Row="1" Grid.Column="0" MinWidth="150" >
-                <TextBox Name="textBoxSearch" Background="#C8E4F8" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="10,5" Height="30" VerticalContentAlignment="Center" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Search" BorderBrush="#FF03A9F4" TextChanged="textBoxSearch_TextChanged"/>
-                <ListBox Name="lbox_chats" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Chats}" SelectionChanged="lbox_chats_SelectionChanged">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <DockPanel LastChildFill="False">
-                                <!--Photo-->
-                                <Ellipse Height="45" Width="45" Stroke="#FF013355" StrokeThickness="1">
-                                    <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
-                                    </Ellipse.Fill>
-                                </Ellipse>
-                                <DockPanel DockPanel.Dock="Right">
-                                    <TextBlock Margin="0,5,0,0" DockPanel.Dock="Top">
+                <TextBox Name="textBoxSearch" Background="#C8E4F8" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="10,5" Height="40" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Search" BorderBrush="#FF03A9F4" TextChanged="textBoxSearch_TextChanged"/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                    <ListBox Name="lbox_chats" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Chats}" SelectionChanged="lbox_chats_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <DockPanel LastChildFill="False">
+                                    <!--Photo-->
+                                    <Ellipse Height="45" Width="45" Stroke="#FF013355" StrokeThickness="1">
+                                        <Ellipse.Fill>
+                                            <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <DockPanel DockPanel.Dock="Right">
+                                        <TextBlock Margin="0,5,0,0" DockPanel.Dock="Top">
 <Run Text="14:23" FontSize="14"></Run></TextBlock>
-                                    <Border Visibility="Hidden" DockPanel.Dock="Right" Background="#FF2196F3" CornerRadius="10" Width="25" Height="22">
-                                        <Label Foreground="White" HorizontalAlignment="Center" FontSize="12" VerticalAlignment="Center">1</Label>
-                                    </Border>
-                                    <!--<TextBlock Margin="0,0" DockPanel.Dock="Right"> <Run Text="1" FontSize="12" Foreground="#FF727272" ></Run>
+                                        <Border Visibility="Hidden" DockPanel.Dock="Right" Background="#FF2196F3" CornerRadius="10" Width="25" Height="22">
+                                            <Label Foreground="White" HorizontalAlignment="Center" FontSize="12" VerticalAlignment="Center">1</Label>
+                                        </Border>
+                                        <!--<TextBlock Margin="0,0" DockPanel.Dock="Right"> <Run Text="1" FontSize="12" Foreground="#FF727272" ></Run>
 </TextBlock>-->
+                                    </DockPanel>
+                                    <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+                                        <TextBlock DockPanel.Dock="Top" Margin="10,5,0,0"> <Run Text="{Binding Name, Mode=OneWay}" FontSize="14" FontWeight="Bold"></Run></TextBlock>
+                                        <TextBlock Margin="10,0,0,0" DockPanel.Dock="Top"> <Run Text="Some message" FontSize="14" Foreground="#FF727272" ></Run>
+                                        </TextBlock>
+                                    </DockPanel>
                                 </DockPanel>
-                                <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-                                    <TextBlock DockPanel.Dock="Top" Margin="10,5,0,0"> <Run Text="{Binding Name, Mode=OneWay}" FontSize="14" FontWeight="Bold"></Run></TextBlock>
-                                    <TextBlock Margin="10,0,0,0" DockPanel.Dock="Top"> <Run Text="Some message" FontSize="14" Foreground="#FF727272" ></Run>
-                                    </TextBlock>
-                                </DockPanel>
-                            </DockPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </ScrollViewer>
             </DockPanel>
 
             <GridSplitter HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.Column="1" Width="2" Background="LightGray" Grid.Row="1"></GridSplitter>
@@ -150,7 +156,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
 
             <!--Left Menu Animated-->
 
-                
+
             <DockPanel x:Name="GridMenu" Width="250" HorizontalAlignment="Left" Margin="-250 0 0 0" Background="White" RenderTransformOrigin="0.5,0.5" Grid.Row="1">
                 <DockPanel.RenderTransform>
                     <TransformGroup>
@@ -161,16 +167,17 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                     </TransformGroup>
                 </DockPanel.RenderTransform>
                 <DockPanel DockPanel.Dock="Top" Margin="20,20,5,10">
-                    <Button x:Name="ButtonCloseMenu" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=Close}" ></Button>
+                    <Button x:Name="ButtonCloseMenu" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="25" Margin="0,0,10,0" Background="{x:Null}" BorderBrush="{x:Null}" Content="{materialDesign:PackIcon Kind=Close, Size=25}" Click="ButtonCloseMenu_Click" Foreground="#FF2196F3" MouseEnter="ButtonCloseMenu_MouseEnter" MouseLeave="ButtonCloseMenu_MouseLeave" ></Button>
                     <Ellipse DockPanel.Dock="Top" HorizontalAlignment="Left" Height="45" Width="45" Stroke="#FF013355" StrokeThickness="1">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
                         </Ellipse.Fill>
                     </Ellipse>
                 </DockPanel>
-                    <DockPanel LastChildFill="False" DockPanel.Dock="Top">
-                    <Expander DockPanel.Dock="Top" Header="{Binding CurrentUser.Name}">
-                        <ListBox x:Name="logginedUsers" ItemsSource="{Binding users}" SelectionChanged="logginedUsers_SelectionChanged">
+                <DockPanel LastChildFill="False" DockPanel.Dock="Top">
+                    <Expander IsExpanded="True" DockPanel.Dock="Top" Header="{Binding CurrentUser.Name}">
+                        <DockPanel LastChildFill="False">
+                        <ListBox DockPanel.Dock="Top" x:Name="logginedUsers" ItemsSource="{Binding users}" SelectionChanged="logginedUsers_SelectionChanged">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <DockPanel LastChildFill="False">
@@ -189,52 +196,53 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
+                        <Button Width="250" Height="50" Name="buttonAddAccount" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" Click="buttonAddAccount_Click">
+                                <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <materialDesign:PackIcon Width="25" Height="25" Kind="AccountAdd" DockPanel.Dock="Left"></materialDesign:PackIcon>
+                                    <Label DockPanel.Dock="Top" Margin="35,0,0,0">Add Account</Label>
+                                </DockPanel>
+                            </Button>
+                        </DockPanel>
                     </Expander>
                     <ScrollViewer >
                         <DockPanel LastChildFill="False">
-                        <Button Width="250" Height="50" Name="buttonAddAccount" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" Click="buttonAddAccount_Click">
-                            <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <materialDesign:PackIcon Width="25" Height="25" Kind="AccountAdd" DockPanel.Dock="Left"></materialDesign:PackIcon>
-                                <Label DockPanel.Dock="Top" Margin="35,0,0,0">Add Account</Label>
-                            </DockPanel>
-                        </Button>
-                        <Separator Margin="0,10" DockPanel.Dock="Top"></Separator>
-                        <Button Width="250" Height="50" Name="buttonFindFriend" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" Click="buttonFindFriend_Click">
-                            <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <materialDesign:PackIcon Width="25" Height="25" Kind="AccountSearch" DockPanel.Dock="Left"></materialDesign:PackIcon>
-                                <Label DockPanel.Dock="Top" Margin="35,0,0,0">Find Friends</Label>
-                            </DockPanel>
-                        </Button>
-                        <Button Width="250" Height="50" Name="buttonCreateNewChat" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top">
-                            <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <materialDesign:PackIcon Width="25" Height="25" Kind="AccountMultiple" DockPanel.Dock="Left"></materialDesign:PackIcon>
-                                <Label DockPanel.Dock="Top" Margin="35,0,0,0">New Group</Label>
-                            </DockPanel>
-                        </Button>
-                        <Button Width="250" Height="50" Name="buttonSettings" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" Click="buttonSettings_Click">
-                            <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <materialDesign:PackIcon Width="25" Height="25" Kind="Settings" DockPanel.Dock="Left"></materialDesign:PackIcon>
-                                <Label DockPanel.Dock="Top" Margin="35,0,0,0">Settings</Label>
-                            </DockPanel>
-                        </Button>
-                        <Button Width="250" Height="50" Name="buttonNightMode" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" Click="buttonNightMode_Click">
-                            <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <materialDesign:PackIcon Width="25" Height="25" Kind="WeatherNight" DockPanel.Dock="Left"></materialDesign:PackIcon>
-                                <ToggleButton Name="toggleButtonNightMode" DockPanel.Dock="Right"></ToggleButton>
-                                <Label DockPanel.Dock="Left" Margin="35,0,0,0">Night Mode</Label>
-                            </DockPanel>
-                        </Button>
-                        <Button Width="250" Height="50" Name="buttonLogout" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Bottom" Click="buttonLogout_Click">
-                            <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                <materialDesign:PackIcon Width="25" Height="25" Kind="Logout" DockPanel.Dock="Left"></materialDesign:PackIcon>
-                                <Label DockPanel.Dock="Top" Margin="35,0,0,0">Logout</Label>
-                            </DockPanel>
-                        </Button>
+                            <Separator Margin="0,10" DockPanel.Dock="Top"></Separator>
+                            <Button Width="250" Height="50" Name="buttonFindFriend" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" Click="buttonFindFriend_Click">
+                                <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <materialDesign:PackIcon Width="25" Height="25" Kind="AccountSearch" DockPanel.Dock="Left"></materialDesign:PackIcon>
+                                    <Label DockPanel.Dock="Top" Margin="35,0,0,0">Find Friends</Label>
+                                </DockPanel>
+                            </Button>
+                            <Button Width="250" Height="50" Name="buttonCreateNewChat" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top">
+                                <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <materialDesign:PackIcon Width="25" Height="25" Kind="AccountMultiple" DockPanel.Dock="Left"></materialDesign:PackIcon>
+                                    <Label DockPanel.Dock="Top" Margin="35,0,0,0">New Group</Label>
+                                </DockPanel>
+                            </Button>
+                            <Button Width="250" Height="50" Name="buttonSettings" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" Click="buttonSettings_Click">
+                                <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <materialDesign:PackIcon Width="25" Height="25" Kind="Settings" DockPanel.Dock="Left"></materialDesign:PackIcon>
+                                    <Label DockPanel.Dock="Top" Margin="35,0,0,0">Settings</Label>
+                                </DockPanel>
+                            </Button>
+                            <Button Width="250" Height="50" Name="buttonNightMode" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" Click="buttonNightMode_Click">
+                                <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <materialDesign:PackIcon Width="25" Height="25" Kind="WeatherNight" DockPanel.Dock="Left"></materialDesign:PackIcon>
+                                    <ToggleButton Name="toggleButtonNightMode" DockPanel.Dock="Right"></ToggleButton>
+                                    <Label DockPanel.Dock="Left" Margin="35,0,0,0">Night Mode</Label>
+                                </DockPanel>
+                            </Button>
+                            <Button Width="250" Height="50" Name="buttonLogout" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Bottom" Click="buttonLogout_Click">
+                                <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <materialDesign:PackIcon Width="25" Height="25" Kind="Logout" DockPanel.Dock="Left"></materialDesign:PackIcon>
+                                    <Label DockPanel.Dock="Top" Margin="35,0,0,0">Logout</Label>
+                                </DockPanel>
+                            </Button>
                         </DockPanel>
                     </ScrollViewer>
                 </DockPanel>
             </DockPanel>
-                
+
             <DockPanel  x:Name="OverlayDockPanel" Grid.RowSpan="4" Grid.ColumnSpan="4" >
             </DockPanel>
         </Grid>

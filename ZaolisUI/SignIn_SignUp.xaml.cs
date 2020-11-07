@@ -62,6 +62,8 @@ namespace ZaolisUI
             this.logginedUsers = logginedUsers;
             this.client = client;
             registerModel = new RegisterViewModel(client);
+            pgLoading = loginProgressBar;
+            buttonLogin.Content = "LOGIN";
             Task.Run(() => { this.client.Request(); });
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
