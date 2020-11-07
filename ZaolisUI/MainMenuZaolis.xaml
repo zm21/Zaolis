@@ -80,16 +80,13 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
 
             <!--Friends-->
             <DockPanel Grid.Row="0" LastChildFill="False">
-                <Button x:Name="ButtonOpenMenu" DockPanel.Dock="Left" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="35" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Content="{materialDesign:PackIcon Kind=Menu}" ></Button>
                 <Button x:Name="ButtonOpenMenu" DockPanel.Dock="Left" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Content="{materialDesign:PackIcon Kind=Menu}" Click="ButtonOpenMenu_Click" ></Button>
             </DockPanel>
             <DockPanel Grid.Row="1" Grid.Column="0" MinWidth="150" >
-                <TextBox Name="textBoxSearch" Background="#C8E4F8" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="10,5" Height="30" VerticalContentAlignment="Center" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Search" BorderBrush="#FF03A9F4" TextChanged="textBoxSearch_TextChanged"/>
-                <ListBox Name="lbox_chats" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Chats}" SelectionChanged="lbox_chats_SelectionChanged">
                 <TextBox Name="textBoxSearch" Background="#C8E4F8" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="10,5" Height="40" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Search" BorderBrush="#FF03A9F4" TextChanged="textBoxSearch_TextChanged"/>
                 <ScrollViewer>
-                    
-                <ListBox HorizontalContentAlignment="Stretch" ItemsSource="{Binding FriendUsers}">
+
+                        <ListBox Name="lbox_chats" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Chats}" SelectionChanged="lbox_chats_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <DockPanel LastChildFill="False">

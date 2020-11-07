@@ -159,6 +159,37 @@ namespace ZaolisUI
                 //chatManager.LoadChat(mainMenuViewModel.CurrentUser, lbox_chats.SelectedItem);
             }
         }
+
+        private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
+        {
+            textBoxSearch.IsEnabled = false;
+            ButtonOpenMenu.IsEnabled = false;
+            GridBackground.IsEnabled = true;
+        }
+
+        private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
+        {
+            GridBackground.IsEnabled = false;
+            textBoxSearch.IsEnabled = true;
+            ButtonOpenMenu.IsEnabled = true;
+        }
+
+        private void ButtonCloseMenu_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ButtonCloseMenu.Foreground = new SolidColorBrush(Colors.Black);
+        }
+
+        private void ButtonCloseMenu_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ButtonCloseMenu.Foreground = new SolidColorBrush(Color.FromArgb(255, 33, 150, 243));
+        }
+
+        private void GridBackground_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            GridBackground.IsEnabled = false;
+            textBoxSearch.IsEnabled = true;
+            ButtonOpenMenu.IsEnabled = true;
+        }
     }
     public interface IChatManager
     {
@@ -199,36 +230,7 @@ namespace ZaolisUI
             }
         }
 
-        private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
-        {
-            textBoxSearch.IsEnabled = false;
-            ButtonOpenMenu.IsEnabled = false;
-            GridBackground.IsEnabled = true;
-        }
-
-        private void ButtonCloseMenu_Click(object sender, RoutedEventArgs e)
-        {
-            GridBackground.IsEnabled = false;
-            textBoxSearch.IsEnabled = true;
-            ButtonOpenMenu.IsEnabled = true;
-        }
-
-        private void ButtonCloseMenu_MouseEnter(object sender, MouseEventArgs e)
-        {
-            ButtonCloseMenu.Foreground = new SolidColorBrush(Colors.Black);
-        }
-
-        private void ButtonCloseMenu_MouseLeave(object sender, MouseEventArgs e)
-        {
-            ButtonCloseMenu.Foreground = new SolidColorBrush(Color.FromArgb(255,33,150,243));
-        }
-
-        private void GridBackground_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            GridBackground.IsEnabled = false;
-            textBoxSearch.IsEnabled = true;
-            ButtonOpenMenu.IsEnabled = true;
-        }
+       
     }
     public class CallbackHandler : IZaolisServiceCallback
     {
