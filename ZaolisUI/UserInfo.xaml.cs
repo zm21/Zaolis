@@ -20,11 +20,11 @@ namespace ZaolisUI
     /// </summary>
     public partial class UserInfo : UserControl, IChildWindow
     {
-        Grid grid;
-        public UserInfo(Grid mainGrid)
+        DockPanel parent;
+        public UserInfo(DockPanel parent)
         {
             InitializeComponent();
-            grid = mainGrid;
+            this.parent = parent;
         }
 
         public event ClosingDelegate Closing;
@@ -32,7 +32,7 @@ namespace ZaolisUI
 
         public void Close()
         {
-            grid.Children.Remove(this);
+            parent.Children.Remove(this);
         }
 
         public void ShowMsg(string title, string msg)
@@ -42,7 +42,12 @@ namespace ZaolisUI
 
         private void buttonClose_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
+        }
+
+        private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Close();
         }
     }
 }

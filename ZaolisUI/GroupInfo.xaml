@@ -5,67 +5,81 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ZaolisUI" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="496" d:DesignWidth="325" MinWidth="250" Background="White">
+             d:DesignHeight="496" d:DesignWidth="325" MinWidth="250">
     <DockPanel>
-        <!--Button close-->
-        <DockPanel Margin="10,0,10,0" DockPanel.Dock="Top" LastChildFill="False">
-            <Label Margin="0,10,0,0" FontFamily="Segoe UI Symbol" FontSize="16" FontWeight="Bold">Group Info</Label>
-            <Button Name="buttonClose" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=Close}" ></Button>
+        <Grid Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.ColumnSpan="3" Grid.RowSpan="3" Background="Gray" Opacity="0.3" MouseLeftButtonUp="Border_MouseLeftButtonUp"></Border>
+            <DockPanel Grid.Column="1" Grid.Row="1" Background="White" >
+                <!--Button close-->
+                <DockPanel Margin="10,0,10,0" DockPanel.Dock="Top" LastChildFill="False">
+                    <Label Margin="0,10,0,0" FontFamily="Segoe UI Symbol" FontSize="16" FontWeight="Bold">Group Info</Label>
+                    <Button Name="buttonClose" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=Close}" ></Button>
 
-        </DockPanel>
-        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
-            <!--Photo&Name-->
-            <DockPanel Margin="10,0,10,0" LastChildFill="False" DockPanel.Dock="Top">
-                <!--Photo-->
-                <Ellipse Height="60" Width="60" Margin="1,5" Stroke="#FF03A9F4" StrokeThickness="1">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
-                    </Ellipse.Fill>
-                </Ellipse>
-                <!--Name-->
-                <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-                    <TextBlock Margin="10,10,0,0" DockPanel.Dock="Top">
-                        <Run Text="Group Name" FontSize="16"/></TextBlock>
-                    <TextBlock Margin="12,5,0,5" DockPanel.Dock="Top"> <Run Text="Last seen today at 13:03" FontSize="12" Foreground="#FF727272" ></Run>
-                    </TextBlock>
                 </DockPanel>
-            </DockPanel>
-            <!--Just a border-->
-            <Border DockPanel.Dock="Top" Height="10" Margin="0,10" Background="#C8E4F8"></Border>
+                <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+                    <!--Photo&Name-->
+                    <DockPanel Margin="10,0,10,0" LastChildFill="False" DockPanel.Dock="Top">
+                        <!--Photo-->
+                        <Ellipse Height="60" Width="60" Margin="1,5" Stroke="#FF03A9F4" StrokeThickness="1">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <!--Name-->
+                        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+                            <TextBlock Margin="10,10,0,0" DockPanel.Dock="Top">
+                        <Run Text="Group Name" FontSize="16"/></TextBlock>
+                            <TextBlock Margin="12,5,0,5" DockPanel.Dock="Top"> <Run Text="Last seen today at 13:03" FontSize="12" Foreground="#FF727272" ></Run>
+                            </TextBlock>
+                        </DockPanel>
+                    </DockPanel>
+                    <!--Just a border-->
+                    <Border DockPanel.Dock="Top" Height="10" Margin="0,10" Background="#C8E4F8"></Border>
 
-            <!--Notification-->
-            <DockPanel Margin="10,5" DockPanel.Dock="Top">
-                <materialDesign:PackIcon Kind="Notifications" ToolTip="Information" DockPanel.Dock="Left" Foreground="#FF03A9F4" Width="25" Height="25"/>
-                <ToggleButton DockPanel.Dock="Right" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="True" />
-                <TextBlock Margin="50,5,0,5" DockPanel.Dock="Right">
+                    <!--Notification-->
+                    <DockPanel Margin="10,5" DockPanel.Dock="Top">
+                        <materialDesign:PackIcon Kind="Notifications" ToolTip="Information" DockPanel.Dock="Left" Foreground="#FF03A9F4" Width="25" Height="25"/>
+                        <ToggleButton DockPanel.Dock="Right" Style="{StaticResource MaterialDesignSwitchToggleButton}" ToolTip="MaterialDesignSwitchToggleButton" IsChecked="True" />
+                        <TextBlock Margin="50,5,0,5" DockPanel.Dock="Right">
                         <Run Text="Notifications" FontSize="14"></Run></TextBlock>
-            </DockPanel>
-            <!--Just a border-->
-            <Border DockPanel.Dock="Top" Height="10" Margin="0,10" Background="#C8E4F8"></Border>
-            <!--Members-->
-            <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-                <materialDesign:PackIcon Kind="AccountMultiple" Width="25" Height="25" ToolTip="Information" DockPanel.Dock="Left" Foreground="#FF03A9F4"/>
-                <TextBlock Margin="50,5,0,5" DockPanel.Dock="Left">
+                    </DockPanel>
+                    <!--Just a border-->
+                    <Border DockPanel.Dock="Top" Height="10" Margin="0,10" Background="#C8E4F8"></Border>
+                    <!--Members-->
+                    <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+                        <materialDesign:PackIcon Kind="AccountMultiple" Width="25" Height="25" ToolTip="Information" DockPanel.Dock="Left" Foreground="#FF03A9F4"/>
+                        <TextBlock Margin="50,5,0,5" DockPanel.Dock="Left">
                         <Run Text="Members" FontSize="14"></Run></TextBlock>
-                <Button Name="buttonAddMember" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=AccountAdd}" Height="30" Width="30"></Button>
+                        <Button Name="buttonAddMember" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=AccountAdd}" Height="30" Width="30"></Button>
+                    </DockPanel>
+                    <ListBox DockPanel.Dock="Top">
+
+                    </ListBox>
+                    <Border DockPanel.Dock="Top" Height="10" Margin="0,10" Background="#C8E4F8"></Border>
+                    <!--Buttons-->
+                    <Button x:Name="buttonClearHistory" Margin="10,0" MinHeight="34" HorizontalContentAlignment="Left" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" FontWeight="Normal" Foreground="Black">
+                        <Label FontWeight="Normal" Margin="55,0,0,0" Foreground="Black">Clear history</Label>
+                    </Button>
+                    <Button Name="buttonDeleteUser" Margin="10,0" MinHeight="34" HorizontalContentAlignment="Left" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" FontWeight="Normal" Foreground="Black">
+                        <Label FontWeight="Normal" Margin="55,0,0,0" Foreground="Black">Delete user</Label>
+                    </Button>
+                    <Button Name="buttonBlockUser" Margin="10,0" MinHeight="34" HorizontalContentAlignment="Left" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" Foreground="Red" FontWeight="Normal">
+                        <Label FontWeight="Normal" Margin="55,0,0,0" Foreground="Red">Leave group</Label>
+                    </Button>
+                </DockPanel>
+
+
             </DockPanel>
-            <ListBox DockPanel.Dock="Top">
-                
-            </ListBox>
-            <Border DockPanel.Dock="Top" Height="10" Margin="0,10" Background="#C8E4F8"></Border>
-            <!--Buttons-->
-            <Button x:Name="buttonClearHistory" Margin="10,0" MinHeight="34" HorizontalContentAlignment="Left" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" FontWeight="Normal" Foreground="Black">
-                <Label FontWeight="Normal" Margin="55,0,0,0" Foreground="Black">Clear history</Label>
-            </Button>
-            <Button Name="buttonDeleteUser" Margin="10,0" MinHeight="34" HorizontalContentAlignment="Left" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" FontWeight="Normal" Foreground="Black">
-                <Label FontWeight="Normal" Margin="55,0,0,0" Foreground="Black">Delete user</Label>
-            </Button>
-            <Button Name="buttonBlockUser" Margin="10,0" MinHeight="34" HorizontalContentAlignment="Left" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" Foreground="Red" FontWeight="Normal">
-                <Label FontWeight="Normal" Margin="55,0,0,0" Foreground="Red">Leave group</Label>
-            </Button>
-        </DockPanel>
-
-
-
+        </Grid>
     </DockPanel>
 </UserControl>

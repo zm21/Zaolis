@@ -5,48 +5,63 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ZaolisUI" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-   d:DesignHeight="440" d:DesignWidth="325" BorderBrush="#FF03A9F4" BorderThickness="0" MinWidth="250" MaxWidth="325" Background="White">
-    <DockPanel>
-        <!--Button close-->
-        <DockPanel Margin="10,0,10,0" DockPanel.Dock="Top" LastChildFill="False">
-            <Label Margin="0,0,0,0" FontFamily="Segoe UI Symbol" FontSize="16" FontWeight="Bold">Settings</Label>
-            <Button Name="buttonClose" DockPanel.Dock="Right" Height="30" Width="30" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=Close}" Click="buttonClose_Click" ></Button>
+   d:DesignHeight="440" d:DesignWidth="325" BorderBrush="#FF03A9F4" BorderThickness="0" MinWidth="250" >
+    <DockPanel Background="Transparent">
+        <Grid Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.ColumnSpan="3" Grid.RowSpan="3" Background="Gray" Opacity="0.3" MouseLeftButtonUp="Border_MouseLeftButtonUp"></Border>
+            
+            <DockPanel Grid.Column="1" Grid.Row="1" Background="White" >
+                <!--Button close-->
+                <DockPanel Margin="10,0,10,0" DockPanel.Dock="Top" LastChildFill="False">
+                    <Label Margin="0,0,0,0" FontFamily="Segoe UI Symbol" FontSize="16" FontWeight="Bold">Settings</Label>
+                    <Button Name="buttonClose" DockPanel.Dock="Right" Height="30" Width="30" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=Close}" Click="buttonClose_Click" ></Button>
 
-        </DockPanel>
-        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
-            <!--Photo&Name-->
-            <DockPanel Background="#FFC8E4F8" LastChildFill="False" DockPanel.Dock="Top">
-                <!--Photo-->
-                <Ellipse Height="70" DockPanel.Dock="Top" Width="70" Margin="1,15,1,10" Stroke="#FF03A9F4" StrokeThickness="1">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
-                    </Ellipse.Fill>
-                </Ellipse>
-                <Button x:Name="buttonSetProfilePhoto" materialDesign:ButtonAssist.CornerRadius="15" Width="150" Margin="0,0,0,20" Foreground="White" DockPanel.Dock="Bottom">
-                    Set Profile Photo
-                </Button>
+                </DockPanel>
+                <DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
+                    <!--Photo&Name-->
+                    <DockPanel Background="#FFC8E4F8" LastChildFill="False" DockPanel.Dock="Top">
+                        <!--Photo-->
+                        <Ellipse Height="70" DockPanel.Dock="Top" Width="70" Margin="1,15,1,10" Stroke="#FF03A9F4" StrokeThickness="1">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Button x:Name="buttonSetProfilePhoto" materialDesign:ButtonAssist.CornerRadius="15" Width="150" Margin="0,0,0,20" Foreground="White" DockPanel.Dock="Bottom">
+                            Set Profile Photo
+                        </Button>
+                    </DockPanel>
+                    <!--Just a border-->
+                    <!--Bio-->
+                    <DockPanel Margin="10,20,10,10" DockPanel.Dock="Top">
+                        <materialDesign:PackIcon Kind="User" Margin="5" ToolTip="Information" DockPanel.Dock="Left" Foreground="#FF03A9F4" Width="25" Height="25"/>
+                        <TextBox x:Name="nameTextBox" HorizontalAlignment="Center" MinWidth="200" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Name" FontSize="18" LostFocus="NameTextBox_LostFocus" Text="{Binding CurrentUser.Name}"></TextBox>
+                    </DockPanel>
+                    <!--Username-->
+                    <DockPanel Margin="10" DockPanel.Dock="Top">
+                        <materialDesign:PackIcon Kind="At" ToolTip="Information" DockPanel.Dock="Left" Margin="5" Foreground="#FF03A9F4" Width="25" Height="25"/>
+                        <TextBox HorizontalAlignment="Center" MinWidth="200" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Username" FontSize="18"></TextBox>
+                    </DockPanel>
+                    <!--Just a border-->
+                    <Border DockPanel.Dock="Top" Height="10" Margin="0,10" Background="#C8E4F8"></Border>
+                    <!--Bio-->
+                    <DockPanel Margin="10,5,0,5" DockPanel.Dock="Top">
+                        <TextBox x:Name="bioTextBox" Margin="10,0" MaxLength="70" TextWrapping="Wrap" MaxWidth="293" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" MaxHeight="75" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Bio" FontSize="18" LostFocus="TextBox_LostFocus" Text="{Binding CurrentUser.Bio}"></TextBox>
+                        <Label Margin="10,0,0,0" DockPanel.Dock="Top" FontSize="10">Any details such as age, occupation or city.</Label>
+                        <Label Margin="10,0,0,0" DockPanel.Dock="Top" FontSize="10">Example: Test Automation Engineer, 19 y.o.</Label>
+                    </DockPanel>
+                </DockPanel>
             </DockPanel>
-            <!--Just a border-->
-            <!--Bio-->
-            <DockPanel Margin="10,20,0,10" DockPanel.Dock="Top">
-                <materialDesign:PackIcon Kind="User" ToolTip="Information" DockPanel.Dock="Left" Foreground="#FF03A9F4" Width="25" Height="25"/>
-                <TextBox x:Name="nameTextBox" HorizontalAlignment="Center" MinWidth="200" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Name" FontSize="18" LostFocus="NameTextBox_LostFocus" Text="{Binding CurrentUser.Name}"></TextBox>
-            </DockPanel>
-            <!--Username-->
-            <DockPanel Margin="10,10,0,10" DockPanel.Dock="Top">
-                <materialDesign:PackIcon Kind="At" ToolTip="Information" DockPanel.Dock="Left" Foreground="#FF03A9F4" Width="25" Height="25"/>
-                <TextBox HorizontalAlignment="Center" MinWidth="200" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Username" FontSize="18"></TextBox>
-            </DockPanel>
-            <!--Just a border-->
-            <Border DockPanel.Dock="Top" Height="10" Margin="0,10" Background="#C8E4F8"></Border>
-            <!--Bio-->
-            <DockPanel Margin="10,5,0,5" DockPanel.Dock="Top">
-                <TextBox x:Name="bioTextBox" Margin="10,0" MaxLength="70" TextWrapping="Wrap" MaxWidth="293" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" MaxHeight="75" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Bio" FontSize="18" LostFocus="TextBox_LostFocus" Text="{Binding CurrentUser.Bio}"></TextBox>
-                <Label Margin="10,8,0,0" DockPanel.Dock="Top" FontSize="14">Any details such as age, occupation or city.</Label>
-                <Label Margin="10,0,0,0" DockPanel.Dock="Top" FontSize="14">Example: Test Automation Engineer, 19 y.o.</Label>
-            </DockPanel>
-        </DockPanel>
-
+        </Grid>
 
 
     </DockPanel>

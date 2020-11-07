@@ -20,18 +20,18 @@ namespace ZaolisUI
     /// <summary>
     /// Interaction logic for Settings.xaml
     /// </summary>
-    public partial class Settings : UserControl, IChildWindow
+    public partial class Settings : UserControl, IChildWindow, IOverlayWindow
     {
-        Grid grid;
+        DockPanel parent;
         ZaolisServiceClient.ZaolisServiceClient client;
         UserDTO user;
         MainMenuViewModel mainMenuViewModel;
-        public Settings(Grid mainGrid, ZaolisServiceClient.ZaolisServiceClient client, UserDTO user)
+        public Settings(DockPanel mainGrid, ZaolisServiceClient.ZaolisServiceClient client, UserDTO user)
         {
             InitializeComponent();
             this.client = client;
             this.user = user;
-            grid = mainGrid;
+            parent = mainGrid;
             mainMenuViewModel = new MainMenuViewModel(user);
             this.DataContext = mainMenuViewModel;
         }
@@ -41,7 +41,7 @@ namespace ZaolisUI
 
         public void Close()
         {
-            grid.Children.Remove(this);
+            parent.Children.Remove(this);
         }
 
         public void ShowMsg(string title, string msg)
@@ -51,7 +51,7 @@ namespace ZaolisUI
 
         private void buttonClose_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void NameTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -80,6 +80,11 @@ namespace ZaolisUI
                     }
                 });
             });
+        }
+
+        private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Close();
         }
     }
 }
