@@ -40,6 +40,7 @@ namespace ZaolisUI
             foreach (var item in users)
             {
                 logginedUsers.Items.Add(item);
+                client.AddAvatar(new AvatarDTO() { Path = "default.png", UserId = item.Id });
             }
             logginedUsers.SelectedItem = loginnedUser;
         }

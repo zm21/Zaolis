@@ -158,6 +158,12 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUsersByChat", ReplyAction="http://tempuri.org/IZaolisService/GetUsersByChatResponse")]
         System.Threading.Tasks.Task<BLL.Models.UserDTO[]> GetUsersByChatAsync(BLL.Models.ChatDTO chat);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetAvatar", ReplyAction="http://tempuri.org/IZaolisService/GetAvatarResponse")]
+        BLL.Models.AvatarDTO GetAvatar(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetAvatar", ReplyAction="http://tempuri.org/IZaolisService/GetAvatarResponse")]
+        System.Threading.Tasks.Task<BLL.Models.AvatarDTO> GetAvatarAsync(BLL.Models.UserDTO user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -385,6 +391,14 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         public System.Threading.Tasks.Task<BLL.Models.UserDTO[]> GetUsersByChatAsync(BLL.Models.ChatDTO chat) {
             return base.Channel.GetUsersByChatAsync(chat);
+        }
+        
+        public BLL.Models.AvatarDTO GetAvatar(BLL.Models.UserDTO user) {
+            return base.Channel.GetAvatar(user);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.AvatarDTO> GetAvatarAsync(BLL.Models.UserDTO user) {
+            return base.Channel.GetAvatarAsync(user);
         }
     }
 }

@@ -320,10 +320,24 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetAvatar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q25:UserDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAvatarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetAvatarResult" nillable="true" type="q26:AvatarDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="RecieveMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="message" nillable="true" type="q25:MessageDTO" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="message" nillable="true" type="q27:MessageDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

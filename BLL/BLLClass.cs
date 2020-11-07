@@ -40,6 +40,7 @@ namespace BLL
         ChatDTO GetChat(UserDTO user, UserDTO contact);
         IEnumerable<ChatDTO> GetUserChats(UserDTO user);
         IEnumerable<UserDTO> GetUsersByChat(ChatDTO chat);
+        AvatarDTO GetAvatar(UserDTO user);
     }
     public class BLLClass : IBLLClass
     {
@@ -92,6 +93,10 @@ namespace BLL
         {
             unit.AvatarRepository.Create(_mapper.Map<Avatar>(newAvatar));
             unit.AvatarRepository.Save();
+        }
+        public AvatarDTO GetAvatar(UserDTO user)
+        {
+            return _mapper.Map<AvatarDTO>((unit.AvatarRepository.Get(u => u.IsActive&&u.UserId==user.Id))?.FirstOrDefault());
         }
         public void AddContact(UserDTO add_to,UserDTO newContact)
         {

@@ -142,5 +142,10 @@ namespace ZaolisService
         {
             return bll.GetUsersByChat(chat);
         }
+
+        public AvatarDTO GetAvatar(UserDTO user)
+        {
+            return bll.GetAvatar(user);
+        }
     }
 }

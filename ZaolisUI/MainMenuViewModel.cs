@@ -20,7 +20,7 @@ namespace ZaolisUI
         public IEnumerable<UserDTO> FriendUsers { get; set; }
         public ObservableCollection<ChatDTO> Chats { get; set; }
         public UserDTO CurrentUser { get; set; }
-
+        public AvatarDTO CurrentAvatar { get; set; }
         public ObservableCollection<ChatInfoModel> ChatInfos { get; set; }
 
         public CallbackHandler handler = new CallbackHandler();
@@ -32,6 +32,7 @@ namespace ZaolisUI
             FriendUsers = client.GetContacts(CurrentUser);
             Chats = new ObservableCollection<ChatDTO>(client.GetUserChats(CurrentUser));
             ChatInfos = new ObservableCollection<ChatInfoModel>();
+            CurrentAvatar = client.GetAvatar(CurrentUser);
             foreach (var chat in Chats)
             {
                 ChatInfos.Add(new ChatInfoModel(client, CurrentUser, chat));
