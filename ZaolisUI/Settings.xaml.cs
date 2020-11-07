@@ -86,5 +86,15 @@ namespace ZaolisUI
         {
             Close();
         }
+
+        private void buttonClose_MouseEnter(object sender, MouseEventArgs e)
+        {
+            buttonClose.Foreground = new SolidColorBrush(Colors.Black);
+        }
+
+        private void buttonClose_MouseLeave(object sender, MouseEventArgs e)
+        {
+            buttonClose.Foreground = new SolidColorBrush(Color.FromArgb(255, 33, 150, 243));
+        }
     }
 }

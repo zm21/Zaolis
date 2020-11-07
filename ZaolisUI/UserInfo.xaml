@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:ZaolisUI"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="496" d:DesignWidth="325" BorderBrush="#FF03A9F4" BorderThickness="1" MinWidth="250" MaxWidth="325" >
+             d:DesignHeight="496" d:DesignWidth="325" BorderBrush="#FF03A9F4" BorderThickness="0" MinWidth="250" MaxWidth="325" >
     <DockPanel Background="Transparent">
         <!--Button close-->
         <Grid Background="Transparent">

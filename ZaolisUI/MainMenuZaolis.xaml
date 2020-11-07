@@ -34,10 +34,13 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
     </Window.Resources>
     <Window.Triggers>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
-            <BeginStoryboard x:Name="CloseMenu_BeginStoryboard" Storyboard="{StaticResource CloseMenu}"/>
+            <BeginStoryboard x:Name="CloseMenu_BeginStoryboardGrid" Storyboard="{StaticResource CloseMenu}"/>
         </EventTrigger>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
             <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="MouseLeftButtonUp" SourceName="GridBackground">
+            <BeginStoryboard x:Name="CloseMenu_BeginStoryboard" Storyboard="{StaticResource CloseMenu}"/>
         </EventTrigger>
     </Window.Triggers>
     <Grid x:Name="MainGrid">
@@ -54,7 +57,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
 
             
 
-            <Grid x:Name="GridBackground" Background="#55313131" Opacity="0" Grid.RowSpan="2" Grid.ColumnSpan="4">
+            <Grid x:Name="GridBackground" IsEnabled="False" Background="#55313131" Opacity="0" Grid.RowSpan="2" Grid.ColumnSpan="4" MouseLeftButtonUp="GridBackground_MouseLeftButtonUp">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="47*"/>
                     <RowDefinition Height="545*"/>
@@ -77,10 +80,12 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
 
             <!--Friends-->
             <DockPanel Grid.Row="0" LastChildFill="False">
-                <Button x:Name="ButtonOpenMenu" DockPanel.Dock="Left" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Content="{materialDesign:PackIcon Kind=Menu}" ></Button>
+                <Button x:Name="ButtonOpenMenu" DockPanel.Dock="Left" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Content="{materialDesign:PackIcon Kind=Menu}" Click="ButtonOpenMenu_Click" ></Button>
             </DockPanel>
             <DockPanel Grid.Row="1" Grid.Column="0" MinWidth="150" >
                 <TextBox Name="textBoxSearch" Background="#C8E4F8" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="10,5" Height="40" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Search" BorderBrush="#FF03A9F4" TextChanged="textBoxSearch_TextChanged"/>
+                <ScrollViewer>
+                    
                 <ListBox HorizontalContentAlignment="Stretch" ItemsSource="{Binding FriendUsers}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -109,6 +114,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+                </ScrollViewer>
             </DockPanel>
 
             <GridSplitter HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.Column="1" Width="2" Background="LightGray" Grid.Row="1"></GridSplitter>
@@ -162,7 +168,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                     </TransformGroup>
                 </DockPanel.RenderTransform>
                 <DockPanel DockPanel.Dock="Top" Margin="20,20,5,10">
-                    <Button x:Name="ButtonCloseMenu" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignIconButton}" Content="{materialDesign:PackIcon Kind=Close}" ></Button>
+                    <Button x:Name="ButtonCloseMenu" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="25" Margin="0,0,10,0" Background="{x:Null}" BorderBrush="{x:Null}" Content="{materialDesign:PackIcon Kind=Close, Size=25}" Click="ButtonCloseMenu_Click" Foreground="#FF2196F3" MouseEnter="ButtonCloseMenu_MouseEnter" MouseLeave="ButtonCloseMenu_MouseLeave" ></Button>
                     <Ellipse DockPanel.Dock="Top" HorizontalAlignment="Left" Height="45" Width="45" Stroke="#FF013355" StrokeThickness="1">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
