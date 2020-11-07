@@ -77,11 +77,11 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
 
             <!--Friends-->
             <DockPanel Grid.Row="0" LastChildFill="False">
-                <Button x:Name="ButtonOpenMenu" DockPanel.Dock="Left" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Content="{materialDesign:PackIcon Kind=Menu}" ></Button>
+                <Button x:Name="ButtonOpenMenu" DockPanel.Dock="Left" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="35" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Content="{materialDesign:PackIcon Kind=Menu}" ></Button>
             </DockPanel>
             <DockPanel Grid.Row="1" Grid.Column="0" MinWidth="150" >
-                <TextBox Name="textBoxSearch" Background="#C8E4F8" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="10,5" Height="40" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Search" BorderBrush="#FF03A9F4" TextChanged="textBoxSearch_TextChanged"/>
-                <ListBox HorizontalContentAlignment="Stretch" ItemsSource="{Binding FriendUsers}">
+                <TextBox Name="textBoxSearch" Background="#C8E4F8" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="10,5" Height="30" VerticalContentAlignment="Center" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Search" BorderBrush="#FF03A9F4" TextChanged="textBoxSearch_TextChanged"/>
+                <ListBox Name="lbox_chats" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Chats}" SelectionChanged="lbox_chats_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <DockPanel LastChildFill="False">
@@ -113,7 +113,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
 
             <GridSplitter HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.Column="1" Width="2" Background="LightGray" Grid.Row="1"></GridSplitter>
             <!--Chat-->
-            <DockPanel Grid.Row="1" LastChildFill="False" Grid.Column="2">
+            <DockPanel x:Name="Desktop" Grid.Row="1" LastChildFill="False" Grid.Column="2">
                 <!--<DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
 <Button FontSize="40" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="#FF03A9F4" Width="25" Height="25" DockPanel.Dock="Left" Background="{x:Null}" BorderBrush="{x:Null}">
 <materialDesign:PackIcon Kind="Attachment" />
@@ -134,7 +134,6 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
 </Grid.ColumnDefinitions>
 -->
                 <!--<Button Style="{StaticResource MaterialDesignIconButton}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=Attachment}"></Button>-->
-
                 <!--<TextBox FontSize="14" materialDesign:HintAssist.Hint="Write message" Grid.Column="1"></TextBox>
 <Grid Grid.Column="2">
 <Grid.ColumnDefinitions>

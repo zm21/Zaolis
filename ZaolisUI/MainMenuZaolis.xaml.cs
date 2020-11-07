@@ -22,10 +22,11 @@ namespace ZaolisUI
     /// </summary>
     public partial class MainMenuZaolis : Window
     {
-        ZaolisServiceClient.ZaolisServiceClient client;
-        UserDTO loginnedUser;
-        MainMenuViewModel mainMenuViewModel;
-        ObservableCollection<UserDTO> users;
+        private ZaolisServiceClient.ZaolisServiceClient client;
+        private UserDTO loginnedUser;
+        private MainMenuViewModel mainMenuViewModel;
+        private ObservableCollection<UserDTO> users;
+        private IChatManager chatManager;
         public MainMenuZaolis(ObservableCollection<UserDTO> users, ZaolisServiceClient.ZaolisServiceClient client)
         {
             InitializeComponent();
@@ -34,6 +35,7 @@ namespace ZaolisUI
             this.client = client;
             loginnedUser = this.users.First();
             mainMenuViewModel = new MainMenuViewModel(loginnedUser);
+            chatManager = new ChatManager(10);
             this.DataContext = mainMenuViewModel;
             foreach (var item in users)
             {
@@ -93,7 +95,7 @@ namespace ZaolisUI
             add.Owner = this;
             add.ShowDialog();
         }
-        //
+        
         private void buttonSettings_Click(object sender, RoutedEventArgs e)
         {
             Task.Run(() =>
@@ -148,6 +150,53 @@ namespace ZaolisUI
                 });
             });
 
+        }
+
+        private void lbox_chats_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(lbox_chats.SelectedItem!=null)
+            {
+                //chatManager.LoadChat(mainMenuViewModel.CurrentUser, lbox_chats.SelectedItem);
+            }
+        }
+    }
+    public interface IChatManager
+    {
+        void LoadChat(ChatDTO chatDTO);
+        //remove all loaded chats
+        void Free();
+        bool IsLoadedChat(ChatDTO chatDTO);
+    }
+    public class ChatManager : IChatManager
+    {
+        private List<ChatWindow> chatWindows;
+        public int MaxCount { get; private set; }
+        public ChatManager(int MaxCount)
+        {
+            this.MaxCount = MaxCount;
+        }
+        public void Free()
+        {
+            chatWindows.Clear();
+        }
+        public bool IsLoadedChat(ChatDTO chatDTO)
+        {
+            return chatWindows.FirstOrDefault(c => c.Chat.Id == chatDTO.Id) != null;
+        }
+        public void LoadChat(ChatDTO chatDTO)
+        {
+            if(IsLoadedChat(chatDTO))
+            {
+                var chatwindow = chatWindows.FirstOrDefault(c => c.Chat.Id == chatDTO.Id);
+                chatWindows.Remove(chatwindow);
+                chatWindows.Insert(0, chatwindow);
+            }
+            else
+            {
+                if (chatWindows.Count == MaxCount)
+                    chatWindows.RemoveAt(MaxCount - 1);
+                chatWindows.Insert(0,new ChatWindow(chatDTO));
+            }
         }
     }
     public class CallbackHandler : IZaolisServiceCallback

@@ -127,5 +127,15 @@ namespace ZaolisService
         {
             bll.EditUsersBio(user, bio);
         }
+
+        public ChatDTO GetChat(UserDTO user, UserDTO contact)
+        {
+            return bll.GetChat(user, contact);
+        }
+
+        public IEnumerable<ChatDTO> GetUserChats(UserDTO user)
+        {
+            return bll.GetUserChats(user);
+        }
     }
 }
