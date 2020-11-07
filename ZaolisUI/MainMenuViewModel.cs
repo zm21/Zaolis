@@ -21,7 +21,7 @@ namespace ZaolisUI
         public ObservableCollection<ChatDTO> Chats { get; set; }
         public UserDTO CurrentUser { get; set; }
 
-        public ObservableCollection<ChatInfoModel> ChatInfos;
+        public ObservableCollection<ChatInfoModel> ChatInfos { get; set; }
 
         public CallbackHandler handler = new CallbackHandler();
         public MainMenuViewModel(UserDTO current)

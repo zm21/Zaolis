@@ -86,7 +86,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                 <TextBox Name="textBoxSearch" Background="#C8E4F8" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="10,5" Height="40" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Search" BorderBrush="#FF03A9F4" TextChanged="textBoxSearch_TextChanged"/>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-                    <ListBox Name="lbox_chats" HorizontalContentAlignment="Stretch" ItemsSource="{Binding ChatInfos}" SelectionChanged="lbox_chats_SelectionChanged">
+                    <ListBox Name="lbox_chats" HorizontalContentAlignment="Stretch" ItemsSource="{Binding ChatInfos, Mode=OneWay}" SelectionChanged="lbox_chats_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <DockPanel LastChildFill="False">
@@ -98,7 +98,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                                     </Ellipse>
                                     <DockPanel DockPanel.Dock="Right">
                                         <TextBlock Margin="0,5,0,0" DockPanel.Dock="Top">
-<Run Text="14:23" FontSize="14"></Run></TextBlock>
+<Run Text="{Binding SendTime, Mode=OneWay}" FontSize="14"></Run></TextBlock>
                                         <Border Visibility="Hidden" DockPanel.Dock="Right" Background="#FF2196F3" CornerRadius="10" Width="25" Height="22">
                                             <Label Foreground="White" HorizontalAlignment="Center" FontSize="12" VerticalAlignment="Center">1</Label>
                                         </Border>
@@ -107,7 +107,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                                     </DockPanel>
                                     <DockPanel DockPanel.Dock="Top" LastChildFill="False">
                                         <TextBlock DockPanel.Dock="Top" Margin="10,5,0,0"> <Run Text="{Binding ContactMsgGetter.Name, Mode=OneWay}" FontSize="14" FontWeight="Bold"></Run></TextBlock>
-                                        <TextBlock Margin="10,0,0,0" DockPanel.Dock="Top"> <Run Text="{Binding LastMessage}" FontSize="14" Foreground="#FF727272" ></Run>
+                                        <TextBlock Margin="10,0,0,0" DockPanel.Dock="Top"> <Run Text="{Binding LastMessage, Mode=OneWay}" FontSize="14" Foreground="#FF727272" ></Run>
                                         </TextBlock>
                                     </DockPanel>
                                 </DockPanel>
