@@ -11,14 +11,16 @@ namespace ZaolisUI
     public class ChatInfoModel
     {
         private ZaolisServiceClient.ZaolisServiceClient client;
-        private ChatDTO Chat { get; set; }
-        private UserDTO MessageGetter { get; set; }
-        private UserDTO Current { get; set; }
-        public ChatInfoModel(ZaolisServiceClient.ZaolisServiceClient client,UserDTO current)
+        public ChatDTO Chat { get; set; }
+        public UserDTO ContactMsgGetter { get; set; }  //Chat companion
+        public UserDTO Current { get; set; }
+        public string LastMessage => Chat.LastMessage.MessageText.Substring(0, 10);
+        public ChatInfoModel(ZaolisServiceClient.ZaolisServiceClient client,UserDTO current,ChatDTO chat)
         {
             this.client = client;
+            Chat = chat;
             Current = current;
-            MessageGetter=client;
+            ContactMsgGetter = client.GetUsersByChat(Chat).Where(u=>u.Id!=current.Id).FirstOrDefault();
         }
     }
 }

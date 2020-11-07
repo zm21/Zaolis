@@ -21,7 +21,9 @@ namespace ZaolisUI
         public ObservableCollection<ChatDTO> Chats { get; set; }
         public UserDTO CurrentUser { get; set; }
 
-        CallbackHandler handler = new CallbackHandler();
+        public ObservableCollection<ChatInfoModel> ChatInfos;
+
+        public CallbackHandler handler = new CallbackHandler();
         public MainMenuViewModel(UserDTO current)
         {
             CurrentUser = current;
@@ -29,6 +31,11 @@ namespace ZaolisUI
             AllUsers = client.GetAllUsers();
             FriendUsers = client.GetContacts(CurrentUser);
             Chats = new ObservableCollection<ChatDTO>(client.GetUserChats(CurrentUser));
+            ChatInfos = new ObservableCollection<ChatInfoModel>();
+            foreach (var chat in Chats)
+            {
+                ChatInfos.Add(new ChatInfoModel(client, CurrentUser, chat));
+            }
         }
         public void SearchUser(string searchBy)
         {

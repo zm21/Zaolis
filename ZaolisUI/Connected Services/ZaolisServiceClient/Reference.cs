@@ -152,6 +152,12 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUserChats", ReplyAction="http://tempuri.org/IZaolisService/GetUserChatsResponse")]
         System.Threading.Tasks.Task<BLL.Models.ChatDTO[]> GetUserChatsAsync(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUsersByChat", ReplyAction="http://tempuri.org/IZaolisService/GetUsersByChatResponse")]
+        BLL.Models.UserDTO[] GetUsersByChat(BLL.Models.ChatDTO chat);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUsersByChat", ReplyAction="http://tempuri.org/IZaolisService/GetUsersByChatResponse")]
+        System.Threading.Tasks.Task<BLL.Models.UserDTO[]> GetUsersByChatAsync(BLL.Models.ChatDTO chat);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -371,6 +377,14 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         public System.Threading.Tasks.Task<BLL.Models.ChatDTO[]> GetUserChatsAsync(BLL.Models.UserDTO user) {
             return base.Channel.GetUserChatsAsync(user);
+        }
+        
+        public BLL.Models.UserDTO[] GetUsersByChat(BLL.Models.ChatDTO chat) {
+            return base.Channel.GetUsersByChat(chat);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.UserDTO[]> GetUsersByChatAsync(BLL.Models.ChatDTO chat) {
+            return base.Channel.GetUsersByChatAsync(chat);
         }
     }
 }

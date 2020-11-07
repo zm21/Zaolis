@@ -86,7 +86,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                 <TextBox Name="textBoxSearch" Background="#C8E4F8" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="10,5" Height="40" DockPanel.Dock="Top" materialDesign:HintAssist.Hint="Search" BorderBrush="#FF03A9F4" TextChanged="textBoxSearch_TextChanged"/>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-                    <ListBox Name="lbox_chats" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Chats}" SelectionChanged="lbox_chats_SelectionChanged">
+                    <ListBox Name="lbox_chats" HorizontalContentAlignment="Stretch" ItemsSource="{Binding ChatInfos}" SelectionChanged="lbox_chats_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <DockPanel LastChildFill="False">
@@ -106,7 +106,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
 </TextBlock>-->
                                     </DockPanel>
                                     <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-                                        <TextBlock DockPanel.Dock="Top" Margin="10,5,0,0"> <Run Text="{Binding Name, Mode=OneWay}" FontSize="14" FontWeight="Bold"></Run></TextBlock>
+                                        <TextBlock DockPanel.Dock="Top" Margin="10,5,0,0"> <Run Text="{Binding ContactMsgGetter.Name, Mode=OneWay}" FontSize="14" FontWeight="Bold"></Run></TextBlock>
                                         <TextBlock Margin="10,0,0,0" DockPanel.Dock="Top"> <Run Text="{Binding LastMessage}" FontSize="14" Foreground="#FF727272" ></Run>
                                         </TextBlock>
                                     </DockPanel>

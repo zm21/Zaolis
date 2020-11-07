@@ -280,6 +280,7 @@ namespace BLL
                 Chat chat = new Chat();
                 chat.Users.Add(res_user);
                 chat.Users.Add(res_contact);
+                unit.ChatRepository.Create(chat);
                 unit.Save();
                 res_chat = res_user.Chats.FirstOrDefault(c => c.Users.Where(u => u.Id == res_user.Id || u.Id == contact.Id).Count() >= 2);
                 res_user.Chats.Add(res_chat);
