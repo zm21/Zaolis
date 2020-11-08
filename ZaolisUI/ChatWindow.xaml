@@ -11,16 +11,10 @@
         <DockPanel>
             <DockPanel DockPanel.Dock="Top">
                 <DockPanel LastChildFill="False" Background="#C8E4F8">
-                    <Ellipse Height="30" Width="30" Stroke="#FF013355" StrokeThickness="1">
-                        <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                    <DockPanel DockPanel.Dock="Right">
-                    </DockPanel>
-                    <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-                        <TextBlock DockPanel.Dock="Left" Margin="10,11,0,14"> <Run Text="{Binding Name}" FontSize="16" FontWeight="Bold"></Run></TextBlock>
-                    </DockPanel>
+                    <TextBlock DockPanel.Dock="Left"> <Run Text="{Binding ContactMsgGetter.Name, Mode=OneWay}" FontSize="16" ></Run> 
+                        <LineBreak/>
+                        <Run Text="{Binding OnlineStatus, Mode=OneWay}"></Run>
+                    </TextBlock>
                 </DockPanel>
             </DockPanel>
             <DockPanel DockPanel.Dock="Bottom" LastChildFill="True" Margin="0,5">

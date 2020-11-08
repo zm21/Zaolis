@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Shell;
 using ZaolisUI.ZaolisServiceClient;
 
 namespace ZaolisUI
@@ -22,11 +23,13 @@ namespace ZaolisUI
     /// </summary>
     public partial class ChatWindow : UserControl
     {
-        public ChatDTO Chat { get; private set; }
-        public ChatWindow(ChatDTO chatDTO)
+        public ChatInfoModel ChatInfo { get; private set; }
+        public ChatDTO Chat => ChatInfo.Chat;
+        public ChatWindow(ChatInfoModel chatInfoModel)
         {
             InitializeComponent();
-            this.Chat = chatDTO;
+            this.ChatInfo = chatInfoModel;
+            this.DataContext = ChatInfo;
         }
     }
 }
