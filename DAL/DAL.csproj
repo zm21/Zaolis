@@ -88,6 +88,10 @@
     <Compile Include="Migrations\202011072051070_Last Message.designer.cs">
       <DependentUpon>202011072051070_Last Message.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202011082134463_SentByMe.cs" />
+    <Compile Include="Migrations\202011082134463_SentByMe.designer.cs">
+      <DependentUpon>202011082134463_SentByMe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Configs\UserConfig.cs" />
@@ -108,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202011072051070_Last Message.resx">
       <DependentUpon>202011072051070_Last Message.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202011082134463_SentByMe.resx">
+      <DependentUpon>202011082134463_SentByMe.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

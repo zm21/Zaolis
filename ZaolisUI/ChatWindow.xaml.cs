@@ -48,6 +48,7 @@ namespace ZaolisUI
                 messageDTO.MessageText = txtbox_message.Text;
                 messageDTO.CreationTime = DateTime.Now;
                 messageDTO.UserId = ChatInfo.Current.Id;
+                messageDTO.SentByMe = true;
                 client.SendMessageAsync(messageDTO);
                 txtbox_message.Text = "";
 

@@ -29,7 +29,7 @@
             <ItemsControl ItemsSource="{Binding Messages}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <local:MessageCloud />
+                        <local:MessageCloud  />
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

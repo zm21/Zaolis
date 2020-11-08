@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,6 @@ namespace ZaolisUI
     /// </summary>
     public partial class MessageCloud : UserControl
     {
-        private ChatInfoModel model;
         public MessageCloud()
         {
             InitializeComponent();
