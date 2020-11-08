@@ -20,9 +20,11 @@ namespace ZaolisUI
     /// </summary>
     public partial class MessageCloud : UserControl
     {
+        private ChatInfoModel model;
         public MessageCloud()
         {
             InitializeComponent();
         }
     }
+
 }

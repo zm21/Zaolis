@@ -22,6 +22,7 @@ namespace BLL.Models
         [DataMember]
         public DateTime CreationTime { get; set; }
 
-
+        [DataMember]
+        public bool SentByMe { get; set; }
     }
 }

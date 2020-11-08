@@ -86,7 +86,7 @@
                         <!-- Message text -->
                         <TextBlock VerticalAlignment="Center"
                                        TextWrapping="Wrap"
-                                       Text="{Binding Message}"
+                                       Text="{Binding MessageText}"
                                        />
 
                     </Border>
