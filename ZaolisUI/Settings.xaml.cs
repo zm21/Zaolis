@@ -1,6 +1,8 @@
 ﻿using BLL.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,17 +24,26 @@ namespace ZaolisUI
     /// </summary>
     public partial class Settings : UserControl, IChildWindow, IOverlayWindow
     {
-        DockPanel parent;
-        ZaolisServiceClient.ZaolisServiceClient client;
-        UserDTO user;
-        MainMenuViewModel mainMenuViewModel;
-        public Settings(DockPanel mainGrid, ZaolisServiceClient.ZaolisServiceClient client, UserDTO user)
+        private static string remembered_path = "rememberme.dat";
+
+        private DockPanel parent;
+
+        private ZaolisServiceClient.ZaolisServiceClient client;
+
+        private UserDTO user;
+
+        private MainMenuViewModel mainMenuViewModel;
+
+        private ObservableCollection<UserDTO> users;
+
+        public Settings(DockPanel mainGrid, ZaolisServiceClient.ZaolisServiceClient client, UserDTO user, ObservableCollection<UserDTO> users)
         {
             InitializeComponent();
             this.client = client;
             this.user = user;
             parent = mainGrid;
             mainMenuViewModel = new MainMenuViewModel(user);
+            this.users = users;
             this.DataContext = mainMenuViewModel;
         }
 
@@ -62,7 +73,11 @@ namespace ZaolisUI
                 {
                     if (nameTextBox.Text != null)
                     {
-                        client.EditUsersName(user, nameTextBox.Text);
+                        client.EditUsersName(users.Where(u => u.Login == user.Login).FirstOrDefault(), nameTextBox.Text);
+                        if (File.Exists(remembered_path))
+                        {
+                            SignInUpWindow.Save(users);
+                        }
                     }
                 });
             });
@@ -76,7 +91,11 @@ namespace ZaolisUI
                 {
                     if (bioTextBox.Text != null)
                     {
-                        client.EditUsersBio(user, bioTextBox.Text);
+                        client.EditUsersBio(users.Where(u => u.Login == user.Login).FirstOrDefault(), bioTextBox.Text);
+                        if (File.Exists(remembered_path))
+                        {
+                            SignInUpWindow.Save(users);
+                        }
                     }
                 });
             });
