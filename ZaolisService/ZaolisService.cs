@@ -162,5 +162,10 @@ namespace ZaolisService
         {
             return bll.GetMessagesByChat(chat);
         }
+
+        public ChatDTO GetChatById(int Id)
+        {
+            return bll.GetChatById(Id);
+        }
     }
 }

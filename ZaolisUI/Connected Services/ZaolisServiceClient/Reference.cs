@@ -176,6 +176,12 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetMessagesByChat", ReplyAction="http://tempuri.org/IZaolisService/GetMessagesByChatResponse")]
         System.Threading.Tasks.Task<BLL.Models.MessageDTO[]> GetMessagesByChatAsync(BLL.Models.ChatDTO chat);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetChatById", ReplyAction="http://tempuri.org/IZaolisService/GetChatByIdResponse")]
+        BLL.Models.ChatDTO GetChatById(int Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetChatById", ReplyAction="http://tempuri.org/IZaolisService/GetChatByIdResponse")]
+        System.Threading.Tasks.Task<BLL.Models.ChatDTO> GetChatByIdAsync(int Id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -427,6 +433,14 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         public System.Threading.Tasks.Task<BLL.Models.MessageDTO[]> GetMessagesByChatAsync(BLL.Models.ChatDTO chat) {
             return base.Channel.GetMessagesByChatAsync(chat);
+        }
+        
+        public BLL.Models.ChatDTO GetChatById(int Id) {
+            return base.Channel.GetChatById(Id);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.ChatDTO> GetChatByIdAsync(int Id) {
+            return base.Channel.GetChatByIdAsync(Id);
         }
     }
 }

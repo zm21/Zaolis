@@ -26,6 +26,7 @@ namespace ZaolisUI
         private UserDTO loginnedUser;
         private MainMenuViewModel mainMenuViewModel;
         private ObservableCollection<UserDTO> users;
+        private CallbackHandler callbackHandler;
         private IChatManager chatManager;
         public MainMenuZaolis(ObservableCollection<UserDTO> users, ZaolisServiceClient.ZaolisServiceClient client)
         {
@@ -50,8 +51,17 @@ namespace ZaolisUI
                 logginedUsers.Items.Add(item);
                 //client.AddAvatar(new AvatarDTO() { Path = "default.png", UserId = item.Id });
             }
-
             logginedUsers.SelectedItem = loginnedUser;
+            callbackHandler = new CallbackHandler();
+            callbackHandler.RecieveEvent += CallbackHandler_RecieveEvent;
+            client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(callbackHandler));
+        }
+
+        private void CallbackHandler_RecieveEvent(MessageDTO obj)
+        {
+            var chat = mainMenuViewModel.Chats.FirstOrDefault(c => c.Id == obj.ChatId);
+            mainMenuViewModel.Chats.Insert(0, client.GetChatById(chat.Id));
+            mainMenuViewModel.Chats.Remove(chat);
         }
 
         private void TopGrid_MouseDown(object sender, MouseButtonEventArgs e)

@@ -19,6 +19,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using BLL.Models;
 using System.Collections.ObjectModel;
+using System.Data.Entity.Infrastructure.Design;
 
 namespace ZaolisUI
 {
