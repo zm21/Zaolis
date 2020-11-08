@@ -41,6 +41,7 @@ namespace BLL
         IEnumerable<ChatDTO> GetUserChats(UserDTO user);
         IEnumerable<UserDTO> GetUsersByChat(ChatDTO chat);
         AvatarDTO GetAvatar(UserDTO user);
+        IEnumerable<MessageDTO> GetMessagesByChat(ChatDTO chat);
     }
     public class BLLClass : IBLLClass
     {
@@ -299,6 +300,12 @@ namespace BLL
         {
             var res_user = unit.UserRepository.Get(u => u.Id == user.Id, includeProperties: nameof(User.Chats))?.FirstOrDefault();
             return _mapper.Map<IEnumerable<Chat>, IEnumerable<ChatDTO>>(res_user.Chats);
+        }
+
+        public IEnumerable<MessageDTO> GetMessagesByChat(ChatDTO chat)
+        {
+            var res_chat = unit.ChatRepository.Get(c => c.Id == chat.Id, includeProperties: nameof(Chat.Messages))?.FirstOrDefault();
+            return _mapper.Map<IEnumerable<Message>, IEnumerable<MessageDTO>>(res_chat.Messages);
         }
     }
 }

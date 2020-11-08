@@ -19,15 +19,22 @@
             </DockPanel>
             <DockPanel DockPanel.Dock="Bottom" LastChildFill="True" Margin="0,5">
                 <Button DockPanel.Dock="Left" Style="{StaticResource MaterialDesignIconButton}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=Attachment}"></Button>
-                <Button DockPanel.Dock="Right" Style="{StaticResource MaterialDesignIconButton}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=Send}" Margin="9,2,9,0" VerticalAlignment="Top"  ></Button>
+                <Button DockPanel.Dock="Right" Style="{StaticResource MaterialDesignIconButton}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=Send}" Margin="9,2,9,0" VerticalAlignment="Top" Click="ButtonSend_Click" ></Button>
                 <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="#FF03A9F4" Width="30" Height="30" DockPanel.Dock="Right" BorderBrush="{x:Null}" Background="{x:Null}">
                     <materialDesign:PackIcon Kind="MicNone" Width="30" Height="25" />
                 </Button>
                 <Button DockPanel.Dock="Right" Style="{StaticResource MaterialDesignIconButton}" Background="{x:Null}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=StickerOutline}" ></Button>
-                <TextBox FontSize="14" materialDesign:HintAssist.Hint="Write a message..." DockPanel.Dock="Left"></TextBox>
+                <TextBox x:Name="txtbox_message" FontSize="14" materialDesign:HintAssist.Hint="Write a message..." DockPanel.Dock="Left"></TextBox>
             </DockPanel>
-            <ListBox></ListBox>
-
+            <ListBox x:Name="lbox_Messages" ItemsSource="{Binding Messages}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+                            <TextBlock DockPanel.Dock="Left" Margin="10,11,0,14"> <Run Text="Binding MessageText}" FontSize="16" FontWeight="Bold"></Run></TextBlock>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </DockPanel>
     </Grid>
 </UserControl>

@@ -1,6 +1,7 @@
 ﻿using BLL.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace ZaolisUI
             }
         }
         private UserDTO contactMsgGetter;
-
+        public ObservableCollection<MessageDTO> Messages;
         //Chat companion
         public UserDTO ContactMsgGetter 
         {
@@ -50,6 +51,7 @@ namespace ZaolisUI
             Chat = chat;
             Current = current;
             ContactMsgGetter = client.GetUsersByChat(Chat).Where(u=>u.Id!=current.Id).FirstOrDefault();
+            Messages = new ObservableCollection<MessageDTO>(client.GetMessagesByChat(chat));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

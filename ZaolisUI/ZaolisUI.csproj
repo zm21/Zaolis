@@ -203,6 +203,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\BLL.Models.AvatarDTO.datasource" />
     <None Include="Properties\DataSources\BLL.Models.ChatDTO.datasource" />
+    <None Include="Properties\DataSources\BLL.Models.MessageDTO.datasource" />
     <None Include="Properties\DataSources\BLL.Models.UserContactDTO.datasource" />
     <None Include="Properties\DataSources\BLL.Models.UserDTO.datasource" />
     <None Include="Properties\Settings.settings">
