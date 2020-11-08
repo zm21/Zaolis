@@ -157,5 +157,10 @@ namespace ZaolisService
         {
             return bll.GetAvatar(user);
         }
+
+        public IEnumerable<MessageDTO> GetMessagesByChat(ChatDTO chat)
+        {
+            return bll.GetMessagesByChat(chat);
+        }
     }
 }

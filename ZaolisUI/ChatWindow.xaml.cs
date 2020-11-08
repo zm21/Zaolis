@@ -24,12 +24,31 @@ namespace ZaolisUI
     public partial class ChatWindow : UserControl
     {
         public ChatInfoModel ChatInfo { get; private set; }
+
         public ChatDTO Chat => ChatInfo.Chat;
-        public ChatWindow(ChatInfoModel chatInfoModel)
+
+        private ZaolisServiceClient.ZaolisServiceClient client;
+
+        public ChatWindow(ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client)
         {
             InitializeComponent();
             this.ChatInfo = chatInfoModel;
             this.DataContext = ChatInfo;
+            this.client = client;
+        }
+
+        private void ButtonSend_Click(object sender, RoutedEventArgs e)
+        {
+            if(!string.IsNullOrWhiteSpace(txtbox_message.Text))
+            {
+                MessageDTO messageDTO = new MessageDTO();
+                messageDTO.ChatId = ChatInfo.Chat.Id;
+                messageDTO.MessageText = txtbox_message.Text;
+                messageDTO.CreationTime = DateTime.Now;
+                messageDTO.UserId = ChatInfo.Current.Id;
+                client.SendMessageAsync(messageDTO);
+                txtbox_message.Text = "";
+            }
         }
     }
 }

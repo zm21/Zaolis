@@ -52,4 +52,10 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfChatDTO" nillable="true" type="tns:ArrayOfChatDTO" />
+  <xs:complexType name="ArrayOfMessageDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MessageDTO" nillable="true" type="tns:MessageDTO" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMessageDTO" nillable="true" type="tns:ArrayOfMessageDTO" />
 </xs:schema>
