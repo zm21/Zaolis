@@ -28,13 +28,15 @@ namespace ZaolisUI
         public ChatDTO Chat => ChatInfo.Chat;
 
         private ZaolisServiceClient.ZaolisServiceClient client;
+        private DockPanel OverlayDockPanel;
 
-        public ChatWindow(ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client)
+        public ChatWindow(ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client,DockPanel dockPanel)
         {
             InitializeComponent();
             this.ChatInfo = chatInfoModel;
             this.DataContext = ChatInfo;
             this.client = client;
+            OverlayDockPanel = dockPanel;
         }
 
         private void ButtonSend_Click(object sender, RoutedEventArgs e)
@@ -50,6 +52,12 @@ namespace ZaolisUI
                 txtbox_message.Text = "";
 
             }
+        }
+
+        private void DockPanel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            UserInfo userInfo = new UserInfo(OverlayDockPanel,ChatInfo);
+            OverlayDockPanel.Children.Add(userInfo);
         }
     }
 }

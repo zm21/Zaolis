@@ -13,7 +13,7 @@ using ZaolisUI.ZaolisServiceClient;
 
 namespace ZaolisUI
 {
-    class MainMenuViewModel : INotifyPropertyChanged
+    public class MainMenuViewModel : INotifyPropertyChanged
     {
         ZaolisServiceClient.ZaolisServiceClient client;
         public ICollection<UserDTO> AllUsers { get; set; }
