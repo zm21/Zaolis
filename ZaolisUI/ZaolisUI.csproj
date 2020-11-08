@@ -105,12 +105,22 @@
     <Compile Include="ForgotPasswordCode.xaml.cs">
       <DependentUpon>ForgotPasswordCode.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MessageCloud.xaml.cs">
+      <DependentUpon>MessageCloud.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserInfo.xaml.cs">
       <DependentUpon>UserInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ValueConverters\BaseValueConverter.cs" />
+    <Compile Include="ValueConverters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="ValueConverters\BooleanToVisiblityGoneConverter.cs" />
+    <Compile Include="ValueConverters\SentByMeToAlignmentConverter.cs" />
+    <Compile Include="ValueConverters\SentByMeToBackgroundConverter.cs" />
+    <Compile Include="ValueConverters\TimeToDisplayTimeConverter.cs" />
+    <Compile Include="ValueConverters\TimeToReadTimeConverter.cs" />
     <Compile Include="VerificationCode.xaml.cs">
       <DependentUpon>VerificationCode.xaml</DependentUpon>
     </Compile>
@@ -135,6 +145,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ForgotPasswordCode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageCloud.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -241,6 +255,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
