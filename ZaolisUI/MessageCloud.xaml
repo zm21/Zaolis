@@ -47,8 +47,7 @@
                 <Border HorizontalAlignment="{Binding SentByMe, Converter={local:SentByMeToAlignmentConverter}}"
                             VerticalAlignment="Top">
 
-                    <TextBlock Style="{StaticResource SpinningText}"
-                               Foreground="{StaticResource ForegroundLightBrush}"
+                    <TextBlock 
                                Padding="20"
                                DataContext="{Binding ImageAttachment}"
                                Visibility="{Binding ImageLoaded, Converter={local:BooleanToVisiblityGoneConverter}, ConverterParameter=True, FallbackValue=Collapsed}"
@@ -87,8 +86,6 @@
                         <!-- Message text -->
                         <TextBlock VerticalAlignment="Center"
                                        TextWrapping="Wrap"
-                                       FontFamily="{StaticResource LatoRegular}"
-                                       Foreground="{StaticResource WordDarkBlueBrush}"
                                        Text="{Binding Message}"
                                        />
 
@@ -112,19 +109,10 @@
                             Orientation="Horizontal">
 
                         <!-- Sent time -->
-                        <TextBlock Text="{Binding MessageSentTime, Converter={local:TimeToDisplayTimeConverter}}"
-                               Foreground="{StaticResource ForegroundLightBrush}"
-                               FontSize="{StaticResource FontSizeSmall}"
-                               FontFamily="{StaticResource LatoRegular}"
-                               Margin="0 0 15 0"
-                           />
+                        <TextBlock Text="{Binding MessageSentTime, Converter={local:TimeToDisplayTimeConverter}}" Margin="0 0 15 0"/>
 
                         <!-- Read time -->
-                        <TextBlock Text="{Binding MessageReadTime, Converter={local:TimeToReadTimeConverter}}"
-                               Foreground="{StaticResource WordDarkBlueBrush}"
-                               FontSize="{StaticResource FontSizeSmall}"
-                               FontFamily="{StaticResource LatoRegular}"
-                           />
+                        <TextBlock Text="{Binding MessageReadTime, Converter={local:TimeToReadTimeConverter}}" />
 
                     </StackPanel>
 
