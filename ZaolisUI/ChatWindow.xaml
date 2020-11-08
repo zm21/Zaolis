@@ -10,8 +10,7 @@
     <Grid>
         <DockPanel>
             <DockPanel DockPanel.Dock="Top">
-                <DockPanel LastChildFill="False">
-                    <!--Photo-->
+                <DockPanel LastChildFill="False" Background="#C8E4F8">
                     <Ellipse Height="30" Width="30" Stroke="#FF013355" StrokeThickness="1">
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
@@ -24,15 +23,17 @@
                     </DockPanel>
                 </DockPanel>
             </DockPanel>
-            <DockPanel DockPanel.Dock="Bottom" LastChildFill="True">
-                <Button Style="{StaticResource MaterialDesignIconButton}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=Attachment}"></Button>
+            <DockPanel DockPanel.Dock="Bottom" LastChildFill="True" Margin="0,5">
+                <Button DockPanel.Dock="Left" Style="{StaticResource MaterialDesignIconButton}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=Attachment}"></Button>
                 <Button DockPanel.Dock="Right" Style="{StaticResource MaterialDesignIconButton}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=Send}" Margin="9,2,9,0" VerticalAlignment="Top"  ></Button>
                 <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="#FF03A9F4" Width="30" Height="30" DockPanel.Dock="Right" BorderBrush="{x:Null}" Background="{x:Null}">
                     <materialDesign:PackIcon Kind="MicNone" Width="30" Height="25" />
                 </Button>
                 <Button DockPanel.Dock="Right" Style="{StaticResource MaterialDesignIconButton}" Background="{x:Null}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=StickerOutline}" ></Button>
-                <TextBox FontSize="14" materialDesign:HintAssist.Hint="Write message" Grid.Column="1"></TextBox>
+                <TextBox FontSize="14" materialDesign:HintAssist.Hint="Write a message..." DockPanel.Dock="Left"></TextBox>
             </DockPanel>
+            <ListBox></ListBox>
+
         </DockPanel>
     </Grid>
 </UserControl>

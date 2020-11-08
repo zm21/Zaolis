@@ -156,7 +156,9 @@ namespace ZaolisUI
         {
             if(lbox_chats.SelectedItem!=null)
             {
-                //chatManager.LoadChat(mainMenuViewModel.CurrentUser, lbox_chats.SelectedItem);
+                var chat = (lbox_chats.SelectedItem as ChatInfoModel).Chat;
+                chatManager.LoadChat(chat);
+                ChatPanel.Children.Add(chatManager.GetChatWindow(chat));
             }
         }
 
@@ -197,6 +199,7 @@ namespace ZaolisUI
         //remove all loaded chats
         void Free();
         bool IsLoadedChat(ChatDTO chatDTO);
+        ChatWindow GetChatWindow(ChatDTO chatDTO);
     }
     public class ChatManager : IChatManager
     {
@@ -204,6 +207,7 @@ namespace ZaolisUI
         public int MaxCount { get; private set; }
         public ChatManager(int MaxCount)
         {
+            chatWindows = new List<ChatWindow>();
             this.MaxCount = MaxCount;
         }
         public void Free()
@@ -230,7 +234,11 @@ namespace ZaolisUI
             }
         }
 
-       
+        public ChatWindow GetChatWindow(ChatDTO chatDTO)
+        {
+            var chatwindow = chatWindows.FirstOrDefault(c => c.Chat.Id == chatDTO.Id);
+            return chatwindow;
+        }
     }
     public class CallbackHandler : IZaolisServiceCallback
     {
