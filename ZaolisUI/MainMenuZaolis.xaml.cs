@@ -37,7 +37,7 @@ namespace ZaolisUI
             this.client = client;
 
             loginnedUser = this.users.First();
-            
+            client.ConnectByUser(loginnedUser);
 
             mainMenuViewModel = new MainMenuViewModel(loginnedUser);
 

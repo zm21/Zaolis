@@ -41,7 +41,7 @@ namespace ZaolisService
             return res;
         }
 
-        public UserDTO Connect(UserDTO user)
+        public UserDTO ConnectByUser(UserDTO user)
         {
             if (user != null)
             {

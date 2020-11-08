@@ -164,6 +164,12 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetAvatar", ReplyAction="http://tempuri.org/IZaolisService/GetAvatarResponse")]
         System.Threading.Tasks.Task<BLL.Models.AvatarDTO> GetAvatarAsync(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/ConnectByUser", ReplyAction="http://tempuri.org/IZaolisService/ConnectByUserResponse")]
+        BLL.Models.UserDTO ConnectByUser(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/ConnectByUser", ReplyAction="http://tempuri.org/IZaolisService/ConnectByUserResponse")]
+        System.Threading.Tasks.Task<BLL.Models.UserDTO> ConnectByUserAsync(BLL.Models.UserDTO user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -399,6 +405,14 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         public System.Threading.Tasks.Task<BLL.Models.AvatarDTO> GetAvatarAsync(BLL.Models.UserDTO user) {
             return base.Channel.GetAvatarAsync(user);
+        }
+        
+        public BLL.Models.UserDTO ConnectByUser(BLL.Models.UserDTO user) {
+            return base.Channel.ConnectByUser(user);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.UserDTO> ConnectByUserAsync(BLL.Models.UserDTO user) {
+            return base.Channel.ConnectByUserAsync(user);
         }
     }
 }

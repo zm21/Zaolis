@@ -62,7 +62,7 @@ namespace ZaolisService
         [OperationContract]
         AvatarDTO GetAvatar(UserDTO user);
         [OperationContract]
-        UserDTO Connect(UserDTO user);
+        UserDTO ConnectByUser(UserDTO user);
     }
 
     public interface IZaolisCallback
