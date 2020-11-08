@@ -32,7 +32,7 @@ namespace ZaolisUI
             FriendUsers = client.GetContacts(CurrentUser);
             Chats = new ObservableCollection<ChatDTO>(client.GetUserChats(CurrentUser));
             ChatInfos = new ObservableCollection<ChatInfoModel>();
-            CurrentAvatar = client.GetAvatar(CurrentUser);
+            //CurrentAvatar = client.GetAvatar(CurrentUser);
             foreach (var chat in Chats)
             {
                 ChatInfos.Add(new ChatInfoModel(client, CurrentUser, chat));

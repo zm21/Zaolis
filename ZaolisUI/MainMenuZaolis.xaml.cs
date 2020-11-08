@@ -31,17 +31,26 @@ namespace ZaolisUI
         {
             InitializeComponent();
             this.users = users;
+
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
+
             this.client = client;
+
             loginnedUser = this.users.First();
+            client.ConnectByUser(loginnedUser);
+
             mainMenuViewModel = new MainMenuViewModel(loginnedUser);
+
             chatManager = new ChatManager(10);
+
             this.DataContext = mainMenuViewModel;
+
             foreach (var item in users)
             {
                 logginedUsers.Items.Add(item);
-                client.AddAvatar(new AvatarDTO() { Path = "default.png", UserId = item.Id });
+                //client.AddAvatar(new AvatarDTO() { Path = "default.png", UserId = item.Id });
             }
+
             logginedUsers.SelectedItem = loginnedUser;
         }
 

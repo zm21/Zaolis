@@ -61,6 +61,8 @@ namespace ZaolisService
         IEnumerable<UserDTO> GetUsersByChat(ChatDTO chat);
         [OperationContract]
         AvatarDTO GetAvatar(UserDTO user);
+        [OperationContract]
+        UserDTO ConnectByUser(UserDTO user);
     }
 
     public interface IZaolisCallback
