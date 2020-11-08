@@ -112,7 +112,7 @@ namespace ZaolisUI
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    Settings settings = new Settings(OverlayDockPanel, client, loginnedUser);
+                    Settings settings = new Settings(OverlayDockPanel, client, loginnedUser,users);
                     OverlayDockPanel.Children.Add(settings);
                 });
             });
@@ -154,6 +154,7 @@ namespace ZaolisUI
                     if (logginedUsers.SelectedItem != null)
                     {
                         loginnedUser = (UserDTO)logginedUsers.SelectedItem;
+
                         mainMenuViewModel = new MainMenuViewModel(loginnedUser);
                         this.DataContext = mainMenuViewModel;
                     }
