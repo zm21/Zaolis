@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +21,14 @@ namespace ZaolisUI
     /// </summary>
     public partial class UserInfo : UserControl, IChildWindow
     {
-        DockPanel parent;
-        public UserInfo(DockPanel parent)
+        private DockPanel parent;
+        private UserDTO CurrentUser;
+        public UserInfo(DockPanel parent,ChatInfoModel model)
         {
             InitializeComponent();
+            CurrentUser = model.ContactMsgGetter;
             this.parent = parent;
+            this.DataContext = model;
         }
 
         public event ClosingDelegate Closing;
@@ -48,6 +52,11 @@ namespace ZaolisUI
         private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             Close();
+        }
+
+        private void buttonDeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

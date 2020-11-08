@@ -10,7 +10,7 @@
     <Grid>
         <DockPanel>
             <DockPanel DockPanel.Dock="Top">
-                <DockPanel LastChildFill="False" Background="#C8E4F8">
+                <DockPanel LastChildFill="False" Background="#C8E4F8" MouseLeftButtonUp="DockPanel_MouseLeftButtonUp">
                     <TextBlock DockPanel.Dock="Left"> <Run Text="{Binding ContactMsgGetter.Name, Mode=OneWay}" FontSize="16" ></Run> 
                         <LineBreak/>
                         <Run Text="{Binding OnlineStatus, Mode=OneWay}"></Run>

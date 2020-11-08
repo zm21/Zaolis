@@ -98,12 +98,6 @@ namespace ZaolisUI
             mainMenuViewModel.SearchUser(textBoxSearch.Text);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            UserInfo usInfo = new UserInfo(OverlayDockPanel); 
-            OverlayDockPanel.Children.Add(usInfo);
-        }
-
         private void buttonNightMode_Click(object sender, RoutedEventArgs e)
         {
             toggleButtonNightMode.IsChecked = !toggleButtonNightMode.IsChecked;
@@ -179,7 +173,7 @@ namespace ZaolisUI
             {
                 ChatPanel.Children.Clear();
                 var chatInfo = (lbox_chats.SelectedItem as ChatInfoModel);
-                chatManager.LoadChat(chatInfo,client);
+                chatManager.LoadChat(chatInfo,client,OverlayDockPanel);
                 ChatPanel.Children.Add(chatManager.GetChatWindow(chatInfo.Chat));
             }
         }
@@ -217,7 +211,7 @@ namespace ZaolisUI
     }
     public interface IChatManager
     {
-        void LoadChat(ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client);
+        void LoadChat(ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client, DockPanel OverlayDockPanel);
         //remove all loaded chats
         void Free();
         bool IsLoadedChat(ChatDTO chatDTO);
@@ -240,7 +234,7 @@ namespace ZaolisUI
         {
             return chatWindows.FirstOrDefault(c => c.Chat.Id == chatDTO.Id) != null;
         }
-        public void LoadChat(ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client)
+        public void LoadChat(ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client, DockPanel OverlayDockPanel)
         {
             if(IsLoadedChat(chatInfoModel.Chat))
             {
@@ -252,7 +246,7 @@ namespace ZaolisUI
             {
                 if (chatWindows.Count == MaxCount)
                     chatWindows.RemoveAt(MaxCount - 1);
-                chatWindows.Insert(0,new ChatWindow(chatInfoModel, client));
+                chatWindows.Insert(0,new ChatWindow(chatInfoModel, client, OverlayDockPanel));
             }
         }
 
