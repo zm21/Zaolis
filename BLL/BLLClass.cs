@@ -267,7 +267,10 @@ namespace BLL
         public void AddMessage(MessageDTO newMessage)
         {
             unit.MessageRepository.Create(_mapper.Map<Message>(newMessage));
-            unit.MessageRepository.Save();
+            unit.Save();
+            var last = unit.MessageRepository.Get().Last();
+            unit.ChatRepository.GetById(newMessage.ChatId).LastMessage=last;
+            unit.Save();
         }
 
         public void AddAttachment(AttachmentDTO newAttachment)
@@ -299,7 +302,9 @@ namespace BLL
         public IEnumerable<ChatDTO> GetUserChats(UserDTO user)
         {
             var res_user = unit.UserRepository.Get(u => u.Id == user.Id, includeProperties: nameof(User.Chats))?.FirstOrDefault();
-            return _mapper.Map<IEnumerable<Chat>, IEnumerable<ChatDTO>>(res_user.Chats);
+            var chatids = res_user.Chats.Select(c => c.Id);
+            var chats = unit.ChatRepository.Get(c => chatids.Contains(c.Id), includeProperties:nameof(Chat.LastMessage));
+            return _mapper.Map<IEnumerable<Chat>, IEnumerable<ChatDTO>>(chats);
         }
 
         public IEnumerable<MessageDTO> GetMessagesByChat(ChatDTO chat)

@@ -48,6 +48,7 @@ namespace ZaolisUI
                 messageDTO.UserId = ChatInfo.Current.Id;
                 client.SendMessageAsync(messageDTO);
                 txtbox_message.Text = "";
+
             }
         }
     }

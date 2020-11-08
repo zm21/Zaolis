@@ -39,7 +39,7 @@ namespace ZaolisUI
         }
         public UserDTO Current { get; set; }
 
-        public string LastMessage => Chat.LastMessage != null ? Chat?.LastMessage?.MessageText?.Substring(0, 17) + "..." : "No messages here yet.";
+        public string LastMessage => Chat.LastMessage != null ? Chat.LastMessage.MessageText.Length>17?Chat.LastMessage.MessageText.Substring(0,17)+"...":Chat.LastMessage.MessageText : "No messages here yet.";
 
         public string SendTime => Chat.LastMessage != null ? Chat.LastMessage.CreationTime.ToShortTimeString() : "";
 
