@@ -16,5 +16,7 @@ namespace BLL.Models
         public string Path { get; set; }
         [DataMember]
         public int UserId { get; set; }
+        [DataMember]
+        public bool IsActive { get; set; }
     }
 }

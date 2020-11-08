@@ -41,6 +41,16 @@ namespace ZaolisService
             return res;
         }
 
+        public UserDTO Connect(UserDTO user)
+        {
+            if (user != null)
+            {
+                bll.ChangeStatus(user, true);
+                activeUsers.Add(user, OperationContext.Current.GetCallbackChannel<IZaolisCallback>());
+            }
+            return user;
+        }
+
         public void Disconnect(UserDTO user)
         {
             if (user != null)
