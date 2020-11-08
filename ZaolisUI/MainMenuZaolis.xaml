@@ -119,7 +119,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
 
             <GridSplitter HorizontalAlignment="Center" VerticalAlignment="Stretch" Grid.Column="1" Width="2" Background="LightGray" Grid.Row="1"></GridSplitter>
             <!--Chat-->
-            <DockPanel x:Name="Desktop" Grid.Row="1" LastChildFill="False" Grid.Column="2">
+            <DockPanel x:Name="ChatPanel" Grid.Row="1" Grid.Column="2">
                 <!--<DockPanel DockPanel.Dock="Bottom" LastChildFill="False">
 <Button FontSize="40" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="#FF03A9F4" Width="25" Height="25" DockPanel.Dock="Left" Background="{x:Null}" BorderBrush="{x:Null}">
 <materialDesign:PackIcon Kind="Attachment" />
