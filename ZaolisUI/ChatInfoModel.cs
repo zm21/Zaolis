@@ -27,7 +27,7 @@ namespace ZaolisUI
             }
         }
         private UserDTO contactMsgGetter;
-        public ObservableCollection<MessageDTO> Messages;
+        public ObservableCollection<MessageDTO> Messages { get; set; }
         //Chat companion
         public UserDTO ContactMsgGetter 
         {
