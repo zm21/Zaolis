@@ -30,7 +30,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-                            <TextBlock DockPanel.Dock="Left" Margin="10,11,0,14"> <Run Text="Binding MessageText}" FontSize="16" FontWeight="Bold"></Run></TextBlock>
+                            <TextBlock DockPanel.Dock="Left" Margin="10,11,0,14"> <Run Text="{Binding MessageText}" FontSize="16" FontWeight="Bold"></Run></TextBlock>
                         </DockPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
