@@ -40,7 +40,7 @@ namespace ZaolisUI
         }
         public UserDTO CurrentUser { get; set; }
 
-        public string LastMessage => Chat.LastMessage != null ? Chat.LastMessage.MessageText.Length>17?Chat.LastMessage.MessageText.Substring(0,17)+"...":Chat.LastMessage.MessageText : "No messages here yet.";
+        public string LastMessage => Chat.LastMessage != null ? Chat.LastMessage.MessageText.Length>10?Chat.LastMessage.MessageText.Substring(0,7)+"...":Chat.LastMessage.MessageText : "No messages here yet.";
 
         public string SendTime => Chat.LastMessage != null ? Chat.LastMessage.CreationTime.ToShortTimeString() : "";
 
@@ -52,6 +52,7 @@ namespace ZaolisUI
             Chat = chat;
             CurrentUser = current;
             ContactMsgGetter = client.GetUsersByChat(Chat).Where(u=>u.Id!=current.Id).FirstOrDefault();
+            Messages = new ObservableCollection<MessageModel>();
             Task.Run(() =>
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -60,6 +61,9 @@ namespace ZaolisUI
                     {
                         Messages.Add(new MessageModel(item, CurrentUser) { Message = item });
                     }
+                    var firstMsg = Messages.First();
+                    Messages.Remove(firstMsg);
+                    Messages.Insert(Messages.IndexOf(Messages.Last())+1, firstMsg);
                 });
             });
             

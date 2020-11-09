@@ -17,6 +17,7 @@ namespace ZaolisUI
         {
             this.CurrentUser = userDTO;
             this.Message = message;
+            
             if (message.UserId == CurrentUser.Id)
                 SentByMe = true;
         }

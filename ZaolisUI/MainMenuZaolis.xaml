@@ -97,7 +97,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                                         </Ellipse.Fill>
                                     </Ellipse>
                                     <DockPanel DockPanel.Dock="Right">
-                                        <TextBlock Margin="0,5,0,0" DockPanel.Dock="Top">
+                                        <TextBlock Margin="0,5,0,0" DockPanel.Dock="Top" Height="20">
 <Run Text="{Binding SendTime, Mode=OneWay}" FontSize="14"></Run></TextBlock>
                                         <Border Visibility="Hidden" DockPanel.Dock="Right" Background="#FF2196F3" CornerRadius="10" Width="25" Height="22">
                                             <Label Foreground="White" HorizontalAlignment="Center" FontSize="12" VerticalAlignment="Center">1</Label>

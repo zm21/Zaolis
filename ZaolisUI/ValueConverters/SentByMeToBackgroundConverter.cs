@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows;
+using System.Windows.Media;
 
 namespace ZaolisUI
 {
@@ -12,7 +13,8 @@ namespace ZaolisUI
     {
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool)value ? Application.Current.FindResource("WordLightBlue") : Application.Current.FindResource("ForegroundLightBrush");
+            var converter = new System.Windows.Media.BrushConverter();
+            return (bool)value ? (Brush)converter.ConvertFromString("#FFE4E1") : (Brush)converter.ConvertFromString("#00BFFF");
         }
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
