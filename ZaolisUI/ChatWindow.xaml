@@ -26,7 +26,7 @@
                 <Button DockPanel.Dock="Right" Style="{StaticResource MaterialDesignIconButton}" Background="{x:Null}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=StickerOutline}" ></Button>
                 <TextBox x:Name="txtbox_message" FontSize="14" materialDesign:HintAssist.Hint="Write a message..." DockPanel.Dock="Left"></TextBox>
             </DockPanel>
-            <ScrollViewer>
+            <ScrollViewer x:Name="ScrollViewer">
                 <ItemsControl ItemsSource="{Binding Messages}" x:Name="messagesItemsControl">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>

@@ -75,4 +75,16 @@ namespace ZaolisService
         void RecieveMessage(MessageDTO message);
     }
 
+    //[DataContract]
+    //public class TransferFileInfo
+    //{
+    //    [DataMember]
+    //    public string FileName { get; set; }
+        
+    //    [DataMember]
+    //    public string Extention { get; set; }
+        
+    //    [DataMember]
+    //    byte[] data;
+    //}
 }
