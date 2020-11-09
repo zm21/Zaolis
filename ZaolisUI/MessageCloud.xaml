@@ -86,7 +86,7 @@
                         <!-- Message text -->
                         <TextBlock VerticalAlignment="Center"
                                        TextWrapping="Wrap"
-                                       Text="{Binding Message}"
+                                       Text="{Binding MessageText}"
                                        />
 
                     </Border>
@@ -109,7 +109,7 @@
                             Orientation="Horizontal">
 
                         <!-- Sent time -->
-                        <TextBlock Text="{Binding MessageSentTime, Converter={local:TimeToDisplayTimeConverter}}" Margin="0 0 15 0"/>
+                        <TextBlock Text="{Binding CreationTime, Converter={local:TimeToDisplayTimeConverter}}" Margin="0 0 15 0"/>
 
                         <!-- Read time -->
                         <TextBlock Text="{Binding MessageReadTime, Converter={local:TimeToReadTimeConverter}}" />
