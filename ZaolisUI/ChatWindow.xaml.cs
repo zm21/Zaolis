@@ -1,4 +1,5 @@
 ﻿using BLL.Models;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +61,13 @@ namespace ZaolisUI
         {
             UserInfo userInfo = new UserInfo(OverlayDockPanel,ChatInfo);
             OverlayDockPanel.Children.Add(userInfo);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.png) | *.jpg; *.jpeg; *.jpe; *.png";
+            openFileDialog.ShowDialog();
         }
     }
 }
