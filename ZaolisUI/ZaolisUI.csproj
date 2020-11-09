@@ -85,7 +85,7 @@
     <Compile Include="Chat.xaml.cs">
       <DependentUpon>Chat.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ChatInfoModel.cs" />
+    <Compile Include="Models\ChatInfoModel.cs" />
     <Compile Include="Design\ChatMessageListItemDesignModel.cs" />
     <Compile Include="ChatWindow.xaml.cs">
       <DependentUpon>ChatWindow.xaml</DependentUpon>
@@ -99,7 +99,7 @@
       <DependentUpon>GroupInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IOverlayWindow.cs" />
-    <Compile Include="MainMenuViewModel.cs" />
+    <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="MainMenuZaolis.xaml.cs">
       <DependentUpon>MainMenuZaolis.xaml</DependentUpon>
     </Compile>
@@ -109,6 +109,7 @@
     <Compile Include="MessageCloud.xaml.cs">
       <DependentUpon>MessageCloud.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -173,7 +174,7 @@
     <Compile Include="MsgBox.xaml.cs">
       <DependentUpon>MsgBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RegisterViewModel.cs" />
+    <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="SignIn_SignUp.xaml.cs">
       <DependentUpon>SignIn_SignUp.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using ZaolisUI.ZaolisServiceClient;
 
 namespace ZaolisUI
@@ -27,7 +28,7 @@ namespace ZaolisUI
             }
         }
         private UserDTO contactMsgGetter;
-        public ObservableCollection<MessageDTO> Messages { get; set; }
+        public ObservableCollection<MessageModel> Messages { get; set; }
         //Chat companion
         public UserDTO ContactMsgGetter 
         {
@@ -37,7 +38,7 @@ namespace ZaolisUI
                 OnPropertyChanged(nameof(OnlineStatus));
             }
         }
-        public UserDTO Current { get; set; }
+        public UserDTO CurrentUser { get; set; }
 
         public string LastMessage => Chat.LastMessage != null ? Chat.LastMessage.MessageText.Length>17?Chat.LastMessage.MessageText.Substring(0,17)+"...":Chat.LastMessage.MessageText : "No messages here yet.";
 
@@ -49,9 +50,19 @@ namespace ZaolisUI
         {
             this.client = client;
             Chat = chat;
-            Current = current;
+            CurrentUser = current;
             ContactMsgGetter = client.GetUsersByChat(Chat).Where(u=>u.Id!=current.Id).FirstOrDefault();
-            Messages = new ObservableCollection<MessageDTO>(client.GetMessagesByChat(chat));
+            Task.Run(() =>
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    foreach (var item in client.GetMessagesByChat(chat))
+                    {
+                        Messages.Add(new MessageModel(item, CurrentUser) { Message = item });
+                    }
+                });
+            });
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
