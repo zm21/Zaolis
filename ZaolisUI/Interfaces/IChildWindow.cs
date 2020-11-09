@@ -1,4 +1,6 @@
-﻿namespace ZaolisUI
+﻿using System.Windows.Controls;
+
+namespace ZaolisUI
 {
     public delegate void ClosingDelegate();
     public delegate void MessageDelegate(string title, string msg);

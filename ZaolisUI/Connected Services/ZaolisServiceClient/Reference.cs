@@ -122,6 +122,66 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/AddContact", ReplyAction="http://tempuri.org/IZaolisService/AddContactResponse")]
         System.Threading.Tasks.Task AddContactAsync(BLL.Models.UserDTO add_to, BLL.Models.UserDTO newContact);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUserByName", ReplyAction="http://tempuri.org/IZaolisService/GetUserByNameResponse")]
+        BLL.Models.UserDTO GetUserByName(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUserByName", ReplyAction="http://tempuri.org/IZaolisService/GetUserByNameResponse")]
+        System.Threading.Tasks.Task<BLL.Models.UserDTO> GetUserByNameAsync(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/EditUsersName", ReplyAction="http://tempuri.org/IZaolisService/EditUsersNameResponse")]
+        void EditUsersName(BLL.Models.UserDTO user, string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/EditUsersName", ReplyAction="http://tempuri.org/IZaolisService/EditUsersNameResponse")]
+        System.Threading.Tasks.Task EditUsersNameAsync(BLL.Models.UserDTO user, string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/EditUsersBio", ReplyAction="http://tempuri.org/IZaolisService/EditUsersBioResponse")]
+        void EditUsersBio(BLL.Models.UserDTO user, string bio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/EditUsersBio", ReplyAction="http://tempuri.org/IZaolisService/EditUsersBioResponse")]
+        System.Threading.Tasks.Task EditUsersBioAsync(BLL.Models.UserDTO user, string bio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetChat", ReplyAction="http://tempuri.org/IZaolisService/GetChatResponse")]
+        BLL.Models.ChatDTO GetChat(BLL.Models.UserDTO user, BLL.Models.UserDTO contact);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetChat", ReplyAction="http://tempuri.org/IZaolisService/GetChatResponse")]
+        System.Threading.Tasks.Task<BLL.Models.ChatDTO> GetChatAsync(BLL.Models.UserDTO user, BLL.Models.UserDTO contact);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUserChats", ReplyAction="http://tempuri.org/IZaolisService/GetUserChatsResponse")]
+        BLL.Models.ChatDTO[] GetUserChats(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUserChats", ReplyAction="http://tempuri.org/IZaolisService/GetUserChatsResponse")]
+        System.Threading.Tasks.Task<BLL.Models.ChatDTO[]> GetUserChatsAsync(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUsersByChat", ReplyAction="http://tempuri.org/IZaolisService/GetUsersByChatResponse")]
+        BLL.Models.UserDTO[] GetUsersByChat(BLL.Models.ChatDTO chat);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUsersByChat", ReplyAction="http://tempuri.org/IZaolisService/GetUsersByChatResponse")]
+        System.Threading.Tasks.Task<BLL.Models.UserDTO[]> GetUsersByChatAsync(BLL.Models.ChatDTO chat);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetAvatar", ReplyAction="http://tempuri.org/IZaolisService/GetAvatarResponse")]
+        BLL.Models.AvatarDTO GetAvatar(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetAvatar", ReplyAction="http://tempuri.org/IZaolisService/GetAvatarResponse")]
+        System.Threading.Tasks.Task<BLL.Models.AvatarDTO> GetAvatarAsync(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/ConnectByUser", ReplyAction="http://tempuri.org/IZaolisService/ConnectByUserResponse")]
+        BLL.Models.UserDTO ConnectByUser(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/ConnectByUser", ReplyAction="http://tempuri.org/IZaolisService/ConnectByUserResponse")]
+        System.Threading.Tasks.Task<BLL.Models.UserDTO> ConnectByUserAsync(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetMessagesByChat", ReplyAction="http://tempuri.org/IZaolisService/GetMessagesByChatResponse")]
+        BLL.Models.MessageDTO[] GetMessagesByChat(BLL.Models.ChatDTO chat);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetMessagesByChat", ReplyAction="http://tempuri.org/IZaolisService/GetMessagesByChatResponse")]
+        System.Threading.Tasks.Task<BLL.Models.MessageDTO[]> GetMessagesByChatAsync(BLL.Models.ChatDTO chat);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetChatById", ReplyAction="http://tempuri.org/IZaolisService/GetChatByIdResponse")]
+        BLL.Models.ChatDTO GetChatById(int Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetChatById", ReplyAction="http://tempuri.org/IZaolisService/GetChatByIdResponse")]
+        System.Threading.Tasks.Task<BLL.Models.ChatDTO> GetChatByIdAsync(int Id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -301,6 +361,86 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         public System.Threading.Tasks.Task AddContactAsync(BLL.Models.UserDTO add_to, BLL.Models.UserDTO newContact) {
             return base.Channel.AddContactAsync(add_to, newContact);
+        }
+        
+        public BLL.Models.UserDTO GetUserByName(string name) {
+            return base.Channel.GetUserByName(name);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.UserDTO> GetUserByNameAsync(string name) {
+            return base.Channel.GetUserByNameAsync(name);
+        }
+        
+        public void EditUsersName(BLL.Models.UserDTO user, string name) {
+            base.Channel.EditUsersName(user, name);
+        }
+        
+        public System.Threading.Tasks.Task EditUsersNameAsync(BLL.Models.UserDTO user, string name) {
+            return base.Channel.EditUsersNameAsync(user, name);
+        }
+        
+        public void EditUsersBio(BLL.Models.UserDTO user, string bio) {
+            base.Channel.EditUsersBio(user, bio);
+        }
+        
+        public System.Threading.Tasks.Task EditUsersBioAsync(BLL.Models.UserDTO user, string bio) {
+            return base.Channel.EditUsersBioAsync(user, bio);
+        }
+        
+        public BLL.Models.ChatDTO GetChat(BLL.Models.UserDTO user, BLL.Models.UserDTO contact) {
+            return base.Channel.GetChat(user, contact);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.ChatDTO> GetChatAsync(BLL.Models.UserDTO user, BLL.Models.UserDTO contact) {
+            return base.Channel.GetChatAsync(user, contact);
+        }
+        
+        public BLL.Models.ChatDTO[] GetUserChats(BLL.Models.UserDTO user) {
+            return base.Channel.GetUserChats(user);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.ChatDTO[]> GetUserChatsAsync(BLL.Models.UserDTO user) {
+            return base.Channel.GetUserChatsAsync(user);
+        }
+        
+        public BLL.Models.UserDTO[] GetUsersByChat(BLL.Models.ChatDTO chat) {
+            return base.Channel.GetUsersByChat(chat);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.UserDTO[]> GetUsersByChatAsync(BLL.Models.ChatDTO chat) {
+            return base.Channel.GetUsersByChatAsync(chat);
+        }
+        
+        public BLL.Models.AvatarDTO GetAvatar(BLL.Models.UserDTO user) {
+            return base.Channel.GetAvatar(user);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.AvatarDTO> GetAvatarAsync(BLL.Models.UserDTO user) {
+            return base.Channel.GetAvatarAsync(user);
+        }
+        
+        public BLL.Models.UserDTO ConnectByUser(BLL.Models.UserDTO user) {
+            return base.Channel.ConnectByUser(user);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.UserDTO> ConnectByUserAsync(BLL.Models.UserDTO user) {
+            return base.Channel.ConnectByUserAsync(user);
+        }
+        
+        public BLL.Models.MessageDTO[] GetMessagesByChat(BLL.Models.ChatDTO chat) {
+            return base.Channel.GetMessagesByChat(chat);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.MessageDTO[]> GetMessagesByChatAsync(BLL.Models.ChatDTO chat) {
+            return base.Channel.GetMessagesByChatAsync(chat);
+        }
+        
+        public BLL.Models.ChatDTO GetChatById(int Id) {
+            return base.Channel.GetChatById(Id);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.ChatDTO> GetChatByIdAsync(int Id) {
+            return base.Channel.GetChatByIdAsync(Id);
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿<Window x:Class="ZaolisUI.MainWindow"
+﻿<Window x:Class="ZaolisUI.SignInUpWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ZaolisUI" xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Zaolis messenger by Zaolis team" Height="600" Width="1040" WindowStyle="None"  MaxHeight="600" MaxWidth="1040" MinHeight="450" MinWidth="650" MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStartupLocation="CenterScreen">
+        Title="Zaolis messenger by Zaolis team" Height="600" Width="1040" WindowStyle="None"  MaxHeight="600" MaxWidth="1040" MinHeight="450" MinWidth="650" MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
 
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"/>
@@ -46,7 +46,7 @@
                         <Label Name="lb_forgetpassword" MouseLeftButtonDown="lb_forgetpassword_MouseLeftButtonDown" Margin="30,0" DockPanel.Dock="Top" HorizontalAlignment="Left" FontSize="12" Foreground="LightBlue" MouseEnter="Label_MouseEnter" MouseLeave="lb_forgetpassword_MouseLeave">
                             <TextBlock TextDecorations="Underline" Width="Auto">Forget password</TextBlock>
                         </Label>
-                        <CheckBox DockPanel.Dock="Top" HorizontalAlignment="Right" Margin="30,5" >Remember me</CheckBox>
+                        <CheckBox x:Name="rememberMe" DockPanel.Dock="Top" HorizontalAlignment="Right" Margin="30,5" >Remember me</CheckBox>
                     </DockPanel>
                     <Grid HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10"/>
                 </Grid>

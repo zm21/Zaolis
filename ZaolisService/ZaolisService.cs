@@ -41,6 +41,16 @@ namespace ZaolisService
             return res;
         }
 
+        public UserDTO ConnectByUser(UserDTO user)
+        {
+            if (user != null)
+            {
+                bll.ChangeStatus(user, true);
+                activeUsers.Add(user, OperationContext.Current.GetCallbackChannel<IZaolisCallback>());
+            }
+            return user;
+        }
+
         public void Disconnect(UserDTO user)
         {
             if (user != null)
@@ -112,6 +122,50 @@ namespace ZaolisService
         public void AddContact(UserDTO add_to, UserDTO newContact)
         {
             bll.AddContact(add_to, newContact);
+        }
+        public UserDTO GetUserByName(string name)
+        {
+            return bll.GetUserByName(name);
+        }
+
+        public void EditUsersName(UserDTO user, string name)
+        {
+            bll.EditUsersName(user, name);
+        }
+
+        public void EditUsersBio(UserDTO user, string bio)
+        {
+            bll.EditUsersBio(user, bio);
+        }
+
+        public ChatDTO GetChat(UserDTO user, UserDTO contact)
+        {
+            return bll.GetChat(user, contact);
+        }
+
+        public IEnumerable<ChatDTO> GetUserChats(UserDTO user)
+        {
+            return bll.GetUserChats(user);
+        }
+
+        public IEnumerable<UserDTO> GetUsersByChat(ChatDTO chat)
+        {
+            return bll.GetUsersByChat(chat);
+        }
+
+        public AvatarDTO GetAvatar(UserDTO user)
+        {
+            return bll.GetAvatar(user);
+        }
+
+        public IEnumerable<MessageDTO> GetMessagesByChat(ChatDTO chat)
+        {
+            return bll.GetMessagesByChat(chat);
+        }
+
+        public ChatDTO GetChatById(int Id)
+        {
+            return bll.GetChatById(Id);
         }
     }
 }

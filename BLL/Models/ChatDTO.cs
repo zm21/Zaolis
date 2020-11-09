@@ -8,9 +8,11 @@ using System.Threading.Tasks;
 namespace BLL.Models
 {
     [DataContract]
-    class ChatDTO
+    public class ChatDTO
     {
         [DataMember]
         public int Id { get; set; }
+        [DataMember]
+        public MessageDTO LastMessage { get; set; }
     }
 }

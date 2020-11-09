@@ -8,6 +8,7 @@ using EASendMail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -33,7 +34,15 @@ namespace BLL
         void AddMessage(MessageDTO newMessage);
         IEnumerable<UserDTO> GetContacts(UserDTO user);
         void AddContact(UserDTO add_to, UserDTO newContact);
-
+        UserDTO GetUserByName(string name);
+        void EditUsersName(UserDTO user, string name);
+        void EditUsersBio(UserDTO user, string bio);
+        ChatDTO GetChat(UserDTO user, UserDTO contact);
+        IEnumerable<ChatDTO> GetUserChats(UserDTO user);
+        IEnumerable<UserDTO> GetUsersByChat(ChatDTO chat);
+        AvatarDTO GetAvatar(UserDTO user);
+        IEnumerable<MessageDTO> GetMessagesByChat(ChatDTO chat);
+        ChatDTO GetChatById(int Id);
     }
     public class BLLClass : IBLLClass
     {
@@ -77,6 +86,8 @@ namespace BLL
             if (res != null)
             {
                 res.IsActive = status;
+                if (status == false)
+                    res.LastActive = DateTime.Now;
                 unit.UserRepository.Save();
             }
         }
@@ -85,9 +96,20 @@ namespace BLL
             unit.AvatarRepository.Create(_mapper.Map<Avatar>(newAvatar));
             unit.AvatarRepository.Save();
         }
+        public AvatarDTO GetAvatar(UserDTO user)
+        {
+            return _mapper.Map<AvatarDTO>((unit.AvatarRepository.Get(u => u.IsActive&&u.UserId==user.Id))?.FirstOrDefault());
+        }
         public void AddContact(UserDTO add_to,UserDTO newContact)
         {
             var user_res = unit.UserRepository.GetById(add_to.Id);
+            if(user_res.UserContact==null)
+            {
+                UserContact userContact = new UserContact() { UserId = user_res.Id };
+                unit.UserContactRepository.Create(userContact);
+                unit.Save();
+                user_res = unit.UserRepository.GetById(add_to.Id);
+            }
             user_res.UserContact.Contacts.Add(unit.UserRepository.GetById(newContact.Id));
             unit.Save();
         }
@@ -119,6 +141,11 @@ namespace BLL
         {
             return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Login == login))?.FirstOrDefault());
         }
+
+        public IEnumerable<UserDTO> GetUsersByChat(ChatDTO chat)
+        {
+            return _mapper.Map<IEnumerable<User>, IEnumerable<UserDTO>>((unit.ChatRepository.GetById(chat.Id).Users));
+        }
         public UserDTO GetUserByLoginAndPassword(string login, string password)
         {
             string passwdhash = Utils.ComputeSha256Hash(password);
@@ -133,6 +160,24 @@ namespace BLL
                 unit.Save();
             }
         }
+        public void EditUsersName(UserDTO user, string name)
+        {
+            if (IsExistsUserByEmail(user.Email))
+            {
+                unit.UserRepository.GetById(user.Id).Name = name;
+                unit.Save();
+            }
+        }
+
+        public void EditUsersBio(UserDTO user, string bio)
+        {
+            if (IsExistsUserByEmail(user.Email))
+            {
+                unit.UserRepository.GetById(user.Id).Bio = bio;
+                unit.Save();
+            }
+        }
+
 
         public bool IsExistsUserByEmail(string email)
         {
@@ -148,6 +193,11 @@ namespace BLL
         public UserDTO GetUserByEmail(string email)
         {
             return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Email == email))?.FirstOrDefault());
+        }
+
+        public UserDTO GetUserByName(string name)
+        {
+            return _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Name == name))?.FirstOrDefault());
         }
         public IEnumerable<UserDTO> GetContacts(UserDTO user)
         {
@@ -172,7 +222,7 @@ namespace BLL
                 Subject = "[Verification Code]",
                 Priority = EASendMail.MailPriority.High
             };
-            message.ImportHtmlBody(@"E:\ШАГ\Team Project\Zaolis\ZaolisUI\bin\Debug\mail.html", ImportHtmlBodyOptions.NoOptions);
+            message.ImportHtmlBody(@"D:\Downloads\mail.html", ImportHtmlBodyOptions.NoOptions);
             message.HtmlBody=message.HtmlBody.Replace("Your verefication code:", $"Your verefication code:{code}");
 
             Task.Run(() =>
@@ -217,13 +267,59 @@ namespace BLL
         public void AddMessage(MessageDTO newMessage)
         {
             unit.MessageRepository.Create(_mapper.Map<Message>(newMessage));
-            unit.MessageRepository.Save();
+            unit.Save();
+            var last = unit.MessageRepository.Get().Last();
+            unit.ChatRepository.GetById(newMessage.ChatId).LastMessage=last;
+            unit.Save();
         }
 
         public void AddAttachment(AttachmentDTO newAttachment)
         {
             unit.AttachmentRepository.Create(_mapper.Map<DAL.Entities.Attachment>(newAttachment));
             unit.AttachmentRepository.Save();
+        }
+
+        public ChatDTO GetChat(UserDTO user, UserDTO contact)
+        {
+            var res_user =  unit.UserRepository.GetById(user.Id);
+            var res_contact = unit.UserRepository.GetById(contact.Id);
+            var res_chat = res_user.Chats.FirstOrDefault(c => c.Users.Where(u => u.Id == res_user.Id || u.Id == contact.Id).Count() >= 2);
+            if(res_chat == null)
+            {
+                Chat chat = new Chat();
+                chat.Users.Add(res_user);
+                chat.Users.Add(res_contact);
+                unit.ChatRepository.Create(chat);
+                unit.Save();
+                res_chat = res_user.Chats.FirstOrDefault(c => c.Users.Where(u => u.Id == res_user.Id || u.Id == contact.Id).Count() >= 2);
+                res_user.Chats.Add(res_chat);
+                res_contact.Chats.Add(res_chat);
+                unit.Save();
+            }
+            return _mapper.Map<ChatDTO>(res_chat);
+        }
+
+        public IEnumerable<ChatDTO> GetUserChats(UserDTO user)
+        {
+            var res_user = unit.UserRepository.Get(u => u.Id == user.Id, includeProperties: nameof(User.Chats))?.FirstOrDefault();
+            var chatids = res_user?.Chats?.Select(c => c.Id);
+            if (chatids != null)
+            {
+                var chats = unit.ChatRepository.Get(c => chatids.Contains(c.Id), includeProperties: nameof(Chat.LastMessage));
+                return _mapper.Map<IEnumerable<Chat>, IEnumerable<ChatDTO>>(chats);
+            }
+            return null;
+        }
+
+        public IEnumerable<MessageDTO> GetMessagesByChat(ChatDTO chat)
+        {
+            var res_chat = unit.ChatRepository.Get(c => c.Id == chat.Id, includeProperties: nameof(Chat.Messages))?.FirstOrDefault();
+            return _mapper.Map<IEnumerable<Message>, IEnumerable<MessageDTO>>(res_chat.Messages);
+        }
+
+        public ChatDTO GetChatById(int Id)
+        {
+            return _mapper.Map<ChatDTO>(unit.ChatRepository.GetById(Id));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,44 @@ namespace ZaolisUI
     /// <summary>
     /// Interaction logic for UserInfo.xaml
     /// </summary>
-    public partial class UserInfo : UserControl
+    public partial class UserInfo : UserControl, IChildWindow
     {
-        public UserInfo()
+        private DockPanel parent;
+        private UserDTO CurrentUser;
+        public UserInfo(DockPanel parent,ChatInfoModel model)
         {
             InitializeComponent();
+            CurrentUser = model.ContactMsgGetter;
+            this.parent = parent;
+            this.DataContext = model;
+        }
+
+        public event ClosingDelegate Closing;
+        public event MessageDelegate OpenMsg;
+
+        public void Close()
+        {
+            parent.Children.Remove(this);
+        }
+
+        public void ShowMsg(string title, string msg)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void buttonClose_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void Border_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Close();
+        }
+
+        private void buttonDeleteUser_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

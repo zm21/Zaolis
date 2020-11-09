@@ -90,19 +90,39 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChatInfoModel.cs" />
+    <Compile Include="Design\ChatMessageListItemDesignModel.cs" />
+    <Compile Include="ChatWindow.xaml.cs">
+      <DependentUpon>ChatWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GroupInfo.xaml.cs">
       <DependentUpon>GroupInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainMenuViewModel.cs" />
+    <Compile Include="Interfaces\IOverlayWindow.cs" />
+    <Compile Include="ViewModels\MainMenuViewModel.cs" />
     <Compile Include="MainMenuZaolis.xaml.cs">
       <DependentUpon>MainMenuZaolis.xaml</DependentUpon>
     </Compile>
     <Compile Include="ForgotPasswordCode.xaml.cs">
       <DependentUpon>ForgotPasswordCode.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MessageCloud.xaml.cs">
+      <DependentUpon>MessageCloud.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MessageModel.cs" />
+    <Compile Include="Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserInfo.xaml.cs">
       <DependentUpon>UserInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ValueConverters\BaseValueConverter.cs" />
+    <Compile Include="ValueConverters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="ValueConverters\BooleanToVisiblityGoneConverter.cs" />
+    <Compile Include="ValueConverters\SentByMeToAlignmentConverter.cs" />
+    <Compile Include="ValueConverters\SentByMeToBackgroundConverter.cs" />
+    <Compile Include="ValueConverters\TimeToDisplayTimeConverter.cs" />
+    <Compile Include="ValueConverters\TimeToReadTimeConverter.cs" />
     <Compile Include="VerificationCode.xaml.cs">
       <DependentUpon>VerificationCode.xaml</DependentUpon>
     </Compile>
@@ -111,6 +131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Chat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChatWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -126,7 +150,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MessageCloud.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MsgBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -142,11 +174,19 @@
     <Compile Include="MsgBox.xaml.cs">
       <DependentUpon>MsgBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="RegisterViewModel.cs" />
+    <Compile Include="Models\RegisterViewModel.cs" />
     <Compile Include="SignIn_SignUp.xaml.cs">
       <DependentUpon>SignIn_SignUp.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Styles\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Scroll.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UserInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -185,6 +225,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\BLL.Models.AvatarDTO.datasource" />
+    <None Include="Properties\DataSources\BLL.Models.ChatDTO.datasource" />
+    <None Include="Properties\DataSources\BLL.Models.MessageDTO.datasource" />
     <None Include="Properties\DataSources\BLL.Models.UserContactDTO.datasource" />
     <None Include="Properties\DataSources\BLL.Models.UserDTO.datasource" />
     <None Include="Properties\Settings.settings">

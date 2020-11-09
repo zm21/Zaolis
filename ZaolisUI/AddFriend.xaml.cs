@@ -45,6 +45,7 @@ namespace ZaolisUI
                 if(res!=null)
                 {
                     client.AddContact(user, res);
+                    client.GetChat(user, res);
                 }
                 else
                 {

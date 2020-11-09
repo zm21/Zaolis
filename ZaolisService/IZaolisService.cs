@@ -47,6 +47,26 @@ namespace ZaolisService
         IEnumerable<UserDTO> GetContacts(UserDTO user);
         [OperationContract]
         void AddContact(UserDTO add_to, UserDTO newContact);
+        [OperationContract]
+        UserDTO GetUserByName(string name);
+        [OperationContract]
+        void EditUsersName(UserDTO user, string name);
+        [OperationContract]
+        void EditUsersBio(UserDTO user, string bio);
+        [OperationContract]
+        ChatDTO GetChat(UserDTO user, UserDTO contact);
+        [OperationContract]
+        IEnumerable<ChatDTO> GetUserChats(UserDTO user);
+        [OperationContract]
+        IEnumerable<UserDTO> GetUsersByChat(ChatDTO chat);
+        [OperationContract]
+        AvatarDTO GetAvatar(UserDTO user);
+        [OperationContract]
+        UserDTO ConnectByUser(UserDTO user);
+        [OperationContract]
+        IEnumerable<MessageDTO> GetMessagesByChat(ChatDTO chat);
+        [OperationContract]
+        ChatDTO GetChatById(int Id);
     }
 
     public interface IZaolisCallback
@@ -55,4 +75,16 @@ namespace ZaolisService
         void RecieveMessage(MessageDTO message);
     }
 
+    //[DataContract]
+    //public class TransferFileInfo
+    //{
+    //    [DataMember]
+    //    public string FileName { get; set; }
+        
+    //    [DataMember]
+    //    public string Extention { get; set; }
+        
+    //    [DataMember]
+    //    byte[] data;
+    //}
 }

@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="ZaolisUI.ChatWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ZaolisUI"
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             Height="auto" Width="auto">
+    <Grid>
+        <DockPanel>
+            <DockPanel DockPanel.Dock="Top">
+                <DockPanel LastChildFill="False" Background="#C8E4F8" MouseLeftButtonUp="DockPanel_MouseLeftButtonUp">
+                    <TextBlock DockPanel.Dock="Left"> <Run Text="{Binding ContactMsgGetter.Name, Mode=OneWay}" FontSize="16" ></Run> 
+                        <LineBreak/>
+                        <Run Text="{Binding OnlineStatus, Mode=OneWay}"></Run>
+                    </TextBlock>
+                </DockPanel>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Bottom" LastChildFill="True" Margin="0,5">
+                <Button DockPanel.Dock="Left" Style="{StaticResource MaterialDesignIconButton}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=Attachment}"></Button>
+                <Button DockPanel.Dock="Right" Style="{StaticResource MaterialDesignIconButton}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=Send}" Margin="9,2,9,0" VerticalAlignment="Top" Click="ButtonSend_Click" ></Button>
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="#FF03A9F4" Width="30" Height="30" DockPanel.Dock="Right" BorderBrush="{x:Null}" Background="{x:Null}">
+                    <materialDesign:PackIcon Kind="MicNone" Width="30" Height="25" />
+                </Button>
+                <Button DockPanel.Dock="Right" Style="{StaticResource MaterialDesignIconButton}" Background="{x:Null}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=StickerOutline}" ></Button>
+                <TextBox x:Name="txtbox_message" FontSize="14" materialDesign:HintAssist.Hint="Write a message..." DockPanel.Dock="Left"></TextBox>
+            </DockPanel>
+            <ScrollViewer x:Name="ScrollViewer">
+                <ItemsControl ItemsSource="{Binding Messages}" x:Name="messagesItemsControl">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <local:MessageCloud/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </DockPanel>
+    </Grid>
+</UserControl>

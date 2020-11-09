@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 namespace BLL.Models
 {
     [DataContract]
+    [Serializable]
     public partial class UserDTO
     {
         [DataMember]
@@ -26,5 +27,7 @@ namespace BLL.Models
         public string Bio { get; set; }
         [DataMember]
         public int AvatarId { get; set; }
+        [DataMember]
+        public DateTime LastActive { get; set; }
     }
 }
