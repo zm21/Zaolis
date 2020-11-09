@@ -222,8 +222,7 @@ namespace BLL
                 Subject = "[Verification Code]",
                 Priority = EASendMail.MailPriority.High
             };
-            message.ImportHtmlBody(@"C:\Users\User-PC\Downloads\mail.html", ImportHtmlBodyOptions.NoOptions);
-            message.ImportHtmlBody(@"D:\Downloads\mail.html", ImportHtmlBodyOptions.NoOptions);
+            message.ImportHtmlBody(@"C:\Users\VitalikOlekS\Desktop\mail.html", ImportHtmlBodyOptions.NoOptions);
             message.HtmlBody=message.HtmlBody.Replace("Your verefication code:", $"Your verefication code:{code}");
 
             Task.Run(() =>
@@ -303,9 +302,13 @@ namespace BLL
         public IEnumerable<ChatDTO> GetUserChats(UserDTO user)
         {
             var res_user = unit.UserRepository.Get(u => u.Id == user.Id, includeProperties: nameof(User.Chats))?.FirstOrDefault();
-            var chatids = res_user.Chats.Select(c => c.Id);
-            var chats = unit.ChatRepository.Get(c => chatids.Contains(c.Id), includeProperties:nameof(Chat.LastMessage));
-            return _mapper.Map<IEnumerable<Chat>, IEnumerable<ChatDTO>>(chats);
+            var chatids = res_user?.Chats?.Select(c => c.Id);
+            if (chatids != null)
+            {
+                var chats = unit.ChatRepository.Get(c => chatids.Contains(c.Id), includeProperties: nameof(Chat.LastMessage));
+                return _mapper.Map<IEnumerable<Chat>, IEnumerable<ChatDTO>>(chats);
+            }
+            return null;
         }
 
         public IEnumerable<MessageDTO> GetMessagesByChat(ChatDTO chat)

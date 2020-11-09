@@ -36,6 +36,7 @@ namespace ZaolisUI
             this.ChatInfo = chatInfoModel;
             this.DataContext = ChatInfo;
             this.client = client;
+            messagesItemsControl.DataContext = ChatInfo.Messages;
             OverlayDockPanel = dockPanel;
         }
 

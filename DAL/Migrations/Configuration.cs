@@ -10,7 +10,6 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "DAL.ZaolisModel";
         }
 
         protected override void Seed(DAL.ZaolisModel context)

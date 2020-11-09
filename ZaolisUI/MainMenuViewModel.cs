@@ -30,13 +30,16 @@ namespace ZaolisUI
             client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(handler));
             AllUsers = client.GetAllUsers();
             FriendUsers = client.GetContacts(CurrentUser);
-            Chats = new ObservableCollection<ChatDTO>(client.GetUserChats(CurrentUser));
             ChatInfos = new ObservableCollection<ChatInfoModel>();
-            //CurrentAvatar = client.GetAvatar(CurrentUser);
-            foreach (var chat in Chats)
+            if (client.GetUserChats(CurrentUser) != null)
             {
-                ChatInfos.Add(new ChatInfoModel(client, CurrentUser, chat));
+                Chats = new ObservableCollection<ChatDTO>(client.GetUserChats(CurrentUser));
+                foreach (var chat in Chats)
+                {
+                    ChatInfos.Add(new ChatInfoModel(client, CurrentUser, chat));
+                }
             }
+            //CurrentAvatar = client.GetAvatar(CurrentUser);
         }
         public void SearchUser(string searchBy)
         {
