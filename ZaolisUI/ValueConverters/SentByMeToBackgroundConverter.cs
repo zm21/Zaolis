@@ -14,7 +14,7 @@ namespace ZaolisUI
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var converter = new System.Windows.Media.BrushConverter();
-            return (bool)value ? (Brush)converter.ConvertFromString("#FFE4E1") : (Brush)converter.ConvertFromString("#00BFFF");
+            return (bool)value ? (Brush)converter.ConvertFromString("#ADD8E6") : (Brush)converter.ConvertFromString("#00BFFF");
         }
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
