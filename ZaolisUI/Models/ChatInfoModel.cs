@@ -61,9 +61,12 @@ namespace ZaolisUI
                     {
                         Messages.Add(new MessageModel(item, CurrentUser) { Message = item });
                     }
-                    var firstMsg = Messages.First();
-                    Messages.Remove(firstMsg);
-                    Messages.Insert(Messages.IndexOf(Messages.Last())+1, firstMsg);
+                    if (Messages.Count() > 1)
+                    {
+                        var firstMsg = Messages.First();
+                        Messages.Remove(firstMsg);
+                        Messages.Insert(Messages.IndexOf(Messages.Last()) + 1, firstMsg);
+                    }
                 });
             });
             
