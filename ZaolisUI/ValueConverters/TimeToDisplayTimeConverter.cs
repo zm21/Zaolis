@@ -12,15 +12,15 @@ namespace ZaolisUI
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             // Get the time passed in
-            var time = (DateTimeOffset)value;
+            var time = (DateTime)value;
 
             // If it is today...
-            if (time.Date == DateTimeOffset.UtcNow.Date)
+            if (time.Date == DateTime.UtcNow.Date)
                 // Return just time
-                return time.ToLocalTime().ToString("HH:mm");
+                return time.ToShortTimeString();
 
             // Otherwise, return a full date
-            return time.ToLocalTime().ToString("HH:mm, dd MMM yyyy");
+            return $"{time.ToShortTimeString()}, {time.ToShortDateString()}";
         }
 
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
