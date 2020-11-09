@@ -30,6 +30,8 @@ namespace ZaolisUI
         private ZaolisServiceClient.ZaolisServiceClient client;
         private DockPanel OverlayDockPanel;
 
+        public MessageModel MessageModel { get; private set; }
+
         public ChatWindow(ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client,DockPanel dockPanel)
         {
             InitializeComponent();
@@ -47,7 +49,7 @@ namespace ZaolisUI
                 messageDTO.ChatId = ChatInfo.Chat.Id;
                 messageDTO.MessageText = txtbox_message.Text;
                 messageDTO.CreationTime = DateTime.Now;
-                messageDTO.UserId = ChatInfo.Current.Id;
+                messageDTO.UserId = ChatInfo.CurrentUser.Id;
                 client.SendMessageAsync(messageDTO);
                 txtbox_message.Text = "";
 
