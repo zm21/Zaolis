@@ -85,6 +85,7 @@
     <Compile Include="Chat.xaml.cs">
       <DependentUpon>Chat.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\TransferFileInfo.cs" />
     <Compile Include="Models\ChatInfoModel.cs" />
     <Compile Include="Design\ChatMessageListItemDesignModel.cs" />
     <Compile Include="ChatWindow.xaml.cs">
