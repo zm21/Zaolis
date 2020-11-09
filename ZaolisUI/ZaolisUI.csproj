@@ -86,6 +86,7 @@
       <DependentUpon>Chat.xaml</DependentUpon>
     </Compile>
     <Compile Include="ChatInfoModel.cs" />
+    <Compile Include="Design\ChatMessageListItemDesignModel.cs" />
     <Compile Include="ChatWindow.xaml.cs">
       <DependentUpon>ChatWindow.xaml</DependentUpon>
     </Compile>

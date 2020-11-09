@@ -36,6 +36,7 @@ namespace ZaolisUI
             this.ChatInfo = chatInfoModel;
             this.DataContext = ChatInfo;
             this.client = client;
+            messagesItemsControl.DataContext = ChatInfo.Messages;
             OverlayDockPanel = dockPanel;
         }
 
@@ -48,7 +49,6 @@ namespace ZaolisUI
                 messageDTO.MessageText = txtbox_message.Text;
                 messageDTO.CreationTime = DateTime.Now;
                 messageDTO.UserId = ChatInfo.Current.Id;
-                messageDTO.SentByMe = true;
                 client.SendMessageAsync(messageDTO);
                 txtbox_message.Text = "";
 

@@ -20,6 +20,5 @@ namespace DAL.Entities
         public virtual User User { get; set; }
         public virtual Chat Chat { get; set; }
         public virtual ICollection<Attachment> Attachments { get; set; }
-        public bool SentByMe { get; set; }
     }
 }

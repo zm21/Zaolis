@@ -21,8 +21,5 @@ namespace BLL.Models
         public string MessageText { get; set; }
         [DataMember]
         public DateTime CreationTime { get; set; }
-
-        [DataMember]
-        public bool SentByMe { get; set; }
     }
 }
