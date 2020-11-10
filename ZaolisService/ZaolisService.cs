@@ -168,6 +168,11 @@ namespace ZaolisService
             return bll.GetChatById(Id);
         }
 
+        public void RemoveFriendAndChat(UserDTO deletefrom,UserDTO deletewhom, ChatDTO chat)
+        {
+            bll.RemoveFriendAndChat(deletefrom, deletewhom, chat);
+        }
+
         public UserDTO UpdateUserInfo(UserDTO user)
         {
             var res= bll.GetUserByLogin(user.Login);

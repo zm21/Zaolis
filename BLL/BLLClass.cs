@@ -43,6 +43,7 @@ namespace BLL
         AvatarDTO GetAvatar(UserDTO user);
         IEnumerable<MessageDTO> GetMessagesByChat(ChatDTO chat);
         ChatDTO GetChatById(int Id);
+        void RemoveFriendAndChat(UserDTO deletefrom, UserDTO deletewhom, ChatDTO chat);
     }
     public class BLLClass : IBLLClass
     {
@@ -324,6 +325,20 @@ namespace BLL
         public ChatDTO GetChatById(int Id)
         {
             return _mapper.Map<ChatDTO>(unit.ChatRepository.GetById(Id));
+        }
+
+        public void RemoveFriendAndChat(UserDTO deletefrom, UserDTO deletewhom, ChatDTO chat)
+        {
+            unit.ChatRepository.Delete(unit.ChatRepository.GetById(chat.Id)); //deletes chat 
+            unit.Save();
+
+            unit.UserRepository.GetById(deletefrom.Id).UserContact.Contacts.Remove(unit.UserRepository.GetById(deletewhom.Id)); //deletes him from my friends
+
+            if (unit.UserRepository?.GetById(deletewhom.Id)?.UserContact?.Contacts?.Contains(unit?.UserRepository?.GetById(deletefrom.Id))==true)
+            {
+                unit.UserRepository.GetById(deletewhom.Id).UserContact.Contacts.Remove(unit.UserRepository.GetById(deletefrom.Id)); //If we are both friends - deletes me from his friends
+            }
+            unit.Save();
         }
     }
 }

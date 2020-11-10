@@ -35,7 +35,9 @@ namespace ZaolisUI
 
         public MessageModel MessageModel { get; private set; }
 
-        public ChatWindow(ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client,DockPanel dockPanel)
+        private MainMenuViewModel viewModel;
+
+        public ChatWindow(ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client,DockPanel dockPanel, MainMenuViewModel viewModel)
         {
             InitializeComponent();
 
@@ -44,6 +46,7 @@ namespace ZaolisUI
             this.ChatInfo = chatInfoModel;
             this.DataContext = ChatInfo;
             this.client = client;
+            this.viewModel = viewModel;
 
             OverlayDockPanel = dockPanel;
 
@@ -76,7 +79,7 @@ namespace ZaolisUI
 
         private void DockPanel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            UserInfo userInfo = new UserInfo(OverlayDockPanel,ChatInfo);
+            UserInfo userInfo = new UserInfo(OverlayDockPanel,ChatInfo,client, viewModel);
             OverlayDockPanel.Children.Add(userInfo);
         }
 

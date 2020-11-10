@@ -390,10 +390,24 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="RemoveFriendAndChat">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="deletefrom" nillable="true" type="q34:UserDTO" />
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="deletewhom" nillable="true" type="q35:UserDTO" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="chat" nillable="true" type="q36:ChatDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveFriendAndChatResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="RecieveMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="message" nillable="true" type="q34:MessageDTO" />
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="message" nillable="true" type="q37:MessageDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
