@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,12 @@ namespace ZaolisUI
         private ObservableCollection<UserDTO> users;
         private CallbackHandler callbackHandler;
         private IChatManager chatManager;
+
+
+        private System.Windows.Forms.NotifyIcon m_notifyIcon;
+        private System.Windows.Forms.MenuItem menuItem;
+        private System.Windows.Forms.MenuItem menuItem1;
+        private System.Windows.Forms.ContextMenu contextMenu;
         public MainMenuZaolis(ObservableCollection<UserDTO> users, ZaolisServiceClient.ZaolisServiceClient client)
         {
             InitializeComponent();
@@ -55,6 +62,30 @@ namespace ZaolisUI
             callbackHandler = new CallbackHandler();
             callbackHandler.RecieveEvent += CallbackHandler_RecieveEvent;
             client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(callbackHandler));
+
+
+            this.contextMenu = new System.Windows.Forms.ContextMenu();
+            this.menuItem = new System.Windows.Forms.MenuItem();
+            this.menuItem.Index = 0;
+            this.menuItem.Text = "Quit Zaolis";
+            this.menuItem.Click += new EventHandler(menuItem1_Click);
+            this.menuItem1 = new System.Windows.Forms.MenuItem();
+            this.menuItem1.Index = 1;
+            this.menuItem1.Text = "Open Zaolis";
+            this.menuItem1.Click += new EventHandler(menuItem_Click);
+            contextMenu.MenuItems.Add(menuItem1);
+            contextMenu.MenuItems.Add(menuItem);
+
+
+            m_notifyIcon = new System.Windows.Forms.NotifyIcon();
+            m_notifyIcon.Icon = new System.Drawing.Icon(@"..\..\Resources\z.ico");
+            m_notifyIcon.BalloonTipText = "Some message can be here";
+            m_notifyIcon.BalloonTipClicked += new EventHandler(m_notifyIcon_Click);
+            m_notifyIcon.BalloonTipTitle = $"{loginnedUser.Login}";
+            m_notifyIcon.Text = "Zaolis";
+            m_notifyIcon.ContextMenu = contextMenu;
+            m_notifyIcon.Click += new EventHandler(m_notifyIcon_Click);
+            
         }
 
         private void CallbackHandler_RecieveEvent(MessageDTO obj)
@@ -71,7 +102,9 @@ namespace ZaolisUI
 
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
+            m_notifyIcon.Visible = true;
+            m_notifyIcon.ShowBalloonTip(10000);
         }
 
         private void ButtonMinimize_Click(object sender, RoutedEventArgs e)
@@ -91,6 +124,9 @@ namespace ZaolisUI
         {
             if (logginedUsers != null)
                 client.Disconnect(loginnedUser);
+
+            m_notifyIcon.Dispose();
+            m_notifyIcon = null;
         }
 
         private void textBoxSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -208,6 +244,27 @@ namespace ZaolisUI
             textBoxSearch.IsEnabled = true;
             ButtonOpenMenu.IsEnabled = true;
         }
+
+
+        void m_notifyIcon_Click(object sender, EventArgs e)
+        {
+            this.Show();
+            m_notifyIcon.Visible = false;
+            WindowState = WindowState.Normal;
+        }
+
+
+        private void menuItem1_Click(object Sender, EventArgs e)
+        {
+            // Close the form, which closes the application.
+            this.Close();
+        }
+        private void menuItem_Click(object Sender, EventArgs e)
+        {
+            this.Show();
+            m_notifyIcon.Visible = false;
+            WindowState = WindowState.Normal;
+        }
     }
     public interface IChatManager
     {
@@ -264,4 +321,8 @@ namespace ZaolisUI
             RecieveEvent?.Invoke(message);
         }
     }
+
+
+
+
 }

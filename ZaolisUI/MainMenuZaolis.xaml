@@ -65,6 +65,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
             </Grid>
             <!--Top Line-->
             <DockPanel x:Name="TopGrid" MouseDown="TopGrid_MouseDown" Grid.ColumnSpan="4" Background="#FF2196F3">
+                
                 <DockPanel LastChildFill="False" Margin="10,0">
                     <Button DockPanel.Dock="Right" x:Name="ButtonClose" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Click="ButtonClose_Click" >
                         <materialDesign:PackIcon Kind="Close"/>
@@ -243,7 +244,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                 </DockPanel>
             </DockPanel>
 
-            <DockPanel  x:Name="OverlayDockPanel" Grid.RowSpan="4" Grid.ColumnSpan="4" >
+            <DockPanel x:Name="OverlayDockPanel" Grid.RowSpan="4" Grid.ColumnSpan="4" >
             </DockPanel>
         </Grid>
     </Grid>
