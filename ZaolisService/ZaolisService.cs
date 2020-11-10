@@ -167,5 +167,11 @@ namespace ZaolisService
         {
             return bll.GetChatById(Id);
         }
+
+        public UserDTO UpdateUserInfo(UserDTO user)
+        {
+            var res= bll.GetUserByLogin(user.Login);
+            return res;
+        }
     }
 }

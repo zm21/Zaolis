@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -36,10 +37,23 @@ namespace ZaolisUI
         public ChatWindow(ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client,DockPanel dockPanel)
         {
             InitializeComponent();
+
+            ScrollViewer.ScrollToEnd();
+
             this.ChatInfo = chatInfoModel;
             this.DataContext = ChatInfo;
             this.client = client;
+
             OverlayDockPanel = dockPanel;
+
+            Task.Run(() => 
+            {
+                while(true)
+                {
+                    ChatInfo.ContactMsgGetter = client.UpdateUserInfo(ChatInfo.ContactMsgGetter);
+                    Thread.Sleep(10000);
+                }
+            });
         }
 
         private void ButtonSend_Click(object sender, RoutedEventArgs e)

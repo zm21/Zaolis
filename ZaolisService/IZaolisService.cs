@@ -60,6 +60,8 @@ namespace ZaolisService
         [OperationContract]
         IEnumerable<UserDTO> GetUsersByChat(ChatDTO chat);
         [OperationContract]
+        UserDTO UpdateUserInfo(UserDTO user);
+        [OperationContract]
         AvatarDTO GetAvatar(UserDTO user);
         [OperationContract]
         UserDTO ConnectByUser(UserDTO user);
