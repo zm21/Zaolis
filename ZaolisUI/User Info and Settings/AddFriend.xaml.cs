@@ -22,11 +22,14 @@ namespace ZaolisUI
     public partial class AddFriend : Window
     {
         UserDTO user;
+
         CallbackHandler handler=new CallbackHandler();
+
         ZaolisServiceClient.ZaolisServiceClient client;
         public AddFriend(UserDTO user, ZaolisServiceClient.ZaolisServiceClient client)
         {
             InitializeComponent();
+
             this.user = user;
             this.client = client;
             this.client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(handler));
@@ -42,6 +45,7 @@ namespace ZaolisUI
             if(txtBox_username.Text!=null)
             {
                 var res = client.GetUserByLogin(txtBox_username.Text);
+
                 if(res!=null)
                 {
                     client.AddContact(user, res);

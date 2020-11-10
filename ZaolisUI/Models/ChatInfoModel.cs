@@ -16,8 +16,8 @@ namespace ZaolisUI
     public class ChatInfoModel: INotifyPropertyChanged
     {
         private ZaolisServiceClient.ZaolisServiceClient client;
-        private ChatDTO chat;
 
+        private ChatDTO chat;
         public ChatDTO Chat
         {
             get { return chat; }
@@ -27,9 +27,12 @@ namespace ZaolisUI
                 OnPropertyChanged(nameof(SendTime));
             }
         }
+
         private UserDTO contactMsgGetter;
         public ObservableCollection<MessageModel> Messages { get; set; }
-        //Chat companion
+
+
+        //Chat friend
         public UserDTO ContactMsgGetter 
         {
             get { return contactMsgGetter; }
@@ -38,6 +41,7 @@ namespace ZaolisUI
                 OnPropertyChanged(nameof(OnlineStatus));
             }
         }
+
         public UserDTO CurrentUser { get; set; }
 
         public string LastMessage => Chat.LastMessage != null ? Chat.LastMessage.MessageText.Length>10?Chat.LastMessage.MessageText.Substring(0,7)+"...":Chat.LastMessage.MessageText : "No messages here yet.";
@@ -51,8 +55,10 @@ namespace ZaolisUI
             this.client = client;
             Chat = chat;
             CurrentUser = current;
+
             ContactMsgGetter = client.GetUsersByChat(Chat).Where(u=>u.Id!=current.Id).FirstOrDefault();
             Messages = new ObservableCollection<MessageModel>();
+
             Task.Run(() =>
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -64,6 +70,7 @@ namespace ZaolisUI
                     if (Messages.Count() > 1)
                     {
                         var firstMsg = Messages.First();
+
                         Messages.Remove(firstMsg);
                         Messages.Insert(Messages.IndexOf(Messages.Last()) + 1, firstMsg);
                     }

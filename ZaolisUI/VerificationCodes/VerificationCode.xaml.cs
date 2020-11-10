@@ -21,11 +21,15 @@ namespace ZaolisUI
     public partial class VerificationCode : Window
     {
         CallbackHandler handler;
+
         ZaolisServiceClient.ZaolisServiceClient client;
+
         string email;
+
         public VerificationCode(string email, ZaolisServiceClient.ZaolisServiceClient client)
         {
             InitializeComponent();
+
             this.email = email;
             this.client = client;
         }

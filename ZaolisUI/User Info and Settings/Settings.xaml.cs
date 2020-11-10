@@ -41,8 +41,10 @@ namespace ZaolisUI
             InitializeComponent();
             this.client = client;
             this.user = user;
+
             parent = mainGrid;
             mainMenuViewModel = new MainMenuViewModel(user);
+
             this.users = users;
             this.DataContext = mainMenuViewModel;
         }
@@ -74,6 +76,7 @@ namespace ZaolisUI
                     if (nameTextBox.Text != null)
                     {
                         client.EditUsersName(users.Where(u => u.Login == user.Login).FirstOrDefault(), nameTextBox.Text);
+
                         if (File.Exists(remembered_path))
                         {
                             SignInUpWindow.Save(users);
@@ -92,6 +95,7 @@ namespace ZaolisUI
                     if (bioTextBox.Text != null)
                     {
                         client.EditUsersBio(users.Where(u => u.Login == user.Login).FirstOrDefault(), bioTextBox.Text);
+
                         if (File.Exists(remembered_path))
                         {
                             SignInUpWindow.Save(users);

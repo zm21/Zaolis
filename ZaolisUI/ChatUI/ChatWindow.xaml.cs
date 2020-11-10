@@ -30,6 +30,7 @@ namespace ZaolisUI
         public ChatDTO Chat => ChatInfo.Chat;
 
         private ZaolisServiceClient.ZaolisServiceClient client;
+
         private DockPanel OverlayDockPanel;
 
         public MessageModel MessageModel { get; private set; }
@@ -61,13 +62,15 @@ namespace ZaolisUI
             if(!string.IsNullOrWhiteSpace(txtbox_message.Text))
             {
                 MessageDTO messageDTO = new MessageDTO();
+
                 messageDTO.ChatId = ChatInfo.Chat.Id;
                 messageDTO.MessageText = txtbox_message.Text;
                 messageDTO.CreationTime = DateTime.Now;
                 messageDTO.UserId = ChatInfo.CurrentUser.Id;
-                client.SendMessageAsync(messageDTO);
-                txtbox_message.Text = "";
 
+                client.SendMessageAsync(messageDTO);
+
+                txtbox_message.Text = "";
             }
         }
 
@@ -80,6 +83,7 @@ namespace ZaolisUI
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+
             openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.png) | *.jpg; *.jpeg; *.jpe; *.png";
             openFileDialog.ShowDialog();
         }

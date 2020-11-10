@@ -30,41 +30,64 @@ namespace ZaolisUI
     {
         private static string remembered_path = "rememberme.dat";
 
+
+
         ZaolisServiceClient.ZaolisServiceClient client;
+
         RegisterViewModel registerModel;
+
         ProgressBar pgLoading;
+
         CallbackHandler handler = new CallbackHandler();
+
         ObservableCollection<UserDTO> logginedUsers = new ObservableCollection<UserDTO>();
+
         public SignInUpWindow()
         {
             InitializeComponent();
+
             rememberMe.IsChecked = false;
             client = new ZaolisServiceClient.ZaolisServiceClient(new InstanceContext(handler));
+
             if(File.Exists(remembered_path))
             {
                 logginedUsers = Load();
+
                 if (logginedUsers.Count > 0)
                 {
                     MainMenuZaolis mnz = new MainMenuZaolis(logginedUsers, client);
                     mnz.Show();
+
                     this.Close();
                 }
             }
+
             registerModel = new RegisterViewModel(client);
+
             SignUP.DataContext = registerModel;
+
             pgLoading = loginProgressBar;
+
             buttonLogin.Content = "LOGIN";
+
             Task.Run(() => { this.client.Request(); });
         }
 
         public SignInUpWindow(ObservableCollection<UserDTO> logginedUsers, ZaolisServiceClient.ZaolisServiceClient client)
         {
             InitializeComponent();
+
+
             this.logginedUsers = logginedUsers;
+
             this.client = client;
+
             registerModel = new RegisterViewModel(client);
+
             pgLoading = loginProgressBar;
+
             buttonLogin.Content = "LOGIN";
+
             Task.Run(() => { this.client.Request(); });
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -78,6 +101,7 @@ namespace ZaolisUI
             using (FileStream fs = new FileStream(remembered_path, FileMode.OpenOrCreate))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
+
                 var temp = (ObservableCollection<UserDTO>)formatter.Deserialize(fs);
                 return temp;
             }
@@ -86,6 +110,7 @@ namespace ZaolisUI
         public static void Save(ObservableCollection<UserDTO> collection)
         {
             BinaryFormatter formatter = new BinaryFormatter();
+
             using (FileStream fs = new FileStream(remembered_path, FileMode.OpenOrCreate))
             {
                 formatter.Serialize(fs, collection);
@@ -108,26 +133,35 @@ namespace ZaolisUI
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
             Task.Run(() => { this.client.Request(); });
+
             string login = logTxtBox_login.Text;
             string password = passwdbox.Password;
+
             buttonLogin.Content = pgLoading;
             buttonLogin.IsEnabled = false;
+
             Task.Run(() =>
             {
                 if (client.IsExistsUserByLoginPassword(login, password))
                 {
-                    client.Connect(login, password); //isActive change
+                    client.Connect(login, password); //isActive => true
+
                     Application.Current.Dispatcher.Invoke(() =>
                     {
                         UserDTO user = new UserDTO();
+
                         user = client.GetUserByLogin(logTxtBox_login.Text);
+
                         logginedUsers.Add(user);
+
                         if (rememberMe.IsChecked == true)
                         {
                             Save(logginedUsers);
                         }
+
                         MainMenuZaolis mnz = new MainMenuZaolis(logginedUsers, client);
                         mnz.Show();
+
                         this.Close();
                     });
                 }
@@ -137,6 +171,7 @@ namespace ZaolisUI
                     {
                         buttonLogin.Content = "LOGIN";
                         buttonLogin.IsEnabled = true;
+
                         ShowMsg("Error!", "There is no user with such login or password");
                     });
                 }
@@ -153,8 +188,11 @@ namespace ZaolisUI
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     VerificationCode verificationCode = new VerificationCode(registerModel.Email,client);
+
                     verificationCode.Owner = this;
+
                     verificationCode.ShowDialog();
+
                     if (verificationCode.DialogResult == true)
                     {
                         client.AddUser(new BLL.Models.UserDTO()
@@ -168,6 +206,7 @@ namespace ZaolisUI
                             LastActive=DateTime.Now
                         });
                         ShowMsg("Registration", "Registration Successfull");
+
                         SignUP.Visibility = Visibility.Hidden;
                         LOGIN.Visibility = Visibility.Visible;
                         logTxtBox_login.Text = registerModel.Login;
@@ -183,6 +222,7 @@ namespace ZaolisUI
         {
             MsgBox msgBox = new MsgBox(title, msg);
             msgBox.Owner = this;
+
             msgBox.ShowDialog();
         }
         private void Label_MouseEnter(object sender, MouseEventArgs e)
@@ -204,6 +244,7 @@ namespace ZaolisUI
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Task.Run(() => { this.client.Request(); });
+
             Task.Run(() =>
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -212,9 +253,12 @@ namespace ZaolisUI
                     if (user_res != null)
                     {
                         client.ForgetPassword(user_res);
+
                         ForgotPasswordCode forgotPassword = new ForgotPasswordCode(ForgPassTxtBox_login.Text);
+
                         forgotPassword.Owner = this;
                         forgotPassword.ShowDialog();
+
                         if (forgotPassword.DialogResult == true)
                         {
                             ForgetPasswordGrid.Visibility = Visibility.Hidden;
@@ -236,9 +280,11 @@ namespace ZaolisUI
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Task.Run(() => { this.client.Request(); });
+
             string newpass = newPass_txtBox.Password;
             string confirmnewpass = confirmNewPass_txtBox.Password;
             string forgpasslogin = ForgPassTxtBox_login.Text;
+
             Task.Run(() =>
             {
                 Application.Current.Dispatcher.Invoke(() =>
@@ -248,9 +294,12 @@ namespace ZaolisUI
                         if (newpass.Length >= 8)
                         {
                             var res = client.GetUserByLogin(forgpasslogin);
+
                             client.EditUsersPassword(res, newpass);
+
                             NewPasswordGrid.Visibility = Visibility.Hidden;
                             LOGIN.Visibility = Visibility.Visible;
+
                             logTxtBox_login.Text = forgpasslogin;
                             ForgPassTxtBox_login.Text = "";
                             newPass_txtBox.Password = "";
