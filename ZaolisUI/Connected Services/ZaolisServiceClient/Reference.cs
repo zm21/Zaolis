@@ -159,6 +159,12 @@ namespace ZaolisUI.ZaolisServiceClient {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUsersByChat", ReplyAction="http://tempuri.org/IZaolisService/GetUsersByChatResponse")]
         System.Threading.Tasks.Task<BLL.Models.UserDTO[]> GetUsersByChatAsync(BLL.Models.ChatDTO chat);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/UpdateUserInfo", ReplyAction="http://tempuri.org/IZaolisService/UpdateUserInfoResponse")]
+        BLL.Models.UserDTO UpdateUserInfo(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/UpdateUserInfo", ReplyAction="http://tempuri.org/IZaolisService/UpdateUserInfoResponse")]
+        System.Threading.Tasks.Task<BLL.Models.UserDTO> UpdateUserInfoAsync(BLL.Models.UserDTO user);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetAvatar", ReplyAction="http://tempuri.org/IZaolisService/GetAvatarResponse")]
         BLL.Models.AvatarDTO GetAvatar(BLL.Models.UserDTO user);
         
@@ -409,6 +415,14 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         public System.Threading.Tasks.Task<BLL.Models.UserDTO[]> GetUsersByChatAsync(BLL.Models.ChatDTO chat) {
             return base.Channel.GetUsersByChatAsync(chat);
+        }
+        
+        public BLL.Models.UserDTO UpdateUserInfo(BLL.Models.UserDTO user) {
+            return base.Channel.UpdateUserInfo(user);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.UserDTO> UpdateUserInfoAsync(BLL.Models.UserDTO user) {
+            return base.Channel.UpdateUserInfoAsync(user);
         }
         
         public BLL.Models.AvatarDTO GetAvatar(BLL.Models.UserDTO user) {
