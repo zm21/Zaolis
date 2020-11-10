@@ -43,29 +43,36 @@ namespace ZaolisUI
             if (client.GetUserChats(CurrentUser) != null)
             {
                 Chats = new ObservableCollection<ChatDTO>(client.GetUserChats(CurrentUser));
-                foreach (var chat in Chats)
-                {
-                    ChatInfos.Add(new ChatInfoModel(client, CurrentUser, chat));
-                }
+                Load();
             }
             //CurrentAvatar = client.GetAvatar(CurrentUser);
         }
+
+        public void DeleteModel(ChatInfoModel model)
+        {
+            var res = ChatInfos.FirstOrDefault(u => u.ContactMsgGetter.Id == (model).ContactMsgGetter.Id);
+            if (model != null && res != null)
+            {
+                ChatInfos.RemoveAt(ChatInfos.IndexOf(res));
+            }
+        }
         public void SearchUser(string searchBy) 
         {
+            //Task.Run(() => { });
             if (searchBy != "")
             {
-                List<UserDTO> userList = new List<UserDTO>();
-                foreach (var item in client.GetAllUsers())
-                {
-                    if (item.Name.Contains(searchBy))
-                    {
-                        userList.Add(item);
-                    }
-                }
-                AllUsers = userList;
+                
             }
-            else
-                AllUsers = client.GetAllUsers();
+            else 
+                Load();
+        }
+        private void Load() //Loads ChatInfos
+        {
+            ChatInfos = new ObservableCollection<ChatInfoModel>();
+            foreach (var chat in Chats)
+            {
+                ChatInfos.Add(new ChatInfoModel(client, CurrentUser, chat));
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

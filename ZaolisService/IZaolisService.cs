@@ -69,6 +69,8 @@ namespace ZaolisService
         IEnumerable<MessageDTO> GetMessagesByChat(ChatDTO chat);
         [OperationContract]
         ChatDTO GetChatById(int Id);
+        [OperationContract]
+        void RemoveFriendAndChat(UserDTO deletefrom, UserDTO deletewhom, ChatDTO chat);
     }
 
     public interface IZaolisCallback
