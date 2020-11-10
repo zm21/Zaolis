@@ -79,14 +79,13 @@ namespace ZaolisUI
 
             m_notifyIcon = new System.Windows.Forms.NotifyIcon();
             m_notifyIcon.Icon = new System.Drawing.Icon(@"..\..\Resources\z.ico");
+            m_notifyIcon.BalloonTipText = "Some message can be here";
+            m_notifyIcon.BalloonTipClicked += new EventHandler(m_notifyIcon_Click);
+            m_notifyIcon.BalloonTipTitle = $"{loginnedUser.Login}";
             m_notifyIcon.Text = "Zaolis";
             m_notifyIcon.ContextMenu = contextMenu;
             m_notifyIcon.Click += new EventHandler(m_notifyIcon_Click);
             
-
-            m_notifyIcon.BalloonTipClicked += new EventHandler(m_notifyIcon_Click);
-            m_notifyIcon.BalloonTipText = "Some message";
-            m_notifyIcon.BalloonTipTitle = $"Name - {loginnedUser.Login}";
         }
 
         private void CallbackHandler_RecieveEvent(MessageDTO obj)
@@ -105,7 +104,7 @@ namespace ZaolisUI
         {
             this.Hide();
             m_notifyIcon.Visible = true;
-            //m_notifyIcon.ShowBalloonTip(1000);
+            m_notifyIcon.ShowBalloonTip(10000);
         }
 
         private void ButtonMinimize_Click(object sender, RoutedEventArgs e)
