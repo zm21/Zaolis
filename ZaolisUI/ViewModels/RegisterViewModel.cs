@@ -38,11 +38,13 @@ namespace ZaolisUI
         }
 
         public bool isAllValide => (login_valide && email_valide && passwd_valide && confirm_pass_valide && confirm_pass_valide && isAgreeLic);
+
         public string this[string columnName]
         {
             get
             {
                 string error = string.Empty;
+
                 if (Login != null)
                 {
                     switch (columnName)
@@ -58,7 +60,7 @@ namespace ZaolisUI
                             {
                                 if (client.GetUserByLogin(Login) != null)
                                 {
-                                    error = "Such a user already exists!";
+                                    error = "Such user already exists!";
                                     login_valide = false;
                                 }
                                 else
@@ -118,11 +120,14 @@ namespace ZaolisUI
                 return error;
             }
         }
+
         public string Error
         {
             get { throw new NotImplementedException(); }
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));

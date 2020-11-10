@@ -22,11 +22,14 @@ namespace ZaolisUI
     public partial class UserInfo : UserControl, IChildWindow
     {
         private DockPanel parent;
+
         private UserDTO CurrentUser;
         public UserInfo(DockPanel parent,ChatInfoModel model)
         {
             InitializeComponent();
+
             CurrentUser = model.ContactMsgGetter;
+
             this.parent = parent;
             this.DataContext = model;
         }
