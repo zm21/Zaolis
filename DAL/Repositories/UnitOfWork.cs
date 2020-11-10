@@ -20,6 +20,7 @@ namespace DAL.Repositories
         private IGenericRepository<VerificationCode> verificationCodeRepository;
         private IGenericRepository<RegisterVerification> registerVerificationRepository;
 
+        private bool disposed = false;
 
         public UnitOfWork(ZaolisModel context)
         {
@@ -106,6 +107,26 @@ namespace DAL.Repositories
                     registerVerificationRepository = new GenericRepository<RegisterVerification>(context);
                 return registerVerificationRepository;
             }
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
+
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         public void Save()

@@ -139,9 +139,11 @@ namespace BLL
 
         public UserDTO GetUserByLogin(string login)
         {
-            UnitOfWork unit = new UnitOfWork(new ZaolisModel());
-            var res = _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Login == login))?.FirstOrDefault());
-            return res;
+            using (UnitOfWork unit = new UnitOfWork(new ZaolisModel()))
+            {
+                var res = _mapper.Map<UserDTO>((unit.UserRepository.Get(u => u.Login == login))?.FirstOrDefault());
+                return res;
+            }
         }
 
         public IEnumerable<UserDTO> GetUsersByChat(ChatDTO chat)
