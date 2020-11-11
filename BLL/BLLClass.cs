@@ -7,6 +7,8 @@ using DAL.Repositories;
 using EASendMail;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting;
 using System.Threading.Tasks;
@@ -58,7 +60,8 @@ namespace BLL
             unit = new UnitOfWork(new ZaolisModel());
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<User, UserDTO>();
+                cfg.CreateMap<User, UserDTO>().ForMember(dest => dest.AvatarImage,
+                                               opt => opt.MapFrom(src => Utils.ConvertBytesToImage(Utils.ConvertImageToBytes(src.Avatars.Where(a=>a.IsActive).FirstOrDefault().Path))));
                 cfg.CreateMap<Avatar, AvatarDTO>();
                 cfg.CreateMap<DAL.Entities.Attachment, AttachmentDTO>();
                 cfg.CreateMap<Chat, ChatDTO>();

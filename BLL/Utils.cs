@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Interop;
+using System.Windows.Media.Imaging;
 
 namespace BLL
 {
@@ -23,5 +28,28 @@ namespace BLL
                 return builder.ToString();
             }
         }
+
+        public static byte[] ConvertImageToBytes(string path)
+        {
+            if (File.Exists(path))
+            {
+                Bitmap bmp = new Bitmap(path);
+                ImageConverter converter = new ImageConverter();
+                return (byte[])converter.ConvertTo(bmp, typeof(byte[]));
+            }
+            return null;
+        }
+
+        public static BitmapSource ConvertBytesToImage(byte[] bytes)
+        {
+            Bitmap bmp;
+            using (var ms = new MemoryStream(bytes))
+            {
+                bmp = new Bitmap(ms);
+            }
+            var handle = bmp.GetHbitmap();
+            return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+        }
+
     }
 }

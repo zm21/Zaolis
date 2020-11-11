@@ -4,6 +4,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace BLL.Models
 {
@@ -29,5 +31,7 @@ namespace BLL.Models
         public int AvatarId { get; set; }
         [DataMember]
         public DateTime LastActive { get; set; }
+        [DataMember]
+        public BitmapSource AvatarImage{ get; set; }
     }
 }
