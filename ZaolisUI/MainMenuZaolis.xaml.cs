@@ -64,6 +64,12 @@ namespace ZaolisUI
             client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(callbackHandler));
 
 
+            Tray();
+            Notification("Zaolis", "Working");
+        }
+
+        private void Tray()
+        {
             this.contextMenu = new System.Windows.Forms.ContextMenu();
             this.menuItem = new System.Windows.Forms.MenuItem();
             this.menuItem.Index = 0;
@@ -75,19 +81,19 @@ namespace ZaolisUI
             this.menuItem1.Click += new EventHandler(menuItem_Click);
             contextMenu.MenuItems.Add(menuItem1);
             contextMenu.MenuItems.Add(menuItem);
-
+        }
+        private void Notification(string title,string msg)
+        {
 
             m_notifyIcon = new System.Windows.Forms.NotifyIcon();
             m_notifyIcon.Icon = new System.Drawing.Icon(@"..\..\Resources\z.ico");
-            m_notifyIcon.BalloonTipText = "Some message can be here";
+            m_notifyIcon.BalloonTipText = msg;
             m_notifyIcon.BalloonTipClicked += new EventHandler(m_notifyIcon_Click);
-            m_notifyIcon.BalloonTipTitle = $"{loginnedUser.Login}";
+            m_notifyIcon.BalloonTipTitle = title;
             m_notifyIcon.Text = "Zaolis";
             m_notifyIcon.ContextMenu = contextMenu;
             m_notifyIcon.Click += new EventHandler(m_notifyIcon_Click);
-            
         }
-
         private void CallbackHandler_RecieveEvent(MessageDTO obj)
         {
             var chat = mainMenuViewModel.Chats.FirstOrDefault(c => c.Id == obj.ChatId);
