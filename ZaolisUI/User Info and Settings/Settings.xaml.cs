@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
 using ZaolisUI.ZaolisServiceClient;
 
 namespace ZaolisUI
@@ -36,7 +37,7 @@ namespace ZaolisUI
 
         private ObservableCollection<UserDTO> users;
 
-        public Settings(DockPanel mainGrid, ZaolisServiceClient.ZaolisServiceClient client, UserDTO user, ObservableCollection<UserDTO> users)
+        public Settings(DockPanel mainGrid, ZaolisServiceClient.ZaolisServiceClient client, UserDTO user, ObservableCollection<UserDTO> users, bool nightMode)
         {
             InitializeComponent();
             this.client = client;
@@ -47,6 +48,19 @@ namespace ZaolisUI
 
             this.users = users;
             this.DataContext = mainMenuViewModel;
+            if(nightMode)
+            {
+                var converter = new BrushConverter();
+                mainDockPanel.Background = (Brush)converter.ConvertFromString("#17212B");
+                avatarDockPanel.Background = (Brush)converter.ConvertFromString("#232E3C");
+                borderSplitter1.Background= (Brush)converter.ConvertFromString("#232E3C");
+                nameTextBox.Foreground = Brushes.White;
+                bioTextBox.Foreground = Brushes.White;
+                labelSettings.Foreground = Brushes.White;
+                iconName.Foreground = Brushes.LightGray;
+                labelExample1.Foreground = Brushes.LightGray;
+                labelExample2.Foreground = Brushes.LightGray;
+            }
         }
 
         public event ClosingDelegate Closing;
