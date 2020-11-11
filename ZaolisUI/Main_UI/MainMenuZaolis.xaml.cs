@@ -60,7 +60,7 @@ namespace ZaolisUI
 
             mainMenuViewModel = new MainMenuViewModel(loginnedUser);
 
-            chatManager = new ChatManager(10, mainMenuViewModel);
+            chatManager = new ChatManager(10, ref mainMenuViewModel);
 
             this.DataContext = mainMenuViewModel;
 
@@ -172,7 +172,7 @@ namespace ZaolisUI
 
         private void buttonFindFriend_Click(object sender, RoutedEventArgs e)
         {
-            AddFriend add = new AddFriend(loginnedUser, client, mainMenuViewModel);
+            AddFriend add = new AddFriend(loginnedUser, client, ref mainMenuViewModel);
 
             add.Owner = this;
             add.ShowDialog();
@@ -320,7 +320,7 @@ namespace ZaolisUI
         public int MaxCount { get; private set; }
 
         private MainMenuViewModel viewModel;
-        public ChatManager(int MaxCount, MainMenuViewModel viewModel)
+        public ChatManager(int MaxCount, ref MainMenuViewModel viewModel)
         {
             chatWindows = new List<ChatWindow>();
 
@@ -350,7 +350,7 @@ namespace ZaolisUI
                 if (chatWindows.Count == MaxCount)
                     chatWindows.RemoveAt(MaxCount - 1);
 
-                chatWindows.Insert(0, new ChatWindow(chatInfoModel, client, OverlayDockPanel, viewModel));
+                chatWindows.Insert(0, new ChatWindow(chatInfoModel, client, OverlayDockPanel, ref viewModel));
             }
         }
 

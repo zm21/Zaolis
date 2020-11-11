@@ -53,7 +53,7 @@ namespace ZaolisUI
             var res = ChatInfos.FirstOrDefault(u => u.ContactMsgGetter.Id == (model).ContactMsgGetter.Id);
             if (model != null && res != null)
             {
-                ChatInfos.RemoveAt(ChatInfos.IndexOf(res));
+                ChatInfos.Remove(res);
             }
         }
         public void SearchUser(string searchBy) 

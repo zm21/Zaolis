@@ -30,7 +30,7 @@ namespace ZaolisUI
         private MainMenuViewModel viewModel;
 
         private ZaolisServiceClient.ZaolisServiceClient client;
-        public UserInfo(DockPanel parent,ChatInfoModel model,ZaolisServiceClient.ZaolisServiceClient client,MainMenuViewModel viewModel)
+        public UserInfo(DockPanel parent,ChatInfoModel model,ZaolisServiceClient.ZaolisServiceClient client,ref MainMenuViewModel viewModel)
         {
             InitializeComponent();
 
