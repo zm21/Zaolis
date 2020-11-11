@@ -28,7 +28,7 @@ namespace ZaolisUI
         ZaolisServiceClient.ZaolisServiceClient client;
 
         MainMenuViewModel mainMenuViewModel;
-        public AddFriend(UserDTO user, ZaolisServiceClient.ZaolisServiceClient client, MainMenuViewModel mainMenuViewModel)
+        public AddFriend(UserDTO user, ZaolisServiceClient.ZaolisServiceClient client, ref MainMenuViewModel mainMenuViewModel)
         {
             InitializeComponent();
 
