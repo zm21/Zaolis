@@ -61,7 +61,7 @@ namespace BLL
             var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<User, UserDTO>().ForMember(dest => dest.AvatarBytes,
-                                               opt => opt.MapFrom(src => Utils.ConvertBytesToImage(src.Avatars.Where(a=>a.IsActive).FirstOrDefault().Path)));
+                                               opt => opt.MapFrom(src => Utils.ConvertBytesToImage(src.Avatars.Where(a=>a.IsActive).LastOrDefault().Path)));
                 cfg.CreateMap<Avatar, AvatarDTO>();
                 cfg.CreateMap<DAL.Entities.Attachment, AttachmentDTO>();
                 cfg.CreateMap<Chat, ChatDTO>();
@@ -240,6 +240,12 @@ namespace BLL
                 client.SendMail(message);
             });
             return code;
+        }
+        public void ChangeCurrentAvatar(UserDTO user)
+        {
+            var res=unit.AvatarRepository.Get(a => a.UserId == user.Id).FirstOrDefault();
+            res.IsActive = false;
+            unit.Save();
         }
 
         public void SendRegistrationCode(string email)

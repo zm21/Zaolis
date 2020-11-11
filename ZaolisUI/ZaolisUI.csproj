@@ -161,21 +161,6 @@
     <None Include="Connected Services\ZaolisServiceClient\service21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ZaolisServiceClient\System.Windows.Media.Animation1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ZaolisServiceClient\System.Windows.Media.Imaging1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ZaolisServiceClient\System.Windows.Media1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ZaolisServiceClient\System.Windows.Threading1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\ZaolisServiceClient\System.Windows1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\BLL.Models.AvatarDTO.datasource" />
     <None Include="Properties\DataSources\BLL.Models.ChatDTO.datasource" />

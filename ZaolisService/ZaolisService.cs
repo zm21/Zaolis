@@ -51,6 +51,11 @@ namespace ZaolisService
             return user;
         }
 
+        public void ChangeCurrentAvatar(UserDTO user)
+        {
+            bll.ChangeCurrentAvatar(user);
+        }
+
         public void Disconnect(UserDTO user)
         {
             if (user != null)
