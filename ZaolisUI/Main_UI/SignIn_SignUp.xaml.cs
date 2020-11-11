@@ -47,7 +47,7 @@ namespace ZaolisUI
             InitializeComponent();
 
             rememberMe.IsChecked = false;
-            client = new ZaolisServiceClient.ZaolisServiceClient(new InstanceContext(handler));
+            client = new ZaolisServiceClient.ZaolisServiceClient(new InstanceContext(handler), "NetTcpBinding_IZaolisService");
 
             if(File.Exists(remembered_path))
             {
@@ -144,7 +144,10 @@ namespace ZaolisUI
             {
                 if (client.IsExistsUserByLoginPassword(login, password))
                 {
-                    client.Connect(login, password); //isActive => true
+                    //if (client.InnerChannel.State != System.ServiceModel.CommunicationState.Faulted)
+                        client.ConnectAsync(login, password);   //isActive => true
+                    //else
+                        //client = new ZaolisServiceClient.ZaolisServiceClient(new InstanceContext(handler), "NetTcpBinding_IZaolisService");
 
                     Application.Current.Dispatcher.Invoke(() =>
                     {
@@ -205,6 +208,8 @@ namespace ZaolisUI
                             Bio = "",
                             LastActive=DateTime.Now
                         });
+
+                        client.AddAvatar(new AvatarDTO() { Path = @"E:\ÿ¿√\Team Project\Zaolis\ZaolisUI\bin\Debug\35896.png", UserId = client.GetUserByLogin(registerModel.Login).Id, IsActive=true });
                         ShowMsg("Registration", "Registration Successfull");
 
                         SignUP.Visibility = Visibility.Hidden;

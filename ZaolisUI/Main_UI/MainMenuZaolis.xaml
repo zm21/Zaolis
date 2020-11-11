@@ -94,7 +94,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                                     <!--Photo-->
                                     <Ellipse Height="45" Width="45" Stroke="#FF013355" StrokeThickness="1">
                                         <Ellipse.Fill>
-                                            <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
+                                            <ImageBrush ImageSource="{Binding CurrentMsgGetterAvatar}" Stretch="Fill"></ImageBrush>
                                         </Ellipse.Fill>
                                     </Ellipse>
                                     <DockPanel DockPanel.Dock="Right">
@@ -171,7 +171,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                     <Button x:Name="ButtonCloseMenu" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="30" Height="25" Margin="0,0,10,0" Background="{x:Null}" BorderBrush="{x:Null}" Content="{materialDesign:PackIcon Kind=Close, Size=25}" Click="ButtonCloseMenu_Click" Foreground="#FF2196F3" MouseEnter="ButtonCloseMenu_MouseEnter" MouseLeave="ButtonCloseMenu_MouseLeave" ></Button>
                     <Ellipse DockPanel.Dock="Top" HorizontalAlignment="Left" Height="45" Width="45" Stroke="#FF013355" StrokeThickness="1">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding CurrentAvatar}" Stretch="Fill"></ImageBrush>
+                            <ImageBrush ImageSource="{Binding CurrentAvatar, Mode=OneWay}" Stretch="Fill"></ImageBrush>
                         </Ellipse.Fill>
                     </Ellipse>
                 </DockPanel>
@@ -185,7 +185,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                                         <!--Photo-->
                                         <Ellipse Height="30" Width="30" Stroke="#FF013355" StrokeThickness="1">
                                             <Ellipse.Fill>
-                                                <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
+                                                <ImageBrush ImageSource="{Binding CurrentAvatar}" Stretch="Fill"></ImageBrush>
                                             </Ellipse.Fill>
                                         </Ellipse>
                                         <DockPanel DockPanel.Dock="Right">

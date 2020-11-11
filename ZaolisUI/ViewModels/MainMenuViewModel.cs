@@ -3,12 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using ZaolisUI.ZaolisServiceClient;
 
 namespace ZaolisUI
@@ -25,7 +27,7 @@ namespace ZaolisUI
 
         public UserDTO CurrentUser { get; set; }
 
-        public AvatarDTO CurrentAvatar { get; set; }
+        public BitmapSource CurrentAvatar => CurrentUser.AvatarImage();
 
         public ObservableCollection<ChatInfoModel> ChatInfos { get; set; }
 
@@ -35,7 +37,7 @@ namespace ZaolisUI
         public MainMenuViewModel(UserDTO current)
         {
             CurrentUser = current;
-            client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(handler));
+            client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(handler), "NetTcpBinding_IZaolisService");
             AllUsers = client.GetAllUsers();
             FriendUsers = client.GetContacts(CurrentUser);
             ChatInfos = new ObservableCollection<ChatInfoModel>();

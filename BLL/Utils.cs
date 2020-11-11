@@ -29,26 +29,26 @@ namespace BLL
             }
         }
 
-        public static byte[] ConvertImageToBytes(string path)
+        public static byte[] ConvertBytesToImage(string path)
         {
-            if (File.Exists(path))
+            if (path != null)
             {
-                Bitmap bmp = new Bitmap(path);
-                ImageConverter converter = new ImageConverter();
-                return (byte[])converter.ConvertTo(bmp, typeof(byte[]));
+                //byte[] bytes = null;
+                Bitmap bmp = null;
+                if (File.Exists(path))
+                {
+                    bmp = new Bitmap(path);
+                    ImageConverter converter = new ImageConverter();
+                    return (byte[])converter.ConvertTo(bmp, typeof(byte[]));
+                }
+                //using (var ms = new MemoryStream(bytes))
+                //{
+                //    bmp = new Bitmap(ms);
+                //}
+                //var handle = bmp.GetHbitmap();
+                //return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             }
             return null;
-        }
-
-        public static BitmapSource ConvertBytesToImage(byte[] bytes)
-        {
-            Bitmap bmp;
-            using (var ms = new MemoryStream(bytes))
-            {
-                bmp = new Bitmap(ms);
-            }
-            var handle = bmp.GetHbitmap();
-            return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
         }
 
     }

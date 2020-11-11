@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using ZaolisUI.ZaolisServiceClient;
 
 namespace ZaolisUI
@@ -30,6 +31,7 @@ namespace ZaolisUI
 
         private UserDTO contactMsgGetter;
         public ObservableCollection<MessageModel> Messages { get; set; }
+        public BitmapSource CurrentMsgGetterAvatar => contactMsgGetter.AvatarImage();
 
 
         //Chat friend
@@ -43,6 +45,8 @@ namespace ZaolisUI
         }
 
         public UserDTO CurrentUser { get; set; }
+        public BitmapSource CurrentUserAvatar => CurrentUser.AvatarImage();
+
 
         public string LastMessage => Chat.LastMessage != null ? Chat.LastMessage.MessageText.Length>10?Chat.LastMessage.MessageText.Substring(0,7)+"...":Chat.LastMessage.MessageText : "No messages here yet.";
 

@@ -60,8 +60,8 @@ namespace BLL
             unit = new UnitOfWork(new ZaolisModel());
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<User, UserDTO>().ForMember(dest => dest.AvatarImage,
-                                               opt => opt.MapFrom(src => Utils.ConvertBytesToImage(Utils.ConvertImageToBytes(src.Avatars.Where(a=>a.IsActive).FirstOrDefault().Path))));
+                cfg.CreateMap<User, UserDTO>().ForMember(dest => dest.AvatarBytes,
+                                               opt => opt.MapFrom(src => Utils.ConvertBytesToImage(src.Avatars.Where(a=>a.IsActive).FirstOrDefault().Path)));
                 cfg.CreateMap<Avatar, AvatarDTO>();
                 cfg.CreateMap<DAL.Entities.Attachment, AttachmentDTO>();
                 cfg.CreateMap<Chat, ChatDTO>();
@@ -230,7 +230,7 @@ namespace BLL
                 Subject = "[Verification Code]",
                 Priority = EASendMail.MailPriority.High
             };
-            message.ImportHtmlBody(@"C:\Users\User-PC\Downloads\mail.html", ImportHtmlBodyOptions.NoOptions);
+            message.ImportHtmlBody(@"C:\Users\VitalikOlekS\Desktop\mail.html", ImportHtmlBodyOptions.NoOptions);
             message.HtmlBody=message.HtmlBody.Replace("Your verefication code:", $"Your verefication code:{code}");
 
             Task.Run(() =>

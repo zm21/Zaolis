@@ -35,7 +35,7 @@ namespace ZaolisUI
             this.mainMenuViewModel = mainMenuViewModel;
             this.user = user;
             this.client = client;
-            this.client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(handler));
+            this.client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(handler), "NetTcpBinding_IZaolisService");
         }
 
         private void buttonClose_Click(object sender, RoutedEventArgs e)
