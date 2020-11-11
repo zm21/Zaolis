@@ -10,20 +10,18 @@
     <Grid x:Name="grid" >
         <DockPanel>
             <DockPanel DockPanel.Dock="Top">
-                <DockPanel LastChildFill="False" Background="#C8E4F8" MouseLeftButtonUp="DockPanel_MouseLeftButtonUp">
-                    <TextBlock DockPanel.Dock="Left"> <Run Text="{Binding ContactMsgGetter.Name, Mode=OneWay}" FontSize="16" ></Run> 
+                <DockPanel x:Name="userInfo" LastChildFill="False" Background="#C8E4F8" MouseLeftButtonUp="DockPanel_MouseLeftButtonUp">
+                    <TextBlock Margin="10,0,0,0" x:Name="userTextName" DockPanel.Dock="Left"> <Run Text="{Binding ContactMsgGetter.Name, Mode=OneWay}" FontSize="16" ></Run> 
                         <LineBreak/>
-                        <Run Text="{Binding OnlineStatus, Mode=OneWay}"></Run>
+                        <Run x:Name="userTextStatus" Text="{Binding OnlineStatus, Mode=OneWay}"></Run>
                     </TextBlock>
                 </DockPanel>
             </DockPanel>
-            <DockPanel DockPanel.Dock="Bottom" LastChildFill="True" Margin="0,5">
-                <Button DockPanel.Dock="Left" Style="{StaticResource MaterialDesignIconButton}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=Attachment}" Click="Button_Click"></Button>
-                <Button DockPanel.Dock="Right" Style="{StaticResource MaterialDesignIconButton}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=Send}" Margin="9,2,9,0" VerticalAlignment="Top" Click="ButtonSend_Click" ></Button>
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="#FF03A9F4" Width="30" Height="30" DockPanel.Dock="Right" BorderBrush="{x:Null}" Background="{x:Null}">
-                    <materialDesign:PackIcon Kind="MicNone" Width="30" Height="25" />
-                </Button>
-                <Button DockPanel.Dock="Right" Style="{StaticResource MaterialDesignIconButton}" Background="{x:Null}" Height="30" Width="30" Content="{materialDesign:PackIcon Kind=StickerOutline}" ></Button>
+            <DockPanel MinHeight="35" x:Name="dockPanelMessage" Background="#C8E4F8" DockPanel.Dock="Bottom" LastChildFill="True" Margin="0,5,0,0">
+                <Button x:Name="buttonAttachments" DockPanel.Dock="Left" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="#03A9F4" Width="29" Height="29" Background="{x:Null}" BorderBrush="{x:Null}" Content="{materialDesign:PackIcon Kind=Attachment, Size=26}"></Button>
+                <Button x:Name="buttonSend" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="#03A9F4" Width="29" Height="29" Background="{x:Null}" BorderBrush="{x:Null}" Margin="5,0" Content="{materialDesign:PackIcon Kind=Send, Size=26}" Click="ButtonSend_Click" ></Button>
+                <Button x:Name="buttonMic" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="#03A9F4" Width="29" Height="29" Background="{x:Null}" BorderBrush="{x:Null}" Margin="5,0" Content="{materialDesign:PackIcon Kind=MicNone, Size=26}"></Button>
+                <Button x:Name="buttonSticker" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="#03A9F4" Width="29" Height="29" Background="{x:Null}" BorderBrush="{x:Null}" Margin="5,0" Content="{materialDesign:PackIcon Kind=StickerOutline, Size=26}"></Button>
                 <TextBox x:Name="txtbox_message" FontSize="14" materialDesign:HintAssist.Hint="Write a message..." DockPanel.Dock="Left"></TextBox>
             </DockPanel>
             <ScrollViewer x:Name="ScrollViewer">

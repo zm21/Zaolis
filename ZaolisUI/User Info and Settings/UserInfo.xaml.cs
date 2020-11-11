@@ -30,7 +30,7 @@ namespace ZaolisUI
         private MainMenuViewModel viewModel;
 
         private ZaolisServiceClient.ZaolisServiceClient client;
-        public UserInfo(DockPanel parent,ChatInfoModel model,ZaolisServiceClient.ZaolisServiceClient client,ref MainMenuViewModel viewModel)
+        public UserInfo(DockPanel parent,ChatInfoModel model,ZaolisServiceClient.ZaolisServiceClient client,ref MainMenuViewModel viewModel,bool nightMode)
         {
             InitializeComponent();
 
@@ -41,6 +41,26 @@ namespace ZaolisUI
             this.viewModel = viewModel;
             this.parent = parent;
             this.DataContext = model;
+            
+
+            if(nightMode)
+            {
+                var converter = new BrushConverter();
+                labelUserInfo.Foreground = Brushes.White;
+                textBlockBio.Foreground = Brushes.White;
+                textBlockEmail.Foreground = Brushes.White;
+                textBlockUsername.Foreground = Brushes.White;
+                textBlockMainUserName.Foreground = Brushes.White;
+                textBlockNotification.Foreground = Brushes.White;
+                iconBio.Foreground = Brushes.LightGray;
+                iconEmail.Foreground = Brushes.LightGray;
+                iconDelete.Foreground = Brushes.LightGray;
+                iconNotification.Foreground = Brushes.LightGray;
+                iconUsername.Foreground = Brushes.LightGray;
+                mainDockPanel.Background= (Brush)converter.ConvertFromString("#17212B");
+                border1.Background = (Brush)converter.ConvertFromString("#232E3C");
+                border2.Background = (Brush)converter.ConvertFromString("#232E3C");
+            }
         }
 
         public event ClosingDelegate Closing;
