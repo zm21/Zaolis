@@ -1,4 +1,5 @@
 ﻿using BLL.Models;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -73,7 +74,8 @@ namespace ZaolisUI
 
         public void ShowMsg(string title, string msg)
         {
-            throw new NotImplementedException();
+            MsgBox msgBox = new MsgBox(title, msg);
+            msgBox.Show();
         }
 
         private void buttonClose_Click(object sender, RoutedEventArgs e)
@@ -132,6 +134,28 @@ namespace ZaolisUI
         private void buttonClose_MouseLeave(object sender, MouseEventArgs e)
         {
             buttonClose.Foreground = new SolidColorBrush(Color.FromArgb(255, 33, 150, 243));
+        }
+
+        private void buttonSetProfilePhoto_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = "D:\\avatars";
+
+            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
+            if(openFileDialog.ShowDialog()==true)
+            {
+                int index = users.IndexOf(users.Where(u=>u.Login==user.Login).FirstOrDefault());
+                users.RemoveAt(index);
+
+
+                client.ChangeCurrentAvatar(user);
+                client.AddAvatar(new AvatarDTO() { IsActive = true, Path = openFileDialog.FileName, UserId = user.Id });
+                users.Insert(index, client.GetUserByLogin(user.Login));
+                mainMenuViewModel.CurrentUser = client.GetUserByLogin(user.Login);
+                ShowMsg("Avatar", "Your avatar was updated!");
+
+                SignInUpWindow.Save(users);
+            }
         }
     }
 }

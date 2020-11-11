@@ -1,4 +1,4 @@
-﻿using BLL.Models;
+using BLL.Models;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -76,6 +76,8 @@ namespace ZaolisUI
                 messageDTO.CreationTime = DateTime.Now;
                 messageDTO.UserId = ChatInfo.CurrentUser.Id;
 
+                ChatInfo.Messages.Add(new MessageModel(messageDTO, ChatInfo.CurrentUser));
+
                 client.SendMessageAsync(messageDTO);
 
                 txtbox_message.Text = "";
@@ -118,6 +120,14 @@ namespace ZaolisUI
             openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.png) | *.jpg; *.jpeg; *.jpe; *.png";
             openFileDialog.ShowDialog();
         }
+
+
+        private void txtbox_message_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                ButtonSend_Click(sender, new RoutedEventArgs());
+        }
+        
         public void UpdateUI()
         {
             bool nm = false;

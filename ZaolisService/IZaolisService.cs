@@ -71,6 +71,8 @@ namespace ZaolisService
         ChatDTO GetChatById(int Id);
         [OperationContract]
         void RemoveFriendAndChat(UserDTO deletefrom, UserDTO deletewhom, ChatDTO chat);
+        [OperationContract]
+        void ChangeCurrentAvatar(UserDTO user);
     }
 
     public interface IZaolisCallback

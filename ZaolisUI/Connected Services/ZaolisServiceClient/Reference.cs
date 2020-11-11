@@ -194,6 +194,12 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/RemoveFriendAndChat", ReplyAction="http://tempuri.org/IZaolisService/RemoveFriendAndChatResponse")]
         System.Threading.Tasks.Task RemoveFriendAndChatAsync(BLL.Models.UserDTO deletefrom, BLL.Models.UserDTO deletewhom, BLL.Models.ChatDTO chat);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/ChangeCurrentAvatar", ReplyAction="http://tempuri.org/IZaolisService/ChangeCurrentAvatarResponse")]
+        void ChangeCurrentAvatar(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/ChangeCurrentAvatar", ReplyAction="http://tempuri.org/IZaolisService/ChangeCurrentAvatarResponse")]
+        System.Threading.Tasks.Task ChangeCurrentAvatarAsync(BLL.Models.UserDTO user);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -469,6 +475,14 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         public System.Threading.Tasks.Task RemoveFriendAndChatAsync(BLL.Models.UserDTO deletefrom, BLL.Models.UserDTO deletewhom, BLL.Models.ChatDTO chat) {
             return base.Channel.RemoveFriendAndChatAsync(deletefrom, deletewhom, chat);
+        }
+        
+        public void ChangeCurrentAvatar(BLL.Models.UserDTO user) {
+            base.Channel.ChangeCurrentAvatar(user);
+        }
+        
+        public System.Threading.Tasks.Task ChangeCurrentAvatarAsync(BLL.Models.UserDTO user) {
+            return base.Channel.ChangeCurrentAvatarAsync(user);
         }
     }
 }

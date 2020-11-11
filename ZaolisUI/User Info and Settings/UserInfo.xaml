@@ -33,7 +33,7 @@
                         <!--Photo-->
                         <Ellipse Height="60" Width="60" Margin="1,5" Stroke="#FF03A9F4" StrokeThickness="1">
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
+                                <ImageBrush ImageSource="{Binding CurrentMsgGetterAvatar}" Stretch="Fill"></ImageBrush>
                             </Ellipse.Fill>
                         </Ellipse>
                         <!--Name-->

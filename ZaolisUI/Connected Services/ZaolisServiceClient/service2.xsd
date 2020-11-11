@@ -404,10 +404,22 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="ChangeCurrentAvatar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q37:UserDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeCurrentAvatarResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="RecieveMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="message" nillable="true" type="q37:MessageDTO" />
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="message" nillable="true" type="q38:MessageDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

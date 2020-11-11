@@ -69,7 +69,6 @@ namespace ZaolisUI
             foreach (var item in users)
             {
                 logginedUsers.Items.Add(item);
-                //client.AddAvatar(new AvatarDTO() { Path = "default.png", UserId = item.Id });
             }
 
             logginedUsers.SelectedItem = loginnedUser;
@@ -77,7 +76,7 @@ namespace ZaolisUI
             callbackHandler = new CallbackHandler();
             callbackHandler.RecieveEvent += CallbackHandler_RecieveEvent;
 
-            client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(callbackHandler));
+            client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(callbackHandler), "NetTcpBinding_IZaolisService");
 
             Tray();
             Notification("Zaolis", "Zaolis is working on the tray");

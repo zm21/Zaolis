@@ -7,6 +7,8 @@ using DAL.Repositories;
 using EASendMail;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting;
 using System.Threading.Tasks;
@@ -58,7 +60,8 @@ namespace BLL
             unit = new UnitOfWork(new ZaolisModel());
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<User, UserDTO>();
+                cfg.CreateMap<User, UserDTO>().ForMember(dest => dest.AvatarBytes,
+                                               opt => opt.MapFrom(src => Utils.ConvertBytesToImage(src.Avatars.Where(a=>a.IsActive).LastOrDefault().Path)));
                 cfg.CreateMap<Avatar, AvatarDTO>();
                 cfg.CreateMap<DAL.Entities.Attachment, AttachmentDTO>();
                 cfg.CreateMap<Chat, ChatDTO>();
@@ -227,7 +230,7 @@ namespace BLL
                 Subject = "[Verification Code]",
                 Priority = EASendMail.MailPriority.High
             };
-            message.ImportHtmlBody(@"C:\Users\User-PC\Downloads\mail.html", ImportHtmlBodyOptions.NoOptions);
+            message.ImportHtmlBody(@"D:\mail.html", ImportHtmlBodyOptions.NoOptions);
             message.HtmlBody=message.HtmlBody.Replace("Your verefication code:", $"Your verefication code:{code}");
 
             Task.Run(() =>
@@ -237,6 +240,12 @@ namespace BLL
                 client.SendMail(message);
             });
             return code;
+        }
+        public void ChangeCurrentAvatar(UserDTO user)
+        {
+            var res=unit.AvatarRepository.Get(a => a.UserId == user.Id).FirstOrDefault();
+            res.IsActive = false;
+            unit.Save();
         }
 
         public void SendRegistrationCode(string email)
