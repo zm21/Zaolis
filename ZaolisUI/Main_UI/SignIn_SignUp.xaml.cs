@@ -132,7 +132,7 @@ namespace ZaolisUI
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
-            Task.Run(() => { this.client.Request(); });
+            Task.Run(() => { this.client.RequestAsync(); });
 
             string login = logTxtBox_login.Text;
             string password = passwdbox.Password;
@@ -142,7 +142,7 @@ namespace ZaolisUI
 
             Task.Run(() =>
             {
-                if (client.IsExistsUserByLoginPassword(login, password))
+                if (client.IsExistsUserByLoginPasswordAsync(login, password).Result)
                 {
                     //if (client.InnerChannel.State != System.ServiceModel.CommunicationState.Faulted)
                         client.ConnectAsync(login, password);   //isActive => true
@@ -153,7 +153,7 @@ namespace ZaolisUI
                     {
                         UserDTO user = new UserDTO();
 
-                        user = client.GetUserByLogin(logTxtBox_login.Text);
+                        user = client.GetUserByLoginAsync(logTxtBox_login.Text).Result;
 
                         logginedUsers.Add(user);
 
@@ -183,11 +183,11 @@ namespace ZaolisUI
 
         private void ButtonSignUP_Click(object sender, RoutedEventArgs e)
         {
-            Task.Run(() => { this.client.Request(); });
+            //Task.Run(() => { this.client.RequestAsync(); });
 
             Task.Run(() =>
             {
-                client.RegisterUser(registerModel.Email);
+                client.RegisterUserAsync(registerModel.Email);
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     VerificationCode verificationCode = new VerificationCode(registerModel.Email,client);
@@ -198,7 +198,7 @@ namespace ZaolisUI
 
                     if (verificationCode.DialogResult == true)
                     {
-                        client.AddUser(new BLL.Models.UserDTO()
+                        client.AddUserAsync(new BLL.Models.UserDTO()
                         {
                             Login = registerModel.Login,
                             Password = registerModel.Passwd,
@@ -209,7 +209,7 @@ namespace ZaolisUI
                             LastActive=DateTime.Now
                         });
 
-                        client.AddAvatar(new AvatarDTO() { Path = @"E:\ØÀÃ\Team Project\Zaolis\ZaolisUI\bin\Debug\35896.png", UserId = client.GetUserByLogin(registerModel.Login).Id, IsActive=true });
+                        client.AddAvatarAsync(new AvatarDTO() { Path = @"E:\ØÀÃ\Team Project\Zaolis\ZaolisUI\bin\Debug\default.png", UserId = client.GetUserByLogin(registerModel.Login).Id, IsActive=true });
                         ShowMsg("Registration", "Registration Successfull");
 
                         SignUP.Visibility = Visibility.Hidden;
@@ -248,16 +248,16 @@ namespace ZaolisUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Task.Run(() => { this.client.Request(); });
+            Task.Run(() => { this.client.RequestAsync(); });
 
             Task.Run(() =>
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    var user_res = client.GetUserByLogin(ForgPassTxtBox_login.Text);
+                    var user_res = client.GetUserByLoginAsync(ForgPassTxtBox_login.Text).Result;
                     if (user_res != null)
                     {
-                        client.ForgetPassword(user_res);
+                        client.ForgetPasswordAsync(user_res);
 
                         ForgotPasswordCode forgotPassword = new ForgotPasswordCode(ForgPassTxtBox_login.Text);
 
@@ -284,7 +284,7 @@ namespace ZaolisUI
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Task.Run(() => { this.client.Request(); });
+            Task.Run(() => { this.client.RequestAsync(); });
 
             string newpass = newPass_txtBox.Password;
             string confirmnewpass = confirmNewPass_txtBox.Password;
@@ -298,9 +298,9 @@ namespace ZaolisUI
                     {
                         if (newpass.Length >= 8)
                         {
-                            var res = client.GetUserByLogin(forgpasslogin);
+                            var res = client.GetUserByLoginAsync(forgpasslogin).Result;
 
-                            client.EditUsersPassword(res, newpass);
+                            client.EditUsersPasswordAsync(res, newpass);
 
                             NewPasswordGrid.Visibility = Visibility.Hidden;
                             LOGIN.Visibility = Visibility.Visible;

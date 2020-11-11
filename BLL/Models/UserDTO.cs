@@ -47,6 +47,15 @@ namespace BLL.Models
         [DataMember]
         public byte[] AvatarBytes;
 
+        public BitmapSource CurrentAvatar
+        {
+            get
+            {
+                return AvatarImage();
+            }
+        }
+
+
         public BitmapSource AvatarImage()
         {
             Bitmap bmp = null;

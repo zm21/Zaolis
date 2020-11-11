@@ -94,7 +94,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                                     <!--Photo-->
                                     <Ellipse Height="45" Width="45" Stroke="#FF013355" StrokeThickness="1">
                                         <Ellipse.Fill>
-                                            <ImageBrush ImageSource="{Binding CurrentMsgGetterAvatar}" Stretch="Fill"></ImageBrush>
+                                            <ImageBrush ImageSource="{Binding CurrentMsgGetterAvatar, Mode=OneWay}" Stretch="Fill"></ImageBrush>
                                         </Ellipse.Fill>
                                     </Ellipse>
                                     <DockPanel DockPanel.Dock="Right">
