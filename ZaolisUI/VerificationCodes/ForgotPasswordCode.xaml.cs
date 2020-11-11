@@ -21,11 +21,15 @@ namespace ZaolisUI
     public partial class ForgotPasswordCode : Window
     {
         ZaolisServiceClient.ZaolisServiceClient client;
+
         CallbackHandler handler;
+
         string login;
+
         public ForgotPasswordCode(string login)
         {
             InitializeComponent();
+
             this.login = login;
             client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(handler));
         }

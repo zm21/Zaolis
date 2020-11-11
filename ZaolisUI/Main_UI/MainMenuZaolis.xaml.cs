@@ -24,20 +24,31 @@ namespace ZaolisUI
     public partial class MainMenuZaolis : Window
     {
         private ZaolisServiceClient.ZaolisServiceClient client;
+
         private UserDTO loginnedUser;
+
         private MainMenuViewModel mainMenuViewModel;
+
         private ObservableCollection<UserDTO> users;
+
         private CallbackHandler callbackHandler;
+
         private IChatManager chatManager;
 
-
+        #region Tray&Notifications
+        //Tray&Notifications
         private System.Windows.Forms.NotifyIcon m_notifyIcon;
+
         private System.Windows.Forms.MenuItem menuItem;
+
         private System.Windows.Forms.MenuItem menuItem1;
+
         private System.Windows.Forms.ContextMenu contextMenu;
+        #endregion
         public MainMenuZaolis(ObservableCollection<UserDTO> users, ZaolisServiceClient.ZaolisServiceClient client)
         {
             InitializeComponent();
+
             this.users = users;
 
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
@@ -49,7 +60,7 @@ namespace ZaolisUI
 
             mainMenuViewModel = new MainMenuViewModel(loginnedUser);
 
-            chatManager = new ChatManager(10);
+            chatManager = new ChatManager(10, ref mainMenuViewModel);
 
             this.DataContext = mainMenuViewModel;
 
@@ -58,11 +69,16 @@ namespace ZaolisUI
                 logginedUsers.Items.Add(item);
                 //client.AddAvatar(new AvatarDTO() { Path = "default.png", UserId = item.Id });
             }
+
             logginedUsers.SelectedItem = loginnedUser;
+
             callbackHandler = new CallbackHandler();
             callbackHandler.RecieveEvent += CallbackHandler_RecieveEvent;
+
             client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(callbackHandler));
 
+            Tray();
+            Notification("Zaolis","Zaolis is working on the tray");
 
             Tray();
             Notification("Zaolis", "Working");
@@ -71,32 +87,39 @@ namespace ZaolisUI
         private void Tray()
         {
             this.contextMenu = new System.Windows.Forms.ContextMenu();
+
             this.menuItem = new System.Windows.Forms.MenuItem();
             this.menuItem.Index = 0;
             this.menuItem.Text = "Quit Zaolis";
             this.menuItem.Click += new EventHandler(menuItem1_Click);
+
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.menuItem1.Index = 1;
             this.menuItem1.Text = "Open Zaolis";
             this.menuItem1.Click += new EventHandler(menuItem_Click);
+
             contextMenu.MenuItems.Add(menuItem1);
             contextMenu.MenuItems.Add(menuItem);
         }
         private void Notification(string title,string msg)
         {
-
+        private void Notification(string title, string msg)
+        {
             m_notifyIcon = new System.Windows.Forms.NotifyIcon();
+
             m_notifyIcon.Icon = new System.Drawing.Icon(@"..\..\Resources\z.ico");
             m_notifyIcon.BalloonTipText = msg;
             m_notifyIcon.BalloonTipClicked += new EventHandler(m_notifyIcon_Click);
             m_notifyIcon.BalloonTipTitle = title;
             m_notifyIcon.Text = "Zaolis";
             m_notifyIcon.ContextMenu = contextMenu;
+
             m_notifyIcon.Click += new EventHandler(m_notifyIcon_Click);
         }
         private void CallbackHandler_RecieveEvent(MessageDTO obj)
         {
             var chat = mainMenuViewModel.Chats.FirstOrDefault(c => c.Id == obj.ChatId);
+
             mainMenuViewModel.Chats.Insert(0, client.GetChatById(chat.Id));
             mainMenuViewModel.Chats.Remove(chat);
         }
@@ -109,6 +132,7 @@ namespace ZaolisUI
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
+
             m_notifyIcon.Visible = true;
             m_notifyIcon.ShowBalloonTip(10000);
         }
@@ -147,18 +171,20 @@ namespace ZaolisUI
 
         private void buttonFindFriend_Click(object sender, RoutedEventArgs e)
         {
-            AddFriend add = new AddFriend(loginnedUser, client);
+            AddFriend add = new AddFriend(loginnedUser, client, ref mainMenuViewModel);
+
             add.Owner = this;
             add.ShowDialog();
         }
-        
+
         private void buttonSettings_Click(object sender, RoutedEventArgs e)
         {
             Task.Run(() =>
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    Settings settings = new Settings(OverlayDockPanel, client, loginnedUser,users);
+                    Settings settings = new Settings(OverlayDockPanel, client, loginnedUser, users);
+
                     OverlayDockPanel.Children.Add(settings);
                 });
             });
@@ -170,8 +196,10 @@ namespace ZaolisUI
             if (logginedUsers.SelectedItem != null)
             {
                 var user = (UserDTO)logginedUsers.SelectedItem;
+
                 client.Disconnect(user);
                 users.Remove(user);
+
                 logginedUsers.Items.Remove(user);
                 SignInUpWindow.Save(users);
             }
@@ -179,6 +207,7 @@ namespace ZaolisUI
             {
                 SignInUpWindow signInUpWindow = new SignInUpWindow();
                 signInUpWindow.Show();
+
                 this.Close();
             }
         }
@@ -187,6 +216,7 @@ namespace ZaolisUI
         {
             SignInUpWindow signInUpWindow = new SignInUpWindow(users, client);
             signInUpWindow.Show();
+
             this.Close();
         }
 
@@ -211,11 +241,13 @@ namespace ZaolisUI
 
         private void lbox_chats_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(lbox_chats.SelectedItem!=null)
+            if (lbox_chats.SelectedItem != null)
             {
                 ChatPanel.Children.Clear();
+
                 var chatInfo = (lbox_chats.SelectedItem as ChatInfoModel);
-                chatManager.LoadChat(chatInfo,client,OverlayDockPanel);
+                
+                chatManager.LoadChat(chatInfo, client, OverlayDockPanel);
                 ChatPanel.Children.Add(chatManager.GetChatWindow(chatInfo.Chat));
             }
         }
@@ -275,6 +307,7 @@ namespace ZaolisUI
     public interface IChatManager
     {
         void LoadChat(ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client, DockPanel OverlayDockPanel);
+
         //remove all loaded chats
         void Free();
         bool IsLoadedChat(ChatDTO chatDTO);
@@ -284,9 +317,13 @@ namespace ZaolisUI
     {
         private List<ChatWindow> chatWindows;
         public int MaxCount { get; private set; }
-        public ChatManager(int MaxCount)
+
+        private MainMenuViewModel viewModel;
+        public ChatManager(int MaxCount, ref MainMenuViewModel viewModel)
         {
             chatWindows = new List<ChatWindow>();
+
+            this.viewModel = viewModel;
             this.MaxCount = MaxCount;
         }
         public void Free()
@@ -299,17 +336,20 @@ namespace ZaolisUI
         }
         public void LoadChat(ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client, DockPanel OverlayDockPanel)
         {
-            if(IsLoadedChat(chatInfoModel.Chat))
+            if (IsLoadedChat(chatInfoModel.Chat))
             {
                 var chatwindow = chatWindows.FirstOrDefault(c => c.Chat.Id == chatInfoModel.Chat.Id);
+
                 chatWindows.Remove(chatwindow);
                 chatWindows.Insert(0, chatwindow);
             }
             else
             {
+                //Messages sorting
                 if (chatWindows.Count == MaxCount)
                     chatWindows.RemoveAt(MaxCount - 1);
-                chatWindows.Insert(0,new ChatWindow(chatInfoModel, client, OverlayDockPanel));
+
+                chatWindows.Insert(0, new ChatWindow(chatInfoModel, client, OverlayDockPanel, ref viewModel));
             }
         }
 

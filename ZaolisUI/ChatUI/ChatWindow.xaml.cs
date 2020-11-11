@@ -30,11 +30,14 @@ namespace ZaolisUI
         public ChatDTO Chat => ChatInfo.Chat;
 
         private ZaolisServiceClient.ZaolisServiceClient client;
+
         private DockPanel OverlayDockPanel;
 
         public MessageModel MessageModel { get; private set; }
 
-        public ChatWindow(ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client,DockPanel dockPanel)
+        private MainMenuViewModel viewModel;
+
+        public ChatWindow(ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client,DockPanel dockPanel, ref MainMenuViewModel viewModel)
         {
             InitializeComponent();
 
@@ -43,6 +46,7 @@ namespace ZaolisUI
             this.ChatInfo = chatInfoModel;
             this.DataContext = ChatInfo;
             this.client = client;
+            this.viewModel = viewModel;
 
             OverlayDockPanel = dockPanel;
 
@@ -61,25 +65,28 @@ namespace ZaolisUI
             if(!string.IsNullOrWhiteSpace(txtbox_message.Text))
             {
                 MessageDTO messageDTO = new MessageDTO();
+
                 messageDTO.ChatId = ChatInfo.Chat.Id;
                 messageDTO.MessageText = txtbox_message.Text;
                 messageDTO.CreationTime = DateTime.Now;
                 messageDTO.UserId = ChatInfo.CurrentUser.Id;
-                client.SendMessageAsync(messageDTO);
-                txtbox_message.Text = "";
 
+                client.SendMessageAsync(messageDTO);
+
+                txtbox_message.Text = "";
             }
         }
 
         private void DockPanel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            UserInfo userInfo = new UserInfo(OverlayDockPanel,ChatInfo);
+            UserInfo userInfo = new UserInfo(OverlayDockPanel,ChatInfo,client, ref viewModel);
             OverlayDockPanel.Children.Add(userInfo);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+
             openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.png) | *.jpg; *.jpeg; *.jpe; *.png";
             openFileDialog.ShowDialog();
         }

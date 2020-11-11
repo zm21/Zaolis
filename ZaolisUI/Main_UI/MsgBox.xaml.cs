@@ -22,6 +22,7 @@ namespace ZaolisUI
         public MsgBox(string title, string message)
         {
             InitializeComponent();
+
             MsgTitle.Content = title;
             Message.Text = message;
 

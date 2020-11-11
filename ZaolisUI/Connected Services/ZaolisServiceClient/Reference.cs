@@ -188,6 +188,12 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetChatById", ReplyAction="http://tempuri.org/IZaolisService/GetChatByIdResponse")]
         System.Threading.Tasks.Task<BLL.Models.ChatDTO> GetChatByIdAsync(int Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/RemoveFriendAndChat", ReplyAction="http://tempuri.org/IZaolisService/RemoveFriendAndChatResponse")]
+        void RemoveFriendAndChat(BLL.Models.UserDTO deletefrom, BLL.Models.UserDTO deletewhom, BLL.Models.ChatDTO chat);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/RemoveFriendAndChat", ReplyAction="http://tempuri.org/IZaolisService/RemoveFriendAndChatResponse")]
+        System.Threading.Tasks.Task RemoveFriendAndChatAsync(BLL.Models.UserDTO deletefrom, BLL.Models.UserDTO deletewhom, BLL.Models.ChatDTO chat);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -455,6 +461,14 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         public System.Threading.Tasks.Task<BLL.Models.ChatDTO> GetChatByIdAsync(int Id) {
             return base.Channel.GetChatByIdAsync(Id);
+        }
+        
+        public void RemoveFriendAndChat(BLL.Models.UserDTO deletefrom, BLL.Models.UserDTO deletewhom, BLL.Models.ChatDTO chat) {
+            base.Channel.RemoveFriendAndChat(deletefrom, deletewhom, chat);
+        }
+        
+        public System.Threading.Tasks.Task RemoveFriendAndChatAsync(BLL.Models.UserDTO deletefrom, BLL.Models.UserDTO deletewhom, BLL.Models.ChatDTO chat) {
+            return base.Channel.RemoveFriendAndChatAsync(deletefrom, deletewhom, chat);
         }
     }
 }

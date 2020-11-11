@@ -16,14 +16,22 @@ namespace ZaolisUI
     public class MainMenuViewModel : INotifyPropertyChanged
     {
         ZaolisServiceClient.ZaolisServiceClient client;
+
         public ICollection<UserDTO> AllUsers { get; set; }
+
         public IEnumerable<UserDTO> FriendUsers { get; set; }
+
         public ObservableCollection<ChatDTO> Chats { get; set; }
+
         public UserDTO CurrentUser { get; set; }
+
         public AvatarDTO CurrentAvatar { get; set; }
+
         public ObservableCollection<ChatInfoModel> ChatInfos { get; set; }
 
+
         public CallbackHandler handler = new CallbackHandler();
+
         public MainMenuViewModel(UserDTO current)
         {
             CurrentUser = current;
@@ -31,35 +39,44 @@ namespace ZaolisUI
             AllUsers = client.GetAllUsers();
             FriendUsers = client.GetContacts(CurrentUser);
             ChatInfos = new ObservableCollection<ChatInfoModel>();
+
             if (client.GetUserChats(CurrentUser) != null)
             {
                 Chats = new ObservableCollection<ChatDTO>(client.GetUserChats(CurrentUser));
-                foreach (var chat in Chats)
-                {
-                    ChatInfos.Add(new ChatInfoModel(client, CurrentUser, chat));
-                }
+                Load();
             }
             //CurrentAvatar = client.GetAvatar(CurrentUser);
         }
-        public void SearchUser(string searchBy)
+
+        public void DeleteModel(ChatInfoModel model)
         {
+            var res = ChatInfos.FirstOrDefault(u => u.ContactMsgGetter.Id == (model).ContactMsgGetter.Id);
+            if (model != null && res != null)
+            {
+                ChatInfos.Remove(res);
+            }
+        }
+        public void SearchUser(string searchBy) 
+        {
+            //Task.Run(() => { });
             if (searchBy != "")
             {
-                List<UserDTO> userList = new List<UserDTO>();
-                foreach (var item in client.GetAllUsers())
-                {
-                    if (item.Name.Contains(searchBy))
-                    {
-                        userList.Add(item);
-                    }
-                }
-                AllUsers = userList;
+                
             }
-            else
-                AllUsers = client.GetAllUsers();
+            else 
+                Load();
+        }
+        private void Load() //Loads ChatInfos
+        {
+            ChatInfos = new ObservableCollection<ChatInfoModel>();
+            foreach (var chat in Chats)
+            {
+                ChatInfos.Add(new ChatInfoModel(client, CurrentUser, chat));
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         private void OnPropertyChanged(PropertyChangedEventArgs e)
         {
             PropertyChanged?.Invoke(this, e);

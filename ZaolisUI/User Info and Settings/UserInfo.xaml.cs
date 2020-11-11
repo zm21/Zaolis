@@ -22,11 +22,23 @@ namespace ZaolisUI
     public partial class UserInfo : UserControl, IChildWindow
     {
         private DockPanel parent;
+
+        private ChatInfoModel model;
+
         private UserDTO CurrentUser;
-        public UserInfo(DockPanel parent,ChatInfoModel model)
+
+        private MainMenuViewModel viewModel;
+
+        private ZaolisServiceClient.ZaolisServiceClient client;
+        public UserInfo(DockPanel parent,ChatInfoModel model,ZaolisServiceClient.ZaolisServiceClient client,ref MainMenuViewModel viewModel)
         {
             InitializeComponent();
+
             CurrentUser = model.ContactMsgGetter;
+
+            this.client = client;
+            this.model = model;
+            this.viewModel = viewModel;
             this.parent = parent;
             this.DataContext = model;
         }
@@ -56,7 +68,8 @@ namespace ZaolisUI
 
         private void buttonDeleteUser_Click(object sender, RoutedEventArgs e)
         {
-
+            viewModel.DeleteModel(model);
+            client.RemoveFriendAndChat(model.CurrentUser, model.ContactMsgGetter, model.Chat);
         }
     }
 }

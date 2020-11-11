@@ -22,11 +22,17 @@ namespace ZaolisUI
     public partial class AddFriend : Window
     {
         UserDTO user;
+
         CallbackHandler handler=new CallbackHandler();
+
         ZaolisServiceClient.ZaolisServiceClient client;
-        public AddFriend(UserDTO user, ZaolisServiceClient.ZaolisServiceClient client)
+
+        MainMenuViewModel mainMenuViewModel;
+        public AddFriend(UserDTO user, ZaolisServiceClient.ZaolisServiceClient client, ref MainMenuViewModel mainMenuViewModel)
         {
             InitializeComponent();
+
+            this.mainMenuViewModel = mainMenuViewModel;
             this.user = user;
             this.client = client;
             this.client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(handler));
@@ -42,14 +48,16 @@ namespace ZaolisUI
             if(txtBox_username.Text!=null)
             {
                 var res = client.GetUserByLogin(txtBox_username.Text);
-                if(res!=null)
+
+                if(res!=null&&mainMenuViewModel.ChatInfos.FirstOrDefault(ci=>ci.ContactMsgGetter.Login== txtBox_username.Text)==null)
                 {
                     client.AddContact(user, res);
-                    client.GetChat(user, res);
+                    mainMenuViewModel.ChatInfos.Add(new ChatInfoModel(client, mainMenuViewModel.CurrentUser, client.GetChat(user, res)));
+                    this.Close();
                 }
                 else
                 {
-                    MsgBox msg = new MsgBox("Error", "There is no such user in our system!");
+                    MsgBox msg = new MsgBox("Error", "There is no such user in our system or he is already your friend!");
                     msg.Show();
                 }
             }
