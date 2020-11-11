@@ -35,6 +35,7 @@ namespace ZaolisUI
 
         private IChatManager chatManager;
 
+
         #region Tray&Notifications
         //Tray&Notifications
         private System.Windows.Forms.NotifyIcon m_notifyIcon;
@@ -48,6 +49,7 @@ namespace ZaolisUI
         public MainMenuZaolis(ObservableCollection<UserDTO> users, ZaolisServiceClient.ZaolisServiceClient client)
         {
             InitializeComponent();
+
 
             this.users = users;
 
@@ -77,9 +79,10 @@ namespace ZaolisUI
             client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(callbackHandler), "NetTcpBinding_IZaolisService");
 
             Tray();
-            Notification("Zaolis","Zaolis is working on the tray");
+            Notification("Zaolis", "Zaolis is working on the tray");
 
-            m_notifyIcon.ShowBalloonTip(1000);
+            Tray();
+            Notification("Zaolis", "Working");
         }
 
         private void Tray()
@@ -99,23 +102,19 @@ namespace ZaolisUI
             contextMenu.MenuItems.Add(menuItem1);
             contextMenu.MenuItems.Add(menuItem);
         }
-
         private void Notification(string title, string msg)
         {
             m_notifyIcon = new System.Windows.Forms.NotifyIcon();
 
             m_notifyIcon.Icon = new System.Drawing.Icon(@"..\..\Resources\z.ico");
-
             m_notifyIcon.BalloonTipText = msg;
             m_notifyIcon.BalloonTipClicked += new EventHandler(m_notifyIcon_Click);
             m_notifyIcon.BalloonTipTitle = title;
-
             m_notifyIcon.Text = "Zaolis";
             m_notifyIcon.ContextMenu = contextMenu;
 
             m_notifyIcon.Click += new EventHandler(m_notifyIcon_Click);
         }
-
         private void CallbackHandler_RecieveEvent(MessageDTO obj)
         {
             var chat = mainMenuViewModel.Chats.FirstOrDefault(c => c.Id == obj.ChatId);
@@ -166,7 +165,98 @@ namespace ZaolisUI
 
         private void buttonNightMode_Click(object sender, RoutedEventArgs e)
         {
+            chatManager.UpdateUI();
             toggleButtonNightMode.IsChecked = !toggleButtonNightMode.IsChecked;
+
+            var converter = new BrushConverter();
+
+
+            if (mainMenuViewModel.NightMode)
+            {
+                TopGrid.Background = (Brush)converter.ConvertFromString("#1F2935");
+                foreach (var item in this.TopGrid.Children)
+                {
+                    if (item is Button)
+                    {
+                        (item as Button).Foreground = Brushes.LightGray;
+                    }
+                }
+
+                //Menu
+                topDockPanelInMenu.Background = (Brush)converter.ConvertFromString("#276899");
+                GridMenu.Background = (Brush)converter.ConvertFromString("#17212B");
+                expanderAccounts.Background = (Brush)converter.ConvertFromString("#276899");
+                expanderAccounts.Foreground = Brushes.White;
+                logginedUsers.Background = (Brush)converter.ConvertFromString("#17212B");
+                logginedUsers.ItemTemplate = (DataTemplate)Resources["DarkAccountTemplate"];
+                //Buttons
+                labelAddAccount.Foreground = Brushes.White;
+                labelFindFriend.Foreground = Brushes.White;
+                labelLogout.Foreground = Brushes.White;
+                labelNewGroup.Foreground = Brushes.White;
+                labelSettings.Foreground = Brushes.White;
+                labelNightMode.Foreground = Brushes.White;
+                buttonSettings.Foreground = Brushes.LightGray;
+                buttonAddAccount.Foreground = Brushes.LightGray;
+                buttonLogout.Foreground = Brushes.LightGray;
+                buttonCreateNewChat.Foreground = Brushes.LightGray;
+                buttonFindFriend.Foreground = Brushes.LightGray;
+                buttonNightMode.Foreground = Brushes.LightGray;
+
+                //ChatList
+                chatListDockPanel.Background = (Brush)converter.ConvertFromString("#17212B");
+                lbox_chats.Background = (Brush)converter.ConvertFromString("#17212B");
+                textBoxSearch.Background = (Brush)converter.ConvertFromString("#232F3D");
+                textBoxSearch.Foreground = Brushes.White;
+                textBoxSearch.BorderBrush = Brushes.LightGray;
+                lbox_chats.ItemTemplate = (DataTemplate)Resources["DarkChatTemplate"];
+                //Chat
+                ChatPanel.Background = (Brush)converter.ConvertFromString("#0E1621");
+                gridSplitter.Background = Brushes.Black;
+            }
+            else
+            {
+                TopGrid.Background = (Brush)converter.ConvertFromString("#03A9F4");
+                foreach (var item in this.TopGrid.Children)
+                {
+                    if (item is Button)
+                    {
+                        (item as Button).Foreground = Brushes.LightGray;
+                    }
+                }
+
+                //Menu
+                topDockPanelInMenu.Background = Brushes.White;
+                GridMenu.Background = Brushes.White;
+                expanderAccounts.Background = null;
+                expanderAccounts.Foreground = Brushes.Black;
+                logginedUsers.Background = null;
+                logginedUsers.ItemTemplate = (DataTemplate)Resources["LightAccountTemplate"];
+                //Buttons
+                labelAddAccount.Foreground = Brushes.Black;
+                labelFindFriend.Foreground = Brushes.Black;
+                labelLogout.Foreground = Brushes.Black;
+                labelNewGroup.Foreground = Brushes.Black;
+                labelSettings.Foreground = Brushes.Black;
+                labelNightMode.Foreground = Brushes.Black;
+                buttonSettings.Foreground = (Brush)converter.ConvertFromString("#03A9F4");
+                buttonAddAccount.Foreground = (Brush)converter.ConvertFromString("#03A9F4");
+                buttonLogout.Foreground = (Brush)converter.ConvertFromString("#03A9F4");
+                buttonCreateNewChat.Foreground = (Brush)converter.ConvertFromString("#03A9F4");
+                buttonFindFriend.Foreground = (Brush)converter.ConvertFromString("#03A9F4");
+                buttonNightMode.Foreground = (Brush)converter.ConvertFromString("#03A9F4");
+
+                //ChatList
+                chatListDockPanel.Background = Brushes.White;
+                lbox_chats.Background = null;
+                textBoxSearch.Foreground = Brushes.Black;
+                textBoxSearch.Background = (Brush)converter.ConvertFromString("#C8E4F8");
+                lbox_chats.ItemTemplate = (DataTemplate)Resources["LightChatTemplate"];
+                //Chat
+                ChatPanel.Background = Brushes.White;
+                gridSplitter.Background = Brushes.LightGray;
+            }
+            
         }
 
         private void buttonFindFriend_Click(object sender, RoutedEventArgs e)
@@ -183,7 +273,7 @@ namespace ZaolisUI
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
-                    Settings settings = new Settings(OverlayDockPanel, client, loginnedUser, users);
+                    Settings settings = new Settings(OverlayDockPanel, client, loginnedUser, users,mainMenuViewModel.NightMode);
 
                     OverlayDockPanel.Children.Add(settings);
                 });
@@ -246,7 +336,7 @@ namespace ZaolisUI
                 ChatPanel.Children.Clear();
 
                 var chatInfo = (lbox_chats.SelectedItem as ChatInfoModel);
-                
+
                 chatManager.LoadChat(chatInfo, client, OverlayDockPanel);
                 ChatPanel.Children.Add(chatManager.GetChatWindow(chatInfo.Chat));
             }
@@ -256,6 +346,7 @@ namespace ZaolisUI
         {
             textBoxSearch.IsEnabled = false;
             ButtonOpenMenu.IsEnabled = false;
+
             GridBackground.IsEnabled = true;
         }
 
@@ -312,6 +403,7 @@ namespace ZaolisUI
         void Free();
         bool IsLoadedChat(ChatDTO chatDTO);
         ChatWindow GetChatWindow(ChatDTO chatDTO);
+        void UpdateUI();
     }
     public class ChatManager : IChatManager
     {
@@ -348,7 +440,7 @@ namespace ZaolisUI
                 //Messages sorting
                 if (chatWindows.Count == MaxCount)
                     chatWindows.RemoveAt(MaxCount - 1);
-
+                
                 chatWindows.Insert(0, new ChatWindow(chatInfoModel, client, OverlayDockPanel, ref viewModel));
             }
         }
@@ -357,6 +449,14 @@ namespace ZaolisUI
         {
             var chatwindow = chatWindows.FirstOrDefault(c => c.Chat.Id == chatDTO.Id);
             return chatwindow;
+        }
+
+        public void UpdateUI()
+        {
+            foreach (var item in chatWindows)
+            {
+                item.UpdateUI();
+            }
         }
     }
     public class CallbackHandler : IZaolisServiceCallback

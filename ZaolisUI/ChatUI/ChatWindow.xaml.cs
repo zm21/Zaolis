@@ -1,4 +1,4 @@
-﻿using BLL.Models;
+using BLL.Models;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -37,7 +37,9 @@ namespace ZaolisUI
 
         private MainMenuViewModel viewModel;
 
-        public ChatWindow(ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client,DockPanel dockPanel, ref MainMenuViewModel viewModel)
+        private bool nightMode;
+
+        public ChatWindow(ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client, DockPanel dockPanel, ref MainMenuViewModel viewModel)
         {
             InitializeComponent();
 
@@ -47,12 +49,15 @@ namespace ZaolisUI
             this.DataContext = ChatInfo;
             this.client = client;
             this.viewModel = viewModel;
+            this.nightMode = viewModel.NightMode;
 
             OverlayDockPanel = dockPanel;
 
-            Task.Run(() => 
+
+
+            Task.Run(() =>
             {
-                while(true)
+                while (true)
                 {
                     ChatInfo.ContactMsgGetter = client.UpdateUserInfo(ChatInfo.ContactMsgGetter);
                     Thread.Sleep(10000);
@@ -62,7 +67,7 @@ namespace ZaolisUI
 
         private void ButtonSend_Click(object sender, RoutedEventArgs e)
         {
-            if(!string.IsNullOrWhiteSpace(txtbox_message.Text))
+            if (!string.IsNullOrWhiteSpace(txtbox_message.Text))
             {
                 MessageDTO messageDTO = new MessageDTO();
 
@@ -81,8 +86,31 @@ namespace ZaolisUI
 
         private void DockPanel_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            UserInfo userInfo = new UserInfo(OverlayDockPanel,ChatInfo,client, ref viewModel);
-            OverlayDockPanel.Children.Add(userInfo);
+            bool nm = false;
+            foreach (var item in (OverlayDockPanel.Parent as Grid).Children)
+            {
+                if (item is DockPanel)
+                {
+                    if ((item as DockPanel).Name == "TopGrid")
+                    {
+                        if ((item as DockPanel).Background.ToString() == "#FF03A9F4")
+                        {
+                            nm = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (nm)
+            {
+                UserInfo userInfo = new UserInfo(OverlayDockPanel, ChatInfo, client, ref viewModel, false);
+                OverlayDockPanel.Children.Add(userInfo);
+            }
+            else
+            {
+                UserInfo userInfo = new UserInfo(OverlayDockPanel, ChatInfo, client, ref viewModel, true);
+                OverlayDockPanel.Children.Add(userInfo);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -93,10 +121,56 @@ namespace ZaolisUI
             openFileDialog.ShowDialog();
         }
 
+
         private void txtbox_message_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
                 ButtonSend_Click(sender, new RoutedEventArgs());
         }
+        
+        public void UpdateUI()
+        {
+            bool nm = false;
+            var converter = new BrushConverter();
+            foreach (var item in (OverlayDockPanel.Parent as Grid).Children)
+            {
+                if (item is DockPanel)
+                {
+                    if ((item as DockPanel).Name == "TopGrid")
+                    {
+                        if ((item as DockPanel).Background.ToString() == "#FF03A9F4")
+                        {
+                            nm = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (nm)
+            {
+                userInfo.Background = (Brush)converter.ConvertFromString("#17212B");
+                dockPanelMessage.Background = (Brush)converter.ConvertFromString("#17212B");
+                userTextName.Foreground = Brushes.White;
+                userTextStatus.Foreground = Brushes.LightGray;
+                txtbox_message.Foreground = Brushes.White;
+                buttonAttachments.Foreground = Brushes.LightGray;
+                buttonMic.Foreground = Brushes.LightGray;
+                buttonSend.Foreground = Brushes.LightGray;
+                buttonSticker.Foreground = Brushes.LightGray;
+            }
+            else
+            {
+                userInfo.Background = (Brush)converter.ConvertFromString("#C8E4F8");
+                dockPanelMessage.Background = (Brush)converter.ConvertFromString("#C8E4F8");
+                userTextName.Foreground = Brushes.Black;
+                userTextStatus.Foreground = Brushes.Gray;
+                txtbox_message.Foreground = Brushes.Black;
+                buttonAttachments.Foreground = (Brush)converter.ConvertFromString("#03A9F4");
+                buttonMic.Foreground = (Brush)converter.ConvertFromString("#03A9F4");
+                buttonSend.Foreground = (Brush)converter.ConvertFromString("#03A9F4");
+                buttonSticker.Foreground = (Brush)converter.ConvertFromString("#03A9F4");
+            }
+        }
     }
+
 }

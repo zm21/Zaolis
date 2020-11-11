@@ -25,6 +25,7 @@ namespace ZaolisUI
         public ObservableCollection<ChatDTO> Chats { get; set; }
 
         public UserDTO CurrentUser { get; set; }
+        public bool NightMode { get; set; }
 
         public BitmapSource CurrentAvatar => CurrentUser.AvatarImage();
 
