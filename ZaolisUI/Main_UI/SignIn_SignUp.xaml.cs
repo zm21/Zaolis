@@ -209,7 +209,7 @@ namespace ZaolisUI
                             LastActive=DateTime.Now
                         });
 
-                        client.AddAvatarAsync(new AvatarDTO() { Path = @"D:\default.png", UserId = client.GetUserByLogin(registerModel.Login).Id, IsActive=true });
+                        client.AddAvatarAsync(new AvatarDTO() { Path = @"D:\avatars\default.png", UserId = client.GetUserByLogin(registerModel.Login).Id, IsActive=true });
                         ShowMsg("Registration", "Registration Successfull");
 
                         SignUP.Visibility = Visibility.Hidden;

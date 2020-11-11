@@ -47,18 +47,18 @@ namespace BLL.Models
         [DataMember]
         public byte[] AvatarBytes;
 
-        //public BitmapSource CurrentAvatar
-        //{
-        //    get
-        //    {
-        //        return AvatarImage();
-        //    }
-        //}
-        //
+        public BitmapSource CurrentAvatar
+        {
+            get
+            {
+                return AvatarImage();
+            }
+        }
+        
 
         public BitmapSource AvatarImage()
         {
-            if (AvatarBytes.Length>0)
+            if (AvatarBytes?.Length>0)
             {
                 Bitmap bmp = null;
                 using (var ms = new MemoryStream(AvatarBytes))

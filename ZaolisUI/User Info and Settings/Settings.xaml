@@ -33,7 +33,7 @@
                         <!--Photo-->
                         <Ellipse Height="70" DockPanel.Dock="Top" Width="70" Margin="1,15,1,10" Stroke="#FF03A9F4" StrokeThickness="1">
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
+                                <ImageBrush ImageSource="{Binding CurrentAvatar}" Stretch="Fill"></ImageBrush>
                             </Ellipse.Fill>
                         </Ellipse>
                         <Button x:Name="buttonSetProfilePhoto" materialDesign:ButtonAssist.CornerRadius="15" Width="150" Margin="0,0,0,20" Foreground="White" DockPanel.Dock="Bottom">
