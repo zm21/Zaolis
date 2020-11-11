@@ -19,7 +19,6 @@ namespace ZaolisUI
     {
         ZaolisServiceClient.ZaolisServiceClient client;
 
-        public ICollection<UserDTO> AllUsers { get; set; }
 
         public IEnumerable<UserDTO> FriendUsers { get; set; }
 
@@ -38,7 +37,6 @@ namespace ZaolisUI
         {
             CurrentUser = current;
             client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(handler), "NetTcpBinding_IZaolisService");
-            AllUsers = client.GetAllUsers();
             FriendUsers = client.GetContacts(CurrentUser);
             ChatInfos = new ObservableCollection<ChatInfoModel>();
 
