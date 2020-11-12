@@ -54,8 +54,31 @@ namespace ZaolisUI
 
             OverlayDockPanel = dockPanel;
 
-
-
+            var converter = new BrushConverter();
+            if (nightMode)
+            {
+                userInfo.Background = (Brush)converter.ConvertFromString("#17212B");
+                dockPanelMessage.Background = (Brush)converter.ConvertFromString("#17212B");
+                userTextName.Foreground = Brushes.White;
+                userTextStatus.Foreground = Brushes.LightGray;
+                txtbox_message.Foreground = Brushes.White;
+                buttonAttachments.Foreground = Brushes.LightGray;
+                buttonMic.Foreground = Brushes.LightGray;
+                buttonSend.Foreground = Brushes.LightGray;
+                buttonSticker.Foreground = Brushes.LightGray;
+            }
+            else
+            {
+                userInfo.Background = (Brush)converter.ConvertFromString("#C8E4F8");
+                dockPanelMessage.Background = (Brush)converter.ConvertFromString("#C8E4F8");
+                userTextName.Foreground = Brushes.Black;
+                userTextStatus.Foreground = Brushes.Gray;
+                txtbox_message.Foreground = Brushes.Black;
+                buttonAttachments.Foreground = (Brush)converter.ConvertFromString("#03A9F4");
+                buttonMic.Foreground = (Brush)converter.ConvertFromString("#03A9F4");
+                buttonSend.Foreground = (Brush)converter.ConvertFromString("#03A9F4");
+                buttonSticker.Foreground = (Brush)converter.ConvertFromString("#03A9F4");
+            }
             Task.Run(() =>
             {
                 while (true)
@@ -156,7 +179,7 @@ namespace ZaolisUI
             if (e.Key == Key.Enter)
                 ButtonSend_Click(sender, new RoutedEventArgs());
         }
-        
+
         public void UpdateUI()
         {
             bool nm = false;
