@@ -17,7 +17,7 @@ namespace ZaolisUI
         private bool passwd_valide;
         public string ConfirmPasswd { get; set; }
         private bool confirm_pass_valide;
-        private bool isagree_lic;
+
 
         CallbackHandler handler;
 
@@ -27,17 +27,7 @@ namespace ZaolisUI
             this.client = client;
         }
 
-        public bool isAgreeLic
-        {
-            get { return isagree_lic; }
-            set
-            {
-                isagree_lic = value;
-                OnPropertyChanged(nameof(isAllValide));
-            }
-        }
-
-        public bool isAllValide => (login_valide && email_valide && passwd_valide && confirm_pass_valide && confirm_pass_valide && isAgreeLic);
+        public bool isAllValide => (login_valide && email_valide && passwd_valide && confirm_pass_valide && confirm_pass_valide);
 
         public string this[string columnName]
         {

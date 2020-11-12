@@ -94,8 +94,7 @@
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-                        <CheckBox IsChecked="{Binding RegisterModel.isAgreeLic, Mode=OneWayToSource}" Name="licAgree" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="30,5" Background="#FF27AAF0" BorderBrush="#FF27AAF0">I accept the license agreement</CheckBox>
-                        <Button Margin="30,10" Background="#FF27AAF0" BorderBrush="#FF27AAF0" DockPanel.Dock="Top" materialDesign:ButtonAssist.CornerRadius="12" Foreground="White" Click="ButtonSignUP_Click">Sign Up</Button>
+                        <Button Margin="30,10" Background="#FF27AAF0" BorderBrush="#FF27AAF0" DockPanel.Dock="Top" materialDesign:ButtonAssist.CornerRadius="12" Foreground="White" Click="ButtonSignUP_Click" IsEnabled="{Binding isAllValide}">Sign Up</Button>
                     </DockPanel>
                 </Grid>
                 <!--Forget password-->
