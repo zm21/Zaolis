@@ -79,9 +79,6 @@ namespace ZaolisUI
             client.ConnectByUser(loginnedUser);
             Tray();
             Notification("Zaolis", "Zaolis is working on the tray");
-
-            Tray();
-            Notification("Zaolis", "Working");
         }
 
         private void Tray()
@@ -117,9 +114,14 @@ namespace ZaolisUI
         private void CallbackHandler_RecieveEvent(MessageDTO obj)
         {
             var chat = mainMenuViewModel.Chats.FirstOrDefault(c => c.Id == obj.ChatId);
-
-            mainMenuViewModel.Chats.Insert(0, client.GetChatById(chat.Id));
-            mainMenuViewModel.Chats.Remove(chat);
+            var chatInfo = mainMenuViewModel.ChatInfos.Where(u => u.ContactMsgGetter.Id == obj.UserId).FirstOrDefault();
+            chatInfo?.UpdateChat();
+            Notification(chatInfo?.ContactMsgGetter?.Name, chatInfo.LastMessage);
+            m_notifyIcon.Visible = true;
+            m_notifyIcon.ShowBalloonTip(10000);
+            chatInfo.Messages.Add(new MessageModel(obj, loginnedUser));
+            //mainMenuViewModel.Chats.Insert(0, client.GetChatById(chat.Id));
+            //mainMenuViewModel.Chats.Remove(chat);
         }
 
         private void TopGrid_MouseDown(object sender, MouseButtonEventArgs e)
@@ -130,9 +132,6 @@ namespace ZaolisUI
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
-
-            m_notifyIcon.Visible = true;
-            m_notifyIcon.ShowBalloonTip(10000);
         }
 
         private void ButtonMinimize_Click(object sender, RoutedEventArgs e)
