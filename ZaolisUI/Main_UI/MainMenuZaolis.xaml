@@ -6,7 +6,7 @@ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 xmlns:local="clr-namespace:ZaolisUI"
 xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
 mc:Ignorable="d"
-Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" WindowStyle="None" Closing="Window_Closing" Icon="z (1).png">
+Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" WindowStyle="None" Closing="Window_Closing" Icon="z (1).png" WindowStartupLocation="CenterScreen">
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0"/>
     </WindowChrome.WindowChrome>

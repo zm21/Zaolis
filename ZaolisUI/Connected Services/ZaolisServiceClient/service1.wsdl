@@ -172,53 +172,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_Disconnect_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_AddUser_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_AddUser_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -264,53 +218,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_AddAvatar_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_RegisterUser_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_RegisterUser_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -678,53 +586,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_ForgetPassword_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_EditUsersPassword_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_EditUsersPassword_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -816,29 +678,6 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_SendMessage_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_GetContacts_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -886,29 +725,6 @@
     </wsp:ExactlyOne>
   </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_AddContact_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_AddContact_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -1000,53 +816,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_EditUsersName_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_EditUsersBio_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_EditUsersBio_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -1460,53 +1230,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_RemoveFriendAndChat_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
   <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_ChangeCurrentAvatar_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IZaolisService_ChangeCurrentAvatar_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -1597,26 +1321,14 @@
   <wsdl:message name="IZaolisService_Disconnect_InputMessage">
     <wsdl:part name="parameters" element="tns:Disconnect" />
   </wsdl:message>
-  <wsdl:message name="IZaolisService_Disconnect_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DisconnectResponse" />
-  </wsdl:message>
   <wsdl:message name="IZaolisService_AddUser_InputMessage">
     <wsdl:part name="parameters" element="tns:AddUser" />
-  </wsdl:message>
-  <wsdl:message name="IZaolisService_AddUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddUserResponse" />
   </wsdl:message>
   <wsdl:message name="IZaolisService_AddAvatar_InputMessage">
     <wsdl:part name="parameters" element="tns:AddAvatar" />
   </wsdl:message>
-  <wsdl:message name="IZaolisService_AddAvatar_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddAvatarResponse" />
-  </wsdl:message>
   <wsdl:message name="IZaolisService_RegisterUser_InputMessage">
     <wsdl:part name="parameters" element="tns:RegisterUser" />
-  </wsdl:message>
-  <wsdl:message name="IZaolisService_RegisterUser_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RegisterUserResponse" />
   </wsdl:message>
   <wsdl:message name="IZaolisService_IsExistsUserByLoginPassword_InputMessage">
     <wsdl:part name="parameters" element="tns:IsExistsUserByLoginPassword" />
@@ -1663,14 +1375,8 @@
   <wsdl:message name="IZaolisService_ForgetPassword_InputMessage">
     <wsdl:part name="parameters" element="tns:ForgetPassword" />
   </wsdl:message>
-  <wsdl:message name="IZaolisService_ForgetPassword_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ForgetPasswordResponse" />
-  </wsdl:message>
   <wsdl:message name="IZaolisService_EditUsersPassword_InputMessage">
     <wsdl:part name="parameters" element="tns:EditUsersPassword" />
-  </wsdl:message>
-  <wsdl:message name="IZaolisService_EditUsersPassword_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EditUsersPasswordResponse" />
   </wsdl:message>
   <wsdl:message name="IZaolisService_Request_InputMessage">
     <wsdl:part name="parameters" element="tns:Request" />
@@ -1681,9 +1387,6 @@
   <wsdl:message name="IZaolisService_SendMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMessage" />
   </wsdl:message>
-  <wsdl:message name="IZaolisService_SendMessage_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SendMessageResponse" />
-  </wsdl:message>
   <wsdl:message name="IZaolisService_GetContacts_InputMessage">
     <wsdl:part name="parameters" element="tns:GetContacts" />
   </wsdl:message>
@@ -1692,9 +1395,6 @@
   </wsdl:message>
   <wsdl:message name="IZaolisService_AddContact_InputMessage">
     <wsdl:part name="parameters" element="tns:AddContact" />
-  </wsdl:message>
-  <wsdl:message name="IZaolisService_AddContact_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddContactResponse" />
   </wsdl:message>
   <wsdl:message name="IZaolisService_GetUserByName_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUserByName" />
@@ -1705,14 +1405,8 @@
   <wsdl:message name="IZaolisService_EditUsersName_InputMessage">
     <wsdl:part name="parameters" element="tns:EditUsersName" />
   </wsdl:message>
-  <wsdl:message name="IZaolisService_EditUsersName_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EditUsersNameResponse" />
-  </wsdl:message>
   <wsdl:message name="IZaolisService_EditUsersBio_InputMessage">
     <wsdl:part name="parameters" element="tns:EditUsersBio" />
-  </wsdl:message>
-  <wsdl:message name="IZaolisService_EditUsersBio_OutputMessage">
-    <wsdl:part name="parameters" element="tns:EditUsersBioResponse" />
   </wsdl:message>
   <wsdl:message name="IZaolisService_GetChat_InputMessage">
     <wsdl:part name="parameters" element="tns:GetChat" />
@@ -1765,14 +1459,8 @@
   <wsdl:message name="IZaolisService_RemoveFriendAndChat_InputMessage">
     <wsdl:part name="parameters" element="tns:RemoveFriendAndChat" />
   </wsdl:message>
-  <wsdl:message name="IZaolisService_RemoveFriendAndChat_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RemoveFriendAndChatResponse" />
-  </wsdl:message>
   <wsdl:message name="IZaolisService_ChangeCurrentAvatar_InputMessage">
     <wsdl:part name="parameters" element="tns:ChangeCurrentAvatar" />
-  </wsdl:message>
-  <wsdl:message name="IZaolisService_ChangeCurrentAvatar_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ChangeCurrentAvatarResponse" />
   </wsdl:message>
   <wsdl:message name="IZaolisService_RecieveMessage_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:RecieveMessage" />
@@ -1784,19 +1472,15 @@
     </wsdl:operation>
     <wsdl:operation name="Disconnect">
       <wsdl:input wsaw:Action="http://tempuri.org/IZaolisService/Disconnect" message="tns:IZaolisService_Disconnect_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IZaolisService/DisconnectResponse" message="tns:IZaolisService_Disconnect_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IZaolisService/AddUser" message="tns:IZaolisService_AddUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IZaolisService/AddUserResponse" message="tns:IZaolisService_AddUser_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddAvatar">
       <wsdl:input wsaw:Action="http://tempuri.org/IZaolisService/AddAvatar" message="tns:IZaolisService_AddAvatar_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IZaolisService/AddAvatarResponse" message="tns:IZaolisService_AddAvatar_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RegisterUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IZaolisService/RegisterUser" message="tns:IZaolisService_RegisterUser_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IZaolisService/RegisterUserResponse" message="tns:IZaolisService_RegisterUser_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="IsExistsUserByLoginPassword">
       <wsdl:input wsaw:Action="http://tempuri.org/IZaolisService/IsExistsUserByLoginPassword" message="tns:IZaolisService_IsExistsUserByLoginPassword_InputMessage" />
@@ -1828,11 +1512,9 @@
     </wsdl:operation>
     <wsdl:operation name="ForgetPassword">
       <wsdl:input wsaw:Action="http://tempuri.org/IZaolisService/ForgetPassword" message="tns:IZaolisService_ForgetPassword_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IZaolisService/ForgetPasswordResponse" message="tns:IZaolisService_ForgetPassword_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="EditUsersPassword">
       <wsdl:input wsaw:Action="http://tempuri.org/IZaolisService/EditUsersPassword" message="tns:IZaolisService_EditUsersPassword_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IZaolisService/EditUsersPasswordResponse" message="tns:IZaolisService_EditUsersPassword_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Request">
       <wsdl:input wsaw:Action="http://tempuri.org/IZaolisService/Request" message="tns:IZaolisService_Request_InputMessage" />
@@ -1840,7 +1522,6 @@
     </wsdl:operation>
     <wsdl:operation name="SendMessage">
       <wsdl:input wsaw:Action="http://tempuri.org/IZaolisService/SendMessage" message="tns:IZaolisService_SendMessage_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IZaolisService/SendMessageResponse" message="tns:IZaolisService_SendMessage_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetContacts">
       <wsdl:input wsaw:Action="http://tempuri.org/IZaolisService/GetContacts" message="tns:IZaolisService_GetContacts_InputMessage" />
@@ -1848,7 +1529,6 @@
     </wsdl:operation>
     <wsdl:operation name="AddContact">
       <wsdl:input wsaw:Action="http://tempuri.org/IZaolisService/AddContact" message="tns:IZaolisService_AddContact_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IZaolisService/AddContactResponse" message="tns:IZaolisService_AddContact_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetUserByName">
       <wsdl:input wsaw:Action="http://tempuri.org/IZaolisService/GetUserByName" message="tns:IZaolisService_GetUserByName_InputMessage" />
@@ -1856,11 +1536,9 @@
     </wsdl:operation>
     <wsdl:operation name="EditUsersName">
       <wsdl:input wsaw:Action="http://tempuri.org/IZaolisService/EditUsersName" message="tns:IZaolisService_EditUsersName_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IZaolisService/EditUsersNameResponse" message="tns:IZaolisService_EditUsersName_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="EditUsersBio">
       <wsdl:input wsaw:Action="http://tempuri.org/IZaolisService/EditUsersBio" message="tns:IZaolisService_EditUsersBio_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IZaolisService/EditUsersBioResponse" message="tns:IZaolisService_EditUsersBio_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetChat">
       <wsdl:input wsaw:Action="http://tempuri.org/IZaolisService/GetChat" message="tns:IZaolisService_GetChat_InputMessage" />
@@ -1896,11 +1574,9 @@
     </wsdl:operation>
     <wsdl:operation name="RemoveFriendAndChat">
       <wsdl:input wsaw:Action="http://tempuri.org/IZaolisService/RemoveFriendAndChat" message="tns:IZaolisService_RemoveFriendAndChat_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IZaolisService/RemoveFriendAndChatResponse" message="tns:IZaolisService_RemoveFriendAndChat_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ChangeCurrentAvatar">
       <wsdl:input wsaw:Action="http://tempuri.org/IZaolisService/ChangeCurrentAvatar" message="tns:IZaolisService_ChangeCurrentAvatar_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IZaolisService/ChangeCurrentAvatarResponse" message="tns:IZaolisService_ChangeCurrentAvatar_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RecieveMessage">
       <wsdl:output wsaw:Action="http://tempuri.org/IZaolisService/RecieveMessage" message="tns:IZaolisService_RecieveMessage_OutputCallbackMessage" />
@@ -1926,10 +1602,6 @@
         <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_Disconnect_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_Disconnect_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="AddUser">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/AddUser" style="document" />
@@ -1937,10 +1609,6 @@
         <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_AddUser_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_AddUser_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="AddAvatar">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/AddAvatar" style="document" />
@@ -1948,10 +1616,6 @@
         <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_AddAvatar_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_AddAvatar_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="RegisterUser">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/RegisterUser" style="document" />
@@ -1959,10 +1623,6 @@
         <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_RegisterUser_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_RegisterUser_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="IsExistsUserByLoginPassword">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/IsExistsUserByLoginPassword" style="document" />
@@ -2047,10 +1707,6 @@
         <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_ForgetPassword_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_ForgetPassword_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="EditUsersPassword">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/EditUsersPassword" style="document" />
@@ -2058,10 +1714,6 @@
         <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_EditUsersPassword_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_EditUsersPassword_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="Request">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/Request" style="document" />
@@ -2080,10 +1732,6 @@
         <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_SendMessage_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_SendMessage_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetContacts">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/GetContacts" style="document" />
@@ -2102,10 +1750,6 @@
         <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_AddContact_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_AddContact_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetUserByName">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/GetUserByName" style="document" />
@@ -2124,10 +1768,6 @@
         <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_EditUsersName_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_EditUsersName_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="EditUsersBio">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/EditUsersBio" style="document" />
@@ -2135,10 +1775,6 @@
         <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_EditUsersBio_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_EditUsersBio_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetChat">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/GetChat" style="document" />
@@ -2234,10 +1870,6 @@
         <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_RemoveFriendAndChat_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_RemoveFriendAndChat_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="ChangeCurrentAvatar">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/ChangeCurrentAvatar" style="document" />
@@ -2245,10 +1877,6 @@
         <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_ChangeCurrentAvatar_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IZaolisService_ChangeCurrentAvatar_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="RecieveMessage">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/RecieveMessage" style="document" />
@@ -2275,36 +1903,24 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="AddUser">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/AddUser" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="AddAvatar">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/AddAvatar" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="RegisterUser">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/RegisterUser" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="IsExistsUserByLoginPassword">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/IsExistsUserByLoginPassword" style="document" />
@@ -2374,18 +1990,12 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="EditUsersPassword">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/EditUsersPassword" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="Request">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/Request" style="document" />
@@ -2401,9 +2011,6 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetContacts">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/GetContacts" style="document" />
@@ -2419,9 +2026,6 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetUserByName">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/GetUserByName" style="document" />
@@ -2437,18 +2041,12 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="EditUsersBio">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/EditUsersBio" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetChat">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/GetChat" style="document" />
@@ -2527,18 +2125,12 @@
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="ChangeCurrentAvatar">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/ChangeCurrentAvatar" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="RecieveMessage">
       <soap12:operation soapAction="http://tempuri.org/IZaolisService/RecieveMessage" style="document" />
@@ -2553,7 +2145,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost:8099/ZaolisService.svc</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>VITALIKOLEKS\VitalikOlekS</Upn>
+          <Upn>DESKTOP-LM85BNA\Mikola</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -2562,7 +2154,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8090/ZaolisService.svc/tcp</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>VITALIKOLEKS\VitalikOlekS</Upn>
+          <Upn>DESKTOP-LM85BNA\Mikola</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
