@@ -1,16 +1,17 @@
 ﻿using BLL;
 using BLL.Models;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.ServiceModel.Web;
 using System.Text;
 
-namespace ZaolisService
+namespace ZaolisServiceApplication
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+    // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
+    // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class ZaolisService : IZaolisService
     {
         BLLClass bll = new BLLClass();
@@ -37,11 +38,7 @@ namespace ZaolisService
             if (res != null)
             {
                 bll.ChangeStatus(res, true);
-                var key = activeUsers.Keys.FirstOrDefault(k => k.Id == res.Id);
-                if (key != null)
-                    activeUsers[key] = OperationContext.Current.GetCallbackChannel<IZaolisCallback>();
-                else
-                    activeUsers.Add(res, OperationContext.Current.GetCallbackChannel<IZaolisCallback>());
+                activeUsers.Add(res, OperationContext.Current.GetCallbackChannel<IZaolisCallback>());
             }
             return res;
         }
@@ -51,18 +48,9 @@ namespace ZaolisService
             if (user != null)
             {
                 bll.ChangeStatus(user, true);
-                var key = activeUsers.Keys.FirstOrDefault(k => k.Id == user.Id);
-                if (key != null)
-                    activeUsers[key] = OperationContext.Current.GetCallbackChannel<IZaolisCallback>();
-                else
-                    activeUsers.Add(user, OperationContext.Current.GetCallbackChannel<IZaolisCallback>());
+                activeUsers.Add(user, OperationContext.Current.GetCallbackChannel<IZaolisCallback>());
             }
             return user;
-        }
-
-        public void ChangeCurrentAvatar(UserDTO user)
-        {
-            bll.ChangeCurrentAvatar(user);
         }
 
         public void Disconnect(UserDTO user)
@@ -125,13 +113,12 @@ namespace ZaolisService
             return bll.GetVerificationCode("") != null;
         }
 
-        public void SendMessage(MessageDTO message, UserDTO whom)
+        public void SendMessage(MessageDTO message)
         {
-            var user = activeUsers.Where(u => u.Key.Id == whom.Id).First();
-            bll.AddMessage(message);
-            if (user.Key != null)
+            if (activeUsers.Where(u => u.Key.Id == message.UserId) != null)
             {
-                activeUsers[user.Key].RecieveMessage(message);
+                bll.AddMessage(message);
+                OperationContext.Current.GetCallbackChannel<IZaolisCallback>().RecieveMessage(message);
             }
         }
         public void AddContact(UserDTO add_to, UserDTO newContact)

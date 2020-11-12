@@ -33,7 +33,7 @@ namespace ZaolisUI
         public ObservableCollection<MessageModel> Messages { get; set; }
         public BitmapSource CurrentMsgGetterAvatar => contactMsgGetter.AvatarImage();
 
-
+        
         //Chat friend
         public UserDTO ContactMsgGetter 
         {
@@ -88,6 +88,11 @@ namespace ZaolisUI
         protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        public void UpdateChat()
+        {
+            Chat = client.GetChatById(chat.Id);
         }
     }
 }

@@ -78,7 +78,7 @@ namespace ZaolisUI
 
                 ChatInfo.Messages.Add(new MessageModel(messageDTO, ChatInfo.CurrentUser));
 
-                client.SendMessageAsync(messageDTO);
+                client.SendMessageAsync(messageDTO, ChatInfo.ContactMsgGetter);
 
                 txtbox_message.Text = "";
             }

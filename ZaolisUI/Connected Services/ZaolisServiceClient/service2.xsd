@@ -23,21 +23,11 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="DisconnectResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="AddUser">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q3:UserDTO" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddUserResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="AddAvatar">
@@ -47,21 +37,11 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AddAvatarResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="RegisterUser">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RegisterUserResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="IsExistsUserByLoginPassword">
@@ -168,22 +148,12 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ForgetPasswordResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
   <xs:element name="EditUsersPassword">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q9:UserDTO" />
         <xs:element minOccurs="0" name="pass" nillable="true" type="xs:string" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EditUsersPasswordResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="Request">
@@ -202,39 +172,30 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="message" nillable="true" type="q10:MessageDTO" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="whom" nillable="true" type="q11:UserDTO" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="SendMessageResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="GetContacts">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q11:UserDTO" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q12:UserDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetContactsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetContactsResult" nillable="true" type="q12:ArrayOfUserDTO" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetContactsResult" nillable="true" type="q13:ArrayOfUserDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddContact">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="add_to" nillable="true" type="q13:UserDTO" />
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="newContact" nillable="true" type="q14:UserDTO" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="add_to" nillable="true" type="q14:UserDTO" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="newContact" nillable="true" type="q15:UserDTO" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AddContactResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="GetUserByName">
@@ -247,132 +208,122 @@
   <xs:element name="GetUserByNameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetUserByNameResult" nillable="true" type="q15:UserDTO" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetUserByNameResult" nillable="true" type="q16:UserDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EditUsersName">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q16:UserDTO" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q17:UserDTO" />
         <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EditUsersNameResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="EditUsersBio">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q17:UserDTO" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q18:UserDTO" />
         <xs:element minOccurs="0" name="bio" nillable="true" type="xs:string" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="EditUsersBioResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="GetChat">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q18:UserDTO" />
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="contact" nillable="true" type="q19:UserDTO" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q19:UserDTO" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="contact" nillable="true" type="q20:UserDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetChatResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetChatResult" nillable="true" type="q20:ChatDTO" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetChatResult" nillable="true" type="q21:ChatDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetUserChats">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q21:UserDTO" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q22:UserDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetUserChatsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetUserChatsResult" nillable="true" type="q22:ArrayOfChatDTO" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetUserChatsResult" nillable="true" type="q23:ArrayOfChatDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetUsersByChat">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="chat" nillable="true" type="q23:ChatDTO" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="chat" nillable="true" type="q24:ChatDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetUsersByChatResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetUsersByChatResult" nillable="true" type="q24:ArrayOfUserDTO" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetUsersByChatResult" nillable="true" type="q25:ArrayOfUserDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateUserInfo">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q25:UserDTO" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q26:UserDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateUserInfoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="UpdateUserInfoResult" nillable="true" type="q26:UserDTO" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="UpdateUserInfoResult" nillable="true" type="q27:UserDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetAvatar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q27:UserDTO" />
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q28:UserDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetAvatarResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetAvatarResult" nillable="true" type="q28:AvatarDTO" />
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetAvatarResult" nillable="true" type="q29:AvatarDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ConnectByUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q29:UserDTO" />
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q30:UserDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ConnectByUserResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="ConnectByUserResult" nillable="true" type="q30:UserDTO" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="ConnectByUserResult" nillable="true" type="q31:UserDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetMessagesByChat">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="chat" nillable="true" type="q31:ChatDTO" />
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="chat" nillable="true" type="q32:ChatDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetMessagesByChatResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetMessagesByChatResult" nillable="true" type="q32:ArrayOfMessageDTO" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetMessagesByChatResult" nillable="true" type="q33:ArrayOfMessageDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -386,40 +337,30 @@
   <xs:element name="GetChatByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetChatByIdResult" nillable="true" type="q33:ChatDTO" />
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="GetChatByIdResult" nillable="true" type="q34:ChatDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RemoveFriendAndChat">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="deletefrom" nillable="true" type="q34:UserDTO" />
-        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="deletewhom" nillable="true" type="q35:UserDTO" />
-        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="chat" nillable="true" type="q36:ChatDTO" />
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="deletefrom" nillable="true" type="q35:UserDTO" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="deletewhom" nillable="true" type="q36:UserDTO" />
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="chat" nillable="true" type="q37:ChatDTO" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="RemoveFriendAndChatResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="ChangeCurrentAvatar">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q37:UserDTO" />
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="user" nillable="true" type="q38:UserDTO" />
       </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ChangeCurrentAvatarResponse">
-    <xs:complexType>
-      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="RecieveMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="message" nillable="true" type="q38:MessageDTO" />
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/BLL.Models" minOccurs="0" name="message" nillable="true" type="q39:MessageDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
