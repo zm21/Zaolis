@@ -439,7 +439,7 @@ namespace ZaolisUI
                 if (chatWindows.Count == MaxCount)
                     chatWindows.RemoveAt(MaxCount - 1);
                 
-                chatWindows.Insert(0, new ChatWindow(chatInfoModel, client, OverlayDockPanel, ref viewModel));
+                chatWindows.Insert(0, new ChatWindow(ref chatInfoModel, client, OverlayDockPanel, ref viewModel));
             }
         }
 

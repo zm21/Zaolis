@@ -39,7 +39,7 @@ namespace ZaolisUI
 
         private bool nightMode;
 
-        public ChatWindow(ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client, DockPanel dockPanel, ref MainMenuViewModel viewModel)
+        public ChatWindow(ref ChatInfoModel chatInfoModel, ZaolisServiceClient.ZaolisServiceClient client, DockPanel dockPanel, ref MainMenuViewModel viewModel)
         {
             InitializeComponent();
 
@@ -76,11 +76,10 @@ namespace ZaolisUI
                 messageDTO.CreationTime = DateTime.Now;
                 messageDTO.UserId = ChatInfo.CurrentUser.Id;
 
-                ChatInfo.Messages.Add(new MessageModel(messageDTO, ChatInfo.CurrentUser));
-
-                client.SendMessageAsync(messageDTO, ChatInfo.ContactMsgGetter);
-
                 txtbox_message.Text = "";
+                ChatInfo.Messages.Add(new MessageModel(messageDTO, ChatInfo.CurrentUser));
+                client.SendMessageAsync(messageDTO, ChatInfo.ContactMsgGetter);
+                ChatInfo.UpdateChat();
             }
         }
 
