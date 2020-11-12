@@ -46,6 +46,8 @@ namespace BLL
         IEnumerable<MessageDTO> GetMessagesByChat(ChatDTO chat);
         ChatDTO GetChatById(int Id);
         void RemoveFriendAndChat(UserDTO deletefrom, UserDTO deletewhom, ChatDTO chat);
+        void AddMessage(MessageDTO newMessage, AttachmentDTO attachment);
+        IEnumerable<AttachmentDTO> GetAttachmentsByChat(ChatDTO chat);
     }
     public class BLLClass : IBLLClass
     {
@@ -63,7 +65,8 @@ namespace BLL
                 cfg.CreateMap<User, UserDTO>().ForMember(dest => dest.AvatarBytes,
                                                opt => opt.MapFrom(src => Utils.ConvertBytesToImage(src.Avatars.Where(a=>a.IsActive).LastOrDefault().Path)));
                 cfg.CreateMap<Avatar, AvatarDTO>();
-                cfg.CreateMap<DAL.Entities.Attachment, AttachmentDTO>();
+                cfg.CreateMap<DAL.Entities.Attachment, AttachmentDTO>().ForMember(dest => dest.imageBytes,
+                                               opt => opt.MapFrom(src => Utils.ConvertBytesToImage(src.Message.Attachments.LastOrDefault().Path)));
                 cfg.CreateMap<Chat, ChatDTO>();
                 cfg.CreateMap<Message, MessageDTO>();
                 cfg.CreateMap<UserContact, UserContactDTO>();
@@ -95,6 +98,7 @@ namespace BLL
                 unit.UserRepository.Save();
             }
         }
+
         public void AddAvatar(AvatarDTO newAvatar)
         {
             unit.AvatarRepository.Create(_mapper.Map<Avatar>(newAvatar));
@@ -103,6 +107,10 @@ namespace BLL
         public AvatarDTO GetAvatar(UserDTO user)
         {
             return _mapper.Map<AvatarDTO>((unit.AvatarRepository.Get(u => u.IsActive&&u.UserId==user.Id))?.FirstOrDefault());
+        }
+        public IEnumerable<AttachmentDTO> GetAttachmentsByChat(ChatDTO chat)
+        {
+            return _mapper.Map<IEnumerable<DAL.Entities.Attachment>, IEnumerable<AttachmentDTO>>(unit.AttachmentRepository.Get().Where(u => u.Message.ChatId == chat.Id));
         }
         public void AddContact(UserDTO add_to,UserDTO newContact)
         {
@@ -284,6 +292,20 @@ namespace BLL
             unit.Save();
             var last = unit.MessageRepository.Get().Last();
             unit.ChatRepository.GetById(newMessage.ChatId).LastMessage=last;
+            unit.Save();
+        }
+
+        public void AddMessage(MessageDTO newMessage,AttachmentDTO attachment)
+        {
+            unit.MessageRepository.Create(_mapper.Map<Message>(newMessage));
+            unit.Save();
+            var last = unit.MessageRepository.Get().Last();
+            attachment.MessageId = last.Id;
+            unit.AttachmentRepository.Create(_mapper.Map<DAL.Entities.Attachment>(attachment));
+            unit.Save();
+            var lastattachment = unit.AttachmentRepository.Get().Last();
+            last.Attachments.Add(lastattachment);
+            unit.ChatRepository.GetById(newMessage.ChatId).LastMessage = last;
             unit.Save();
         }
 

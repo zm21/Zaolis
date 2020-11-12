@@ -464,6 +464,12 @@ namespace ZaolisUI
         {
             RecieveEvent?.Invoke(message);
         }
+
+        public event Action<MessageDTO,AttachmentDTO> RecieveEventWithAttachment;
+        public void RecieveMessageWithAttachment(MessageDTO message,AttachmentDTO attachment)
+        {
+            RecieveEventWithAttachment?.Invoke(message,attachment);
+        }
     }
 
 

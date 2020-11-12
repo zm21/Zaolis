@@ -73,6 +73,10 @@ namespace ZaolisService
                 activeUsers.Remove(user);
             }
         }
+        public IEnumerable<AttachmentDTO> GetAttachmentsByChat(ChatDTO chat)
+        {
+            return bll.GetAttachmentsByChat(chat);
+        }
 
         public IEnumerable<UserDTO> GetAllUsers()
         {
@@ -134,10 +138,22 @@ namespace ZaolisService
                 activeUsers[user?.Key].RecieveMessage(message);
             }
         }
+
+        public void SendMessageWithAttachment(MessageDTO message, UserDTO whom,AttachmentDTO attachment)
+        {
+            var user = activeUsers.Where(u => u.Key.Id == whom.Id)?.FirstOrDefault();
+            bll.AddMessage(message,attachment);
+            if (user?.Key != null)
+            {
+                activeUsers[user?.Key].RecieveMessageWithAttachment(message,attachment);
+            }
+        }
         public void AddContact(UserDTO add_to, UserDTO newContact)
         {
             bll.AddContact(add_to, newContact);
         }
+
+        
         public UserDTO GetUserByName(string name)
         {
             return bll.GetUserByName(name);
