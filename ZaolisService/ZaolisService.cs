@@ -10,11 +10,12 @@ using System.Text;
 
 namespace ZaolisService
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class ZaolisService : IZaolisService
     {
         BLLClass bll = new BLLClass();
         Dictionary<UserDTO, IZaolisCallback> activeUsers = new Dictionary<UserDTO, IZaolisCallback>();
-        
+
         public void AddAvatar(AvatarDTO newAvatar)
         {
             bll.AddAvatar(newAvatar);
@@ -32,11 +33,15 @@ namespace ZaolisService
 
         public UserDTO Connect(string login, string password)
         {
-            var res= bll.GetUserByLoginAndPassword(login, password);
+            var res = bll.GetUserByLoginAndPassword(login, password);
             if (res != null)
             {
                 bll.ChangeStatus(res, true);
-                activeUsers.Add(res, OperationContext.Current.GetCallbackChannel<IZaolisCallback>());
+                var key = activeUsers.Keys.FirstOrDefault(k => k.Id == res.Id);
+                if (key != null)
+                    activeUsers[key] = OperationContext.Current.GetCallbackChannel<IZaolisCallback>();
+                else
+                    activeUsers.Add(res, OperationContext.Current.GetCallbackChannel<IZaolisCallback>());
             }
             return res;
         }
@@ -46,7 +51,11 @@ namespace ZaolisService
             if (user != null)
             {
                 bll.ChangeStatus(user, true);
-                activeUsers.Add(user, OperationContext.Current.GetCallbackChannel<IZaolisCallback>());
+                var key = activeUsers.Keys.FirstOrDefault(k => k.Id == user.Id);
+                if (key != null)
+                    activeUsers[key] = OperationContext.Current.GetCallbackChannel<IZaolisCallback>();
+                else
+                    activeUsers.Add(user, OperationContext.Current.GetCallbackChannel<IZaolisCallback>());
             }
             return user;
         }
@@ -82,7 +91,7 @@ namespace ZaolisService
 
         public bool IsExistsUserByLoginPassword(string login, string password)
         {
-           return bll.IsExistsUserByLoginPassword(login, password);
+            return bll.IsExistsUserByLoginPassword(login, password);
         }
         public UserDTO GetUserByEmail(string email)
         {
@@ -98,7 +107,7 @@ namespace ZaolisService
         {
             return bll.GetVerificationCode(email).Code;
         }
-        public void EditUsersPassword(UserDTO user,string pass)
+        public void EditUsersPassword(UserDTO user, string pass)
         {
             bll.EditUsersPassword(user, pass);
         }
@@ -113,15 +122,16 @@ namespace ZaolisService
         }
         public bool Request()
         {
-            return bll.GetVerificationCode("")!=null;
+            return bll.GetVerificationCode("") != null;
         }
 
-        public void SendMessage(MessageDTO message)
+        public void SendMessage(MessageDTO message, UserDTO whom)
         {
-            if (activeUsers.Where(u => u.Key.Id == message.UserId) != null)
+            var user = activeUsers.Where(u => u.Key.Id == whom.Id).First();
+            bll.AddMessage(message);
+            if (user.Key != null)
             {
-                bll.AddMessage(message);
-                OperationContext.Current.GetCallbackChannel<IZaolisCallback>().RecieveMessage(message);
+                activeUsers[user.Key].RecieveMessage(message);
             }
         }
         public void AddContact(UserDTO add_to, UserDTO newContact)
@@ -173,14 +183,14 @@ namespace ZaolisService
             return bll.GetChatById(Id);
         }
 
-        public void RemoveFriendAndChat(UserDTO deletefrom,UserDTO deletewhom, ChatDTO chat)
+        public void RemoveFriendAndChat(UserDTO deletefrom, UserDTO deletewhom, ChatDTO chat)
         {
             bll.RemoveFriendAndChat(deletefrom, deletewhom, chat);
         }
 
         public UserDTO UpdateUserInfo(UserDTO user)
         {
-            var res= bll.GetUserByLogin(user.Login);
+            var res = bll.GetUserByLogin(user.Login);
             return res;
         }
     }

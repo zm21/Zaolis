@@ -58,8 +58,6 @@ namespace ZaolisUI
             this.client = client;
 
             loginnedUser = this.users.First();
-            client.ConnectByUser(loginnedUser);
-
             mainMenuViewModel = new MainMenuViewModel(loginnedUser);
 
             chatManager = new ChatManager(10, ref mainMenuViewModel);
@@ -76,8 +74,9 @@ namespace ZaolisUI
             callbackHandler = new CallbackHandler();
             callbackHandler.RecieveEvent += CallbackHandler_RecieveEvent;
 
+            client.Disconnect(loginnedUser);
             client = new ZaolisServiceClient.ZaolisServiceClient(new System.ServiceModel.InstanceContext(callbackHandler), "NetTcpBinding_IZaolisService");
-
+            client.ConnectByUser(loginnedUser);
             Tray();
             Notification("Zaolis", "Zaolis is working on the tray");
 

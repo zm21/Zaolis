@@ -13,65 +13,95 @@ namespace ZaolisService
     {
         [OperationContract]
         UserDTO Connect(string login, string passwordHash);
-        [OperationContract]
+
+        [OperationContract(IsOneWay = true)]
         void Disconnect(UserDTO user);
-        [OperationContract]
+
+        [OperationContract(IsOneWay = true)]
         void AddUser(UserDTO user);
-        [OperationContract]
+
+        [OperationContract(IsOneWay = true)]
         void AddAvatar(AvatarDTO newAvatar);
-        [OperationContract]
+
+        [OperationContract(IsOneWay = true)]
         void RegisterUser(string email);
+
         [OperationContract]
         bool IsExistsUserByLoginPassword(string login, string password);
+
         [OperationContract]
         bool IsExistsUserByEmail(string email);
+
         [OperationContract]
         UserDTO GetUserByLogin(string login);
+
         [OperationContract]
         IEnumerable<UserDTO> GetAllUsers();
+
         [OperationContract]
         UserDTO GetUserByEmail(string email);
+
         [OperationContract]
         int GetCodeFromEmail(string email);
+
         [OperationContract]
         int GetVerificationCodeFromEmail(string email);
-        [OperationContract]
+
+        [OperationContract(IsOneWay = true)]
         void ForgetPassword(UserDTO user);
-        [OperationContract]
+
+        [OperationContract(IsOneWay = true)]
         void EditUsersPassword(UserDTO user, string pass);
+
         [OperationContract]
         bool Request();
-        [OperationContract]
-        void SendMessage(MessageDTO message);
+
+        [OperationContract(IsOneWay = true)]
+        void SendMessage(MessageDTO message, UserDTO whom);
+
         [OperationContract]
         IEnumerable<UserDTO> GetContacts(UserDTO user);
-        [OperationContract]
+
+        [OperationContract(IsOneWay = true)]
         void AddContact(UserDTO add_to, UserDTO newContact);
+
         [OperationContract]
         UserDTO GetUserByName(string name);
-        [OperationContract]
+
+        [OperationContract(IsOneWay = true)]
         void EditUsersName(UserDTO user, string name);
-        [OperationContract]
+
+        [OperationContract(IsOneWay = true)]
         void EditUsersBio(UserDTO user, string bio);
+
         [OperationContract]
         ChatDTO GetChat(UserDTO user, UserDTO contact);
+
         [OperationContract]
         IEnumerable<ChatDTO> GetUserChats(UserDTO user);
+
         [OperationContract]
         IEnumerable<UserDTO> GetUsersByChat(ChatDTO chat);
+
         [OperationContract]
         UserDTO UpdateUserInfo(UserDTO user);
+
         [OperationContract]
         AvatarDTO GetAvatar(UserDTO user);
+
         [OperationContract]
         UserDTO ConnectByUser(UserDTO user);
+
         [OperationContract]
         IEnumerable<MessageDTO> GetMessagesByChat(ChatDTO chat);
+
         [OperationContract]
         ChatDTO GetChatById(int Id);
-        [OperationContract]
+
+        [OperationContract(IsOneWay = true)]
         void RemoveFriendAndChat(UserDTO deletefrom, UserDTO deletewhom, ChatDTO chat);
-        [OperationContract]
+
+        [OperationContract(IsOneWay = true)]
         void ChangeCurrentAvatar(UserDTO user);
     }
 

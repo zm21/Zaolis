@@ -21,28 +21,28 @@ namespace ZaolisUI.ZaolisServiceClient {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/Connect", ReplyAction="http://tempuri.org/IZaolisService/ConnectResponse")]
         System.Threading.Tasks.Task<BLL.Models.UserDTO> ConnectAsync(string login, string passwordHash);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/Disconnect", ReplyAction="http://tempuri.org/IZaolisService/DisconnectResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/Disconnect")]
         void Disconnect(BLL.Models.UserDTO user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/Disconnect", ReplyAction="http://tempuri.org/IZaolisService/DisconnectResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/Disconnect")]
         System.Threading.Tasks.Task DisconnectAsync(BLL.Models.UserDTO user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/AddUser", ReplyAction="http://tempuri.org/IZaolisService/AddUserResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/AddUser")]
         void AddUser(BLL.Models.UserDTO user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/AddUser", ReplyAction="http://tempuri.org/IZaolisService/AddUserResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/AddUser")]
         System.Threading.Tasks.Task AddUserAsync(BLL.Models.UserDTO user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/AddAvatar", ReplyAction="http://tempuri.org/IZaolisService/AddAvatarResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/AddAvatar")]
         void AddAvatar(BLL.Models.AvatarDTO newAvatar);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/AddAvatar", ReplyAction="http://tempuri.org/IZaolisService/AddAvatarResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/AddAvatar")]
         System.Threading.Tasks.Task AddAvatarAsync(BLL.Models.AvatarDTO newAvatar);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/RegisterUser", ReplyAction="http://tempuri.org/IZaolisService/RegisterUserResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/RegisterUser")]
         void RegisterUser(string email);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/RegisterUser", ReplyAction="http://tempuri.org/IZaolisService/RegisterUserResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/RegisterUser")]
         System.Threading.Tasks.Task RegisterUserAsync(string email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/IsExistsUserByLoginPassword", ReplyAction="http://tempuri.org/IZaolisService/IsExistsUserByLoginPasswordResponse")]
@@ -87,16 +87,16 @@ namespace ZaolisUI.ZaolisServiceClient {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetVerificationCodeFromEmail", ReplyAction="http://tempuri.org/IZaolisService/GetVerificationCodeFromEmailResponse")]
         System.Threading.Tasks.Task<int> GetVerificationCodeFromEmailAsync(string email);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/ForgetPassword", ReplyAction="http://tempuri.org/IZaolisService/ForgetPasswordResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/ForgetPassword")]
         void ForgetPassword(BLL.Models.UserDTO user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/ForgetPassword", ReplyAction="http://tempuri.org/IZaolisService/ForgetPasswordResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/ForgetPassword")]
         System.Threading.Tasks.Task ForgetPasswordAsync(BLL.Models.UserDTO user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/EditUsersPassword", ReplyAction="http://tempuri.org/IZaolisService/EditUsersPasswordResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/EditUsersPassword")]
         void EditUsersPassword(BLL.Models.UserDTO user, string pass);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/EditUsersPassword", ReplyAction="http://tempuri.org/IZaolisService/EditUsersPasswordResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/EditUsersPassword")]
         System.Threading.Tasks.Task EditUsersPasswordAsync(BLL.Models.UserDTO user, string pass);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/Request", ReplyAction="http://tempuri.org/IZaolisService/RequestResponse")]
@@ -105,11 +105,11 @@ namespace ZaolisUI.ZaolisServiceClient {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/Request", ReplyAction="http://tempuri.org/IZaolisService/RequestResponse")]
         System.Threading.Tasks.Task<bool> RequestAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/SendMessage", ReplyAction="http://tempuri.org/IZaolisService/SendMessageResponse")]
-        void SendMessage(BLL.Models.MessageDTO message);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/SendMessage")]
+        void SendMessage(BLL.Models.MessageDTO message, BLL.Models.UserDTO whom);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/SendMessage", ReplyAction="http://tempuri.org/IZaolisService/SendMessageResponse")]
-        System.Threading.Tasks.Task SendMessageAsync(BLL.Models.MessageDTO message);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/SendMessage")]
+        System.Threading.Tasks.Task SendMessageAsync(BLL.Models.MessageDTO message, BLL.Models.UserDTO whom);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetContacts", ReplyAction="http://tempuri.org/IZaolisService/GetContactsResponse")]
         BLL.Models.UserDTO[] GetContacts(BLL.Models.UserDTO user);
@@ -117,10 +117,10 @@ namespace ZaolisUI.ZaolisServiceClient {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetContacts", ReplyAction="http://tempuri.org/IZaolisService/GetContactsResponse")]
         System.Threading.Tasks.Task<BLL.Models.UserDTO[]> GetContactsAsync(BLL.Models.UserDTO user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/AddContact", ReplyAction="http://tempuri.org/IZaolisService/AddContactResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/AddContact")]
         void AddContact(BLL.Models.UserDTO add_to, BLL.Models.UserDTO newContact);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/AddContact", ReplyAction="http://tempuri.org/IZaolisService/AddContactResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/AddContact")]
         System.Threading.Tasks.Task AddContactAsync(BLL.Models.UserDTO add_to, BLL.Models.UserDTO newContact);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUserByName", ReplyAction="http://tempuri.org/IZaolisService/GetUserByNameResponse")]
@@ -129,16 +129,16 @@ namespace ZaolisUI.ZaolisServiceClient {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetUserByName", ReplyAction="http://tempuri.org/IZaolisService/GetUserByNameResponse")]
         System.Threading.Tasks.Task<BLL.Models.UserDTO> GetUserByNameAsync(string name);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/EditUsersName", ReplyAction="http://tempuri.org/IZaolisService/EditUsersNameResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/EditUsersName")]
         void EditUsersName(BLL.Models.UserDTO user, string name);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/EditUsersName", ReplyAction="http://tempuri.org/IZaolisService/EditUsersNameResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/EditUsersName")]
         System.Threading.Tasks.Task EditUsersNameAsync(BLL.Models.UserDTO user, string name);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/EditUsersBio", ReplyAction="http://tempuri.org/IZaolisService/EditUsersBioResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/EditUsersBio")]
         void EditUsersBio(BLL.Models.UserDTO user, string bio);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/EditUsersBio", ReplyAction="http://tempuri.org/IZaolisService/EditUsersBioResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/EditUsersBio")]
         System.Threading.Tasks.Task EditUsersBioAsync(BLL.Models.UserDTO user, string bio);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetChat", ReplyAction="http://tempuri.org/IZaolisService/GetChatResponse")]
@@ -189,16 +189,16 @@ namespace ZaolisUI.ZaolisServiceClient {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetChatById", ReplyAction="http://tempuri.org/IZaolisService/GetChatByIdResponse")]
         System.Threading.Tasks.Task<BLL.Models.ChatDTO> GetChatByIdAsync(int Id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/RemoveFriendAndChat", ReplyAction="http://tempuri.org/IZaolisService/RemoveFriendAndChatResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/RemoveFriendAndChat")]
         void RemoveFriendAndChat(BLL.Models.UserDTO deletefrom, BLL.Models.UserDTO deletewhom, BLL.Models.ChatDTO chat);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/RemoveFriendAndChat", ReplyAction="http://tempuri.org/IZaolisService/RemoveFriendAndChatResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/RemoveFriendAndChat")]
         System.Threading.Tasks.Task RemoveFriendAndChatAsync(BLL.Models.UserDTO deletefrom, BLL.Models.UserDTO deletewhom, BLL.Models.ChatDTO chat);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/ChangeCurrentAvatar", ReplyAction="http://tempuri.org/IZaolisService/ChangeCurrentAvatarResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/ChangeCurrentAvatar")]
         void ChangeCurrentAvatar(BLL.Models.UserDTO user);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/ChangeCurrentAvatar", ReplyAction="http://tempuri.org/IZaolisService/ChangeCurrentAvatarResponse")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/ChangeCurrentAvatar")]
         System.Threading.Tasks.Task ChangeCurrentAvatarAsync(BLL.Models.UserDTO user);
     }
     
@@ -357,12 +357,12 @@ namespace ZaolisUI.ZaolisServiceClient {
             return base.Channel.RequestAsync();
         }
         
-        public void SendMessage(BLL.Models.MessageDTO message) {
-            base.Channel.SendMessage(message);
+        public void SendMessage(BLL.Models.MessageDTO message, BLL.Models.UserDTO whom) {
+            base.Channel.SendMessage(message, whom);
         }
         
-        public System.Threading.Tasks.Task SendMessageAsync(BLL.Models.MessageDTO message) {
-            return base.Channel.SendMessageAsync(message);
+        public System.Threading.Tasks.Task SendMessageAsync(BLL.Models.MessageDTO message, BLL.Models.UserDTO whom) {
+            return base.Channel.SendMessageAsync(message, whom);
         }
         
         public BLL.Models.UserDTO[] GetContacts(BLL.Models.UserDTO user) {
