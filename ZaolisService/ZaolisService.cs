@@ -127,11 +127,11 @@ namespace ZaolisService
 
         public void SendMessage(MessageDTO message, UserDTO whom)
         {
-            var user = activeUsers.Where(u => u.Key.Id == whom.Id).First();
+            var user = activeUsers.Where(u => u.Key.Id == whom.Id)?.FirstOrDefault();
             bll.AddMessage(message);
-            if (user.Key != null)
+            if (user?.Key != null)
             {
-                activeUsers[user.Key].RecieveMessage(message);
+                activeUsers[user?.Key].RecieveMessage(message);
             }
         }
         public void AddContact(UserDTO add_to, UserDTO newContact)

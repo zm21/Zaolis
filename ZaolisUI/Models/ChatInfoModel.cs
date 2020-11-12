@@ -92,7 +92,7 @@ namespace ZaolisUI
 
         public void UpdateChat()
         {
-            Chat = client.GetChatById(chat.Id);
+            Task.Run(() => { Chat = client.GetChatById(chat.Id); });
         }
     }
 }
