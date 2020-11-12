@@ -33,7 +33,7 @@ namespace ZaolisUI
         public ObservableCollection<MessageModel> Messages { get; set; }
         public BitmapSource CurrentMsgGetterAvatar => contactMsgGetter.AvatarImage();
 
-        
+
         //Chat friend
         public UserDTO ContactMsgGetter 
         {
@@ -67,17 +67,24 @@ namespace ZaolisUI
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
+                    var attachments = client.GetAttachmentsByChat(Chat).ToList();
                     foreach (var item in client.GetMessagesByChat(chat))
                     {
-                        Messages.Add(new MessageModel(item, CurrentUser) { Message = item });
-                    }
-                    if (Messages.Count() > 1)
-                    {
-                        var firstMsg = Messages.First();
+                        var msgToAdd = new MessageModel(item, CurrentUser) { Message = item };
 
-                        Messages.Remove(firstMsg);
-                        Messages.Insert(Messages.IndexOf(Messages.Last()) + 1, firstMsg);
+                        Messages.Add(msgToAdd);
                     }
+                    foreach (var item in Messages)
+                    {
+                        var attachment = attachments.Where(a => a.MessageId == item.Message.Id).FirstOrDefault();
+                        if (attachment != null)
+                        {
+                            item.Attachment = attachment;
+                            attachments.Remove(attachment);
+                        }
+                    }
+
+                    Messages = new ObservableCollection<MessageModel>(Messages.OrderBy(u => u.Message.CreationTime).ToArray());
                 });
             });
             

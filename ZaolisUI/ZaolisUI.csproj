@@ -162,6 +162,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\BLL.Models.AttachmentDTO.datasource" />
     <None Include="Properties\DataSources\BLL.Models.AvatarDTO.datasource" />
     <None Include="Properties\DataSources\BLL.Models.ChatDTO.datasource" />
     <None Include="Properties\DataSources\BLL.Models.MessageDTO.datasource" />

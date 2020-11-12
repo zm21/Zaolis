@@ -200,6 +200,18 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/ChangeCurrentAvatar")]
         System.Threading.Tasks.Task ChangeCurrentAvatarAsync(BLL.Models.UserDTO user);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/SendMessageWithAttachment")]
+        void SendMessageWithAttachment(BLL.Models.MessageDTO message, BLL.Models.UserDTO whom, BLL.Models.AttachmentDTO attachment);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IZaolisService/SendMessageWithAttachment")]
+        System.Threading.Tasks.Task SendMessageWithAttachmentAsync(BLL.Models.MessageDTO message, BLL.Models.UserDTO whom, BLL.Models.AttachmentDTO attachment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetAttachmentsByChat", ReplyAction="http://tempuri.org/IZaolisService/GetAttachmentsByChatResponse")]
+        BLL.Models.AttachmentDTO[] GetAttachmentsByChat(BLL.Models.ChatDTO chat);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IZaolisService/GetAttachmentsByChat", ReplyAction="http://tempuri.org/IZaolisService/GetAttachmentsByChatResponse")]
+        System.Threading.Tasks.Task<BLL.Models.AttachmentDTO[]> GetAttachmentsByChatAsync(BLL.Models.ChatDTO chat);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -483,6 +495,22 @@ namespace ZaolisUI.ZaolisServiceClient {
         
         public System.Threading.Tasks.Task ChangeCurrentAvatarAsync(BLL.Models.UserDTO user) {
             return base.Channel.ChangeCurrentAvatarAsync(user);
+        }
+        
+        public void SendMessageWithAttachment(BLL.Models.MessageDTO message, BLL.Models.UserDTO whom, BLL.Models.AttachmentDTO attachment) {
+            base.Channel.SendMessageWithAttachment(message, whom, attachment);
+        }
+        
+        public System.Threading.Tasks.Task SendMessageWithAttachmentAsync(BLL.Models.MessageDTO message, BLL.Models.UserDTO whom, BLL.Models.AttachmentDTO attachment) {
+            return base.Channel.SendMessageWithAttachmentAsync(message, whom, attachment);
+        }
+        
+        public BLL.Models.AttachmentDTO[] GetAttachmentsByChat(BLL.Models.ChatDTO chat) {
+            return base.Channel.GetAttachmentsByChat(chat);
+        }
+        
+        public System.Threading.Tasks.Task<BLL.Models.AttachmentDTO[]> GetAttachmentsByChatAsync(BLL.Models.ChatDTO chat) {
+            return base.Channel.GetAttachmentsByChatAsync(chat);
         }
     }
 }

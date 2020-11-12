@@ -103,12 +103,18 @@ namespace ZaolisService
 
         [OperationContract(IsOneWay = true)]
         void ChangeCurrentAvatar(UserDTO user);
+
+        [OperationContract(IsOneWay = true)]
+        void SendMessageWithAttachment(MessageDTO message, UserDTO whom, AttachmentDTO attachment);
+        [OperationContract]
+        IEnumerable<AttachmentDTO> GetAttachmentsByChat(ChatDTO chat);
     }
 
     public interface IZaolisCallback
     {
         [OperationContract(IsOneWay = true)]
         void RecieveMessage(MessageDTO message);
+        void RecieveMessageWithAttachment(MessageDTO message,AttachmentDTO attachment);
     }
 
 }

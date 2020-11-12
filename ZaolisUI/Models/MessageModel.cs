@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace ZaolisUI
 {
@@ -15,6 +16,10 @@ namespace ZaolisUI
         public bool SentByMe { get; }
 
         private UserDTO CurrentUser { get; }
+
+        public AttachmentDTO Attachment { get; set; }
+
+        public BitmapSource ImageToSend => Attachment?.GetImage();
 
         public MessageModel(MessageDTO message,UserDTO userDTO)
         {
