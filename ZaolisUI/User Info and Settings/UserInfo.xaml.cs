@@ -25,8 +25,6 @@ namespace ZaolisUI
 
         private ChatInfoModel model;
 
-        private UserDTO CurrentUser;
-
         private MainMenuViewModel viewModel;
 
         private ZaolisServiceClient.ZaolisServiceClient client;
