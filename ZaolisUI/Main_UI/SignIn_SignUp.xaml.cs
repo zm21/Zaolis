@@ -163,6 +163,7 @@ namespace ZaolisUI
                         }
 
                         MainMenuZaolis mnz = new MainMenuZaolis(logginedUsers, client);
+                        this.Hide();
                         mnz.Show();
 
                         this.Close();
