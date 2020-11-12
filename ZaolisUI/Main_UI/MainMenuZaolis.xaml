@@ -36,7 +36,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                     <!--Photo-->
                     <Ellipse Height="45" Width="45" Stroke="#FF013355" StrokeThickness="1">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
+                        <ImageBrush ImageSource="{Binding CurrentMsgGetterAvatar}" Stretch="Fill"></ImageBrush>
                         </Ellipse.Fill>
                     </Ellipse>
                     <DockPanel DockPanel.Dock="Right">
@@ -60,7 +60,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                 <!--Photo-->
                 <Ellipse Height="45" Width="45" Stroke="White" StrokeThickness="1">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
+                        <ImageBrush ImageSource="{Binding CurrentMsgGetterAvatar}" Stretch="Fill"></ImageBrush>
                     </Ellipse.Fill>
                 </Ellipse>
                 <DockPanel DockPanel.Dock="Right">
@@ -84,7 +84,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                 <!--Photo-->
                 <Ellipse Height="30" Width="30" Stroke="#FF013355" StrokeThickness="1">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
+                        <ImageBrush ImageSource="{Binding CurrentAvatar}" Stretch="Fill"></ImageBrush>
                     </Ellipse.Fill>
                 </Ellipse>
                 <DockPanel DockPanel.Dock="Right">
@@ -99,7 +99,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                 <!--Photo-->
                 <Ellipse Height="30" Width="30" Stroke="White" StrokeThickness="1">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="{Binding ImagePath}" Stretch="Fill"></ImageBrush>
+                        <ImageBrush ImageSource="{Binding CurrentAvatar}" Stretch="Fill"></ImageBrush>
                     </Ellipse.Fill>
                 </Ellipse>
                 <DockPanel DockPanel.Dock="Right">
@@ -234,7 +234,6 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
 
                             <ListBox DockPanel.Dock="Top" ItemTemplate="{StaticResource LightAccountTemplate}" x:Name="logginedUsers" ItemsSource="{Binding users}" SelectionChanged="logginedUsers_SelectionChanged"/>
                             <Button Width="250" Height="50" Name="buttonAddAccount" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" Click="buttonAddAccount_Click">
-
                                 <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <materialDesign:PackIcon  Width="25" Height="25" Kind="AccountAdd" DockPanel.Dock="Left"></materialDesign:PackIcon>
                                     <Label x:Name="labelAddAccount" DockPanel.Dock="Top" Margin="35,0,0,0">Add Account</Label>
