@@ -2,6 +2,7 @@ using BLL.Models;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -80,6 +81,8 @@ namespace ZaolisUI
                 ChatInfo.Messages.Add(new MessageModel(messageDTO, ChatInfo.CurrentUser));
                 client.SendMessageAsync(messageDTO, ChatInfo.ContactMsgGetter);
                 ChatInfo.UpdateChat();
+
+                ScrollViewer.ScrollToEnd();
             }
         }
 
@@ -112,12 +115,39 @@ namespace ZaolisUI
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ButtonPhotoAttachment_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
 
             openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.png) | *.jpg; *.jpeg; *.jpe; *.png";
-            openFileDialog.ShowDialog();
+            if(openFileDialog.ShowDialog()==true)
+            {
+                MessageDTO messageDTO = new MessageDTO();
+
+                messageDTO.ChatId = ChatInfo.Chat.Id;
+                messageDTO.MessageText = txtbox_message.Text;
+                messageDTO.CreationTime = DateTime.Now;
+                messageDTO.UserId = ChatInfo.CurrentUser.Id;
+
+                AttachmentDTO attachment = new AttachmentDTO() { Path = openFileDialog.FileName };
+                System.Drawing.Bitmap bmp = null;
+                if (File.Exists(openFileDialog.FileName))
+                {
+                    bmp = new System.Drawing.Bitmap(openFileDialog.FileName);
+                    System.Drawing.ImageConverter converter = new System.Drawing.ImageConverter();
+                    attachment.imageBytes = (byte[])converter.ConvertTo(bmp, typeof(byte[]));
+                }
+
+
+                txtbox_message.Text = "";
+                var msgModel = new MessageModel(messageDTO, ChatInfo.CurrentUser);
+                msgModel.Attachment = attachment;
+                ChatInfo.Messages.Add(msgModel);
+                client.SendMessageWithAttachmentAsync(messageDTO, ChatInfo.ContactMsgGetter, attachment);
+                ChatInfo.UpdateChat();
+
+                ScrollViewer.ScrollToEnd();
+            }
         }
 
 

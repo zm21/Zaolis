@@ -33,7 +33,6 @@ namespace BLL
         {
             if (path != null)
             {
-                //byte[] bytes = null;
                 Bitmap bmp = null;
                 if (File.Exists(path))
                 {
@@ -41,12 +40,6 @@ namespace BLL
                     ImageConverter converter = new ImageConverter();
                     return (byte[])converter.ConvertTo(bmp, typeof(byte[]));
                 }
-                //using (var ms = new MemoryStream(bytes))
-                //{
-                //    bmp = new Bitmap(ms);
-                //}
-                //var handle = bmp.GetHbitmap();
-                //return Imaging.CreateBitmapSourceFromHBitmap(handle, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
             }
             return null;
         }

@@ -49,7 +49,7 @@
 
                     <TextBlock 
                                Padding="20"
-                               DataContext="{Binding ImageAttachment}"
+                               DataContext="{Binding ImageToSend}"
                                Visibility="{Binding ImageLoaded, Converter={local:BooleanToVisiblityGoneConverter}, ConverterParameter=True, FallbackValue=Collapsed}"
                                />
                 </Border>
@@ -58,9 +58,9 @@
                 <Border CornerRadius="10"
                             Margin="0 0 0 15">
 
-                    <Image DataContext="{Binding ImageAttachment}"
+                    <Image 
                                
-                               Source="{Binding LocalFilePath, NotifyOnTargetUpdated=True}"
+                               Source="{Binding ImageToSend}"
                                MaxWidth="600"
                                />
 
