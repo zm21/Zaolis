@@ -22,7 +22,7 @@
                 <Button x:Name="buttonSend" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="#03A9F4" Width="29" Height="29" Background="{x:Null}" BorderBrush="{x:Null}" Margin="5,0" Content="{materialDesign:PackIcon Kind=Send, Size=26}" Click="ButtonSend_Click" ></Button>
                 <Button x:Name="buttonMic" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="#03A9F4" Width="29" Height="29" Background="{x:Null}" BorderBrush="{x:Null}" Margin="5,0" Content="{materialDesign:PackIcon Kind=MicNone, Size=26}"></Button>
                 <Button x:Name="buttonSticker" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Foreground="#03A9F4" Width="29" Height="29" Background="{x:Null}" BorderBrush="{x:Null}" Margin="5,0" Content="{materialDesign:PackIcon Kind=StickerOutline, Size=26}"></Button>
-                <TextBox x:Name="txtbox_message" FontSize="14" materialDesign:HintAssist.Hint="Write a message..." DockPanel.Dock="Left"></TextBox>
+                <TextBox x:Name="txtbox_message" FontSize="14" materialDesign:HintAssist.Hint="Write a message..." DockPanel.Dock="Left" KeyDown="txtbox_message_KeyDown"></TextBox>
             </DockPanel>
             <ScrollViewer x:Name="ScrollViewer">
                 <ItemsControl ItemsSource="{Binding Messages}" x:Name="messagesItemsControl">
