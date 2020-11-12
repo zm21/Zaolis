@@ -25,7 +25,7 @@ namespace BLL.Models
 
         [DataMember]
         public byte[] imageBytes;
-
+        //
         public BitmapSource CurrentImage
         {
             get

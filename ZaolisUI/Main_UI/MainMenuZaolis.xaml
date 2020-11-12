@@ -157,6 +157,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                 </DockPanel>
             </DockPanel>
 
+
             <!--Friends-->
             <DockPanel Grid.Row="0" LastChildFill="False">
                 <Button x:Name="ButtonOpenMenu" DockPanel.Dock="Left" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Content="{materialDesign:PackIcon Kind=Menu}" Click="ButtonOpenMenu_Click" ></Button>
@@ -265,7 +266,7 @@ Title="MainMenuZaolis" MinHeight="450" MinWidth="650" Height="600" Width="1040" 
                             <Button Width="250" Height="50" Name="buttonNightMode" Style="{StaticResource MaterialDesignFlatButton}" DockPanel.Dock="Top" Click="buttonNightMode_Click">
                                 <DockPanel Width="220" LastChildFill="False" HorizontalAlignment="Center" VerticalAlignment="Center">
                                     <materialDesign:PackIcon Width="25" Height="25" Kind="WeatherNight" DockPanel.Dock="Left"></materialDesign:PackIcon>
-                                    <ToggleButton IsChecked="{Binding NightMode}" Name="toggleButtonNightMode" DockPanel.Dock="Right"></ToggleButton>
+                                    <ToggleButton IsChecked="{Binding NightMode, Mode=TwoWay}" Name="toggleButtonNightMode" DockPanel.Dock="Right"></ToggleButton>
                                     <Label x:Name="labelNightMode" DockPanel.Dock="Left" Margin="35,0,0,0" >Night Mode</Label>
                                 </DockPanel>
                             </Button>
